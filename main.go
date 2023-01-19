@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/joint-online-judge/go-horse/database"
 	"github.com/joint-online-judge/go-horse/router"
 
 	"github.com/gofiber/fiber/v2"
@@ -37,7 +38,7 @@ func main() {
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}))
 
-	// database.ConnectDB()
+	database.ConnectDB()
 
 	router.Initalize(app)
 	log.Fatal(app.Listen(":" + getenv("PORT", "3000")))
