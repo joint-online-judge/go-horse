@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/joint-online-judge/go-horse/database"
+	"github.com/joint-online-judge/go-horse/handlers"
 	"github.com/joint-online-judge/go-horse/router"
 
 	"github.com/gofiber/fiber/v2"
@@ -28,11 +29,13 @@ func getenv(key, fallback string) string {
 // @contact.email fiber@swagger.io
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-// @host localhost:8080
+// @host localhost:3000
 // @BasePath /
 func main() {
 	godotenv.Load()
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		ErrorHandler: handlers.ErrorHandler,
+	})
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "*", // comma string format
 		AllowHeaders: "Origin, Content-Type, Accept",
