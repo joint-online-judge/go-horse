@@ -3,8 +3,33 @@ package handlers
 import (
 	"context"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/joint-online-judge/go-horse/types"
+	log "github.com/sirupsen/logrus"
 )
+
+var validate = validator.New()
+
+func isDomainUrl(fl validator.FieldLevel) bool {
+	return fl.Field().String() != "domains"
+}
+
+func init() {
+	validate.RegisterValidation("domain_url", isDomainUrl)
+}
+
+func ValidateStructs(vals ...interface{}) error {
+	for _, val := range vals {
+		err := validate.Struct(val)
+		if err != nil {
+			for _, err := range err.(validator.ValidationErrors) {
+				log.Errorf("validation error: %v, %v, %v", err.StructNamespace(), err.Tag(), err.Param())
+			}
+		}
+		return err
+	}
+	return nil
+}
 
 type ApiV1 struct {
 }
