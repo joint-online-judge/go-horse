@@ -9,7 +9,9 @@ import (
 )
 
 func Initalize(router *fiber.App) {
-
+	// TODO: implement handler impl
+	// var handlerImpl HandlerImpl
+	// RegisterHandlers(router, &handlerImpl)
 	router.Get("/swagger/*", swagger.HandlerDefault) // default
 
 	router.Get("/swagger/*", swagger.New(swagger.Config{ // custom
