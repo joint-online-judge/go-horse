@@ -3069,10 +3069,6 @@ type V1CreateDomainResponseObject interface {
 
 type V1CreateDomain200JSONResponse DomainResp
 
-func NewV1CreateDomain200JSONResponse(data *Domain) V1CreateDomain200JSONResponse {
-	return V1CreateDomain200JSONResponse{BizError: BizError{ErrorCode: Success}, Data: data}
-}
-
 func (response V1CreateDomain200JSONResponse) VisitV1CreateDomainResponse(ctx *fiber.Ctx) error {
 	ctx.Response().Header.Set("Content-Type", "application/json")
 	ctx.Status(200)

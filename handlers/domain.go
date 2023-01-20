@@ -12,5 +12,7 @@ func (s *ApiV1) V1CreateDomain(c context.Context, request types.V1CreateDomainRe
 	if err, ok := ValidateStructs(request.Body); !ok {
 		return types.V1CreateDomain422JSONResponse{Detail: &err}, nil
 	}
-	return types.NewV1CreateDomain200JSONResponse(&types.Domain{}), nil
+	domain := types.Domain{}
+	err := types.Success()
+	return types.V1CreateDomain200JSONResponse{BizError: err, Data: &domain}, nil
 }
