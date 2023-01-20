@@ -4,7 +4,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/joint-online-judge/go-horse/database"
 	"github.com/joint-online-judge/go-horse/handlers"
 	"github.com/joint-online-judge/go-horse/router"
 
@@ -21,16 +20,6 @@ func getenv(key, fallback string) string {
 	return value
 }
 
-// @title Fiber Example API
-// @version 1.0
-// @description This is a sample swagger for Fiber
-// @termsOfService http://swagger.io/terms/
-// @contact.name API Support
-// @contact.email fiber@swagger.io
-// @license.name Apache 2.0
-// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-// @host localhost:3000
-// @BasePath /
 func main() {
 	godotenv.Load()
 	app := fiber.New(fiber.Config{
@@ -41,7 +30,7 @@ func main() {
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}))
 
-	database.ConnectDB()
+	// database.ConnectDB()
 
 	router.Initalize(app)
 	log.Fatal(app.Listen(":" + getenv("PORT", "3000")))

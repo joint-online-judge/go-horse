@@ -1,5 +1,5 @@
-// Package model provides primitives to interact with the openapi HTTP API.
-package model
+// Package types provides primitives to interact with the openapi HTTP API.
+package types
 
 import (
 	"encoding/json"
@@ -7,7 +7,6 @@ import (
 
 	"github.com/deepmap/oapi-codegen/pkg/runtime"
 	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
-	"github.com/joint-online-judge/go-horse/types"
 )
 
 const (
@@ -126,7 +125,7 @@ type AuthTokens struct {
 // AuthTokensResp defines model for AuthTokensResp.
 type AuthTokensResp struct {
 	Data *AuthTokens `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // AuthTokensWithLakefs defines model for AuthTokensWithLakefs.
@@ -141,7 +140,7 @@ type AuthTokensWithLakefs struct {
 // AuthTokensWithLakefsResp defines model for AuthTokensWithLakefsResp.
 type AuthTokensWithLakefsResp struct {
 	Data *AuthTokensWithLakefs `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // Case defines model for Case.
@@ -186,7 +185,7 @@ type DiffList struct {
 // DiffListResp defines model for DiffListResp.
 type DiffListResp struct {
 	Data *DiffList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // DiffTypeEnum An enumeration.
@@ -233,7 +232,7 @@ type DomainCreate struct {
 	Name string `json:"name"`
 
 	// Url (unique) url of the domain
-	Url *string `json:"url,omitempty"`
+	Url *string `json:"url,omitempty" validate:"domain_url"`
 }
 
 // DomainDetail defines model for DomainDetail.
@@ -265,7 +264,7 @@ type DomainDetail struct {
 // DomainDetailResp defines model for DomainDetailResp.
 type DomainDetailResp struct {
 	Data *DomainDetail `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // DomainEdit defines model for DomainEdit.
@@ -329,13 +328,13 @@ type DomainInvitationList struct {
 // DomainInvitationListResp defines model for DomainInvitationListResp.
 type DomainInvitationListResp struct {
 	Data *DomainInvitationList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // DomainInvitationResp defines model for DomainInvitationResp.
 type DomainInvitationResp struct {
 	Data *DomainInvitation `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // DomainList defines model for DomainList.
@@ -347,7 +346,7 @@ type DomainList struct {
 // DomainListResp defines model for DomainListResp.
 type DomainListResp struct {
 	Data *DomainList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // DomainPermission All permissions in a domain
@@ -361,7 +360,7 @@ type DomainPermission struct {
 // DomainResp defines model for DomainResp.
 type DomainResp struct {
 	Data *Domain `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // DomainRole defines model for DomainRole.
@@ -396,7 +395,7 @@ type DomainRoleDetail struct {
 // DomainRoleDetailResp defines model for DomainRoleDetailResp.
 type DomainRoleDetailResp struct {
 	Data *DomainRoleDetail `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // DomainRoleEdit defines model for DomainRoleEdit.
@@ -414,13 +413,13 @@ type DomainRoleList struct {
 // DomainRoleListResp defines model for DomainRoleListResp.
 type DomainRoleListResp struct {
 	Data *DomainRoleList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // DomainRoleResp defines model for DomainRoleResp.
 type DomainRoleResp struct {
 	Data *DomainRole `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // DomainTag defines model for DomainTag.
@@ -435,7 +434,7 @@ type DomainTagList struct {
 // DomainTagListResp defines model for DomainTagListResp.
 type DomainTagListResp struct {
 	Data *DomainTagList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // DomainTransfer defines model for DomainTransfer.
@@ -465,21 +464,12 @@ type DomainUserPermission struct {
 // DomainUserPermissionResp defines model for DomainUserPermissionResp.
 type DomainUserPermissionResp struct {
 	Data *DomainUserPermission `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // DomainUserUpdate defines model for DomainUserUpdate.
 type DomainUserUpdate struct {
 	Role *string `json:"role,omitempty"`
-}
-
-// Empty defines model for Empty.
-type Empty = map[string]interface{}
-
-// EmptyResp defines model for EmptyResp.
-type EmptyResp struct {
-	Data *Empty `json:"data,omitempty"`
-	types.BizError
 }
 
 // FileUpload defines model for FileUpload.
@@ -525,7 +515,7 @@ type JWTAccessTokenCategory string
 // JWTAccessTokenResp defines model for JWTAccessTokenResp.
 type JWTAccessTokenResp struct {
 	Data *JWTAccessToken `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // JudgerClaim defines model for JudgerClaim.
@@ -551,7 +541,7 @@ type JudgerCredentials struct {
 // JudgerCredentialsResp defines model for JudgerCredentialsResp.
 type JudgerCredentialsResp struct {
 	Data *JudgerCredentials `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // JudgerDetail defines model for JudgerDetail.
@@ -575,7 +565,7 @@ type JudgerDetailList struct {
 // JudgerDetailListResp defines model for JudgerDetailListResp.
 type JudgerDetailListResp struct {
 	Data *JudgerDetailList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // Language defines model for Language.
@@ -611,7 +601,7 @@ type OAuth2ClientList struct {
 // OAuth2ClientListResp defines model for OAuth2ClientListResp.
 type OAuth2ClientListResp struct {
 	Data *OAuth2ClientList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // OAuth2PasswordRequestForm defines model for OAuth2PasswordRequestForm.
@@ -645,7 +635,7 @@ type ObjectStatsList struct {
 // ObjectStatsListResp defines model for ObjectStatsListResp.
 type ObjectStatsListResp struct {
 	Data *ObjectStatsList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // Pagination defines model for Pagination.
@@ -703,7 +693,7 @@ type ProblemConfigDataDetail struct {
 // ProblemConfigDataDetailResp defines model for ProblemConfigDataDetailResp.
 type ProblemConfigDataDetailResp struct {
 	Data *ProblemConfigDataDetail `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // ProblemConfigDetail defines model for ProblemConfigDetail.
@@ -726,13 +716,13 @@ type ProblemConfigDetailList struct {
 // ProblemConfigDetailListResp defines model for ProblemConfigDetailListResp.
 type ProblemConfigDetailListResp struct {
 	Data *ProblemConfigDetailList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // ProblemConfigDetailResp defines model for ProblemConfigDetailResp.
 type ProblemConfigDetailResp struct {
 	Data *ProblemConfigDetail `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // ProblemConfigJson defines model for ProblemConfigJson.
@@ -783,7 +773,7 @@ type ProblemDetail struct {
 // ProblemDetailResp defines model for ProblemDetailResp.
 type ProblemDetailResp struct {
 	Data *ProblemDetail `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // ProblemDetailWithLatestRecord defines model for ProblemDetailWithLatestRecord.
@@ -814,7 +804,7 @@ type ProblemDetailWithLatestRecord struct {
 // ProblemDetailWithLatestRecordResp defines model for ProblemDetailWithLatestRecordResp.
 type ProblemDetailWithLatestRecordResp struct {
 	Data *ProblemDetailWithLatestRecord `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // ProblemEdit defines model for ProblemEdit.
@@ -839,7 +829,7 @@ type ProblemGroupList struct {
 // ProblemGroupListResp defines model for ProblemGroupListResp.
 type ProblemGroupListResp struct {
 	Data *ProblemGroupList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // ProblemList defines model for ProblemList.
@@ -851,7 +841,7 @@ type ProblemList struct {
 // ProblemListResp defines model for ProblemListResp.
 type ProblemListResp struct {
 	Data *ProblemList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // ProblemPermission defines model for ProblemPermission.
@@ -882,7 +872,7 @@ type ProblemPreviewWithLatestRecord struct {
 // ProblemResp defines model for ProblemResp.
 type ProblemResp struct {
 	Data *Problem `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // ProblemSet defines model for ProblemSet.
@@ -985,7 +975,7 @@ type ProblemSetDetail struct {
 // ProblemSetDetailResp defines model for ProblemSetDetailResp.
 type ProblemSetDetailResp struct {
 	Data *ProblemSetDetail `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // ProblemSetEdit defines model for ProblemSetEdit.
@@ -1009,7 +999,7 @@ type ProblemSetList struct {
 // ProblemSetListResp defines model for ProblemSetListResp.
 type ProblemSetListResp struct {
 	Data *ProblemSetList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // ProblemSetPermission defines model for ProblemSetPermission.
@@ -1027,7 +1017,7 @@ type ProblemSetPermission struct {
 // ProblemSetResp defines model for ProblemSetResp.
 type ProblemSetResp struct {
 	Data *ProblemSet `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // ProblemSetUpdateProblem defines model for ProblemSetUpdateProblem.
@@ -1071,7 +1061,7 @@ type ProblemWithLatestRecordList struct {
 // ProblemWithLatestRecordListResp defines model for ProblemWithLatestRecordListResp.
 type ProblemWithLatestRecordListResp struct {
 	Data *ProblemWithLatestRecordList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // Record defines model for Record.
@@ -1140,7 +1130,7 @@ type RecordDetail struct {
 // RecordDetailResp defines model for RecordDetailResp.
 type RecordDetailResp struct {
 	Data *RecordDetail `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // RecordListDetail defines model for RecordListDetail.
@@ -1172,7 +1162,7 @@ type RecordListDetailList struct {
 // RecordListDetailListResp defines model for RecordListDetailListResp.
 type RecordListDetailListResp struct {
 	Data *RecordListDetailList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // RecordPermission defines model for RecordPermission.
@@ -1196,7 +1186,7 @@ type RecordPreview struct {
 // RecordResp defines model for RecordResp.
 type RecordResp struct {
 	Data *Record `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // RecordState An enumeration.
@@ -1221,17 +1211,17 @@ type Redirect struct {
 // RedirectResp defines model for RedirectResp.
 type RedirectResp struct {
 	Data *Redirect `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
-// // User defines model for User.
-// type User struct {
-// 	Gravatar *string            `json:"gravatar,omitempty"`
-// 	Id       openapi_types.UUID `json:"id"`
-// 	IsActive *bool              `json:"isActive,omitempty"`
-// 	Role     *string            `json:"role,omitempty"`
-// 	Username string             `json:"username"`
-// }
+// User defines model for User.
+type User struct {
+	Gravatar *string            `json:"gravatar,omitempty"`
+	Id       openapi_types.UUID `json:"id"`
+	IsActive *bool              `json:"isActive,omitempty"`
+	Role     *string            `json:"role,omitempty"`
+	Username string             `json:"username"`
+}
 
 // UserCreate defines model for UserCreate.
 type UserCreate struct {
@@ -1262,7 +1252,7 @@ type UserDetail struct {
 // UserDetailResp defines model for UserDetailResp.
 type UserDetailResp struct {
 	Data *UserDetail `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // UserDetailWithDomainRole defines model for UserDetailWithDomainRole.
@@ -1293,13 +1283,13 @@ type UserDetailWithDomainRoleList struct {
 // UserDetailWithDomainRoleListResp defines model for UserDetailWithDomainRoleListResp.
 type UserDetailWithDomainRoleListResp struct {
 	Data *UserDetailWithDomainRoleList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // UserDetailWithDomainRoleResp defines model for UserDetailWithDomainRoleResp.
 type UserDetailWithDomainRoleResp struct {
 	Data *UserDetailWithDomainRole `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // UserEdit defines model for UserEdit.
@@ -1316,7 +1306,7 @@ type UserList struct {
 // UserListResp defines model for UserListResp.
 type UserListResp struct {
 	Data *UserList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // UserPreview defines model for UserPreview.
@@ -1329,7 +1319,7 @@ type UserPreview struct {
 // UserPreviewResp defines model for UserPreviewResp.
 type UserPreviewResp struct {
 	Data *UserPreview `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // UserResetPassword defines model for UserResetPassword.
@@ -1356,13 +1346,13 @@ type UserWithDomainRoleList struct {
 // UserWithDomainRoleListResp defines model for UserWithDomainRoleListResp.
 type UserWithDomainRoleListResp struct {
 	Data *UserWithDomainRoleList `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // UserWithDomainRoleResp defines model for UserWithDomainRoleResp.
 type UserWithDomainRoleResp struct {
 	Data *UserWithDomainRole `json:"data,omitempty"`
-	types.BizError
+	BizError
 }
 
 // ValidationError defines model for ValidationError.

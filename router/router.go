@@ -3,15 +3,14 @@ package router
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/swagger"
-	_ "github.com/joint-online-judge/go-horse/docs"
 	"github.com/joint-online-judge/go-horse/handlers"
 	"github.com/joint-online-judge/go-horse/middleware"
+	"github.com/joint-online-judge/go-horse/types"
 )
 
 func Initalize(router *fiber.App) {
-	// TODO: implement handler impl
-	// var handlerImpl HandlerImpl
-	// RegisterHandlers(router, &handlerImpl)
+	var strictHandlerImpl handlers.ApiV1
+	RegisterStrictHandlers(router, &strictHandlerImpl, []types.StrictMiddlewareFunc{})
 	router.Get("/swagger/*", swagger.HandlerDefault) // default
 
 	router.Get("/swagger/*", swagger.New(swagger.Config{ // custom
