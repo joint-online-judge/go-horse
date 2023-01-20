@@ -2,31 +2,12 @@ package router
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/swagger"
 	"github.com/joint-online-judge/go-horse/handlers"
 	"github.com/joint-online-judge/go-horse/middleware"
 	"github.com/joint-online-judge/go-horse/types"
 )
 
 func Initalize(router *fiber.App) {
-	var strictHandlerImpl handlers.ApiV1
-	RegisterStrictHandlers(router, &strictHandlerImpl, []types.StrictMiddlewareFunc{})
-	router.Get("/swagger/*", swagger.HandlerDefault) // default
-
-	router.Get("/swagger/*", swagger.New(swagger.Config{ // custom
-		URL:         "http://example.com/doc.json",
-		DeepLinking: false,
-		// Expand ("list") or Collapse ("none") tag groups by default
-		DocExpansion: "none",
-		// Prefill OAuth ClientId on Authorize popup
-		OAuth: &swagger.OAuthConfig{
-			AppName:  "OAuth Provider",
-			ClientId: "21bb4edc-05a7-4afc-86f1-2e151e4ba6e2",
-		},
-		// Ability to change OAuth2 redirect uri location
-		OAuth2RedirectUrl: "http://localhost:3000/swagger/oauth2-redirect.html",
-	}))
-
 	router.Use(middleware.Security)
 
 	router.Get("/", func(c *fiber.Ctx) error {
@@ -34,6 +15,9 @@ func Initalize(router *fiber.App) {
 	})
 
 	router.Use(middleware.Json)
+
+	var strictHandlerImpl handlers.ApiV1
+	RegisterStrictHandlers(router, &strictHandlerImpl, []types.StrictMiddlewareFunc{})
 
 	users := router.Group("/users")
 	users.Post("/", handlers.CreateUser)

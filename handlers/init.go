@@ -18,17 +18,18 @@ func init() {
 	validate.RegisterValidation("domain_url", isDomainUrl)
 }
 
-func ValidateStructs(vals ...interface{}) error {
+func ValidateStructs(vals ...interface{}) ([]types.ValidationError, bool) {
+	var validationError []types.ValidationError
 	for _, val := range vals {
 		err := validate.Struct(val)
 		if err != nil {
 			for _, err := range err.(validator.ValidationErrors) {
 				log.Errorf("validation error: %v, %v, %v", err.StructNamespace(), err.Tag(), err.Param())
+				validationError = append(validationError, types.ValidationError{Msg: err.Error(), Type: err.Type().Name()})
 			}
 		}
-		return err
 	}
-	return nil
+	return validationError, len(validationError) == 0
 }
 
 type ApiV1 struct {

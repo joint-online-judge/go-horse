@@ -4,7 +4,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/joint-online-judge/go-horse/handlers"
 	"github.com/joint-online-judge/go-horse/router"
 
 	"github.com/gofiber/fiber/v2"
@@ -22,9 +21,7 @@ func getenv(key, fallback string) string {
 
 func main() {
 	godotenv.Load()
-	app := fiber.New(fiber.Config{
-		ErrorHandler: handlers.ErrorHandler,
-	})
+	app := fiber.New()
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "*", // comma string format
 		AllowHeaders: "Origin, Content-Type, Accept",
