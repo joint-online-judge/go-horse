@@ -472,15 +472,6 @@ type DomainUserUpdate struct {
 	Role *string `json:"role,omitempty"`
 }
 
-// Empty defines model for Empty.
-type Empty = map[string]interface{}
-
-// EmptyResp defines model for EmptyResp.
-type EmptyResp struct {
-	Data *Empty `json:"data,omitempty"`
-	BizError
-}
-
 // FileUpload defines model for FileUpload.
 type FileUpload struct {
 	File openapi_types.File `json:"file"`

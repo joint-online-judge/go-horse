@@ -36,7 +36,7 @@ const (
 	ProblemSetNotFoundError            ErrorCode = "ProblemSetNotFoundError"
 	RecordNotFoundError                ErrorCode = "RecordNotFoundError"
 	ScoreboardHiddenBadRequestError    ErrorCode = "ScoreboardHiddenBadRequestError"
-	success                            ErrorCode = "Success"
+	Success                            ErrorCode = "Success"
 	UnknownFieldError                  ErrorCode = "UnknownFieldError"
 	UnsupportedLanguageError           ErrorCode = "UnsupportedLanguageError"
 	UserAlreadyInDomainBadRequestError ErrorCode = "UserAlreadyInDomainBadRequestError"
@@ -54,5 +54,3 @@ type BizError struct {
 func (e BizError) Error() string {
 	return fmt.Sprintf("BizError: %s, %s", e.ErrorCode, *e.ErrorMsg)
 }
-
-func Success() BizError { return BizError{ErrorCode: success} }

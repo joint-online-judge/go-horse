@@ -17,7 +17,9 @@ func Initalize(router *fiber.App) {
 	router.Use(middleware.Json)
 
 	var strictHandlerImpl handlers.ApiV1
-	RegisterStrictHandlers(router, &strictHandlerImpl, []types.StrictMiddlewareFunc{})
+	middlewares := []types.StrictMiddlewareFunc{middleware.Validate}
+	response := middleware.Response
+	RegisterStrictHandlers(router, &strictHandlerImpl, middlewares, response)
 
 	users := router.Group("/users")
 	users.Post("/", handlers.CreateUser)
