@@ -9,7 +9,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func Response(ctx *fiber.Ctx, response interface{}, err error) error {
+func Response(ctx *fiber.Ctx, response any, err error) error {
 	code := fiber.StatusOK
 	if err == nil {
 		validate_response, validate_err := validateImpl(response)

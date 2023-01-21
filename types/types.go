@@ -401,7 +401,7 @@ type DomainRoleDetailResp struct {
 // DomainRoleEdit defines model for DomainRoleEdit.
 type DomainRoleEdit struct {
 	// Permission The permission which needs to be updated
-	Permission *map[string]interface{} `json:"permission,omitempty"`
+	Permission *map[string]any `json:"permission,omitempty"`
 }
 
 // DomainRoleList defines model for DomainRoleList.

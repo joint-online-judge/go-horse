@@ -3135,248 +3135,248 @@ type V1VersionRequestObject struct {
 type StrictServerInterface interface {
 	// Admin List Domain Roles
 	// (GET /admin/domain_roles)
-	V1AdminListDomainRoles(ctx context.Context, request V1AdminListDomainRolesRequestObject) (interface{}, error)
+	V1AdminListDomainRoles(ctx context.Context, request V1AdminListDomainRolesRequestObject) (any, error)
 	// Admin List Judgers
 	// (GET /admin/judgers)
-	V1AdminListJudgers(ctx context.Context, request V1AdminListJudgersRequestObject) (interface{}, error)
+	V1AdminListJudgers(ctx context.Context, request V1AdminListJudgersRequestObject) (any, error)
 	// Admin Create Judger
 	// (POST /admin/judgers)
-	V1AdminCreateJudger(ctx context.Context, request V1AdminCreateJudgerRequestObject) (interface{}, error)
+	V1AdminCreateJudger(ctx context.Context, request V1AdminCreateJudgerRequestObject) (any, error)
 	// Admin List Users
 	// (GET /admin/users)
-	V1AdminListUsers(ctx context.Context, request V1AdminListUsersRequestObject) (interface{}, error)
+	V1AdminListUsers(ctx context.Context, request V1AdminListUsersRequestObject) (any, error)
 	// Admin Get User
 	// (GET /admin/{uid})
-	V1AdminGetUser(ctx context.Context, request V1AdminGetUserRequestObject) (interface{}, error)
+	V1AdminGetUser(ctx context.Context, request V1AdminGetUserRequestObject) (any, error)
 	// Admin List User Domains
 	// (GET /admin/{uid}/domains)
-	V1AdminListUserDomains(ctx context.Context, request V1AdminListUserDomainsRequestObject) (interface{}, error)
+	V1AdminListUserDomains(ctx context.Context, request V1AdminListUserDomainsRequestObject) (any, error)
 	// Login
 	// (POST /auth/login)
-	V1Login(ctx context.Context, request V1LoginRequestObject) (interface{}, error)
+	V1Login(ctx context.Context, request V1LoginRequestObject) (any, error)
 	// Logout
 	// (POST /auth/logout)
-	V1Logout(ctx context.Context, request V1LogoutRequestObject) (interface{}, error)
+	V1Logout(ctx context.Context, request V1LogoutRequestObject) (any, error)
 	// List Oauth2
 	// (GET /auth/oauth2)
-	V1ListOauth2(ctx context.Context, request V1ListOauth2RequestObject) (interface{}, error)
+	V1ListOauth2(ctx context.Context, request V1ListOauth2RequestObject) (any, error)
 	// Oauth Authorize
 	// (GET /auth/oauth2/{oauth2}/authorize)
-	V1OauthAuthorize(ctx context.Context, request V1OauthAuthorizeRequestObject) (interface{}, error)
+	V1OauthAuthorize(ctx context.Context, request V1OauthAuthorizeRequestObject) (any, error)
 	// Refresh
 	// (POST /auth/refresh)
-	V1Refresh(ctx context.Context, request V1RefreshRequestObject) (interface{}, error)
+	V1Refresh(ctx context.Context, request V1RefreshRequestObject) (any, error)
 	// Register
 	// (POST /auth/register)
-	V1Register(ctx context.Context, request V1RegisterRequestObject) (interface{}, error)
+	V1Register(ctx context.Context, request V1RegisterRequestObject) (any, error)
 	// Get Token
 	// (GET /auth/token)
-	V1GetToken(ctx context.Context, request V1GetTokenRequestObject) (interface{}, error)
+	V1GetToken(ctx context.Context, request V1GetTokenRequestObject) (any, error)
 	// List Domains
 	// (GET /domains)
-	V1ListDomains(ctx context.Context, request V1ListDomainsRequestObject) (interface{}, error)
+	V1ListDomains(ctx context.Context, request V1ListDomainsRequestObject) (any, error)
 	// Create Domain
 	// (POST /domains)
-	V1CreateDomain(ctx context.Context, request V1CreateDomainRequestObject) (interface{}, error)
+	V1CreateDomain(ctx context.Context, request V1CreateDomainRequestObject) (any, error)
 	// Search Domain Groups
 	// (GET /domains/groups)
-	V1SearchDomainGroups(ctx context.Context, request V1SearchDomainGroupsRequestObject) (interface{}, error)
+	V1SearchDomainGroups(ctx context.Context, request V1SearchDomainGroupsRequestObject) (any, error)
 	// Delete Domain
 	// (DELETE /domains/{domain})
-	V1DeleteDomain(ctx context.Context, request V1DeleteDomainRequestObject) (interface{}, error)
+	V1DeleteDomain(ctx context.Context, request V1DeleteDomainRequestObject) (any, error)
 	// Get Domain
 	// (GET /domains/{domain})
-	V1GetDomain(ctx context.Context, request V1GetDomainRequestObject) (interface{}, error)
+	V1GetDomain(ctx context.Context, request V1GetDomainRequestObject) (any, error)
 	// Update Domain
 	// (PATCH /domains/{domain})
-	V1UpdateDomain(ctx context.Context, request V1UpdateDomainRequestObject) (interface{}, error)
+	V1UpdateDomain(ctx context.Context, request V1UpdateDomainRequestObject) (any, error)
 	// Search Domain Candidates
 	// (GET /domains/{domain}/candidates)
-	V1SearchDomainCandidates(ctx context.Context, request V1SearchDomainCandidatesRequestObject) (interface{}, error)
+	V1SearchDomainCandidates(ctx context.Context, request V1SearchDomainCandidatesRequestObject) (any, error)
 	// List Domain Invitations
 	// (GET /domains/{domain}/invitations)
-	V1ListDomainInvitations(ctx context.Context, request V1ListDomainInvitationsRequestObject) (interface{}, error)
+	V1ListDomainInvitations(ctx context.Context, request V1ListDomainInvitationsRequestObject) (any, error)
 	// Create Domain Invitation
 	// (POST /domains/{domain}/invitations)
-	V1CreateDomainInvitation(ctx context.Context, request V1CreateDomainInvitationRequestObject) (interface{}, error)
+	V1CreateDomainInvitation(ctx context.Context, request V1CreateDomainInvitationRequestObject) (any, error)
 	// Delete Domain Invitation
 	// (DELETE /domains/{domain}/invitations/{invitation})
-	V1DeleteDomainInvitation(ctx context.Context, request V1DeleteDomainInvitationRequestObject) (interface{}, error)
+	V1DeleteDomainInvitation(ctx context.Context, request V1DeleteDomainInvitationRequestObject) (any, error)
 	// Get Domain Invitation
 	// (GET /domains/{domain}/invitations/{invitation})
-	V1GetDomainInvitation(ctx context.Context, request V1GetDomainInvitationRequestObject) (interface{}, error)
+	V1GetDomainInvitation(ctx context.Context, request V1GetDomainInvitationRequestObject) (any, error)
 	// Update Domain Invitation
 	// (PATCH /domains/{domain}/invitations/{invitation})
-	V1UpdateDomainInvitation(ctx context.Context, request V1UpdateDomainInvitationRequestObject) (interface{}, error)
+	V1UpdateDomainInvitation(ctx context.Context, request V1UpdateDomainInvitationRequestObject) (any, error)
 	// Join Domain By Invitation
 	// (POST /domains/{domain}/join)
-	V1JoinDomainByInvitation(ctx context.Context, request V1JoinDomainByInvitationRequestObject) (interface{}, error)
+	V1JoinDomainByInvitation(ctx context.Context, request V1JoinDomainByInvitationRequestObject) (any, error)
 	// List Problem Sets
 	// (GET /domains/{domain}/problem_sets)
-	V1ListProblemSets(ctx context.Context, request V1ListProblemSetsRequestObject) (interface{}, error)
+	V1ListProblemSets(ctx context.Context, request V1ListProblemSetsRequestObject) (any, error)
 	// Create Problem Set
 	// (POST /domains/{domain}/problem_sets)
-	V1CreateProblemSet(ctx context.Context, request V1CreateProblemSetRequestObject) (interface{}, error)
+	V1CreateProblemSet(ctx context.Context, request V1CreateProblemSetRequestObject) (any, error)
 	// Delete Problem Set
 	// (DELETE /domains/{domain}/problem_sets/{problemSet})
-	V1DeleteProblemSet(ctx context.Context, request V1DeleteProblemSetRequestObject) (interface{}, error)
+	V1DeleteProblemSet(ctx context.Context, request V1DeleteProblemSetRequestObject) (any, error)
 	// Get Problem Set
 	// (GET /domains/{domain}/problem_sets/{problemSet})
-	V1GetProblemSet(ctx context.Context, request V1GetProblemSetRequestObject) (interface{}, error)
+	V1GetProblemSet(ctx context.Context, request V1GetProblemSetRequestObject) (any, error)
 	// Update Problem Set
 	// (PATCH /domains/{domain}/problem_sets/{problemSet})
-	V1UpdateProblemSet(ctx context.Context, request V1UpdateProblemSetRequestObject) (interface{}, error)
+	V1UpdateProblemSet(ctx context.Context, request V1UpdateProblemSetRequestObject) (any, error)
 	// List Problems In Problem Set
 	// (GET /domains/{domain}/problem_sets/{problemSet}/problems)
-	V1ListProblemsInProblemSet(ctx context.Context, request V1ListProblemsInProblemSetRequestObject) (interface{}, error)
+	V1ListProblemsInProblemSet(ctx context.Context, request V1ListProblemsInProblemSetRequestObject) (any, error)
 	// Add Problem In Problem Set
 	// (POST /domains/{domain}/problem_sets/{problemSet}/problems)
-	V1AddProblemInProblemSet(ctx context.Context, request V1AddProblemInProblemSetRequestObject) (interface{}, error)
+	V1AddProblemInProblemSet(ctx context.Context, request V1AddProblemInProblemSetRequestObject) (any, error)
 	// Delete Problem In Problem Set
 	// (DELETE /domains/{domain}/problem_sets/{problemSet}/problems/{problem})
-	V1DeleteProblemInProblemSet(ctx context.Context, request V1DeleteProblemInProblemSetRequestObject) (interface{}, error)
+	V1DeleteProblemInProblemSet(ctx context.Context, request V1DeleteProblemInProblemSetRequestObject) (any, error)
 	// Get Problem In Problem Set
 	// (GET /domains/{domain}/problem_sets/{problemSet}/problems/{problem})
-	V1GetProblemInProblemSet(ctx context.Context, request V1GetProblemInProblemSetRequestObject) (interface{}, error)
+	V1GetProblemInProblemSet(ctx context.Context, request V1GetProblemInProblemSetRequestObject) (any, error)
 	// Update Problem In Problem Set
 	// (PATCH /domains/{domain}/problem_sets/{problemSet}/problems/{problem})
-	V1UpdateProblemInProblemSet(ctx context.Context, request V1UpdateProblemInProblemSetRequestObject) (interface{}, error)
+	V1UpdateProblemInProblemSet(ctx context.Context, request V1UpdateProblemInProblemSetRequestObject) (any, error)
 	// Submit Solution To Problem Set
 	// (POST /domains/{domain}/problem_sets/{problemSet}/problems/{problem}/submit)
-	V1SubmitSolutionToProblemSet(ctx context.Context, request V1SubmitSolutionToProblemSetRequestObject) (interface{}, error)
+	V1SubmitSolutionToProblemSet(ctx context.Context, request V1SubmitSolutionToProblemSetRequestObject) (any, error)
 	// List Problems
 	// (GET /domains/{domain}/problems)
-	V1ListProblems(ctx context.Context, request V1ListProblemsRequestObject) (interface{}, error)
+	V1ListProblems(ctx context.Context, request V1ListProblemsRequestObject) (any, error)
 	// Create Problem
 	// (POST /domains/{domain}/problems)
-	V1CreateProblem(ctx context.Context, request V1CreateProblemRequestObject) (interface{}, error)
+	V1CreateProblem(ctx context.Context, request V1CreateProblemRequestObject) (any, error)
 	// Clone Problem
 	// (POST /domains/{domain}/problems/clone)
-	V1CloneProblem(ctx context.Context, request V1CloneProblemRequestObject) (interface{}, error)
+	V1CloneProblem(ctx context.Context, request V1CloneProblemRequestObject) (any, error)
 	// Delete Problem
 	// (DELETE /domains/{domain}/problems/{problem})
-	V1DeleteProblem(ctx context.Context, request V1DeleteProblemRequestObject) (interface{}, error)
+	V1DeleteProblem(ctx context.Context, request V1DeleteProblemRequestObject) (any, error)
 	// Get Problem
 	// (GET /domains/{domain}/problems/{problem})
-	V1GetProblem(ctx context.Context, request V1GetProblemRequestObject) (interface{}, error)
+	V1GetProblem(ctx context.Context, request V1GetProblemRequestObject) (any, error)
 	// Update Problem
 	// (PATCH /domains/{domain}/problems/{problem})
-	V1UpdateProblem(ctx context.Context, request V1UpdateProblemRequestObject) (interface{}, error)
+	V1UpdateProblem(ctx context.Context, request V1UpdateProblemRequestObject) (any, error)
 	// Submit Solution To Problem
 	// (POST /domains/{domain}/problems/{problem})
-	V1SubmitSolutionToProblem(ctx context.Context, request V1SubmitSolutionToProblemRequestObject) (interface{}, error)
+	V1SubmitSolutionToProblem(ctx context.Context, request V1SubmitSolutionToProblemRequestObject) (any, error)
 	// List Problem Config Commits
 	// (GET /domains/{domain}/problems/{problem}/configs)
-	V1ListProblemConfigCommits(ctx context.Context, request V1ListProblemConfigCommitsRequestObject) (interface{}, error)
+	V1ListProblemConfigCommits(ctx context.Context, request V1ListProblemConfigCommitsRequestObject) (any, error)
 	// Update Problem Config By Archive
 	// (POST /domains/{domain}/problems/{problem}/configs)
-	V1UpdateProblemConfigByArchive(ctx context.Context, request V1UpdateProblemConfigByArchiveRequestObject) (interface{}, error)
+	V1UpdateProblemConfigByArchive(ctx context.Context, request V1UpdateProblemConfigByArchiveRequestObject) (any, error)
 	// Update Problem Config Json
 	// (POST /domains/{domain}/problems/{problem}/configs/json)
-	V1UpdateProblemConfigJson(ctx context.Context, request V1UpdateProblemConfigJsonRequestObject) (interface{}, error)
+	V1UpdateProblemConfigJson(ctx context.Context, request V1UpdateProblemConfigJsonRequestObject) (any, error)
 	// Diff Problem Config Default Branch
 	// (GET /domains/{domain}/problems/{problem}/configs/latest/diff)
-	V1DiffProblemConfigDefaultBranch(ctx context.Context, request V1DiffProblemConfigDefaultBranchRequestObject) (interface{}, error)
+	V1DiffProblemConfigDefaultBranch(ctx context.Context, request V1DiffProblemConfigDefaultBranchRequestObject) (any, error)
 	// List Latest Problem Config Objects Under A Given Prefix
 	// (GET /domains/{domain}/problems/{problem}/configs/latest/ls)
-	V1ListLatestProblemConfigObjectsUnderAGivenPrefix(ctx context.Context, request V1ListLatestProblemConfigObjectsUnderAGivenPrefixRequestObject) (interface{}, error)
+	V1ListLatestProblemConfigObjectsUnderAGivenPrefix(ctx context.Context, request V1ListLatestProblemConfigObjectsUnderAGivenPrefixRequestObject) (any, error)
 	// Download Problem Config Archive
 	// (GET /domains/{domain}/problems/{problem}/configs/{config})
-	V1DownloadProblemConfigArchive(ctx context.Context, request V1DownloadProblemConfigArchiveRequestObject) (interface{}, error)
+	V1DownloadProblemConfigArchive(ctx context.Context, request V1DownloadProblemConfigArchiveRequestObject) (any, error)
 	// Get Problem Config Json
 	// (GET /domains/{domain}/problems/{problem}/configs/{config}/json)
-	V1GetProblemConfigJson(ctx context.Context, request V1GetProblemConfigJsonRequestObject) (interface{}, error)
+	V1GetProblemConfigJson(ctx context.Context, request V1GetProblemConfigJsonRequestObject) (any, error)
 	// List Records In Domain
 	// (GET /domains/{domain}/records)
-	V1ListRecordsInDomain(ctx context.Context, request V1ListRecordsInDomainRequestObject) (interface{}, error)
+	V1ListRecordsInDomain(ctx context.Context, request V1ListRecordsInDomainRequestObject) (any, error)
 	// Get Record
 	// (GET /domains/{domain}/records/{record})
-	V1GetRecord(ctx context.Context, request V1GetRecordRequestObject) (interface{}, error)
+	V1GetRecord(ctx context.Context, request V1GetRecordRequestObject) (any, error)
 	// Submit Case By Judger
 	// (PUT /domains/{domain}/records/{record}/cases/{index}/judge)
-	V1SubmitCaseByJudger(ctx context.Context, request V1SubmitCaseByJudgerRequestObject) (interface{}, error)
+	V1SubmitCaseByJudger(ctx context.Context, request V1SubmitCaseByJudgerRequestObject) (any, error)
 	// Submit Record By Judger
 	// (PUT /domains/{domain}/records/{record}/judge)
-	V1SubmitRecordByJudger(ctx context.Context, request V1SubmitRecordByJudgerRequestObject) (interface{}, error)
+	V1SubmitRecordByJudger(ctx context.Context, request V1SubmitRecordByJudgerRequestObject) (any, error)
 	// Claim Record By Judger
 	// (POST /domains/{domain}/records/{record}/judge/claim)
-	V1ClaimRecordByJudger(ctx context.Context, request V1ClaimRecordByJudgerRequestObject) (interface{}, error)
+	V1ClaimRecordByJudger(ctx context.Context, request V1ClaimRecordByJudgerRequestObject) (any, error)
 	// List Domain Roles
 	// (GET /domains/{domain}/roles)
-	V1ListDomainRoles(ctx context.Context, request V1ListDomainRolesRequestObject) (interface{}, error)
+	V1ListDomainRoles(ctx context.Context, request V1ListDomainRolesRequestObject) (any, error)
 	// Create Domain Role
 	// (POST /domains/{domain}/roles)
-	V1CreateDomainRole(ctx context.Context, request V1CreateDomainRoleRequestObject) (interface{}, error)
+	V1CreateDomainRole(ctx context.Context, request V1CreateDomainRoleRequestObject) (any, error)
 	// Delete Domain Role
 	// (DELETE /domains/{domain}/roles/{role})
-	V1DeleteDomainRole(ctx context.Context, request V1DeleteDomainRoleRequestObject) (interface{}, error)
+	V1DeleteDomainRole(ctx context.Context, request V1DeleteDomainRoleRequestObject) (any, error)
 	// Get Domain Role
 	// (GET /domains/{domain}/roles/{role})
-	V1GetDomainRole(ctx context.Context, request V1GetDomainRoleRequestObject) (interface{}, error)
+	V1GetDomainRole(ctx context.Context, request V1GetDomainRoleRequestObject) (any, error)
 	// Update Domain Role
 	// (PATCH /domains/{domain}/roles/{role})
-	V1UpdateDomainRole(ctx context.Context, request V1UpdateDomainRoleRequestObject) (interface{}, error)
+	V1UpdateDomainRole(ctx context.Context, request V1UpdateDomainRoleRequestObject) (any, error)
 	// Transfer Domain
 	// (POST /domains/{domain}/transfer)
-	V1TransferDomain(ctx context.Context, request V1TransferDomainRequestObject) (interface{}, error)
+	V1TransferDomain(ctx context.Context, request V1TransferDomainRequestObject) (any, error)
 	// List Domain Users
 	// (GET /domains/{domain}/users)
-	V1ListDomainUsers(ctx context.Context, request V1ListDomainUsersRequestObject) (interface{}, error)
+	V1ListDomainUsers(ctx context.Context, request V1ListDomainUsersRequestObject) (any, error)
 	// Add Domain User
 	// (POST /domains/{domain}/users)
-	V1AddDomainUser(ctx context.Context, request V1AddDomainUserRequestObject) (interface{}, error)
+	V1AddDomainUser(ctx context.Context, request V1AddDomainUserRequestObject) (any, error)
 	// Remove Domain User
 	// (DELETE /domains/{domain}/users/{user})
-	V1RemoveDomainUser(ctx context.Context, request V1RemoveDomainUserRequestObject) (interface{}, error)
+	V1RemoveDomainUser(ctx context.Context, request V1RemoveDomainUserRequestObject) (any, error)
 	// Get Domain User
 	// (GET /domains/{domain}/users/{user})
-	V1GetDomainUser(ctx context.Context, request V1GetDomainUserRequestObject) (interface{}, error)
+	V1GetDomainUser(ctx context.Context, request V1GetDomainUserRequestObject) (any, error)
 	// Update Domain User
 	// (PATCH /domains/{domain}/users/{user})
-	V1UpdateDomainUser(ctx context.Context, request V1UpdateDomainUserRequestObject) (interface{}, error)
+	V1UpdateDomainUser(ctx context.Context, request V1UpdateDomainUserRequestObject) (any, error)
 	// Get Domain User Permission
 	// (GET /domains/{domain}/users/{user}/permission)
-	V1GetDomainUserPermission(ctx context.Context, request V1GetDomainUserPermissionRequestObject) (interface{}, error)
+	V1GetDomainUserPermission(ctx context.Context, request V1GetDomainUserPermissionRequestObject) (any, error)
 	// Jwt Decoded
 	// (GET /jwt_decoded)
-	V1JwtDecoded(ctx context.Context, request V1JwtDecodedRequestObject) (interface{}, error)
+	V1JwtDecoded(ctx context.Context, request V1JwtDecodedRequestObject) (any, error)
 	// List Problem Groups
 	// (GET /problem_groups)
-	V1ListProblemGroups(ctx context.Context, request V1ListProblemGroupsRequestObject) (interface{}, error)
+	V1ListProblemGroups(ctx context.Context, request V1ListProblemGroupsRequestObject) (any, error)
 	// Test Error Report
 	// (GET /test/report)
-	V1TestErrorReport(ctx context.Context, request V1TestErrorReportRequestObject) (interface{}, error)
+	V1TestErrorReport(ctx context.Context, request V1TestErrorReportRequestObject) (any, error)
 	// Get Current User
 	// (GET /users/me)
-	V1GetCurrentUser(ctx context.Context, request V1GetCurrentUserRequestObject) (interface{}, error)
+	V1GetCurrentUser(ctx context.Context, request V1GetCurrentUserRequestObject) (any, error)
 	// Update Current User
 	// (PATCH /users/me)
-	V1UpdateCurrentUser(ctx context.Context, request V1UpdateCurrentUserRequestObject) (interface{}, error)
+	V1UpdateCurrentUser(ctx context.Context, request V1UpdateCurrentUserRequestObject) (any, error)
 	// Change Password
 	// (PATCH /users/me/password)
-	V1ChangePassword(ctx context.Context, request V1ChangePasswordRequestObject) (interface{}, error)
+	V1ChangePassword(ctx context.Context, request V1ChangePasswordRequestObject) (any, error)
 	// Get User
 	// (GET /users/{uid})
-	V1GetUser(ctx context.Context, request V1GetUserRequestObject) (interface{}, error)
+	V1GetUser(ctx context.Context, request V1GetUserRequestObject) (any, error)
 	// Version
 	// (GET /version)
-	V1Version(ctx context.Context, request V1VersionRequestObject) (interface{}, error)
+	V1Version(ctx context.Context, request V1VersionRequestObject) (any, error)
 }
 
-type StrictHandlerFunc func(ctx *fiber.Ctx, args interface{}) (interface{}, error)
+type StrictHandlerFunc func(ctx *fiber.Ctx, args any) (any, error)
 
 type StrictMiddlewareFunc func(f StrictHandlerFunc, operationID string) StrictHandlerFunc
 
-type StrictRespHandlerFunc func(ctx *fiber.Ctx, response interface{}, err error) error
+type StrictRespHandlerFunc func(ctx *fiber.Ctx, response any, err error) error
 
 func NewStrictHandler(ssi StrictServerInterface, middlewares []StrictMiddlewareFunc, responseHandler StrictRespHandlerFunc) ServerInterface {
-    return &strictHandler{ssi: ssi, middlewares: middlewares, responseHandler: responseHandler}
+	return &strictHandler{ssi: ssi, middlewares: middlewares, responseHandler: responseHandler}
 }
 
 type strictHandler struct {
-    ssi StrictServerInterface
-    middlewares []StrictMiddlewareFunc
-    responseHandler StrictRespHandlerFunc
+	ssi             StrictServerInterface
+	middlewares     []StrictMiddlewareFunc
+	responseHandler StrictRespHandlerFunc
 }
 
 // V1AdminListDomainRoles operation middleware
@@ -3385,7 +3385,7 @@ func (sh *strictHandler) V1AdminListDomainRoles(ctx *fiber.Ctx, params V1AdminLi
 
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1AdminListDomainRoles(ctx.UserContext(), request.(V1AdminListDomainRolesRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3402,7 +3402,7 @@ func (sh *strictHandler) V1AdminListJudgers(ctx *fiber.Ctx, params V1AdminListJu
 
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1AdminListJudgers(ctx.UserContext(), request.(V1AdminListJudgersRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3423,7 +3423,7 @@ func (sh *strictHandler) V1AdminCreateJudger(ctx *fiber.Ctx) error {
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1AdminCreateJudger(ctx.UserContext(), request.(V1AdminCreateJudgerRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3440,7 +3440,7 @@ func (sh *strictHandler) V1AdminListUsers(ctx *fiber.Ctx, params V1AdminListUser
 
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1AdminListUsers(ctx.UserContext(), request.(V1AdminListUsersRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3457,7 +3457,7 @@ func (sh *strictHandler) V1AdminGetUser(ctx *fiber.Ctx, uid string) error {
 
 	request.Uid = uid
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1AdminGetUser(ctx.UserContext(), request.(V1AdminGetUserRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3475,7 +3475,7 @@ func (sh *strictHandler) V1AdminListUserDomains(ctx *fiber.Ctx, uid string, para
 	request.Uid = uid
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1AdminListUserDomains(ctx.UserContext(), request.(V1AdminListUserDomainsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3498,7 +3498,7 @@ func (sh *strictHandler) V1Login(ctx *fiber.Ctx, params V1LoginParams) error {
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1Login(ctx.UserContext(), request.(V1LoginRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3515,7 +3515,7 @@ func (sh *strictHandler) V1Logout(ctx *fiber.Ctx, params V1LogoutParams) error {
 
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1Logout(ctx.UserContext(), request.(V1LogoutRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3530,7 +3530,7 @@ func (sh *strictHandler) V1Logout(ctx *fiber.Ctx, params V1LogoutParams) error {
 func (sh *strictHandler) V1ListOauth2(ctx *fiber.Ctx) error {
 	var request V1ListOauth2RequestObject
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ListOauth2(ctx.UserContext(), request.(V1ListOauth2RequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3548,7 +3548,7 @@ func (sh *strictHandler) V1OauthAuthorize(ctx *fiber.Ctx, oauth2 string, params 
 	request.Oauth2 = oauth2
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1OauthAuthorize(ctx.UserContext(), request.(V1OauthAuthorizeRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3565,7 +3565,7 @@ func (sh *strictHandler) V1Refresh(ctx *fiber.Ctx, params V1RefreshParams) error
 
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1Refresh(ctx.UserContext(), request.(V1RefreshRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3588,7 +3588,7 @@ func (sh *strictHandler) V1Register(ctx *fiber.Ctx, params V1RegisterParams) err
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1Register(ctx.UserContext(), request.(V1RegisterRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3605,7 +3605,7 @@ func (sh *strictHandler) V1GetToken(ctx *fiber.Ctx, params V1GetTokenParams) err
 
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetToken(ctx.UserContext(), request.(V1GetTokenRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3622,7 +3622,7 @@ func (sh *strictHandler) V1ListDomains(ctx *fiber.Ctx, params V1ListDomainsParam
 
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ListDomains(ctx.UserContext(), request.(V1ListDomainsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3643,7 +3643,7 @@ func (sh *strictHandler) V1CreateDomain(ctx *fiber.Ctx) error {
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1CreateDomain(ctx.UserContext(), request.(V1CreateDomainRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3660,7 +3660,7 @@ func (sh *strictHandler) V1SearchDomainGroups(ctx *fiber.Ctx, params V1SearchDom
 
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1SearchDomainGroups(ctx.UserContext(), request.(V1SearchDomainGroupsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3677,7 +3677,7 @@ func (sh *strictHandler) V1DeleteDomain(ctx *fiber.Ctx, domain string) error {
 
 	request.Domain = domain
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1DeleteDomain(ctx.UserContext(), request.(V1DeleteDomainRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3694,7 +3694,7 @@ func (sh *strictHandler) V1GetDomain(ctx *fiber.Ctx, domain string) error {
 
 	request.Domain = domain
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetDomain(ctx.UserContext(), request.(V1GetDomainRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3717,7 +3717,7 @@ func (sh *strictHandler) V1UpdateDomain(ctx *fiber.Ctx, domain string) error {
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1UpdateDomain(ctx.UserContext(), request.(V1UpdateDomainRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3735,7 +3735,7 @@ func (sh *strictHandler) V1SearchDomainCandidates(ctx *fiber.Ctx, domain string,
 	request.Domain = domain
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1SearchDomainCandidates(ctx.UserContext(), request.(V1SearchDomainCandidatesRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3753,7 +3753,7 @@ func (sh *strictHandler) V1ListDomainInvitations(ctx *fiber.Ctx, domain string, 
 	request.Domain = domain
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ListDomainInvitations(ctx.UserContext(), request.(V1ListDomainInvitationsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3776,7 +3776,7 @@ func (sh *strictHandler) V1CreateDomainInvitation(ctx *fiber.Ctx, domain string)
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1CreateDomainInvitation(ctx.UserContext(), request.(V1CreateDomainInvitationRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3794,7 +3794,7 @@ func (sh *strictHandler) V1DeleteDomainInvitation(ctx *fiber.Ctx, domain string,
 	request.Domain = domain
 	request.Invitation = invitation
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1DeleteDomainInvitation(ctx.UserContext(), request.(V1DeleteDomainInvitationRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3812,7 +3812,7 @@ func (sh *strictHandler) V1GetDomainInvitation(ctx *fiber.Ctx, domain string, in
 	request.Domain = domain
 	request.Invitation = invitation
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetDomainInvitation(ctx.UserContext(), request.(V1GetDomainInvitationRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3836,7 +3836,7 @@ func (sh *strictHandler) V1UpdateDomainInvitation(ctx *fiber.Ctx, domain string,
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1UpdateDomainInvitation(ctx.UserContext(), request.(V1UpdateDomainInvitationRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3854,7 +3854,7 @@ func (sh *strictHandler) V1JoinDomainByInvitation(ctx *fiber.Ctx, domain string,
 	request.Domain = domain
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1JoinDomainByInvitation(ctx.UserContext(), request.(V1JoinDomainByInvitationRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3872,7 +3872,7 @@ func (sh *strictHandler) V1ListProblemSets(ctx *fiber.Ctx, domain string, params
 	request.Domain = domain
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ListProblemSets(ctx.UserContext(), request.(V1ListProblemSetsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3895,7 +3895,7 @@ func (sh *strictHandler) V1CreateProblemSet(ctx *fiber.Ctx, domain string) error
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1CreateProblemSet(ctx.UserContext(), request.(V1CreateProblemSetRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3913,7 +3913,7 @@ func (sh *strictHandler) V1DeleteProblemSet(ctx *fiber.Ctx, domain string, probl
 	request.Domain = domain
 	request.ProblemSet = problemSet
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1DeleteProblemSet(ctx.UserContext(), request.(V1DeleteProblemSetRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3931,7 +3931,7 @@ func (sh *strictHandler) V1GetProblemSet(ctx *fiber.Ctx, domain string, problemS
 	request.Domain = domain
 	request.ProblemSet = problemSet
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetProblemSet(ctx.UserContext(), request.(V1GetProblemSetRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3955,7 +3955,7 @@ func (sh *strictHandler) V1UpdateProblemSet(ctx *fiber.Ctx, domain string, probl
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1UpdateProblemSet(ctx.UserContext(), request.(V1UpdateProblemSetRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3973,7 +3973,7 @@ func (sh *strictHandler) V1ListProblemsInProblemSet(ctx *fiber.Ctx, domain strin
 	request.Domain = domain
 	request.ProblemSet = problemSet
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ListProblemsInProblemSet(ctx.UserContext(), request.(V1ListProblemsInProblemSetRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -3997,7 +3997,7 @@ func (sh *strictHandler) V1AddProblemInProblemSet(ctx *fiber.Ctx, domain string,
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1AddProblemInProblemSet(ctx.UserContext(), request.(V1AddProblemInProblemSetRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4016,7 +4016,7 @@ func (sh *strictHandler) V1DeleteProblemInProblemSet(ctx *fiber.Ctx, domain stri
 	request.ProblemSet = problemSet
 	request.Problem = problem
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1DeleteProblemInProblemSet(ctx.UserContext(), request.(V1DeleteProblemInProblemSetRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4035,7 +4035,7 @@ func (sh *strictHandler) V1GetProblemInProblemSet(ctx *fiber.Ctx, domain string,
 	request.ProblemSet = problemSet
 	request.Problem = problem
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetProblemInProblemSet(ctx.UserContext(), request.(V1GetProblemInProblemSetRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4060,7 +4060,7 @@ func (sh *strictHandler) V1UpdateProblemInProblemSet(ctx *fiber.Ctx, domain stri
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1UpdateProblemInProblemSet(ctx.UserContext(), request.(V1UpdateProblemInProblemSetRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4081,7 +4081,7 @@ func (sh *strictHandler) V1SubmitSolutionToProblemSet(ctx *fiber.Ctx, domain str
 
 	request.Body = multipart.NewReader(bytes.NewReader(ctx.Request().Body()), string(ctx.Request().Header.MultipartFormBoundary()))
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1SubmitSolutionToProblemSet(ctx.UserContext(), request.(V1SubmitSolutionToProblemSetRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4099,7 +4099,7 @@ func (sh *strictHandler) V1ListProblems(ctx *fiber.Ctx, domain string, params V1
 	request.Domain = domain
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ListProblems(ctx.UserContext(), request.(V1ListProblemsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4122,7 +4122,7 @@ func (sh *strictHandler) V1CreateProblem(ctx *fiber.Ctx, domain string) error {
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1CreateProblem(ctx.UserContext(), request.(V1CreateProblemRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4145,7 +4145,7 @@ func (sh *strictHandler) V1CloneProblem(ctx *fiber.Ctx, domain string) error {
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1CloneProblem(ctx.UserContext(), request.(V1CloneProblemRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4163,7 +4163,7 @@ func (sh *strictHandler) V1DeleteProblem(ctx *fiber.Ctx, domain string, problem 
 	request.Domain = domain
 	request.Problem = problem
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1DeleteProblem(ctx.UserContext(), request.(V1DeleteProblemRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4181,7 +4181,7 @@ func (sh *strictHandler) V1GetProblem(ctx *fiber.Ctx, domain string, problem str
 	request.Domain = domain
 	request.Problem = problem
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetProblem(ctx.UserContext(), request.(V1GetProblemRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4205,7 +4205,7 @@ func (sh *strictHandler) V1UpdateProblem(ctx *fiber.Ctx, domain string, problem 
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1UpdateProblem(ctx.UserContext(), request.(V1UpdateProblemRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4225,7 +4225,7 @@ func (sh *strictHandler) V1SubmitSolutionToProblem(ctx *fiber.Ctx, domain string
 
 	request.Body = multipart.NewReader(bytes.NewReader(ctx.Request().Body()), string(ctx.Request().Header.MultipartFormBoundary()))
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1SubmitSolutionToProblem(ctx.UserContext(), request.(V1SubmitSolutionToProblemRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4244,7 +4244,7 @@ func (sh *strictHandler) V1ListProblemConfigCommits(ctx *fiber.Ctx, domain strin
 	request.Problem = problem
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ListProblemConfigCommits(ctx.UserContext(), request.(V1ListProblemConfigCommitsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4265,7 +4265,7 @@ func (sh *strictHandler) V1UpdateProblemConfigByArchive(ctx *fiber.Ctx, domain s
 
 	request.Body = multipart.NewReader(bytes.NewReader(ctx.Request().Body()), string(ctx.Request().Header.MultipartFormBoundary()))
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1UpdateProblemConfigByArchive(ctx.UserContext(), request.(V1UpdateProblemConfigByArchiveRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4289,7 +4289,7 @@ func (sh *strictHandler) V1UpdateProblemConfigJson(ctx *fiber.Ctx, domain string
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1UpdateProblemConfigJson(ctx.UserContext(), request.(V1UpdateProblemConfigJsonRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4308,7 +4308,7 @@ func (sh *strictHandler) V1DiffProblemConfigDefaultBranch(ctx *fiber.Ctx, domain
 	request.Problem = problem
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1DiffProblemConfigDefaultBranch(ctx.UserContext(), request.(V1DiffProblemConfigDefaultBranchRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4327,7 +4327,7 @@ func (sh *strictHandler) V1ListLatestProblemConfigObjectsUnderAGivenPrefix(ctx *
 	request.Problem = problem
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ListLatestProblemConfigObjectsUnderAGivenPrefix(ctx.UserContext(), request.(V1ListLatestProblemConfigObjectsUnderAGivenPrefixRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4347,7 +4347,7 @@ func (sh *strictHandler) V1DownloadProblemConfigArchive(ctx *fiber.Ctx, domain s
 	request.Config = config
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1DownloadProblemConfigArchive(ctx.UserContext(), request.(V1DownloadProblemConfigArchiveRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4366,7 +4366,7 @@ func (sh *strictHandler) V1GetProblemConfigJson(ctx *fiber.Ctx, domain string, p
 	request.Problem = problem
 	request.Config = config
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetProblemConfigJson(ctx.UserContext(), request.(V1GetProblemConfigJsonRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4384,7 +4384,7 @@ func (sh *strictHandler) V1ListRecordsInDomain(ctx *fiber.Ctx, domain string, pa
 	request.Domain = domain
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ListRecordsInDomain(ctx.UserContext(), request.(V1ListRecordsInDomainRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4402,7 +4402,7 @@ func (sh *strictHandler) V1GetRecord(ctx *fiber.Ctx, domain string, record opena
 	request.Domain = domain
 	request.Record = record
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetRecord(ctx.UserContext(), request.(V1GetRecordRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4427,7 +4427,7 @@ func (sh *strictHandler) V1SubmitCaseByJudger(ctx *fiber.Ctx, domain string, rec
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1SubmitCaseByJudger(ctx.UserContext(), request.(V1SubmitCaseByJudgerRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4451,7 +4451,7 @@ func (sh *strictHandler) V1SubmitRecordByJudger(ctx *fiber.Ctx, domain string, r
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1SubmitRecordByJudger(ctx.UserContext(), request.(V1SubmitRecordByJudgerRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4475,7 +4475,7 @@ func (sh *strictHandler) V1ClaimRecordByJudger(ctx *fiber.Ctx, domain string, re
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ClaimRecordByJudger(ctx.UserContext(), request.(V1ClaimRecordByJudgerRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4493,7 +4493,7 @@ func (sh *strictHandler) V1ListDomainRoles(ctx *fiber.Ctx, domain string, params
 	request.Domain = domain
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ListDomainRoles(ctx.UserContext(), request.(V1ListDomainRolesRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4516,7 +4516,7 @@ func (sh *strictHandler) V1CreateDomainRole(ctx *fiber.Ctx, domain string) error
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1CreateDomainRole(ctx.UserContext(), request.(V1CreateDomainRoleRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4534,7 +4534,7 @@ func (sh *strictHandler) V1DeleteDomainRole(ctx *fiber.Ctx, domain string, role 
 	request.Domain = domain
 	request.Role = role
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1DeleteDomainRole(ctx.UserContext(), request.(V1DeleteDomainRoleRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4552,7 +4552,7 @@ func (sh *strictHandler) V1GetDomainRole(ctx *fiber.Ctx, domain string, role str
 	request.Domain = domain
 	request.Role = role
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetDomainRole(ctx.UserContext(), request.(V1GetDomainRoleRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4576,7 +4576,7 @@ func (sh *strictHandler) V1UpdateDomainRole(ctx *fiber.Ctx, domain string, role 
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1UpdateDomainRole(ctx.UserContext(), request.(V1UpdateDomainRoleRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4599,7 +4599,7 @@ func (sh *strictHandler) V1TransferDomain(ctx *fiber.Ctx, domain string) error {
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1TransferDomain(ctx.UserContext(), request.(V1TransferDomainRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4617,7 +4617,7 @@ func (sh *strictHandler) V1ListDomainUsers(ctx *fiber.Ctx, domain string, params
 	request.Domain = domain
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ListDomainUsers(ctx.UserContext(), request.(V1ListDomainUsersRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4640,7 +4640,7 @@ func (sh *strictHandler) V1AddDomainUser(ctx *fiber.Ctx, domain string) error {
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1AddDomainUser(ctx.UserContext(), request.(V1AddDomainUserRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4658,7 +4658,7 @@ func (sh *strictHandler) V1RemoveDomainUser(ctx *fiber.Ctx, domain string, user 
 	request.Domain = domain
 	request.User = user
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1RemoveDomainUser(ctx.UserContext(), request.(V1RemoveDomainUserRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4676,7 +4676,7 @@ func (sh *strictHandler) V1GetDomainUser(ctx *fiber.Ctx, domain string, user str
 	request.Domain = domain
 	request.User = user
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetDomainUser(ctx.UserContext(), request.(V1GetDomainUserRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4700,7 +4700,7 @@ func (sh *strictHandler) V1UpdateDomainUser(ctx *fiber.Ctx, domain string, user 
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1UpdateDomainUser(ctx.UserContext(), request.(V1UpdateDomainUserRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4718,7 +4718,7 @@ func (sh *strictHandler) V1GetDomainUserPermission(ctx *fiber.Ctx, domain string
 	request.Domain = domain
 	request.User = user
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetDomainUserPermission(ctx.UserContext(), request.(V1GetDomainUserPermissionRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4733,7 +4733,7 @@ func (sh *strictHandler) V1GetDomainUserPermission(ctx *fiber.Ctx, domain string
 func (sh *strictHandler) V1JwtDecoded(ctx *fiber.Ctx) error {
 	var request V1JwtDecodedRequestObject
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1JwtDecoded(ctx.UserContext(), request.(V1JwtDecodedRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4750,7 +4750,7 @@ func (sh *strictHandler) V1ListProblemGroups(ctx *fiber.Ctx, params V1ListProble
 
 	request.Params = params
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ListProblemGroups(ctx.UserContext(), request.(V1ListProblemGroupsRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4765,7 +4765,7 @@ func (sh *strictHandler) V1ListProblemGroups(ctx *fiber.Ctx, params V1ListProble
 func (sh *strictHandler) V1TestErrorReport(ctx *fiber.Ctx) error {
 	var request V1TestErrorReportRequestObject
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1TestErrorReport(ctx.UserContext(), request.(V1TestErrorReportRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4780,7 +4780,7 @@ func (sh *strictHandler) V1TestErrorReport(ctx *fiber.Ctx) error {
 func (sh *strictHandler) V1GetCurrentUser(ctx *fiber.Ctx) error {
 	var request V1GetCurrentUserRequestObject
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetCurrentUser(ctx.UserContext(), request.(V1GetCurrentUserRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4801,7 +4801,7 @@ func (sh *strictHandler) V1UpdateCurrentUser(ctx *fiber.Ctx) error {
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1UpdateCurrentUser(ctx.UserContext(), request.(V1UpdateCurrentUserRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4822,7 +4822,7 @@ func (sh *strictHandler) V1ChangePassword(ctx *fiber.Ctx) error {
 	}
 	request.Body = &body
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1ChangePassword(ctx.UserContext(), request.(V1ChangePasswordRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4839,7 +4839,7 @@ func (sh *strictHandler) V1GetUser(ctx *fiber.Ctx, uid string) error {
 
 	request.Uid = uid
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1GetUser(ctx.UserContext(), request.(V1GetUserRequestObject))
 	}
 	for _, middleware := range sh.middlewares {
@@ -4854,7 +4854,7 @@ func (sh *strictHandler) V1GetUser(ctx *fiber.Ctx, uid string) error {
 func (sh *strictHandler) V1Version(ctx *fiber.Ctx) error {
 	var request V1VersionRequestObject
 
-	handler := func(ctx *fiber.Ctx, request interface{}) (interface{}, error) {
+	handler := func(ctx *fiber.Ctx, request any) (any, error) {
 		return sh.ssi.V1Version(ctx.UserContext(), request.(V1VersionRequestObject))
 	}
 	for _, middleware := range sh.middlewares {

@@ -7,7 +7,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func (s *ApiV1) V1CreateDomain(c context.Context, request types.V1CreateDomainRequestObject) (interface{}, error) {
+func (s *ApiV1) V1CreateDomain(c context.Context, request types.V1CreateDomainRequestObject) (any, error) {
 	log.Infof("%v", request.Body)
 	domain := types.Domain{}
 	return domain, nil
