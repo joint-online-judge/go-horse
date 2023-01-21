@@ -17,9 +17,8 @@ func ConnectDB() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = DB.AutoMigrate(&model.User{}, &model.Session{}, &model.Product{})
+	err = DB.AutoMigrate(&model.User{})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 }
