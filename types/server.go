@@ -266,28 +266,28 @@ func (siw *ServerInterfaceWrapper) V1AdminListDomainRoles(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter offset: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter offset: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "limit" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter limit: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter limit: %w", err).Error())
 	}
 
 	return siw.Handler.V1AdminListDomainRoles(c, params)
@@ -305,28 +305,28 @@ func (siw *ServerInterfaceWrapper) V1AdminListJudgers(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter offset: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter offset: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "limit" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter limit: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter limit: %w", err).Error())
 	}
 
 	return siw.Handler.V1AdminListJudgers(c, params)
@@ -352,28 +352,28 @@ func (siw *ServerInterfaceWrapper) V1AdminListUsers(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter offset: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter offset: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "limit" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter limit: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter limit: %w", err).Error())
 	}
 
 	return siw.Handler.V1AdminListUsers(c, params)
@@ -389,7 +389,7 @@ func (siw *ServerInterfaceWrapper) V1AdminGetUser(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "uid", c.Params("uid"), &uid)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter uid: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter uid: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -407,7 +407,7 @@ func (siw *ServerInterfaceWrapper) V1AdminListUserDomains(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "uid", c.Params("uid"), &uid)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter uid: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter uid: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -417,42 +417,42 @@ func (siw *ServerInterfaceWrapper) V1AdminListUserDomains(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "role" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "role", query, &params.Role)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter role: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter role: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "groups" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "groups", query, &params.Groups)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter groups: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter groups: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter offset: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter offset: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "limit" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter limit: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter limit: %w", err).Error())
 	}
 
 	return siw.Handler.V1AdminListUserDomains(c, uid, params)
@@ -468,14 +468,14 @@ func (siw *ServerInterfaceWrapper) V1Login(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "cookie" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "cookie", query, &params.Cookie)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter cookie: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter cookie: %w", err).Error())
 	}
 
 	// ------------- Required query parameter "responseType" -------------
@@ -483,21 +483,21 @@ func (siw *ServerInterfaceWrapper) V1Login(c *fiber.Ctx) error {
 	if paramValue := c.Query("responseType"); paramValue != "" {
 
 	} else {
-		err = fmt.Errorf("Query argument responseType is required, but not found")
+		err = fmt.Errorf("query argument responseType is required, but not found")
 		c.Status(fiber.StatusBadRequest).JSON(err)
 		return err
 	}
 
 	err = runtime.BindQueryParameter("form", true, true, "responseType", query, &params.ResponseType)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter responseType: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter responseType: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "redirectUrl" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "redirectUrl", query, &params.RedirectUrl)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter redirectUrl: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter redirectUrl: %w", err).Error())
 	}
 
 	return siw.Handler.V1Login(c, params)
@@ -515,14 +515,14 @@ func (siw *ServerInterfaceWrapper) V1Logout(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "cookie" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "cookie", query, &params.Cookie)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter cookie: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter cookie: %w", err).Error())
 	}
 
 	// ------------- Required query parameter "responseType" -------------
@@ -530,21 +530,21 @@ func (siw *ServerInterfaceWrapper) V1Logout(c *fiber.Ctx) error {
 	if paramValue := c.Query("responseType"); paramValue != "" {
 
 	} else {
-		err = fmt.Errorf("Query argument responseType is required, but not found")
+		err = fmt.Errorf("query argument responseType is required, but not found")
 		c.Status(fiber.StatusBadRequest).JSON(err)
 		return err
 	}
 
 	err = runtime.BindQueryParameter("form", true, true, "responseType", query, &params.ResponseType)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter responseType: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter responseType: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "redirectUrl" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "redirectUrl", query, &params.RedirectUrl)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter redirectUrl: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter redirectUrl: %w", err).Error())
 	}
 
 	return siw.Handler.V1Logout(c, params)
@@ -566,7 +566,7 @@ func (siw *ServerInterfaceWrapper) V1OauthAuthorize(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "oauth2", c.Params("oauth2"), &oauth2)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter oauth2: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter oauth2: %w", err).Error())
 	}
 
 	// Parameter object where we will unmarshal all parameters from the context
@@ -574,21 +574,21 @@ func (siw *ServerInterfaceWrapper) V1OauthAuthorize(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "scopes" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "scopes", query, &params.Scopes)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter scopes: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter scopes: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "cookie" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "cookie", query, &params.Cookie)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter cookie: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter cookie: %w", err).Error())
 	}
 
 	// ------------- Required query parameter "responseType" -------------
@@ -596,21 +596,21 @@ func (siw *ServerInterfaceWrapper) V1OauthAuthorize(c *fiber.Ctx) error {
 	if paramValue := c.Query("responseType"); paramValue != "" {
 
 	} else {
-		err = fmt.Errorf("Query argument responseType is required, but not found")
+		err = fmt.Errorf("query argument responseType is required, but not found")
 		c.Status(fiber.StatusBadRequest).JSON(err)
 		return err
 	}
 
 	err = runtime.BindQueryParameter("form", true, true, "responseType", query, &params.ResponseType)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter responseType: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter responseType: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "redirectUrl" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "redirectUrl", query, &params.RedirectUrl)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter redirectUrl: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter redirectUrl: %w", err).Error())
 	}
 
 	return siw.Handler.V1OauthAuthorize(c, oauth2, params)
@@ -626,14 +626,14 @@ func (siw *ServerInterfaceWrapper) V1Refresh(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "cookie" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "cookie", query, &params.Cookie)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter cookie: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter cookie: %w", err).Error())
 	}
 
 	// ------------- Required query parameter "responseType" -------------
@@ -641,21 +641,21 @@ func (siw *ServerInterfaceWrapper) V1Refresh(c *fiber.Ctx) error {
 	if paramValue := c.Query("responseType"); paramValue != "" {
 
 	} else {
-		err = fmt.Errorf("Query argument responseType is required, but not found")
+		err = fmt.Errorf("query argument responseType is required, but not found")
 		c.Status(fiber.StatusBadRequest).JSON(err)
 		return err
 	}
 
 	err = runtime.BindQueryParameter("form", true, true, "responseType", query, &params.ResponseType)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter responseType: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter responseType: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "redirectUrl" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "redirectUrl", query, &params.RedirectUrl)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter redirectUrl: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter redirectUrl: %w", err).Error())
 	}
 
 	return siw.Handler.V1Refresh(c, params)
@@ -673,14 +673,14 @@ func (siw *ServerInterfaceWrapper) V1Register(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "cookie" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "cookie", query, &params.Cookie)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter cookie: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter cookie: %w", err).Error())
 	}
 
 	// ------------- Required query parameter "responseType" -------------
@@ -688,21 +688,21 @@ func (siw *ServerInterfaceWrapper) V1Register(c *fiber.Ctx) error {
 	if paramValue := c.Query("responseType"); paramValue != "" {
 
 	} else {
-		err = fmt.Errorf("Query argument responseType is required, but not found")
+		err = fmt.Errorf("query argument responseType is required, but not found")
 		c.Status(fiber.StatusBadRequest).JSON(err)
 		return err
 	}
 
 	err = runtime.BindQueryParameter("form", true, true, "responseType", query, &params.ResponseType)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter responseType: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter responseType: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "redirectUrl" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "redirectUrl", query, &params.RedirectUrl)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter redirectUrl: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter redirectUrl: %w", err).Error())
 	}
 
 	return siw.Handler.V1Register(c, params)
@@ -718,14 +718,14 @@ func (siw *ServerInterfaceWrapper) V1GetToken(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "cookie" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "cookie", query, &params.Cookie)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter cookie: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter cookie: %w", err).Error())
 	}
 
 	// ------------- Required query parameter "responseType" -------------
@@ -733,21 +733,21 @@ func (siw *ServerInterfaceWrapper) V1GetToken(c *fiber.Ctx) error {
 	if paramValue := c.Query("responseType"); paramValue != "" {
 
 	} else {
-		err = fmt.Errorf("Query argument responseType is required, but not found")
+		err = fmt.Errorf("query argument responseType is required, but not found")
 		c.Status(fiber.StatusBadRequest).JSON(err)
 		return err
 	}
 
 	err = runtime.BindQueryParameter("form", true, true, "responseType", query, &params.ResponseType)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter responseType: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter responseType: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "redirectUrl" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "redirectUrl", query, &params.RedirectUrl)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter redirectUrl: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter redirectUrl: %w", err).Error())
 	}
 
 	return siw.Handler.V1GetToken(c, params)
@@ -765,42 +765,42 @@ func (siw *ServerInterfaceWrapper) V1ListDomains(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "roles" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "roles", query, &params.Roles)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter roles: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter roles: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "groups" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "groups", query, &params.Groups)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter groups: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter groups: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter offset: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter offset: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "limit" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter limit: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter limit: %w", err).Error())
 	}
 
 	return siw.Handler.V1ListDomains(c, params)
@@ -826,7 +826,7 @@ func (siw *ServerInterfaceWrapper) V1SearchDomainGroups(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Required query parameter "query" -------------
@@ -834,14 +834,14 @@ func (siw *ServerInterfaceWrapper) V1SearchDomainGroups(c *fiber.Ctx) error {
 	if paramValue := c.Query("query"); paramValue != "" {
 
 	} else {
-		err = fmt.Errorf("Query argument query is required, but not found")
+		err = fmt.Errorf("query argument query is required, but not found")
 		c.Status(fiber.StatusBadRequest).JSON(err)
 		return err
 	}
 
 	err = runtime.BindQueryParameter("form", true, true, "query", query, &params.Query)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter query: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter query: %w", err).Error())
 	}
 
 	return siw.Handler.V1SearchDomainGroups(c, params)
@@ -857,7 +857,7 @@ func (siw *ServerInterfaceWrapper) V1DeleteDomain(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -875,7 +875,7 @@ func (siw *ServerInterfaceWrapper) V1GetDomain(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -893,7 +893,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateDomain(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -911,7 +911,7 @@ func (siw *ServerInterfaceWrapper) V1SearchDomainCandidates(c *fiber.Ctx) error 
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -921,7 +921,7 @@ func (siw *ServerInterfaceWrapper) V1SearchDomainCandidates(c *fiber.Ctx) error 
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Required query parameter "query" -------------
@@ -929,21 +929,21 @@ func (siw *ServerInterfaceWrapper) V1SearchDomainCandidates(c *fiber.Ctx) error 
 	if paramValue := c.Query("query"); paramValue != "" {
 
 	} else {
-		err = fmt.Errorf("Query argument query is required, but not found")
+		err = fmt.Errorf("query argument query is required, but not found")
 		c.Status(fiber.StatusBadRequest).JSON(err)
 		return err
 	}
 
 	err = runtime.BindQueryParameter("form", true, true, "query", query, &params.Query)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter query: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter query: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	return siw.Handler.V1SearchDomainCandidates(c, domain, params)
@@ -959,7 +959,7 @@ func (siw *ServerInterfaceWrapper) V1ListDomainInvitations(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -969,28 +969,28 @@ func (siw *ServerInterfaceWrapper) V1ListDomainInvitations(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter offset: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter offset: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "limit" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter limit: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter limit: %w", err).Error())
 	}
 
 	return siw.Handler.V1ListDomainInvitations(c, domain, params)
@@ -1006,7 +1006,7 @@ func (siw *ServerInterfaceWrapper) V1CreateDomainInvitation(c *fiber.Ctx) error 
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1024,7 +1024,7 @@ func (siw *ServerInterfaceWrapper) V1DeleteDomainInvitation(c *fiber.Ctx) error 
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "invitation" -------------
@@ -1032,7 +1032,7 @@ func (siw *ServerInterfaceWrapper) V1DeleteDomainInvitation(c *fiber.Ctx) error 
 
 	err = runtime.BindStyledParameter("simple", false, "invitation", c.Params("invitation"), &invitation)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter invitation: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter invitation: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1050,7 +1050,7 @@ func (siw *ServerInterfaceWrapper) V1GetDomainInvitation(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "invitation" -------------
@@ -1058,7 +1058,7 @@ func (siw *ServerInterfaceWrapper) V1GetDomainInvitation(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "invitation", c.Params("invitation"), &invitation)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter invitation: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter invitation: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1076,7 +1076,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateDomainInvitation(c *fiber.Ctx) error 
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "invitation" -------------
@@ -1084,7 +1084,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateDomainInvitation(c *fiber.Ctx) error 
 
 	err = runtime.BindStyledParameter("simple", false, "invitation", c.Params("invitation"), &invitation)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter invitation: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter invitation: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1102,7 +1102,7 @@ func (siw *ServerInterfaceWrapper) V1JoinDomainByInvitation(c *fiber.Ctx) error 
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1112,7 +1112,7 @@ func (siw *ServerInterfaceWrapper) V1JoinDomainByInvitation(c *fiber.Ctx) error 
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Required query parameter "invitationCode" -------------
@@ -1120,14 +1120,14 @@ func (siw *ServerInterfaceWrapper) V1JoinDomainByInvitation(c *fiber.Ctx) error 
 	if paramValue := c.Query("invitationCode"); paramValue != "" {
 
 	} else {
-		err = fmt.Errorf("Query argument invitationCode is required, but not found")
+		err = fmt.Errorf("query argument invitationCode is required, but not found")
 		c.Status(fiber.StatusBadRequest).JSON(err)
 		return err
 	}
 
 	err = runtime.BindQueryParameter("form", true, true, "invitationCode", query, &params.InvitationCode)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter invitationCode: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter invitationCode: %w", err).Error())
 	}
 
 	return siw.Handler.V1JoinDomainByInvitation(c, domain, params)
@@ -1143,7 +1143,7 @@ func (siw *ServerInterfaceWrapper) V1ListProblemSets(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1153,28 +1153,28 @@ func (siw *ServerInterfaceWrapper) V1ListProblemSets(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter offset: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter offset: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "limit" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter limit: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter limit: %w", err).Error())
 	}
 
 	return siw.Handler.V1ListProblemSets(c, domain, params)
@@ -1190,7 +1190,7 @@ func (siw *ServerInterfaceWrapper) V1CreateProblemSet(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1208,7 +1208,7 @@ func (siw *ServerInterfaceWrapper) V1DeleteProblemSet(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problemSet" -------------
@@ -1216,7 +1216,7 @@ func (siw *ServerInterfaceWrapper) V1DeleteProblemSet(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "problemSet", c.Params("problemSet"), &problemSet)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problemSet: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problemSet: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1234,7 +1234,7 @@ func (siw *ServerInterfaceWrapper) V1GetProblemSet(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problemSet" -------------
@@ -1242,7 +1242,7 @@ func (siw *ServerInterfaceWrapper) V1GetProblemSet(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "problemSet", c.Params("problemSet"), &problemSet)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problemSet: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problemSet: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1260,7 +1260,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateProblemSet(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problemSet" -------------
@@ -1268,7 +1268,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateProblemSet(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "problemSet", c.Params("problemSet"), &problemSet)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problemSet: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problemSet: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1286,7 +1286,7 @@ func (siw *ServerInterfaceWrapper) V1ListProblemsInProblemSet(c *fiber.Ctx) erro
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problemSet" -------------
@@ -1294,7 +1294,7 @@ func (siw *ServerInterfaceWrapper) V1ListProblemsInProblemSet(c *fiber.Ctx) erro
 
 	err = runtime.BindStyledParameter("simple", false, "problemSet", c.Params("problemSet"), &problemSet)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problemSet: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problemSet: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1312,7 +1312,7 @@ func (siw *ServerInterfaceWrapper) V1AddProblemInProblemSet(c *fiber.Ctx) error 
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problemSet" -------------
@@ -1320,7 +1320,7 @@ func (siw *ServerInterfaceWrapper) V1AddProblemInProblemSet(c *fiber.Ctx) error 
 
 	err = runtime.BindStyledParameter("simple", false, "problemSet", c.Params("problemSet"), &problemSet)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problemSet: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problemSet: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1338,7 +1338,7 @@ func (siw *ServerInterfaceWrapper) V1DeleteProblemInProblemSet(c *fiber.Ctx) err
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problemSet" -------------
@@ -1346,7 +1346,7 @@ func (siw *ServerInterfaceWrapper) V1DeleteProblemInProblemSet(c *fiber.Ctx) err
 
 	err = runtime.BindStyledParameter("simple", false, "problemSet", c.Params("problemSet"), &problemSet)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problemSet: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problemSet: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1354,7 +1354,7 @@ func (siw *ServerInterfaceWrapper) V1DeleteProblemInProblemSet(c *fiber.Ctx) err
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1372,7 +1372,7 @@ func (siw *ServerInterfaceWrapper) V1GetProblemInProblemSet(c *fiber.Ctx) error 
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problemSet" -------------
@@ -1380,7 +1380,7 @@ func (siw *ServerInterfaceWrapper) V1GetProblemInProblemSet(c *fiber.Ctx) error 
 
 	err = runtime.BindStyledParameter("simple", false, "problemSet", c.Params("problemSet"), &problemSet)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problemSet: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problemSet: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1388,7 +1388,7 @@ func (siw *ServerInterfaceWrapper) V1GetProblemInProblemSet(c *fiber.Ctx) error 
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1406,7 +1406,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateProblemInProblemSet(c *fiber.Ctx) err
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problemSet" -------------
@@ -1414,7 +1414,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateProblemInProblemSet(c *fiber.Ctx) err
 
 	err = runtime.BindStyledParameter("simple", false, "problemSet", c.Params("problemSet"), &problemSet)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problemSet: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problemSet: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1422,7 +1422,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateProblemInProblemSet(c *fiber.Ctx) err
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1440,7 +1440,7 @@ func (siw *ServerInterfaceWrapper) V1SubmitSolutionToProblemSet(c *fiber.Ctx) er
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problemSet" -------------
@@ -1448,7 +1448,7 @@ func (siw *ServerInterfaceWrapper) V1SubmitSolutionToProblemSet(c *fiber.Ctx) er
 
 	err = runtime.BindStyledParameter("simple", false, "problemSet", c.Params("problemSet"), &problemSet)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problemSet: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problemSet: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1456,7 +1456,7 @@ func (siw *ServerInterfaceWrapper) V1SubmitSolutionToProblemSet(c *fiber.Ctx) er
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1474,7 +1474,7 @@ func (siw *ServerInterfaceWrapper) V1ListProblems(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1484,28 +1484,28 @@ func (siw *ServerInterfaceWrapper) V1ListProblems(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter offset: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter offset: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "limit" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter limit: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter limit: %w", err).Error())
 	}
 
 	return siw.Handler.V1ListProblems(c, domain, params)
@@ -1521,7 +1521,7 @@ func (siw *ServerInterfaceWrapper) V1CreateProblem(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1539,7 +1539,7 @@ func (siw *ServerInterfaceWrapper) V1CloneProblem(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1557,7 +1557,7 @@ func (siw *ServerInterfaceWrapper) V1DeleteProblem(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1565,7 +1565,7 @@ func (siw *ServerInterfaceWrapper) V1DeleteProblem(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1583,7 +1583,7 @@ func (siw *ServerInterfaceWrapper) V1GetProblem(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1591,7 +1591,7 @@ func (siw *ServerInterfaceWrapper) V1GetProblem(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1609,7 +1609,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateProblem(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1617,7 +1617,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateProblem(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1635,7 +1635,7 @@ func (siw *ServerInterfaceWrapper) V1SubmitSolutionToProblem(c *fiber.Ctx) error
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1643,7 +1643,7 @@ func (siw *ServerInterfaceWrapper) V1SubmitSolutionToProblem(c *fiber.Ctx) error
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1661,7 +1661,7 @@ func (siw *ServerInterfaceWrapper) V1ListProblemConfigCommits(c *fiber.Ctx) erro
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1669,7 +1669,7 @@ func (siw *ServerInterfaceWrapper) V1ListProblemConfigCommits(c *fiber.Ctx) erro
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1679,28 +1679,28 @@ func (siw *ServerInterfaceWrapper) V1ListProblemConfigCommits(c *fiber.Ctx) erro
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter offset: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter offset: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "limit" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter limit: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter limit: %w", err).Error())
 	}
 
 	return siw.Handler.V1ListProblemConfigCommits(c, domain, problem, params)
@@ -1716,7 +1716,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateProblemConfigByArchive(c *fiber.Ctx) 
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1724,7 +1724,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateProblemConfigByArchive(c *fiber.Ctx) 
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1734,14 +1734,14 @@ func (siw *ServerInterfaceWrapper) V1UpdateProblemConfigByArchive(c *fiber.Ctx) 
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "configJsonOnMissing" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "configJsonOnMissing", query, &params.ConfigJsonOnMissing)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter configJsonOnMissing: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter configJsonOnMissing: %w", err).Error())
 	}
 
 	return siw.Handler.V1UpdateProblemConfigByArchive(c, domain, problem, params)
@@ -1757,7 +1757,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateProblemConfigJson(c *fiber.Ctx) error
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1765,7 +1765,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateProblemConfigJson(c *fiber.Ctx) error
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1783,7 +1783,7 @@ func (siw *ServerInterfaceWrapper) V1DiffProblemConfigDefaultBranch(c *fiber.Ctx
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1791,7 +1791,7 @@ func (siw *ServerInterfaceWrapper) V1DiffProblemConfigDefaultBranch(c *fiber.Ctx
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1801,35 +1801,35 @@ func (siw *ServerInterfaceWrapper) V1DiffProblemConfigDefaultBranch(c *fiber.Ctx
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "after" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "after", query, &params.After)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter after: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter after: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "amount" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "amount", query, &params.Amount)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter amount: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter amount: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "delimiter" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "delimiter", query, &params.Delimiter)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter delimiter: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter delimiter: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "prefix" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "prefix", query, &params.Prefix)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter prefix: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter prefix: %w", err).Error())
 	}
 
 	return siw.Handler.V1DiffProblemConfigDefaultBranch(c, domain, problem, params)
@@ -1845,7 +1845,7 @@ func (siw *ServerInterfaceWrapper) V1ListLatestProblemConfigObjectsUnderAGivenPr
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1853,7 +1853,7 @@ func (siw *ServerInterfaceWrapper) V1ListLatestProblemConfigObjectsUnderAGivenPr
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1863,35 +1863,35 @@ func (siw *ServerInterfaceWrapper) V1ListLatestProblemConfigObjectsUnderAGivenPr
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "after" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "after", query, &params.After)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter after: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter after: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "amount" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "amount", query, &params.Amount)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter amount: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter amount: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "delimiter" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "delimiter", query, &params.Delimiter)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter delimiter: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter delimiter: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "prefix" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "prefix", query, &params.Prefix)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter prefix: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter prefix: %w", err).Error())
 	}
 
 	return siw.Handler.V1ListLatestProblemConfigObjectsUnderAGivenPrefix(c, domain, problem, params)
@@ -1907,7 +1907,7 @@ func (siw *ServerInterfaceWrapper) V1DownloadProblemConfigArchive(c *fiber.Ctx) 
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1915,7 +1915,7 @@ func (siw *ServerInterfaceWrapper) V1DownloadProblemConfigArchive(c *fiber.Ctx) 
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	// ------------- Path parameter "config" -------------
@@ -1923,7 +1923,7 @@ func (siw *ServerInterfaceWrapper) V1DownloadProblemConfigArchive(c *fiber.Ctx) 
 
 	err = runtime.BindStyledParameter("simple", false, "config", c.Params("config"), &config)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter config: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter config: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1933,14 +1933,14 @@ func (siw *ServerInterfaceWrapper) V1DownloadProblemConfigArchive(c *fiber.Ctx) 
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "archiveFormat" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "archiveFormat", query, &params.ArchiveFormat)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter archiveFormat: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter archiveFormat: %w", err).Error())
 	}
 
 	return siw.Handler.V1DownloadProblemConfigArchive(c, domain, problem, config, params)
@@ -1956,7 +1956,7 @@ func (siw *ServerInterfaceWrapper) V1GetProblemConfigJson(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "problem" -------------
@@ -1964,7 +1964,7 @@ func (siw *ServerInterfaceWrapper) V1GetProblemConfigJson(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	// ------------- Path parameter "config" -------------
@@ -1972,7 +1972,7 @@ func (siw *ServerInterfaceWrapper) V1GetProblemConfigJson(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "config", c.Params("config"), &config)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter config: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter config: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -1990,7 +1990,7 @@ func (siw *ServerInterfaceWrapper) V1ListRecordsInDomain(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2000,49 +2000,49 @@ func (siw *ServerInterfaceWrapper) V1ListRecordsInDomain(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "problemSet" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "problemSet", query, &params.ProblemSet)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problemSet: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problemSet: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "problem" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "problem", query, &params.Problem)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter problem: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter problem: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "submitterId" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "submitterId", query, &params.SubmitterId)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter submitterId: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter submitterId: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter offset: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter offset: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "limit" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter limit: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter limit: %w", err).Error())
 	}
 
 	return siw.Handler.V1ListRecordsInDomain(c, domain, params)
@@ -2058,7 +2058,7 @@ func (siw *ServerInterfaceWrapper) V1GetRecord(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "record" -------------
@@ -2066,7 +2066,7 @@ func (siw *ServerInterfaceWrapper) V1GetRecord(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "record", c.Params("record"), &record)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter record: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter record: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2084,7 +2084,7 @@ func (siw *ServerInterfaceWrapper) V1SubmitCaseByJudger(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "record" -------------
@@ -2092,7 +2092,7 @@ func (siw *ServerInterfaceWrapper) V1SubmitCaseByJudger(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "record", c.Params("record"), &record)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter record: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter record: %w", err).Error())
 	}
 
 	// ------------- Path parameter "index" -------------
@@ -2100,7 +2100,7 @@ func (siw *ServerInterfaceWrapper) V1SubmitCaseByJudger(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "index", c.Params("index"), &index)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter index: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter index: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2118,7 +2118,7 @@ func (siw *ServerInterfaceWrapper) V1SubmitRecordByJudger(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "record" -------------
@@ -2126,7 +2126,7 @@ func (siw *ServerInterfaceWrapper) V1SubmitRecordByJudger(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "record", c.Params("record"), &record)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter record: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter record: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2144,7 +2144,7 @@ func (siw *ServerInterfaceWrapper) V1ClaimRecordByJudger(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "record" -------------
@@ -2152,7 +2152,7 @@ func (siw *ServerInterfaceWrapper) V1ClaimRecordByJudger(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "record", c.Params("record"), &record)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter record: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter record: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2170,7 +2170,7 @@ func (siw *ServerInterfaceWrapper) V1ListDomainRoles(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2180,14 +2180,14 @@ func (siw *ServerInterfaceWrapper) V1ListDomainRoles(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	return siw.Handler.V1ListDomainRoles(c, domain, params)
@@ -2203,7 +2203,7 @@ func (siw *ServerInterfaceWrapper) V1CreateDomainRole(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2221,7 +2221,7 @@ func (siw *ServerInterfaceWrapper) V1DeleteDomainRole(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "role" -------------
@@ -2229,7 +2229,7 @@ func (siw *ServerInterfaceWrapper) V1DeleteDomainRole(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "role", c.Params("role"), &role)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter role: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter role: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2247,7 +2247,7 @@ func (siw *ServerInterfaceWrapper) V1GetDomainRole(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "role" -------------
@@ -2255,7 +2255,7 @@ func (siw *ServerInterfaceWrapper) V1GetDomainRole(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "role", c.Params("role"), &role)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter role: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter role: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2273,7 +2273,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateDomainRole(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "role" -------------
@@ -2281,7 +2281,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateDomainRole(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "role", c.Params("role"), &role)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter role: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter role: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2299,7 +2299,7 @@ func (siw *ServerInterfaceWrapper) V1TransferDomain(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2317,7 +2317,7 @@ func (siw *ServerInterfaceWrapper) V1ListDomainUsers(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2327,28 +2327,28 @@ func (siw *ServerInterfaceWrapper) V1ListDomainUsers(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter offset: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter offset: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "limit" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter limit: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter limit: %w", err).Error())
 	}
 
 	return siw.Handler.V1ListDomainUsers(c, domain, params)
@@ -2364,7 +2364,7 @@ func (siw *ServerInterfaceWrapper) V1AddDomainUser(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2382,7 +2382,7 @@ func (siw *ServerInterfaceWrapper) V1RemoveDomainUser(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "user" -------------
@@ -2390,7 +2390,7 @@ func (siw *ServerInterfaceWrapper) V1RemoveDomainUser(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "user", c.Params("user"), &user)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter user: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter user: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2408,7 +2408,7 @@ func (siw *ServerInterfaceWrapper) V1GetDomainUser(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "user" -------------
@@ -2416,7 +2416,7 @@ func (siw *ServerInterfaceWrapper) V1GetDomainUser(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "user", c.Params("user"), &user)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter user: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter user: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2434,7 +2434,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateDomainUser(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "user" -------------
@@ -2442,7 +2442,7 @@ func (siw *ServerInterfaceWrapper) V1UpdateDomainUser(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "user", c.Params("user"), &user)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter user: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter user: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2460,7 +2460,7 @@ func (siw *ServerInterfaceWrapper) V1GetDomainUserPermission(c *fiber.Ctx) error
 
 	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter domain: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter domain: %w", err).Error())
 	}
 
 	// ------------- Path parameter "user" -------------
@@ -2468,7 +2468,7 @@ func (siw *ServerInterfaceWrapper) V1GetDomainUserPermission(c *fiber.Ctx) error
 
 	err = runtime.BindStyledParameter("simple", false, "user", c.Params("user"), &user)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter user: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter user: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
@@ -2496,28 +2496,28 @@ func (siw *ServerInterfaceWrapper) V1ListProblemGroups(c *fiber.Ctx) error {
 
 	query, err := url.ParseQuery(string(c.Request().URI().QueryString()))
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for query string: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for query string: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter ordering: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter ordering: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter offset: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter offset: %w", err).Error())
 	}
 
 	// ------------- Optional query parameter "limit" -------------
 
 	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter limit: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter limit: %w", err).Error())
 	}
 
 	return siw.Handler.V1ListProblemGroups(c, params)
@@ -2563,7 +2563,7 @@ func (siw *ServerInterfaceWrapper) V1GetUser(c *fiber.Ctx) error {
 
 	err = runtime.BindStyledParameter("simple", false, "uid", c.Params("uid"), &uid)
 	if err != nil {
-		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("Invalid format for parameter uid: %w", err).Error())
+		return fiber.NewError(fiber.StatusBadRequest, fmt.Errorf("invalid format for parameter uid: %w", err).Error())
 	}
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
