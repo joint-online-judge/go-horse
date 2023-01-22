@@ -13,13 +13,13 @@ func ConnectDB() {
 	var err error // define error here to prevent overshadowing the global DB
 
 	env := os.Getenv("DATABASE_URL")
-	db, err = gorm.Open(postgres.Open(env), &gorm.Config{})
+	DB, err = gorm.Open(postgres.Open(env), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err)
 	}
-	dal.SetDefault(db)
+	dal.SetDefault(DB)
 	// TODO: run auto migrate
-	// err = db.AutoMigrate(&model.User{})
+	// err = DB.AutoMigrate(&model.User{})
 	// if err != nil {
 	// 	log.Fatal(err)
 	// }

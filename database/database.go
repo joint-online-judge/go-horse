@@ -2,5 +2,5 @@ package database
 
 import "gorm.io/gorm"
 
-// db gorm connector
-var db *gorm.DB
+// DB gorm connector
+var DB *gorm.DB
