@@ -1,0 +1,37 @@
+---
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.4.0
+      hooks:
+          - id: check-yaml
+          - id: check-toml
+          - id: end-of-file-fixer
+          - id: trailing-whitespace
+    - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
+      rev: 0.2.2
+      hooks:
+          - id: yamlfmt
+    - repo: https://github.com/pappasam/toml-sort.git
+      rev: v0.22.2
+      hooks:
+          - id: toml-sort
+            args: [--in-place, --all, --ignore-case]
+    - repo: https://github.com/segmentio/golines
+      rev: v0.11.0
+      hooks:
+          - id: golines
+    - repo: https://github.com/dnephin/pre-commit-golang
+      rev: v0.5.1
+      hooks:
+          - id: go-fmt
+          - id: go-vet
+        # - id: go-lint
+          - id: go-imports
+        # - id: go-cyclo
+        #   args: [-over=15]
+        # - id: no-go-testing
+          - id: golangci-lint
+          - id: go-critic
+          - id: go-unit-tests
+          - id: go-build
+          - id: go-mod-tidy

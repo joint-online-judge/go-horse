@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"runtime/debug"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	log "github.com/sirupsen/logrus"

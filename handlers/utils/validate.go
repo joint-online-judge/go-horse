@@ -14,7 +14,9 @@ func isDomainUrl(fl validator.FieldLevel) bool {
 }
 
 func init() {
-	validate.RegisterValidation("domain_url", isDomainUrl)
+	if err := validate.RegisterValidation("domain_url", isDomainUrl); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func ValidateStruct(object any) (any, error) {

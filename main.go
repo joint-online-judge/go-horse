@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"os"
 
 	"github.com/joint-online-judge/go-horse/db"
@@ -11,6 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
+	log "github.com/sirupsen/logrus"
 )
 
 func getenv(key, fallback string) string {
@@ -22,7 +22,9 @@ func getenv(key, fallback string) string {
 }
 
 func main() {
-	godotenv.Load()
+	if err := godotenv.Load(); err != nil {
+		log.Fatal(err)
+	}
 	app := fiber.New(fiber.Config{
 		ErrorHandler: utils.Panic,
 	})

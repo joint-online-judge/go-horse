@@ -1386,8 +1386,8 @@ type V1AdminListDomainRolesParams struct {
 	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty" json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
+	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
 }
 
 // V1AdminListJudgersParams defines parameters for V1AdminListJudgers.
@@ -1397,8 +1397,8 @@ type V1AdminListJudgersParams struct {
 	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty" json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
+	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
 }
 
 // V1AdminListUsersParams defines parameters for V1AdminListUsers.
@@ -1408,13 +1408,13 @@ type V1AdminListUsersParams struct {
 	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty" json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
+	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
 }
 
 // V1AdminListUserDomainsParams defines parameters for V1AdminListUserDomains.
 type V1AdminListUserDomainsParams struct {
-	Role   *[]string `form:"role,omitempty" json:"role,omitempty"`
+	Role   *[]string `form:"role,omitempty"   json:"role,omitempty"`
 	Groups *[]string `form:"groups,omitempty" json:"groups,omitempty"`
 
 	// Ordering Comma separated list of ordering the results.
@@ -1422,15 +1422,15 @@ type V1AdminListUserDomainsParams struct {
 	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty" json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
+	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
 }
 
 // V1LoginParams defines parameters for V1Login.
 type V1LoginParams struct {
 	// Cookie Add Set/Delete-Cookie on response header
 	Cookie       *bool                     `form:"cookie,omitempty" json:"cookie,omitempty"`
-	ResponseType V1LoginParamsResponseType `form:"responseType" json:"responseType"`
+	ResponseType V1LoginParamsResponseType `form:"responseType"     json:"responseType"`
 
 	// RedirectUrl The redirect url after the operation
 	RedirectUrl *string `form:"redirectUrl,omitempty" json:"redirectUrl,omitempty"`
@@ -1443,7 +1443,7 @@ type V1LoginParamsResponseType string
 type V1LogoutParams struct {
 	// Cookie Add Set/Delete-Cookie on response header
 	Cookie       *bool                      `form:"cookie,omitempty" json:"cookie,omitempty"`
-	ResponseType V1LogoutParamsResponseType `form:"responseType" json:"responseType"`
+	ResponseType V1LogoutParamsResponseType `form:"responseType"     json:"responseType"`
 
 	// RedirectUrl The redirect url after the operation
 	RedirectUrl *string `form:"redirectUrl,omitempty" json:"redirectUrl,omitempty"`
@@ -1458,7 +1458,7 @@ type V1OauthAuthorizeParams struct {
 
 	// Cookie Add Set/Delete-Cookie on response header
 	Cookie       *bool                              `form:"cookie,omitempty" json:"cookie,omitempty"`
-	ResponseType V1OauthAuthorizeParamsResponseType `form:"responseType" json:"responseType"`
+	ResponseType V1OauthAuthorizeParamsResponseType `form:"responseType"     json:"responseType"`
 
 	// RedirectUrl The redirect url after the operation
 	RedirectUrl *string `form:"redirectUrl,omitempty" json:"redirectUrl,omitempty"`
@@ -1471,7 +1471,7 @@ type V1OauthAuthorizeParamsResponseType string
 type V1RefreshParams struct {
 	// Cookie Add Set/Delete-Cookie on response header
 	Cookie       *bool                       `form:"cookie,omitempty" json:"cookie,omitempty"`
-	ResponseType V1RefreshParamsResponseType `form:"responseType" json:"responseType"`
+	ResponseType V1RefreshParamsResponseType `form:"responseType"     json:"responseType"`
 
 	// RedirectUrl The redirect url after the operation
 	RedirectUrl *string `form:"redirectUrl,omitempty" json:"redirectUrl,omitempty"`
@@ -1484,7 +1484,7 @@ type V1RefreshParamsResponseType string
 type V1RegisterParams struct {
 	// Cookie Add Set/Delete-Cookie on response header
 	Cookie       *bool                        `form:"cookie,omitempty" json:"cookie,omitempty"`
-	ResponseType V1RegisterParamsResponseType `form:"responseType" json:"responseType"`
+	ResponseType V1RegisterParamsResponseType `form:"responseType"     json:"responseType"`
 
 	// RedirectUrl The redirect url after the operation
 	RedirectUrl *string `form:"redirectUrl,omitempty" json:"redirectUrl,omitempty"`
@@ -1497,7 +1497,7 @@ type V1RegisterParamsResponseType string
 type V1GetTokenParams struct {
 	// Cookie Add Set/Delete-Cookie on response header
 	Cookie       *bool                        `form:"cookie,omitempty" json:"cookie,omitempty"`
-	ResponseType V1GetTokenParamsResponseType `form:"responseType" json:"responseType"`
+	ResponseType V1GetTokenParamsResponseType `form:"responseType"     json:"responseType"`
 
 	// RedirectUrl The redirect url after the operation
 	RedirectUrl *string `form:"redirectUrl,omitempty" json:"redirectUrl,omitempty"`
@@ -1508,7 +1508,7 @@ type V1GetTokenParamsResponseType string
 
 // V1ListDomainsParams defines parameters for V1ListDomains.
 type V1ListDomainsParams struct {
-	Roles  *[]string `form:"roles,omitempty" json:"roles,omitempty"`
+	Roles  *[]string `form:"roles,omitempty"  json:"roles,omitempty"`
 	Groups *[]string `form:"groups,omitempty" json:"groups,omitempty"`
 
 	// Ordering Comma separated list of ordering the results.
@@ -1516,8 +1516,8 @@ type V1ListDomainsParams struct {
 	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty" json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
+	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
 }
 
 // V1SearchDomainGroupsParams defines parameters for V1SearchDomainGroups.
@@ -1545,8 +1545,8 @@ type V1ListDomainInvitationsParams struct {
 	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty" json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
+	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
 }
 
 // V1JoinDomainByInvitationParams defines parameters for V1JoinDomainByInvitation.
@@ -1561,8 +1561,8 @@ type V1ListProblemSetsParams struct {
 	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty" json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
+	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
 }
 
 // V1ListProblemsParams defines parameters for V1ListProblems.
@@ -1572,8 +1572,8 @@ type V1ListProblemsParams struct {
 	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty" json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
+	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
 }
 
 // V1ListProblemConfigCommitsParams defines parameters for V1ListProblemConfigCommits.
@@ -1583,8 +1583,8 @@ type V1ListProblemConfigCommitsParams struct {
 	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty" json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
+	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
 }
 
 // V1UpdateProblemConfigByArchiveParams defines parameters for V1UpdateProblemConfigByArchive.
@@ -1643,8 +1643,8 @@ type V1ListRecordsInDomainParams struct {
 	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty" json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
+	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
 }
 
 // V1ListDomainRolesParams defines parameters for V1ListDomainRoles.
@@ -1663,8 +1663,8 @@ type V1ListDomainUsersParams struct {
 	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty" json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
+	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
 }
 
 // V1ListProblemGroupsParams defines parameters for V1ListProblemGroups.
@@ -1674,8 +1674,8 @@ type V1ListProblemGroupsParams struct {
 	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty" json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty" json:"limit,omitempty"`
+	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
+	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
 }
 
 // V1AdminCreateJudgerJSONRequestBody defines body for V1AdminCreateJudger for application/json ContentType.
