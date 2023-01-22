@@ -1,4 +1,4 @@
-package middleware
+package utils
 
 import (
 	"errors"
@@ -12,6 +12,12 @@ import (
 func Response(ctx *fiber.Ctx, response any, err error) error {
 	code := fiber.StatusOK
 	if err == nil {
+		if response == nil {
+			return ctx.Status(code).JSON(types.EmptyResp{
+				BizError: types.BizError{ErrorCode: types.Success},
+				Data:     nil,
+			})
+		}
 		validate_response, validate_err := validateImpl(response)
 		if validate_err == nil {
 			return ctx.Status(code).JSON(types.StandardResp[any]{
