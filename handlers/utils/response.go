@@ -5,11 +5,12 @@ import (
 	"runtime"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/joint-online-judge/go-horse/db"
 	"github.com/joint-online-judge/go-horse/types"
 	log "github.com/sirupsen/logrus"
 )
 
-func Response(ctx *fiber.Ctx, response any, err error) error {
+func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
 	code := fiber.StatusOK
 	if err == nil {
 		if response == nil {
@@ -18,7 +19,7 @@ func Response(ctx *fiber.Ctx, response any, err error) error {
 				Data:     nil,
 			})
 		}
-		validate_response, validate_err := validateStruct(response)
+		validate_response, validate_err := ValidateStruct(response)
 		if validate_err == nil {
 			return ctx.Status(code).JSON(types.StandardResp[any]{
 				BizError: types.BizError{ErrorCode: types.Success},
@@ -49,4 +50,9 @@ func Response(ctx *fiber.Ctx, response any, err error) error {
 	return ctx.Status(code).JSON(types.EmptyResp{BizError: types.BizError{
 		ErrorCode: types.InternalServerError, ErrorMsg: &s,
 	}, Data: nil})
+}
+
+func NewListResp[Model any, Types any]() (types.ListResp[Types], error) {
+	objs, count, err := db.ListObjs[Model, Types]()
+	return types.ListResp[Types]{Count: count, Results: objs}, err
 }

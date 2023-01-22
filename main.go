@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/joint-online-judge/go-horse/database"
+	"github.com/joint-online-judge/go-horse/db"
 	"github.com/joint-online-judge/go-horse/handlers/utils"
 	"github.com/joint-online-judge/go-horse/router"
 
@@ -31,7 +31,7 @@ func main() {
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}))
 
-	database.ConnectDB()
+	db.ConnectDB()
 
 	router.Initalize(app)
 	log.Fatal(app.Listen(":" + getenv("PORT", "3000")))

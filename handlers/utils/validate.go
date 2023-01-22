@@ -17,7 +17,7 @@ func init() {
 	validate.RegisterValidation("domain_url", isDomainUrl)
 }
 
-func validateStruct(object any) (any, error) {
+func ValidateStruct(object any) (any, error) {
 	log.Infof("validating %T, %v", object, object)
 	if object == nil {
 		return nil, nil
@@ -46,7 +46,7 @@ func validateStruct(object any) (any, error) {
 
 func ValidateRequest(f types.StrictHandlerFunc, operationID string) types.StrictHandlerFunc {
 	return func(ctx *fiber.Ctx, request any) (any, error) {
-		if response, err := validateStruct(request); err != nil {
+		if response, err := ValidateStruct(request); err != nil {
 			return response, err
 		}
 		return f(ctx, request)

@@ -20,6 +20,6 @@ func Initalize(router *fiber.App) {
 
 	var strictHandlerImpl handlers.ApiV1
 	middlewares := []types.StrictMiddlewareFunc{utils.ValidateRequest}
-	response := utils.Response
+	response := utils.ResponseHandler
 	RegisterStrictHandlers(router, &strictHandlerImpl, middlewares, response)
 }

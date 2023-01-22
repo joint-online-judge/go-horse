@@ -3,11 +3,8 @@ package handlers
 import (
 	"context"
 
-	"github.com/joint-online-judge/go-horse/database"
 	"github.com/joint-online-judge/go-horse/types"
 )
-
-var db = database.DB
 
 type ApiV1 struct{}
 

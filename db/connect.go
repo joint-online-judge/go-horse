@@ -1,10 +1,9 @@
-package database
+package db
 
 import (
 	"log"
 	"os"
 
-	"github.com/joint-online-judge/go-horse/dal"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -17,7 +16,6 @@ func ConnectDB() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	dal.SetDefault(DB)
 	// TODO: run auto migrate
 	// err = DB.AutoMigrate(&model.User{})
 	// if err != nil {
