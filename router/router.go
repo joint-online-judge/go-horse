@@ -19,7 +19,7 @@ func Initalize(router *fiber.App) {
 	router.Use(middleware.Json)
 
 	var strictHandlerImpl handlers.ApiV1
-	middlewares := []types.StrictMiddlewareFunc{utils.Validate}
+	middlewares := []types.StrictMiddlewareFunc{utils.ValidateRequest}
 	response := utils.Response
 	RegisterStrictHandlers(router, &strictHandlerImpl, middlewares, response)
 }

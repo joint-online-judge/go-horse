@@ -18,7 +18,7 @@ func Response(ctx *fiber.Ctx, response any, err error) error {
 				Data:     nil,
 			})
 		}
-		validate_response, validate_err := validateImpl(response)
+		validate_response, validate_err := validateStruct(response)
 		if validate_err == nil {
 			return ctx.Status(code).JSON(types.StandardResp[any]{
 				BizError: types.BizError{ErrorCode: types.Success},
@@ -36,10 +36,17 @@ func Response(ctx *fiber.Ctx, response any, err error) error {
 	if errors.Is(err, fiber.ErrUnprocessableEntity) {
 		return ctx.Status(fiber.StatusUnprocessableEntity).JSON(response)
 	}
-	log.Info(err)
+	if errors.Is(err, fiber.ErrInternalServerError) {
+		msg := response.(error).Error()
+		return ctx.Status(code).JSON(types.EmptyResp{BizError: types.BizError{
+			ErrorCode: types.InternalServerError, ErrorMsg: &msg,
+		}, Data: nil})
+	}
+	log.Infof("unknown error: %T, %v", err, err)
 	b := make([]byte, 4096)
 	n := runtime.Stack(b, false)
 	s := string(b[:n])
 	return ctx.Status(code).JSON(types.EmptyResp{BizError: types.BizError{
-		ErrorCode: types.InternalServerError, ErrorMsg: &s}, Data: nil})
+		ErrorCode: types.InternalServerError, ErrorMsg: &s,
+	}, Data: nil})
 }

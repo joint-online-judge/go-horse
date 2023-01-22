@@ -4,7 +4,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/joint-online-judge/go-horse/handlers"
+	"github.com/joint-online-judge/go-horse/database"
+	"github.com/joint-online-judge/go-horse/handlers/utils"
 	"github.com/joint-online-judge/go-horse/router"
 
 	"github.com/gofiber/fiber/v2"
@@ -23,14 +24,14 @@ func getenv(key, fallback string) string {
 func main() {
 	godotenv.Load()
 	app := fiber.New(fiber.Config{
-		ErrorHandler: handlers.Panic,
+		ErrorHandler: utils.Panic,
 	})
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "*", // comma string format
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}))
 
-	// database.ConnectDB()
+	database.ConnectDB()
 
 	router.Initalize(app)
 	log.Fatal(app.Listen(":" + getenv("PORT", "3000")))

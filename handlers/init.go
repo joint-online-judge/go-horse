@@ -87,12 +87,6 @@ func (s *ApiV1) V1GetToken(ctx context.Context, request types.V1GetTokenRequestO
 	return nil, nil
 }
 
-// List Domains
-// (GET /domains)
-func (s *ApiV1) V1ListDomains(ctx context.Context, request types.V1ListDomainsRequestObject) (any, error) {
-	return nil, nil
-}
-
 // Search Domain Groups
 // (GET /domains/groups)
 func (s *ApiV1) V1SearchDomainGroups(ctx context.Context, request types.V1SearchDomainGroupsRequestObject) (any, error) {

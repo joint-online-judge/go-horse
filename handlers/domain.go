@@ -3,19 +3,28 @@ package handlers
 import (
 	"context"
 
+	"github.com/joint-online-judge/go-horse/dal"
+	"github.com/joint-online-judge/go-horse/model"
 	"github.com/joint-online-judge/go-horse/types"
 	log "github.com/sirupsen/logrus"
 )
 
-func (s *ApiV1) V1CreateDomain(c context.Context, request types.V1CreateDomainRequestObject) (any, error) {
+func (s *ApiV1) V1CreateDomain(
+	ctx context.Context,
+	request types.V1CreateDomainRequestObject,
+) (any, error) {
 	b := request.Body
 	log.Infof("request.Body: %v", b)
-	// FIXME: get enough parameters
-	// domain := model.Domain{Name: b.Name, URL: *b.Url, Gravatar: *b.Gravatar}
-	// err := dao.Domain.WithContext(c).Create(&domain)
-	// if err != nil {
-	// 	return nil, err
-	// }
-	// log.Infof("domain: %v", domain)
 	return nil, nil
+}
+
+func (s *ApiV1) V1ListDomains(
+	ctx context.Context,
+	request types.V1ListDomainsRequestObject,
+) (any, error) {
+	domain, err := dal.Domain.Find()
+	if err != nil {
+		return nil, err
+	}
+	return types.ListResp[*model.Domain]{Count: 0, Results: domain}, nil
 }

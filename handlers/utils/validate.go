@@ -17,24 +17,36 @@ func init() {
 	validate.RegisterValidation("domain_url", isDomainUrl)
 }
 
-func validateImpl(request any) (any, error) {
+func validateStruct(object any) (any, error) {
+	log.Infof("validating %T, %v", object, object)
+	if object == nil {
+		return nil, nil
+	}
 	var validationError []types.ValidationError
-	log.Infof("validating %T", request)
-	err := validate.Struct(request)
-	if err != nil {
-		for _, err := range err.(validator.ValidationErrors) {
-			log.Errorf("validation error: %v, %v, %v", err.StructNamespace(), err.Tag(), err.Param())
-			validationError = append(validationError, types.ValidationError{Msg: err.Error(), Type: err.Type().Name()})
+	if err := validate.Struct(object); err != nil {
+		vierr, ok := err.(*validator.InvalidValidationError)
+		if ok {
+			log.Errorf("invalid validation error: %v", vierr)
+			return vierr, fiber.ErrInternalServerError
+		}
+		for _, e := range err.(validator.ValidationErrors) {
+			log.Errorf("validation error: %v, %v, %v", e.StructNamespace(), e.Tag(), e.Param())
+			validationError = append(
+				validationError,
+				types.ValidationError{
+					Msg:  e.Error(),
+					Type: e.Type().Name(),
+				},
+			)
 		}
 		return validationError, fiber.ErrUnprocessableEntity
 	}
 	return nil, nil
 }
 
-func Validate(f types.StrictHandlerFunc, operationID string) types.StrictHandlerFunc {
+func ValidateRequest(f types.StrictHandlerFunc, operationID string) types.StrictHandlerFunc {
 	return func(ctx *fiber.Ctx, request any) (any, error) {
-		response, err := validateImpl(request)
-		if err != nil {
+		if response, err := validateStruct(request); err != nil {
 			return response, err
 		}
 		return f(ctx, request)

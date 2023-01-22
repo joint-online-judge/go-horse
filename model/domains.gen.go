@@ -15,7 +15,7 @@ type Domain struct {
 	CreatedAt time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"created_at"`
 	UpdatedAt time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"updated_at"`
 	OwnerID   string    `gorm:"column:owner_id" json:"owner_id"`
-	URL       string    `gorm:"column:url;not null" json:"url"`
+	URL       string    `gorm:"column:url;not null" json:"url" validate:"domain_url"`
 	Name      string    `gorm:"column:name;not null" json:"name"`
 	Gravatar  string    `gorm:"column:gravatar;not null" json:"gravatar"`
 	Bulletin  string    `gorm:"column:bulletin;not null" json:"bulletin"`
