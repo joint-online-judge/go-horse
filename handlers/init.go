@@ -3,11 +3,13 @@ package handlers
 import (
 	"context"
 
+	"github.com/joint-online-judge/go-horse/database"
 	"github.com/joint-online-judge/go-horse/types"
 )
 
-type ApiV1 struct {
-}
+var db = database.DB
+
+type ApiV1 struct{}
 
 // Admin List Domain Roles
 // (GET /admin/domain_roles)

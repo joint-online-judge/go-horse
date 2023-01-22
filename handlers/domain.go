@@ -3,7 +3,6 @@ package handlers
 import (
 	"context"
 
-	"github.com/joint-online-judge/go-horse/database"
 	"github.com/joint-online-judge/go-horse/model"
 	"github.com/joint-online-judge/go-horse/types"
 	log "github.com/sirupsen/logrus"
@@ -23,7 +22,6 @@ func (s *ApiV1) V1ListDomains(
 	request types.V1ListDomainsRequestObject,
 ) (any, error) {
 	var domains []types.Domain
-	db := database.DB
 	err := db.Model(&model.Domain{}).Find(&domains).Error
 	if err != nil {
 		return nil, err
