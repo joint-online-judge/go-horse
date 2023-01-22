@@ -3,7 +3,7 @@ package utils
 import (
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
-	"github.com/joint-online-judge/go-horse/types"
+	"github.com/joint-online-judge/go-horse/schemas"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -24,7 +24,7 @@ func ValidateStruct(object any) (any, error) {
 	if object == nil {
 		return nil, nil
 	}
-	var validationError []types.ValidationError
+	var validationError []schemas.ValidationError
 	if err := validate.Struct(object); err != nil {
 		vierr, ok := err.(*validator.InvalidValidationError)
 		if ok {
@@ -35,7 +35,7 @@ func ValidateStruct(object any) (any, error) {
 			log.Errorf("validation error: %v, %v, %v", e.StructNamespace(), e.Tag(), e.Param())
 			validationError = append(
 				validationError,
-				types.ValidationError{
+				schemas.ValidationError{
 					Msg:  e.Error(),
 					Type: e.Type().Name(),
 				},
@@ -46,7 +46,7 @@ func ValidateStruct(object any) (any, error) {
 	return nil, nil
 }
 
-func ValidateRequest(f types.StrictHandlerFunc, operationID string) types.StrictHandlerFunc {
+func ValidateRequest(f schemas.StrictHandlerFunc, operationID string) schemas.StrictHandlerFunc {
 	return func(ctx *fiber.Ctx, request any) (any, error) {
 		if response, err := ValidateStruct(request); err != nil {
 			return response, err
