@@ -12,6 +12,8 @@ require (
 	gorm.io/gorm v1.24.3
 )
 
+require github.com/caarlos0/env/v6 v6.10.1
+
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
