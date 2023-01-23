@@ -6,6 +6,7 @@ import (
 	"github.com/joint-online-judge/go-horse/config"
 	"github.com/joint-online-judge/go-horse/db"
 	"github.com/joint-online-judge/go-horse/handlers/utils"
+	"github.com/joint-online-judge/go-horse/middlewares"
 	"github.com/joint-online-judge/go-horse/routers"
 
 	"github.com/gofiber/fiber/v2"
@@ -18,6 +19,7 @@ func main() {
 		ErrorHandler: utils.Panic,
 	})
 	db.ConnectDB()
+	middlewares.Initalize(app)
 	routers.Initalize(app)
 	log.Fatal(app.Listen(fmt.Sprintf("%s:%d", config.Config.Host, config.Config.Port)))
 }

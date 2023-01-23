@@ -2,21 +2,12 @@ package routers
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joint-online-judge/go-horse/handlers"
 	"github.com/joint-online-judge/go-horse/handlers/utils"
-	"github.com/joint-online-judge/go-horse/middlewares"
 	"github.com/joint-online-judge/go-horse/schemas"
 )
 
 func Initalize(router *fiber.App) {
-	router.Use(cors.New(cors.Config{
-		AllowOrigins: "*", // comma string format
-		AllowHeaders: "Origin, Content-Type, Accept",
-	}))
-	router.Use(middlewares.Recover)
-	router.Use(middlewares.Security)
-	router.Use(middlewares.Json)
 	wrapper := schemas.ServerInterfaceWrapper{
 		Handler: schemas.NewStrictHandler(
 			&handlers.ApiV1{},
