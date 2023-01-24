@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/joint-online-judge/go-horse/config"
 	"github.com/joint-online-judge/go-horse/schemas"
 )
 
@@ -20,11 +21,15 @@ func (s *ApiV1) TestErrorReport(
 	c *fiber.Ctx,
 	request schemas.TestErrorReportRequestObject,
 ) (any, error) {
-	return nil, nil
+	panic("test error report")
+	// return nil, nil
 }
 
 // Version
 // (GET /version)
 func (s *ApiV1) Version(c *fiber.Ctx, request schemas.VersionRequestObject) (any, error) {
-	return nil, nil
+	return schemas.Version{
+		Git:     config.GitCommit,
+		Version: config.Version,
+	}, nil
 }

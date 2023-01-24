@@ -1,12 +1,22 @@
 package middlewares
 
 import (
+	"errors"
+	"fmt"
 	"runtime/debug"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	log "github.com/sirupsen/logrus"
+
+	"github.com/rollbar/rollbar-go"
 )
+
+// func getCallers(skip int) (pc []uintptr) {
+// 	pc = make([]uintptr, 1000)
+// 	i := runtime.Callers(skip+1, pc)
+// 	return pc[0:i]
+// }
 
 var recoverHandler = recover.New(recover.Config{
 	Next:             nil,
@@ -17,6 +27,13 @@ var recoverHandler = recover.New(recover.Config{
 			DisableQuote: true,
 		})
 		log.Errorf("panic: %v\n%s\n", e, debug.Stack())
+		rollbar.Critical(
+			errors.New(fmt.Sprint(e)),
+			// getCallers(3),
+			map[string]interface{}{
+				"endpoint": c.Request().URI().String(),
+			},
+		)
 	},
 })
 

@@ -36,6 +36,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.14 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/rivo/uniseg v0.4.3 // indirect
+	github.com/rollbar/rollbar-go v1.4.5
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.44.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
