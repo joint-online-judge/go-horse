@@ -3266,6 +3266,13 @@ func (siw *ServerInterfaceWrapper) GetUser(c *fiber.Ctx) error {
 }
 
 // Version operation middleware
+//
+//	@Summary	Version
+//	@Tags		miscellaneous
+//	@Accept		json
+//	@Produce	json
+//	@Success	200	{object}	schemas.Version
+//	@Router		/version [get]
 func (siw *ServerInterfaceWrapper) Version(c *fiber.Ctx) error {
 	return siw.Handler.Version(c)
 }

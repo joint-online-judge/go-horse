@@ -19,6 +19,7 @@ func Initalize(router *fiber.App) {
 	// TODO: add auth middleware
 	api := router.Group("/api") // /api
 	v1 := api.Group("/v1")      // /api/v1
+	RegisterSwagger(v1)
 	RegisterMisc(v1, wrapper)
 	RegisterAuth(v1, wrapper)
 	v1.Use(middlewares.JWT())

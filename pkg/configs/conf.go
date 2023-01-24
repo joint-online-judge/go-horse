@@ -3,6 +3,7 @@ package configs
 import (
 	"github.com/caarlos0/env/v6"
 	"github.com/joho/godotenv"
+	"github.com/rollbar/rollbar-go"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -84,4 +85,5 @@ func Initalize() {
 	}
 	log.Infof("config object: %+v", cfg)
 	Conf = &cfg
+	rollbar.SetToken(Conf.RollbarAccessToken)
 }

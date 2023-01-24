@@ -13,8 +13,8 @@ func Initalize(router *fiber.App) {
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}))
 	router.Use(Recover)
-	router.Use(Security)
 	if !configs.Conf.Debug {
+		router.Use(Security)
 		router.Use(csrf.New())
 	}
 	router.Use(Json)
