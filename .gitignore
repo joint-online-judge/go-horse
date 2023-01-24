@@ -1,4 +1,16 @@
-*.env
-.docker_build/
+# macOS
+**/.DS_Store
+
+# windows
 *.exe
-/data
+
+# Dev build
+build/
+tmp/
+.docker_build/
+
+# Test
+*.out
+
+# Environment variables
+.env
