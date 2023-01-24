@@ -2,9 +2,11 @@ package routers
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/redirect/v2"
 	"github.com/joint-online-judge/go-horse/app/handlers"
 	"github.com/joint-online-judge/go-horse/app/handlers/utils"
 	"github.com/joint-online-judge/go-horse/app/schemas"
+	"github.com/joint-online-judge/go-horse/pkg/configs"
 	"github.com/joint-online-judge/go-horse/pkg/middlewares"
 )
 
@@ -16,7 +18,15 @@ func Initalize(router *fiber.App) {
 			utils.ResponseHandler,
 		),
 	}
-	// TODO: add auth middleware
+	if configs.Conf.Debug {
+		router.Use(redirect.New(redirect.Config{
+			Rules: map[string]string{
+				"/":       "/api/v1",
+				"/api/v1": "/api/v1/docs",
+			},
+			StatusCode: 301,
+		}))
+	}
 	api := router.Group("/api") // /api
 	v1 := api.Group("/v1")      // /api/v1
 	RegisterSwagger(v1)

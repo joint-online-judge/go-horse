@@ -4,7 +4,7 @@ APP_NAME = go-horse
 BUILD_DIR = $(PWD)/build
 
 dev:
-	fiber dev -p "swag init" -D docs
+	DEBUG=1 fiber dev -p "swag init" -D docs
 
 clean:
 	rm -rf ./build
