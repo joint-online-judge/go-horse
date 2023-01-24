@@ -16,24 +16,25 @@ func JWT() fiber.Handler {
 		// SigningMethod: config.Config.JwtAlgorithm,
 		SigningMethod: "HS256",
 		SigningKey:    []byte(config.Config.JwtSecret),
+		SuccessHandler: func(c *fiber.Ctx) error {
+			tokenString := c.Locals("user").(*jwt.Token).Raw
+			token, err := jwt.ParseWithClaims(
+				tokenString,
+				&schemas.JWTClaims{},
+				func(t *jwt.Token) (interface{}, error) { return []byte(config.Config.JwtSecret), nil },
+			)
+			if err != nil {
+				return err
+			}
+			claims := token.Claims.(*schemas.JWTClaims)
+			c.Locals("jwt", claims)
+			return c.Next()
+		},
 	})
 }
 
-type JWTClaims struct {
-	Type      string `json:"type"`
-	Fresh     bool   `json:"fresh"`
-	Csrf      string `json:"csrf"`
-	Category  string `json:"category"`
-	Username  string `json:"username"`
-	Gravatar  string `json:"gravatar"`
-	Role      string `json:"role"`
-	IsActive  bool   `json:"isActive"`
-	OauthName string `json:"oauthName"`
-	jwt.RegisteredClaims
-}
-
 func NewAccessToken(user schemas.User, category, oauth_name string, fresh bool) (string, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, JWTClaims{
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, schemas.JWTClaims{
 		Type:      "access",
 		Fresh:     fresh,
 		Csrf:      "test", // FIXME: do we need it as we can use csrf middleware?

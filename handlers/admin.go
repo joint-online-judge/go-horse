@@ -1,15 +1,14 @@
 package handlers
 
 import (
-	"context"
-
+	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/schemas"
 )
 
 // Admin List Domain Roles
 // (GET /admin/domain_roles)
 func (s *ApiV1) AdminListDomainRoles(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.AdminListDomainRolesRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -18,7 +17,7 @@ func (s *ApiV1) AdminListDomainRoles(
 // Admin List Judgers
 // (GET /admin/judgers)
 func (s *ApiV1) AdminListJudgers(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.AdminListJudgersRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -27,7 +26,7 @@ func (s *ApiV1) AdminListJudgers(
 // Admin Create Judger
 // (POST /admin/judgers)
 func (s *ApiV1) AdminCreateJudger(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.AdminCreateJudgerRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -36,7 +35,7 @@ func (s *ApiV1) AdminCreateJudger(
 // Admin List Users
 // (GET /admin/users)
 func (s *ApiV1) AdminListUsers(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.AdminListUsersRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -45,7 +44,7 @@ func (s *ApiV1) AdminListUsers(
 // Admin Get User
 // (GET /admin/{uid})
 func (s *ApiV1) AdminGetUser(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.AdminGetUserRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -54,7 +53,7 @@ func (s *ApiV1) AdminGetUser(
 // Admin List User Domains
 // (GET /admin/{uid}/domains)
 func (s *ApiV1) AdminListUserDomains(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.AdminListUserDomainsRequestObject,
 ) (any, error) {
 	return nil, nil

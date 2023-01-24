@@ -1,24 +1,23 @@
 package handlers
 
 import (
-	"context"
-
+	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/schemas"
 )
 
 // Jwt Decoded
 // (GET /jwt_decoded)
 func (s *ApiV1) JwtDecoded(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.JwtDecodedRequestObject,
 ) (any, error) {
-	return nil, nil
+	return schemas.JWT(c), nil
 }
 
 // Test Error Report
 // (GET /test/report)
 func (s *ApiV1) TestErrorReport(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.TestErrorReportRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -26,6 +25,6 @@ func (s *ApiV1) TestErrorReport(
 
 // Version
 // (GET /version)
-func (s *ApiV1) Version(ctx context.Context, request schemas.VersionRequestObject) (any, error) {
+func (s *ApiV1) Version(c *fiber.Ctx, request schemas.VersionRequestObject) (any, error) {
 	return nil, nil
 }

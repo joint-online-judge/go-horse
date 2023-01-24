@@ -1,15 +1,14 @@
 package handlers
 
 import (
-	"context"
-
+	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/schemas"
 )
 
 // Get Current User
 // (GET /users/me)
 func (s *ApiV1) GetCurrentUser(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.GetCurrentUserRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -18,7 +17,7 @@ func (s *ApiV1) GetCurrentUser(
 // Update Current User
 // (PATCH /users/me)
 func (s *ApiV1) UpdateCurrentUser(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.UpdateCurrentUserRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -27,7 +26,7 @@ func (s *ApiV1) UpdateCurrentUser(
 // Change Password
 // (PATCH /users/me/password)
 func (s *ApiV1) ChangePassword(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.ChangePasswordRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -35,6 +34,6 @@ func (s *ApiV1) ChangePassword(
 
 // Get User
 // (GET /users/{uid})
-func (s *ApiV1) GetUser(ctx context.Context, request schemas.GetUserRequestObject) (any, error) {
+func (s *ApiV1) GetUser(c *fiber.Ctx, request schemas.GetUserRequestObject) (any, error) {
 	return nil, nil
 }

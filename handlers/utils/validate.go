@@ -20,9 +20,11 @@ func init() {
 }
 
 func ValidateStruct(object any) (any, error) {
-	log.Infof("validating %T, %v", object, object)
 	switch object.(type) {
-	case struct{}:
+	case fiber.Map:
+		return nil, nil
+	default:
+		log.Infof("validating %T as struct, %v", object, object)
 		var validationError []schemas.ValidationError
 		if err := validate.Struct(object); err != nil {
 			vierr, ok := err.(*validator.InvalidValidationError)
@@ -42,8 +44,6 @@ func ValidateStruct(object any) (any, error) {
 			}
 			return validationError, fiber.ErrUnprocessableEntity
 		}
-	default:
-		return nil, nil
 	}
 	return nil, nil
 }

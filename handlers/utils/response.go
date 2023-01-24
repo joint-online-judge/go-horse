@@ -5,7 +5,6 @@ import (
 	"runtime"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/joint-online-judge/go-horse/db"
 	"github.com/joint-online-judge/go-horse/schemas"
 	log "github.com/sirupsen/logrus"
 )
@@ -50,9 +49,4 @@ func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
 	return ctx.Status(code).JSON(schemas.EmptyResp{BizError: schemas.BizError{
 		ErrorCode: schemas.InternalServerError, ErrorMsg: &s,
 	}, Data: nil})
-}
-
-func NewListResp[Model any, Types any]() (schemas.ListResp[Types], error) {
-	objs, count, err := db.ListObjs[Model, Types]()
-	return schemas.ListResp[Types]{Count: count, Results: objs}, err
 }

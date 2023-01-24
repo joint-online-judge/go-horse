@@ -1,15 +1,14 @@
 package handlers
 
 import (
-	"context"
-
+	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/schemas"
 )
 
 // List Records In Domain
 // (GET /domains/{domain}/records)
 func (s *ApiV1) ListRecordsInDomain(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.ListRecordsInDomainRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -18,7 +17,7 @@ func (s *ApiV1) ListRecordsInDomain(
 // Get Record
 // (GET /domains/{domain}/records/{record})
 func (s *ApiV1) GetRecord(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.GetRecordRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -27,7 +26,7 @@ func (s *ApiV1) GetRecord(
 // Submit Case By Judger
 // (PUT /domains/{domain}/records/{record}/cases/{index}/judge)
 func (s *ApiV1) SubmitCaseByJudger(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.SubmitCaseByJudgerRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -36,7 +35,7 @@ func (s *ApiV1) SubmitCaseByJudger(
 // Submit Record By Judger
 // (PUT /domains/{domain}/records/{record}/judge)
 func (s *ApiV1) SubmitRecordByJudger(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.SubmitRecordByJudgerRequestObject,
 ) (any, error) {
 	return nil, nil
@@ -45,7 +44,7 @@ func (s *ApiV1) SubmitRecordByJudger(
 // Claim Record By Judger
 // (POST /domains/{domain}/records/{record}/judge/claim)
 func (s *ApiV1) ClaimRecordByJudger(
-	ctx context.Context,
+	c *fiber.Ctx,
 	request schemas.ClaimRecordByJudgerRequestObject,
 ) (any, error) {
 	return nil, nil
