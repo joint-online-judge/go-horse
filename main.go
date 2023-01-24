@@ -5,7 +5,6 @@ import (
 
 	"github.com/joint-online-judge/go-horse/config"
 	"github.com/joint-online-judge/go-horse/db"
-	"github.com/joint-online-judge/go-horse/handlers/utils"
 	"github.com/joint-online-judge/go-horse/middlewares"
 	"github.com/joint-online-judge/go-horse/routers"
 
@@ -16,7 +15,8 @@ import (
 func main() {
 	config.Initalize()
 	app := fiber.New(fiber.Config{
-		ErrorHandler: utils.Panic,
+		// ErrorHandler: utils.Panic,
+		Prefork: !config.Config.Debug,
 	})
 	db.ConnectDB()
 	middlewares.Initalize(app)

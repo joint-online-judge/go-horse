@@ -3,13 +3,18 @@ package handlers
 import (
 	"context"
 
+	"github.com/gofiber/fiber/v2"
+	"github.com/joint-online-judge/go-horse/db"
+	"github.com/joint-online-judge/go-horse/middlewares"
 	"github.com/joint-online-judge/go-horse/schemas"
 )
 
 // Login
 // (POST /auth/login)
 func (s *ApiV1) Login(ctx context.Context, request schemas.LoginRequestObject) (any, error) {
-	return nil, nil
+	user, _ := db.GetUser()
+	token, err := middlewares.NewAccessToken(user, "user", "", true)
+	return fiber.Map{"token": token}, err
 }
 
 // Logout

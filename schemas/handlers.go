@@ -566,10 +566,10 @@ func (siw *ServerInterfaceWrapper) Login(c *fiber.Ctx) error {
 	if paramValue := c.Query("responseType"); paramValue != "" {
 	} else {
 		err = fmt.Errorf("query argument responseType is required, but not found")
-		if err := c.Status(fiber.StatusBadRequest).JSON(err); err != nil {
-			return err
-		}
-		return err
+		return fiber.NewError(
+			fiber.StatusBadRequest,
+			err.Error(),
+		)
 	}
 
 	err = runtime.BindQueryParameter(
@@ -632,10 +632,10 @@ func (siw *ServerInterfaceWrapper) Logout(c *fiber.Ctx) error {
 	if paramValue := c.Query("responseType"); paramValue != "" {
 	} else {
 		err = fmt.Errorf("query argument responseType is required, but not found")
-		if err := c.Status(fiber.StatusBadRequest).JSON(err); err != nil {
-			return err
-		}
-		return err
+		return fiber.NewError(
+			fiber.StatusBadRequest,
+			err.Error(),
+		)
 	}
 
 	err = runtime.BindQueryParameter(
@@ -722,10 +722,10 @@ func (siw *ServerInterfaceWrapper) OauthAuthorize(c *fiber.Ctx) error {
 	if paramValue := c.Query("responseType"); paramValue != "" {
 	} else {
 		err = fmt.Errorf("query argument responseType is required, but not found")
-		if err := c.Status(fiber.StatusBadRequest).JSON(err); err != nil {
-			return err
-		}
-		return err
+		return fiber.NewError(
+			fiber.StatusBadRequest,
+			err.Error(),
+		)
 	}
 
 	err = runtime.BindQueryParameter(
@@ -786,10 +786,10 @@ func (siw *ServerInterfaceWrapper) Refresh(c *fiber.Ctx) error {
 	if paramValue := c.Query("responseType"); paramValue != "" {
 	} else {
 		err = fmt.Errorf("query argument responseType is required, but not found")
-		if err := c.Status(fiber.StatusBadRequest).JSON(err); err != nil {
-			return err
-		}
-		return err
+		return fiber.NewError(
+			fiber.StatusBadRequest,
+			err.Error(),
+		)
 	}
 
 	err = runtime.BindQueryParameter(
@@ -852,10 +852,10 @@ func (siw *ServerInterfaceWrapper) Register(c *fiber.Ctx) error {
 	if paramValue := c.Query("responseType"); paramValue != "" {
 	} else {
 		err = fmt.Errorf("query argument responseType is required, but not found")
-		if err := c.Status(fiber.StatusBadRequest).JSON(err); err != nil {
-			return err
-		}
-		return err
+		return fiber.NewError(
+			fiber.StatusBadRequest,
+			err.Error(),
+		)
 	}
 
 	err = runtime.BindQueryParameter(
@@ -916,10 +916,10 @@ func (siw *ServerInterfaceWrapper) GetToken(c *fiber.Ctx) error {
 	if paramValue := c.Query("responseType"); paramValue != "" {
 	} else {
 		err = fmt.Errorf("query argument responseType is required, but not found")
-		if err := c.Status(fiber.StatusBadRequest).JSON(err); err != nil {
-			return err
-		}
-		return err
+		return fiber.NewError(
+			fiber.StatusBadRequest,
+			err.Error(),
+		)
 	}
 
 	err = runtime.BindQueryParameter(
@@ -1049,10 +1049,10 @@ func (siw *ServerInterfaceWrapper) SearchDomainGroups(c *fiber.Ctx) error {
 	if paramValue := c.Query("query"); paramValue != "" {
 	} else {
 		err = fmt.Errorf("query argument query is required, but not found")
-		if err := c.Status(fiber.StatusBadRequest).JSON(err); err != nil {
-			return err
-		}
-		return err
+		return fiber.NewError(
+			fiber.StatusBadRequest,
+			err.Error(),
+		)
 	}
 
 	err = runtime.BindQueryParameter("form", true, true, "query", query, &params.Query)
@@ -1159,10 +1159,10 @@ func (siw *ServerInterfaceWrapper) SearchDomainCandidates(c *fiber.Ctx) error {
 	if paramValue := c.Query("query"); paramValue != "" {
 	} else {
 		err = fmt.Errorf("query argument query is required, but not found")
-		if err := c.Status(fiber.StatusBadRequest).JSON(err); err != nil {
-			return err
-		}
-		return err
+		return fiber.NewError(
+			fiber.StatusBadRequest,
+			err.Error(),
+		)
 	}
 
 	err = runtime.BindQueryParameter("form", true, true, "query", query, &params.Query)
@@ -1411,10 +1411,10 @@ func (siw *ServerInterfaceWrapper) JoinDomainByInvitation(c *fiber.Ctx) error {
 	if paramValue := c.Query("invitationCode"); paramValue != "" {
 	} else {
 		err = fmt.Errorf("query argument invitationCode is required, but not found")
-		if err := c.Status(fiber.StatusBadRequest).JSON(err); err != nil {
-			return err
-		}
-		return err
+		return fiber.NewError(
+			fiber.StatusBadRequest,
+			err.Error(),
+		)
 	}
 
 	err = runtime.BindQueryParameter(

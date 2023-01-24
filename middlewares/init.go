@@ -3,6 +3,8 @@ package middlewares
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/csrf"
+	"github.com/joint-online-judge/go-horse/config"
 )
 
 func Initalize(router *fiber.App) {
@@ -12,6 +14,8 @@ func Initalize(router *fiber.App) {
 	}))
 	router.Use(Recover)
 	router.Use(Security)
-	// FIXME: there may have file uploads
-	// router.Use(Json)
+	if !config.Config.Debug {
+		router.Use(csrf.New())
+	}
+	router.Use(Json)
 }

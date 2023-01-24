@@ -12,14 +12,18 @@ require (
 	gorm.io/gorm v1.24.3
 )
 
-require github.com/caarlos0/env/v6 v6.10.1
+require (
+	github.com/caarlos0/env/v6 v6.10.1
+	github.com/gofiber/jwt/v3 v3.3.5
+	github.com/golang-jwt/jwt/v4 v4.4.3
+)
 
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
-	github.com/google/uuid v1.3.0 // indirect
+	github.com/google/uuid v1.3.0
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
 	github.com/jackc/pgx/v5 v5.2.0 // indirect

@@ -21,27 +21,29 @@ func init() {
 
 func ValidateStruct(object any) (any, error) {
 	log.Infof("validating %T, %v", object, object)
-	if object == nil {
+	switch object.(type) {
+	case struct{}:
+		var validationError []schemas.ValidationError
+		if err := validate.Struct(object); err != nil {
+			vierr, ok := err.(*validator.InvalidValidationError)
+			if ok {
+				log.Errorf("invalid validation error: %v", vierr)
+				return vierr, fiber.ErrInternalServerError
+			}
+			for _, e := range err.(validator.ValidationErrors) {
+				log.Errorf("validation error: %v, %v, %v", e.StructNamespace(), e.Tag(), e.Param())
+				validationError = append(
+					validationError,
+					schemas.ValidationError{
+						Msg:  e.Error(),
+						Type: e.Type().Name(),
+					},
+				)
+			}
+			return validationError, fiber.ErrUnprocessableEntity
+		}
+	default:
 		return nil, nil
-	}
-	var validationError []schemas.ValidationError
-	if err := validate.Struct(object); err != nil {
-		vierr, ok := err.(*validator.InvalidValidationError)
-		if ok {
-			log.Errorf("invalid validation error: %v", vierr)
-			return vierr, fiber.ErrInternalServerError
-		}
-		for _, e := range err.(validator.ValidationErrors) {
-			log.Errorf("validation error: %v, %v, %v", e.StructNamespace(), e.Tag(), e.Param())
-			validationError = append(
-				validationError,
-				schemas.ValidationError{
-					Msg:  e.Error(),
-					Type: e.Type().Name(),
-				},
-			)
-		}
-		return validationError, fiber.ErrUnprocessableEntity
 	}
 	return nil, nil
 }

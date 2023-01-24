@@ -55,9 +55,9 @@ type config struct {
 	BucketSubmission string `env:"BUCKET_SUBMISSION" envDefault:"s3://joj-submission"`
 
 	// jwt config
-	JwtSecret        string `env:"JWT_SECRET"         envDefault:"secret"`
-	JwtAlgorithm     string `env:"JWT_ALGORITHM"      envDefault:"HS256"`
-	JwtExpireSeconds int    `env:"JWT_EXPIRE_SECONDS" envDefault:"1209600"` // 14 days, in seconds
+	JwtSecret string `env:"JWT_SECRET"         envDefault:"secret"`
+	// JwtAlgorithm     string `env:"JWT_ALGORITHM"      envDefault:"HS256"`
+	JwtExpireSeconds int64 `env:"JWT_EXPIRE_SECONDS" envDefault:"1209600"` // 14 days, in seconds
 
 	// oauth config
 	OauthJaccount       bool   `env:"OAUTH_JACCOUNT"        envDefault:"False"`
