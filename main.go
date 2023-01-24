@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/joint-online-judge/go-horse/config"
-	"github.com/joint-online-judge/go-horse/db"
-	"github.com/joint-online-judge/go-horse/middlewares"
-	"github.com/joint-online-judge/go-horse/routers"
+	"github.com/joint-online-judge/go-horse/pkg/configs"
+	"github.com/joint-online-judge/go-horse/pkg/middlewares"
+	"github.com/joint-online-judge/go-horse/pkg/routers"
+	"github.com/joint-online-judge/go-horse/platform/db"
 	"github.com/rollbar/rollbar-go"
 
 	"github.com/gofiber/fiber/v2"
@@ -14,14 +14,14 @@ import (
 )
 
 func main() {
-	config.Initalize()
+	configs.Initalize()
 	db.ConnectDB()
-	rollbar.SetToken(config.Config.RollbarAccessToken)
+	rollbar.SetToken(configs.Conf.RollbarAccessToken)
 	app := fiber.New(fiber.Config{
 		// ErrorHandler: utils.Panic,
-		Prefork: !config.Config.Debug,
+		Prefork: !configs.Conf.Debug,
 	})
 	middlewares.Initalize(app)
 	routers.Initalize(app)
-	log.Fatal(app.Listen(fmt.Sprintf("%s:%d", config.Config.Host, config.Config.Port)))
+	log.Fatal(app.Listen(fmt.Sprintf("%s:%d", configs.Conf.Host, configs.Conf.Port)))
 }
