@@ -54,3 +54,10 @@ type BizError struct {
 func (e BizError) Error() string {
 	return fmt.Sprintf("BizError: %s, %s", e.ErrorCode, *e.ErrorMsg)
 }
+
+func NewBizError(errorCode ErrorCode, errorMsg ...string) BizError {
+	if len(errorMsg) == 0 {
+		return BizError{errorCode, nil}
+	}
+	return BizError{errorCode, &errorMsg[0]}
+}

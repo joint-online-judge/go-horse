@@ -1223,6 +1223,11 @@ type User struct {
 	Username string             `json:"username"`
 }
 
+func (u User) VerifyPassword(password string) bool {
+	// TODO: verify password
+	return true
+}
+
 // UserCreate defines model for UserCreate.
 type UserCreate struct {
 	Email          *string `json:"email,omitempty"`

@@ -8,6 +8,6 @@ import (
 func GetUser() (schemas.User, error) {
 	var user schemas.User
 	u := DB.Model(models.User{})
-	err := u.First(&user).Error
+	err := u.Limit(1).Find(&user).Error
 	return user, err
 }

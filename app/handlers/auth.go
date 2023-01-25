@@ -1,18 +1,42 @@
 package handlers
 
 import (
+	"time"
+
 	"github.com/gofiber/fiber/v2"
+	"github.com/joint-online-judge/go-horse/app/models"
 	"github.com/joint-online-judge/go-horse/app/schemas"
 	"github.com/joint-online-judge/go-horse/pkg/middlewares"
 	"github.com/joint-online-judge/go-horse/platform/db"
+	log "github.com/sirupsen/logrus"
 )
 
 // Login
 // (POST /auth/login)
 func (s *ApiV1) Login(c *fiber.Ctx, request schemas.LoginRequestObject) (any, error) {
-	user, _ := db.GetUser()
-	token, err := middlewares.NewAccessToken(user, "user", "", true)
-	return fiber.Map{"token": token}, err
+	userModel := models.User{Username: *request.Body.Username}
+	user, err := db.GetObj[models.User, schemas.User](&userModel)
+	if err != nil {
+		return nil, schemas.NewBizError(schemas.UserNotFoundError)
+	}
+	if !user.VerifyPassword(*request.Body.Password) {
+		return nil, schemas.NewBizError(schemas.UsernamePasswordError, "incorrect password")
+	}
+	log.Infof("user login: %+v", user)
+	userModel.ID = user.Id.String()
+	userModel.LoginAt = time.Now()
+	userModel.LoginIP = c.Context().RemoteAddr().String()
+	err = db.SaveObj(&userModel)
+	if err != nil {
+		return nil, err
+	}
+	accessToken, err := middlewares.NewAccessToken(user, "user", "", true)
+	// TODO: refresh token
+	return schemas.AuthTokens{
+		AccessToken:  accessToken,
+		RefreshToken: accessToken,
+		TokenType:    "bearer",
+	}, err
 }
 
 // Logout

@@ -4,8 +4,8 @@ import (
 	"github.com/pkg/errors"
 )
 
-func ListObjs[Model any, Schemas any]() ([]Schemas, int64, error) {
-	var schemas []Schemas
+func ListObjs[Model, Schema any]() ([]Schema, int64, error) {
+	var schemas []Schema
 	var model Model
 	u := DB.Model(model)
 	var count int64
@@ -17,4 +17,14 @@ func ListObjs[Model any, Schemas any]() ([]Schemas, int64, error) {
 		return nil, 0, errors.WithStack(err)
 	}
 	return schemas, count, nil
+}
+
+func GetObj[Model, Schema any](model *Model) (Schema, error) {
+	var schema Schema
+	err := DB.Where(model).First(&schema).Error
+	return schema, err
+}
+
+func SaveObj(model any) error {
+	return DB.Save(model).Error
 }

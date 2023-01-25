@@ -38,10 +38,9 @@ func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
 			}
 		}
 	}
-	// Retrieve the custom status code if it's a *types.BizError
-	var e *schemas.BizError
-	if errors.As(err, &e) {
-		return ctx.Status(code).JSON(schemas.EmptyResp{BizError: *e, Data: nil})
+	// Retrieve the custom status code if it's a schemas.BizError
+	if e, ok := err.(schemas.BizError); ok {
+		return ctx.Status(code).JSON(schemas.EmptyResp{BizError: e, Data: nil})
 	}
 	if errors.Is(err, fiber.ErrUnprocessableEntity) {
 		return ctx.Status(fiber.StatusUnprocessableEntity).JSON(response)
@@ -52,10 +51,10 @@ func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
 			ErrorCode: schemas.InternalServerError, ErrorMsg: &msg,
 		}, Data: nil})
 	}
-	log.Infof("unknown error: %T, %v", err, err)
 	b := make([]byte, 4096)
 	n := runtime.Stack(b, false)
 	s := string(b[:n])
+	log.Infof("unknown error: %T, %v, %s", err, err, s)
 	return ctx.Status(code).JSON(schemas.EmptyResp{BizError: schemas.BizError{
 		ErrorCode: schemas.InternalServerError, ErrorMsg: &s,
 	}, Data: nil})
