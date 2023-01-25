@@ -11,7 +11,7 @@ func (s *ApiV1) AdminListDomainRoles(
 	c *fiber.Ctx,
 	request schemas.AdminListDomainRolesRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Admin List Judgers
@@ -20,7 +20,7 @@ func (s *ApiV1) AdminListJudgers(
 	c *fiber.Ctx,
 	request schemas.AdminListJudgersRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Admin Create Judger
@@ -29,7 +29,7 @@ func (s *ApiV1) AdminCreateJudger(
 	c *fiber.Ctx,
 	request schemas.AdminCreateJudgerRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Admin List Users
@@ -38,7 +38,7 @@ func (s *ApiV1) AdminListUsers(
 	c *fiber.Ctx,
 	request schemas.AdminListUsersRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Admin Get User
@@ -47,7 +47,7 @@ func (s *ApiV1) AdminGetUser(
 	c *fiber.Ctx,
 	request schemas.AdminGetUserRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Admin List User Domains
@@ -56,5 +56,5 @@ func (s *ApiV1) AdminListUserDomains(
 	c *fiber.Ctx,
 	request schemas.AdminListUserDomainsRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }

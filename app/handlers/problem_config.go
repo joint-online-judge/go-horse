@@ -11,7 +11,7 @@ func (s *ApiV1) ListProblemConfigCommits(
 	c *fiber.Ctx,
 	request schemas.ListProblemConfigCommitsRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Update Problem Config By Archive
@@ -20,7 +20,7 @@ func (s *ApiV1) UpdateProblemConfigByArchive(
 	c *fiber.Ctx,
 	request schemas.UpdateProblemConfigByArchiveRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Update Problem Config Json
@@ -29,7 +29,7 @@ func (s *ApiV1) UpdateProblemConfigJson(
 	c *fiber.Ctx,
 	request schemas.UpdateProblemConfigJsonRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Diff Problem Config Default Branch
@@ -38,7 +38,7 @@ func (s *ApiV1) DiffProblemConfigDefaultBranch(
 	c *fiber.Ctx,
 	request schemas.DiffProblemConfigDefaultBranchRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // List Latest Problem Config Objects Under A Given Prefix
@@ -47,7 +47,7 @@ func (s *ApiV1) ListLatestProblemConfigObjectsUnderAGivenPrefix(
 	c *fiber.Ctx,
 	request schemas.ListLatestProblemConfigObjectsUnderAGivenPrefixRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Download Problem Config Archive
@@ -56,7 +56,7 @@ func (s *ApiV1) DownloadProblemConfigArchive(
 	c *fiber.Ctx,
 	request schemas.DownloadProblemConfigArchiveRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Get Problem Config Json
@@ -65,5 +65,5 @@ func (s *ApiV1) GetProblemConfigJson(
 	c *fiber.Ctx,
 	request schemas.GetProblemConfigJsonRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }

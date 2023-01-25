@@ -11,5 +11,5 @@ func (s *ApiV1) ListProblemGroups(
 	c *fiber.Ctx,
 	request schemas.ListProblemGroupsRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }

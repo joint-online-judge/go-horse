@@ -11,7 +11,7 @@ func (s *ApiV1) ListProblems(
 	c *fiber.Ctx,
 	request schemas.ListProblemsRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Create Problem
@@ -20,7 +20,7 @@ func (s *ApiV1) CreateProblem(
 	c *fiber.Ctx,
 	request schemas.CreateProblemRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Clone Problem
@@ -29,7 +29,7 @@ func (s *ApiV1) CloneProblem(
 	c *fiber.Ctx,
 	request schemas.CloneProblemRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Delete Problem
@@ -38,7 +38,7 @@ func (s *ApiV1) DeleteProblem(
 	c *fiber.Ctx,
 	request schemas.DeleteProblemRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Get Problem
@@ -47,7 +47,7 @@ func (s *ApiV1) GetProblem(
 	c *fiber.Ctx,
 	request schemas.GetProblemRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Update Problem
@@ -56,7 +56,7 @@ func (s *ApiV1) UpdateProblem(
 	c *fiber.Ctx,
 	request schemas.UpdateProblemRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Submit Solution To Problem
@@ -65,5 +65,5 @@ func (s *ApiV1) SubmitSolutionToProblem(
 	c *fiber.Ctx,
 	request schemas.SubmitSolutionToProblemRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }

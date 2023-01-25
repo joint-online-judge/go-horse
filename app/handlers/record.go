@@ -11,7 +11,7 @@ func (s *ApiV1) ListRecordsInDomain(
 	c *fiber.Ctx,
 	request schemas.ListRecordsInDomainRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Get Record
@@ -20,7 +20,7 @@ func (s *ApiV1) GetRecord(
 	c *fiber.Ctx,
 	request schemas.GetRecordRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Submit Case By Judger
@@ -29,7 +29,7 @@ func (s *ApiV1) SubmitCaseByJudger(
 	c *fiber.Ctx,
 	request schemas.SubmitCaseByJudgerRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Submit Record By Judger
@@ -38,7 +38,7 @@ func (s *ApiV1) SubmitRecordByJudger(
 	c *fiber.Ctx,
 	request schemas.SubmitRecordByJudgerRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Claim Record By Judger
@@ -47,5 +47,5 @@ func (s *ApiV1) ClaimRecordByJudger(
 	c *fiber.Ctx,
 	request schemas.ClaimRecordByJudgerRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }

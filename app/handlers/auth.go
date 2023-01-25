@@ -59,7 +59,7 @@ func (s *ApiV1) Logout(
 	c *fiber.Ctx,
 	request schemas.LogoutRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // List Oauth2
@@ -68,7 +68,7 @@ func (s *ApiV1) ListOauth2(
 	c *fiber.Ctx,
 	request schemas.ListOauth2RequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Oauth Authorize
@@ -77,7 +77,7 @@ func (s *ApiV1) OauthAuthorize(
 	c *fiber.Ctx,
 	request schemas.OauthAuthorizeRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Refresh
@@ -86,7 +86,7 @@ func (s *ApiV1) Refresh(
 	c *fiber.Ctx,
 	request schemas.RefreshRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Register
@@ -95,7 +95,7 @@ func (s *ApiV1) Register(
 	c *fiber.Ctx,
 	request schemas.RegisterRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Get Token
@@ -104,5 +104,5 @@ func (s *ApiV1) GetToken(
 	c *fiber.Ctx,
 	request schemas.GetTokenRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }

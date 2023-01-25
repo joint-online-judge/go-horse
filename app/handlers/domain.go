@@ -26,7 +26,7 @@ func (s *ApiV1) CreateDomain(
 ) (any, error) {
 	b := request.Body
 	log.Infof("request.Body: %v", b)
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Get Domain
@@ -36,7 +36,7 @@ func (s *ApiV1) GetDomain(
 	request schemas.GetDomainRequestObject,
 ) (any, error) {
 	log.Info("get domain")
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Search Domain Groups
@@ -45,7 +45,7 @@ func (s *ApiV1) SearchDomainGroups(
 	c *fiber.Ctx,
 	request schemas.SearchDomainGroupsRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Delete Domain
@@ -54,7 +54,7 @@ func (s *ApiV1) DeleteDomain(
 	c *fiber.Ctx,
 	request schemas.DeleteDomainRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Update Domain
@@ -63,7 +63,7 @@ func (s *ApiV1) UpdateDomain(
 	c *fiber.Ctx,
 	request schemas.UpdateDomainRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Search Domain Candidates
@@ -72,7 +72,7 @@ func (s *ApiV1) SearchDomainCandidates(
 	c *fiber.Ctx,
 	request schemas.SearchDomainCandidatesRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // List Domain Invitations
@@ -81,7 +81,7 @@ func (s *ApiV1) ListDomainInvitations(
 	c *fiber.Ctx,
 	request schemas.ListDomainInvitationsRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Create Domain Invitation
@@ -90,7 +90,7 @@ func (s *ApiV1) CreateDomainInvitation(
 	c *fiber.Ctx,
 	request schemas.CreateDomainInvitationRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Delete Domain Invitation
@@ -99,7 +99,7 @@ func (s *ApiV1) DeleteDomainInvitation(
 	c *fiber.Ctx,
 	request schemas.DeleteDomainInvitationRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Get Domain Invitation
@@ -108,7 +108,7 @@ func (s *ApiV1) GetDomainInvitation(
 	c *fiber.Ctx,
 	request schemas.GetDomainInvitationRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Update Domain Invitation
@@ -117,7 +117,7 @@ func (s *ApiV1) UpdateDomainInvitation(
 	c *fiber.Ctx,
 	request schemas.UpdateDomainInvitationRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Join Domain By Invitation
@@ -126,7 +126,7 @@ func (s *ApiV1) JoinDomainByInvitation(
 	c *fiber.Ctx,
 	request schemas.JoinDomainByInvitationRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // List Domain Roles
@@ -135,7 +135,7 @@ func (s *ApiV1) ListDomainRoles(
 	c *fiber.Ctx,
 	request schemas.ListDomainRolesRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Create Domain Role
@@ -144,7 +144,7 @@ func (s *ApiV1) CreateDomainRole(
 	c *fiber.Ctx,
 	request schemas.CreateDomainRoleRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Delete Domain Role
@@ -153,7 +153,7 @@ func (s *ApiV1) DeleteDomainRole(
 	c *fiber.Ctx,
 	request schemas.DeleteDomainRoleRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Get Domain Role
@@ -162,7 +162,7 @@ func (s *ApiV1) GetDomainRole(
 	c *fiber.Ctx,
 	request schemas.GetDomainRoleRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Update Domain Role
@@ -171,7 +171,7 @@ func (s *ApiV1) UpdateDomainRole(
 	c *fiber.Ctx,
 	request schemas.UpdateDomainRoleRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Transfer Domain
@@ -180,7 +180,7 @@ func (s *ApiV1) TransferDomain(
 	c *fiber.Ctx,
 	request schemas.TransferDomainRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // List Domain Users
@@ -189,7 +189,7 @@ func (s *ApiV1) ListDomainUsers(
 	c *fiber.Ctx,
 	request schemas.ListDomainUsersRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Add Domain User
@@ -198,7 +198,7 @@ func (s *ApiV1) AddDomainUser(
 	c *fiber.Ctx,
 	request schemas.AddDomainUserRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Remove Domain User
@@ -207,7 +207,7 @@ func (s *ApiV1) RemoveDomainUser(
 	c *fiber.Ctx,
 	request schemas.RemoveDomainUserRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Get Domain User
@@ -216,7 +216,7 @@ func (s *ApiV1) GetDomainUser(
 	c *fiber.Ctx,
 	request schemas.GetDomainUserRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Update Domain User
@@ -225,7 +225,7 @@ func (s *ApiV1) UpdateDomainUser(
 	c *fiber.Ctx,
 	request schemas.UpdateDomainUserRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Get Domain User Permission
@@ -234,5 +234,5 @@ func (s *ApiV1) GetDomainUserPermission(
 	c *fiber.Ctx,
 	request schemas.GetDomainUserPermissionRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }

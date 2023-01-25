@@ -22,7 +22,7 @@ func (s *ApiV1) TestErrorReport(
 	request schemas.TestErrorReportRequestObject,
 ) (any, error) {
 	panic("test error report")
-	// return nil, nil
+	// return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Version

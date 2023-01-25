@@ -11,7 +11,7 @@ func (s *ApiV1) GetCurrentUser(
 	c *fiber.Ctx,
 	request schemas.GetCurrentUserRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Update Current User
@@ -20,7 +20,7 @@ func (s *ApiV1) UpdateCurrentUser(
 	c *fiber.Ctx,
 	request schemas.UpdateCurrentUserRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Change Password
@@ -29,7 +29,7 @@ func (s *ApiV1) ChangePassword(
 	c *fiber.Ctx,
 	request schemas.ChangePasswordRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 
 // Get User
@@ -38,5 +38,5 @@ func (s *ApiV1) GetUser(
 	c *fiber.Ctx,
 	request schemas.GetUserRequestObject,
 ) (any, error) {
-	return nil, nil
+	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
