@@ -15,7 +15,7 @@ func (s *ApiV1) ListDomains(
 	request schemas.ListDomainsRequestObject,
 ) (any, error) {
 	objs, count, err := db.ListObjs[models.Domain, schemas.Domain]()
-	return schemas.ListResp[schemas.Domain]{Count: count, Results: objs}, err
+	return schemas.NewListResp(count, objs), err
 }
 
 // Create Domain

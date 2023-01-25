@@ -31,8 +31,8 @@ func (s *ApiV1) Version(
 	c *fiber.Ctx,
 	request schemas.VersionRequestObject,
 ) (any, error) {
-	return schemas.NonStandardResp{Data: schemas.Version{
+	return schemas.NewNonStandardResp(schemas.Version{
 		Git:     configs.GitCommit,
 		Version: configs.Version,
-	}}, nil
+	}), nil
 }

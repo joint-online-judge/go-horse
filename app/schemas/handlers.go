@@ -351,8 +351,6 @@ type MiddlewareFunc fiber.Handler
 func (siw *ServerInterfaceWrapper) AdminListDomainRoles(c *fiber.Ctx) error {
 	var err error
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	// Parameter object where we will unmarshal all parameters from the context
 	var params AdminListDomainRolesParams
 
@@ -423,8 +421,6 @@ func (siw *ServerInterfaceWrapper) AdminListDomainRoles(c *fiber.Ctx) error {
 func (siw *ServerInterfaceWrapper) AdminListJudgers(c *fiber.Ctx) error {
 	var err error
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	// Parameter object where we will unmarshal all parameters from the context
 	var params AdminListJudgersParams
 
@@ -493,16 +489,12 @@ func (siw *ServerInterfaceWrapper) AdminListJudgers(c *fiber.Ctx) error {
 
 // AdminCreateJudger operation middleware
 func (siw *ServerInterfaceWrapper) AdminCreateJudger(c *fiber.Ctx) error {
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.AdminCreateJudger(c)
 }
 
 // AdminListUsers operation middleware
 func (siw *ServerInterfaceWrapper) AdminListUsers(c *fiber.Ctx) error {
 	var err error
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params AdminListUsersParams
@@ -591,8 +583,6 @@ func (siw *ServerInterfaceWrapper) AdminGetUser(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.AdminGetUser(c, uid)
 }
 
@@ -616,8 +606,6 @@ func (siw *ServerInterfaceWrapper) AdminListUserDomains(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter uid: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params AdminListUserDomainsParams
@@ -802,8 +790,6 @@ func (siw *ServerInterfaceWrapper) Login(c *fiber.Ctx) error {
 // Logout operation middleware
 func (siw *ServerInterfaceWrapper) Logout(c *fiber.Ctx) error {
 	var err error
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params LogoutParams
@@ -1084,8 +1070,6 @@ func (siw *ServerInterfaceWrapper) Refresh(c *fiber.Ctx) error {
 func (siw *ServerInterfaceWrapper) Register(c *fiber.Ctx) error {
 	var err error
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	// Parameter object where we will unmarshal all parameters from the context
 	var params RegisterParams
 
@@ -1246,8 +1230,6 @@ func (siw *ServerInterfaceWrapper) GetToken(c *fiber.Ctx) error {
 func (siw *ServerInterfaceWrapper) ListDomains(c *fiber.Ctx) error {
 	var err error
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	// Parameter object where we will unmarshal all parameters from the context
 	var params ListDomainsParams
 
@@ -1350,16 +1332,12 @@ func (siw *ServerInterfaceWrapper) ListDomains(c *fiber.Ctx) error {
 
 // CreateDomain operation middleware
 func (siw *ServerInterfaceWrapper) CreateDomain(c *fiber.Ctx) error {
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.CreateDomain(c)
 }
 
 // SearchDomainGroups operation middleware
 func (siw *ServerInterfaceWrapper) SearchDomainGroups(c *fiber.Ctx) error {
 	var err error
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params SearchDomainGroupsParams
@@ -1422,8 +1400,6 @@ func (siw *ServerInterfaceWrapper) DeleteDomain(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.DeleteDomain(c, domain)
 }
 
@@ -1447,8 +1423,6 @@ func (siw *ServerInterfaceWrapper) GetDomain(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter domain: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.GetDomain(c, domain)
 }
@@ -1474,8 +1448,6 @@ func (siw *ServerInterfaceWrapper) UpdateDomain(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.UpdateDomain(c, domain)
 }
 
@@ -1499,8 +1471,6 @@ func (siw *ServerInterfaceWrapper) SearchDomainCandidates(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter domain: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params SearchDomainCandidatesParams
@@ -1580,8 +1550,6 @@ func (siw *ServerInterfaceWrapper) ListDomainInvitations(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter domain: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params ListDomainInvitationsParams
@@ -1670,8 +1638,6 @@ func (siw *ServerInterfaceWrapper) CreateDomainInvitation(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.CreateDomainInvitation(c, domain)
 }
 
@@ -1713,8 +1679,6 @@ func (siw *ServerInterfaceWrapper) DeleteDomainInvitation(c *fiber.Ctx) error {
 				Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.DeleteDomainInvitation(c, domain, invitation)
 }
@@ -1758,8 +1722,6 @@ func (siw *ServerInterfaceWrapper) GetDomainInvitation(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.GetDomainInvitation(c, domain, invitation)
 }
 
@@ -1802,8 +1764,6 @@ func (siw *ServerInterfaceWrapper) UpdateDomainInvitation(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.UpdateDomainInvitation(c, domain, invitation)
 }
 
@@ -1827,8 +1787,6 @@ func (siw *ServerInterfaceWrapper) JoinDomainByInvitation(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter domain: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params JoinDomainByInvitationParams
@@ -1891,8 +1849,6 @@ func (siw *ServerInterfaceWrapper) ListProblemSets(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter domain: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params ListProblemSetsParams
@@ -1981,8 +1937,6 @@ func (siw *ServerInterfaceWrapper) CreateProblemSet(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.CreateProblemSet(c, domain)
 }
 
@@ -2024,8 +1978,6 @@ func (siw *ServerInterfaceWrapper) DeleteProblemSet(c *fiber.Ctx) error {
 				Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.DeleteProblemSet(c, domain, problemSet)
 }
@@ -2069,8 +2021,6 @@ func (siw *ServerInterfaceWrapper) GetProblemSet(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.GetProblemSet(c, domain, problemSet)
 }
 
@@ -2112,8 +2062,6 @@ func (siw *ServerInterfaceWrapper) UpdateProblemSet(c *fiber.Ctx) error {
 				Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.UpdateProblemSet(c, domain, problemSet)
 }
@@ -2159,8 +2107,6 @@ func (siw *ServerInterfaceWrapper) ListProblemsInProblemSet(
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.ListProblemsInProblemSet(c, domain, problemSet)
 }
 
@@ -2202,8 +2148,6 @@ func (siw *ServerInterfaceWrapper) AddProblemInProblemSet(c *fiber.Ctx) error {
 				Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.AddProblemInProblemSet(c, domain, problemSet)
 }
@@ -2266,8 +2210,6 @@ func (siw *ServerInterfaceWrapper) DeleteProblemInProblemSet(
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.DeleteProblemInProblemSet(c, domain, problemSet, problem)
 }
 
@@ -2326,8 +2268,6 @@ func (siw *ServerInterfaceWrapper) GetProblemInProblemSet(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter problem: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.GetProblemInProblemSet(c, domain, problemSet, problem)
 }
@@ -2390,8 +2330,6 @@ func (siw *ServerInterfaceWrapper) UpdateProblemInProblemSet(
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.UpdateProblemInProblemSet(c, domain, problemSet, problem)
 }
 
@@ -2453,8 +2391,6 @@ func (siw *ServerInterfaceWrapper) SubmitSolutionToProblemSet(
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.SubmitSolutionToProblemSet(
 		c,
 		domain,
@@ -2483,8 +2419,6 @@ func (siw *ServerInterfaceWrapper) ListProblems(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter domain: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params ListProblemsParams
@@ -2573,8 +2507,6 @@ func (siw *ServerInterfaceWrapper) CreateProblem(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.CreateProblem(c, domain)
 }
 
@@ -2598,8 +2530,6 @@ func (siw *ServerInterfaceWrapper) CloneProblem(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter domain: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.CloneProblem(c, domain)
 }
@@ -2642,8 +2572,6 @@ func (siw *ServerInterfaceWrapper) DeleteProblem(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.DeleteProblem(c, domain, problem)
 }
 
@@ -2684,8 +2612,6 @@ func (siw *ServerInterfaceWrapper) GetProblem(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter problem: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.GetProblem(c, domain, problem)
 }
@@ -2728,8 +2654,6 @@ func (siw *ServerInterfaceWrapper) UpdateProblem(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.UpdateProblem(c, domain, problem)
 }
 
@@ -2770,8 +2694,6 @@ func (siw *ServerInterfaceWrapper) SubmitSolutionToProblem(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter problem: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.SubmitSolutionToProblem(c, domain, problem)
 }
@@ -2815,8 +2737,6 @@ func (siw *ServerInterfaceWrapper) ListProblemConfigCommits(
 			fmt.Errorf("invalid format for parameter problem: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params ListProblemConfigCommitsParams
@@ -2924,8 +2844,6 @@ func (siw *ServerInterfaceWrapper) UpdateProblemConfigByArchive(
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	// Parameter object where we will unmarshal all parameters from the context
 	var params UpdateProblemConfigByArchiveParams
 
@@ -2996,8 +2914,6 @@ func (siw *ServerInterfaceWrapper) UpdateProblemConfigJson(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.UpdateProblemConfigJson(c, domain, problem)
 }
 
@@ -3040,8 +2956,6 @@ func (siw *ServerInterfaceWrapper) DiffProblemConfigDefaultBranch(
 			fmt.Errorf("invalid format for parameter problem: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params DiffProblemConfigDefaultBranchParams
@@ -3170,8 +3084,6 @@ func (siw *ServerInterfaceWrapper) ListLatestProblemConfigObjectsUnderAGivenPref
 			fmt.Errorf("invalid format for parameter problem: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params ListLatestProblemConfigObjectsUnderAGivenPrefixParams
@@ -3318,8 +3230,6 @@ func (siw *ServerInterfaceWrapper) DownloadProblemConfigArchive(
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	// Parameter object where we will unmarshal all parameters from the context
 	var params DownloadProblemConfigArchiveParams
 
@@ -3413,8 +3323,6 @@ func (siw *ServerInterfaceWrapper) GetProblemConfigJson(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.GetProblemConfigJson(c, domain, problem, config)
 }
 
@@ -3438,8 +3346,6 @@ func (siw *ServerInterfaceWrapper) ListRecordsInDomain(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter domain: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params ListRecordsInDomainParams
@@ -3598,8 +3504,6 @@ func (siw *ServerInterfaceWrapper) GetRecord(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.GetRecord(c, domain, record)
 }
 
@@ -3658,8 +3562,6 @@ func (siw *ServerInterfaceWrapper) SubmitCaseByJudger(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.SubmitCaseByJudger(c, domain, record, index)
 }
 
@@ -3700,8 +3602,6 @@ func (siw *ServerInterfaceWrapper) SubmitRecordByJudger(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter record: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.SubmitRecordByJudger(c, domain, record)
 }
@@ -3744,8 +3644,6 @@ func (siw *ServerInterfaceWrapper) ClaimRecordByJudger(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.ClaimRecordByJudger(c, domain, record)
 }
 
@@ -3769,8 +3667,6 @@ func (siw *ServerInterfaceWrapper) ListDomainRoles(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter domain: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params ListDomainRolesParams
@@ -3825,8 +3721,6 @@ func (siw *ServerInterfaceWrapper) CreateDomainRole(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.CreateDomainRole(c, domain)
 }
 
@@ -3867,8 +3761,6 @@ func (siw *ServerInterfaceWrapper) DeleteDomainRole(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter role: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.DeleteDomainRole(c, domain, role)
 }
@@ -3911,8 +3803,6 @@ func (siw *ServerInterfaceWrapper) GetDomainRole(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.GetDomainRole(c, domain, role)
 }
 
@@ -3954,8 +3844,6 @@ func (siw *ServerInterfaceWrapper) UpdateDomainRole(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.UpdateDomainRole(c, domain, role)
 }
 
@@ -3980,8 +3868,6 @@ func (siw *ServerInterfaceWrapper) TransferDomain(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.TransferDomain(c, domain)
 }
 
@@ -4005,8 +3891,6 @@ func (siw *ServerInterfaceWrapper) ListDomainUsers(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter domain: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params ListDomainUsersParams
@@ -4095,8 +3979,6 @@ func (siw *ServerInterfaceWrapper) AddDomainUser(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.AddDomainUser(c, domain)
 }
 
@@ -4137,8 +4019,6 @@ func (siw *ServerInterfaceWrapper) RemoveDomainUser(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter user: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.RemoveDomainUser(c, domain, user)
 }
@@ -4181,8 +4061,6 @@ func (siw *ServerInterfaceWrapper) GetDomainUser(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.GetDomainUser(c, domain, user)
 }
 
@@ -4223,8 +4101,6 @@ func (siw *ServerInterfaceWrapper) UpdateDomainUser(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter user: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.UpdateDomainUser(c, domain, user)
 }
@@ -4267,23 +4143,17 @@ func (siw *ServerInterfaceWrapper) GetDomainUserPermission(c *fiber.Ctx) error {
 		)
 	}
 
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.GetDomainUserPermission(c, domain, user)
 }
 
 // JwtDecoded operation middleware
 func (siw *ServerInterfaceWrapper) JwtDecoded(c *fiber.Ctx) error {
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.JwtDecoded(c)
 }
 
 // ListProblemGroups operation middleware
 func (siw *ServerInterfaceWrapper) ListProblemGroups(c *fiber.Ctx) error {
 	var err error
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	// Parameter object where we will unmarshal all parameters from the context
 	var params ListProblemGroupsParams
@@ -4358,22 +4228,16 @@ func (siw *ServerInterfaceWrapper) TestErrorReport(c *fiber.Ctx) error {
 
 // GetCurrentUser operation middleware
 func (siw *ServerInterfaceWrapper) GetCurrentUser(c *fiber.Ctx) error {
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.GetCurrentUser(c)
 }
 
 // UpdateCurrentUser operation middleware
 func (siw *ServerInterfaceWrapper) UpdateCurrentUser(c *fiber.Ctx) error {
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.UpdateCurrentUser(c)
 }
 
 // ChangePassword operation middleware
 func (siw *ServerInterfaceWrapper) ChangePassword(c *fiber.Ctx) error {
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
-
 	return siw.Handler.ChangePassword(c)
 }
 
@@ -4397,8 +4261,6 @@ func (siw *ServerInterfaceWrapper) GetUser(c *fiber.Ctx) error {
 			fmt.Errorf("invalid format for parameter uid: %w", err).Error(),
 		)
 	}
-
-	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
 	return siw.Handler.GetUser(c, uid)
 }
