@@ -5,6 +5,7 @@ import (
 	stdlog "log"
 	"time"
 
+	"github.com/joint-online-judge/go-horse/app/querys"
 	"github.com/joint-online-judge/go-horse/pkg/configs"
 	log "github.com/sirupsen/logrus"
 	"gorm.io/driver/postgres"
@@ -42,6 +43,7 @@ func ConnectPostgres() {
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
 		Logger: newLogger,
 	})
+	querys.DB = DB
 	if err != nil {
 		log.Fatalf("failed to connect to Postgres: %+v", err)
 	}

@@ -1,14 +1,13 @@
 package querys
 
 import (
-	"github.com/joint-online-judge/go-horse/platform/db"
 	"github.com/pkg/errors"
 )
 
 func ListObjs[Model, Schema any]() ([]Schema, int64, error) {
 	var schemas []Schema
 	var model Model
-	u := db.DB.Model(model)
+	u := DB.Model(model)
 	var count int64
 	if err := u.Count(&count).Error; err != nil {
 		return nil, 0, errors.Wrapf(err, "failed get %T count", schemas)
@@ -22,12 +21,12 @@ func ListObjs[Model, Schema any]() ([]Schema, int64, error) {
 
 func GetObj[Model, Schema any](model *Model) (Schema, error) {
 	var schema Schema
-	a := db.DB.Where(model)
+	a := DB.Where(model)
 	b := a.First(&schema)
 	err := b.Error
 	return schema, err
 }
 
 func SaveObj(model any) error {
-	return db.DB.Save(model).Error
+	return DB.Save(model).Error
 }
