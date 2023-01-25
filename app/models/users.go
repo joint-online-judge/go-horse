@@ -2,6 +2,9 @@ package models
 
 import (
 	"time"
+
+	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 const TableNameUser = "users"
@@ -11,7 +14,7 @@ type User struct {
 	CreatedAt      time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"created_at"`
 	UpdatedAt      time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"updated_at"`
 	LoginAt        time.Time `gorm:"column:login_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)"   json:"login_at"`
-	ID             string    `gorm:"column:id;primaryKey"                                                        json:"id"`
+	ID             uuid.UUID `gorm:"column:id;primaryKey"                                                        json:"id"`
 	Username       string    `gorm:"column:username;not null"                                                    json:"username"`
 	Email          string    `gorm:"column:email;not null"                                                       json:"email"`
 	Gravatar       string    `gorm:"column:gravatar;not null"                                                    json:"gravatar"`
@@ -29,4 +32,9 @@ type User struct {
 // TableName User's table name
 func (*User) TableName() string {
 	return TableNameUser
+}
+
+func (u *User) BeforeCreate(tx *gorm.DB) error {
+	u.ID = uuid.New()
+	return nil
 }

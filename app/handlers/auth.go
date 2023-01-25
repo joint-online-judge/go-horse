@@ -31,7 +31,7 @@ func (s *ApiV1) Login(
 		)
 	}
 	log.Infof("user login: %+v", user)
-	userModel.ID = user.Id.String()
+	userModel.ID = user.Id
 	userModel.LoginAt = time.Now()
 	userModel.LoginIP = c.Context().RemoteAddr().String()
 	err = querys.SaveObj(&userModel)
