@@ -15,7 +15,7 @@ func isDomainUrl(fl validator.FieldLevel) bool {
 
 func init() {
 	if err := validate.RegisterValidation("domain_url", isDomainUrl); err != nil {
-		log.Fatal(err)
+		log.Fatalf("failed to register validation domain_url, %+v", err)
 	}
 }
 

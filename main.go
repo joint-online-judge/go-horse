@@ -7,6 +7,7 @@ import (
 	"github.com/joint-online-judge/go-horse/pkg/middlewares"
 	"github.com/joint-online-judge/go-horse/pkg/routers"
 	"github.com/joint-online-judge/go-horse/platform/db"
+	"github.com/joint-online-judge/go-horse/platform/error"
 
 	_ "github.com/joint-online-judge/go-horse/docs" // load API Docs files (Swagger)
 
@@ -25,7 +26,12 @@ import (
 //	@BasePath		/api/v1
 func main() {
 	configs.Initalize()
-	db.ConnectDB()
+	error.ConnectRollbar()
+	db.ConnectPostgres()
+	// cache.ConnectRedis()
+	// mq.ConnectRabbitMQ()
+	// storage.ConnectLakeFS()
+	// storage.ConnectS3()
 	app := fiber.New(fiber.Config{
 		// ErrorHandler: utils.Panic,
 		Prefork: !configs.Conf.Debug,

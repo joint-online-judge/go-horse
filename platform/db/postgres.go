@@ -15,7 +15,7 @@ import (
 // DB gorm connector
 var DB *gorm.DB
 
-func ConnectDB() {
+func ConnectPostgres() {
 	var err error // define error here to prevent overshadowing the global DB
 	conf := configs.Conf
 	dsn := fmt.Sprintf(
@@ -43,7 +43,7 @@ func ConnectDB() {
 		Logger: newLogger,
 	})
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("failed to connect to Postgres: %+v", err)
 	}
 	// TODO: run auto migrate
 	// err = DB.AutoMigrate(&model.User{})

@@ -3,7 +3,6 @@ package configs
 import (
 	"github.com/caarlos0/env/v6"
 	"github.com/joho/godotenv"
-	"github.com/rollbar/rollbar-go"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -77,7 +76,7 @@ var Conf *conf
 
 func Initalize() {
 	if err := godotenv.Load(); err != nil {
-		log.Fatal(err)
+		log.Fatalf("failed to load .env: %+v", err)
 	}
 	cfg := conf{}
 	if err := env.Parse(&cfg); err != nil {
@@ -85,5 +84,4 @@ func Initalize() {
 	}
 	log.Infof("config object: %+v", cfg)
 	Conf = &cfg
-	rollbar.SetToken(Conf.RollbarAccessToken)
 }
