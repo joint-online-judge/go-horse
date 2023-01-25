@@ -2,25 +2,86 @@
 package schemas
 
 import (
+	"time"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
+	"github.com/google/uuid"
+	"github.com/joint-online-judge/go-horse/pkg/configs"
 )
 
-type JWTClaims struct {
+type JWTCommon struct {
 	Type      string `json:"type"`
-	Fresh     bool   `json:"fresh"`
-	Csrf      string `json:"csrf"`
-	Category  string `json:"category"`
-	Username  string `json:"username"`
-	Gravatar  string `json:"gravatar"`
-	Role      string `json:"role"`
-	IsActive  bool   `json:"isActive"`
 	OauthName string `json:"oauthName"`
 	jwt.RegisteredClaims
 }
 
+type JWTClaims struct {
+	JWTCommon
+	Fresh    bool   `json:"fresh"`
+	Csrf     string `json:"csrf"`
+	Category string `json:"category"`
+	Username string `json:"username"`
+	Gravatar string `json:"gravatar"`
+	Role     string `json:"role"`
+	IsActive bool   `json:"isActive"`
+}
+
 func JWT(c *fiber.Ctx) *JWTClaims {
 	return c.Locals("jwt").(*JWTClaims)
+}
+
+func NewAccessToken(
+	user User,
+	oauth_name, category string,
+	fresh bool,
+) (string, error) {
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, JWTClaims{
+		JWTCommon: JWTCommon{
+			Type:      "access",
+			OauthName: oauth_name,
+			RegisteredClaims: jwt.RegisteredClaims{
+				ExpiresAt: jwt.NewNumericDate(
+					time.Now().
+						Add(time.Duration(configs.Conf.JwtExpireSeconds) * time.Second),
+				),
+				IssuedAt:  jwt.NewNumericDate(time.Now()),
+				NotBefore: jwt.NewNumericDate(time.Now()),
+				Issuer:    uuid.New().String(),
+				ID:        user.Id.String(),
+				Subject:   user.Id.String(),
+				// Audience:  []string{"somebody_else"},
+			},
+		},
+		Fresh:    fresh,
+		Csrf:     "test", // FIXME: do we need it as we can use csrf middleware?
+		Category: category,
+		Username: user.Username,
+		Gravatar: *user.Gravatar,
+		Role:     *user.Role,
+		IsActive: *user.IsActive,
+	})
+	return token.SignedString([]byte(configs.Conf.JwtSecret))
+}
+
+func NewRefreshToken(user User, oauth_name string) (string, error) {
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, JWTCommon{
+		Type:      "refresh",
+		OauthName: oauth_name,
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(
+				time.Now().
+					Add(time.Duration(configs.Conf.JwtExpireSeconds) * time.Second),
+			),
+			IssuedAt:  jwt.NewNumericDate(time.Now()),
+			NotBefore: jwt.NewNumericDate(time.Now()),
+			Issuer:    uuid.New().String(),
+			ID:        user.Id.String(),
+			Subject:   user.Id.String(),
+			// Audience:  []string{"somebody_else"},
+		},
+	})
+	return token.SignedString([]byte(configs.Conf.JwtSecret))
 }
 
 // AuthTokens defines model for AuthTokens.

@@ -7,7 +7,6 @@ import (
 	"github.com/joint-online-judge/go-horse/app/models"
 	"github.com/joint-online-judge/go-horse/app/querys"
 	"github.com/joint-online-judge/go-horse/app/schemas"
-	"github.com/joint-online-judge/go-horse/pkg/middlewares"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -36,11 +35,17 @@ func (s *ApiV1) Login(
 	if err != nil {
 		return nil, err
 	}
-	accessToken, err := middlewares.NewAccessToken(user, "user", "", true)
-	// TODO: refresh token
+	accessToken, err := schemas.NewAccessToken(user, "", "user", true)
+	if err != nil {
+		return nil, err
+	}
+	refreshToken, err := schemas.NewRefreshToken(user, "")
+	if err != nil {
+		return nil, err
+	}
 	return schemas.AuthTokens{
 		AccessToken:  accessToken,
-		RefreshToken: accessToken,
+		RefreshToken: refreshToken,
 		TokenType:    "bearer",
 	}, err
 }
