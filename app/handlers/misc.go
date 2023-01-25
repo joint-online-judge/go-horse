@@ -28,8 +28,8 @@ func (s *ApiV1) TestErrorReport(
 // Version
 // (GET /version)
 func (s *ApiV1) Version(c *fiber.Ctx, request schemas.VersionRequestObject) (any, error) {
-	return schemas.Version{
+	return schemas.NonStandardResp{Data: schemas.Version{
 		Git:     configs.GitCommit,
 		Version: configs.Version,
-	}, nil
+	}}, nil
 }

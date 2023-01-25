@@ -2,6 +2,7 @@ package utils
 
 import (
 	"errors"
+	"reflect"
 	"runtime"
 
 	"github.com/gofiber/fiber/v2"
@@ -18,15 +19,24 @@ func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
 				Data:     nil,
 			})
 		}
-		validate_response, validate_err := ValidateStruct(response)
-		if validate_err == nil {
-			return ctx.Status(code).JSON(schemas.StandardResp[any]{
-				BizError: schemas.BizError{ErrorCode: schemas.Success},
-				Data:     response,
-			})
+		switch response.(type) {
+		// non standard response
+		case schemas.NonStandardResp:
+			resp := response
+			return ctx.Status(code).JSON(resp)
+		default:
+			if reflect.ValueOf(response).Kind() == reflect.Struct {
+				validate_response, validate_err := ValidateStruct(response)
+				if validate_err == nil {
+					return ctx.Status(code).JSON(schemas.StandardResp[any]{
+						BizError: schemas.BizError{ErrorCode: schemas.Success},
+						Data:     response,
+					})
+				}
+				err = validate_err
+				response = validate_response
+			}
 		}
-		err = validate_err
-		response = validate_response
 	}
 	// Retrieve the custom status code if it's a *types.BizError
 	var e *schemas.BizError

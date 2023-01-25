@@ -13,3 +13,7 @@ type ListResp[T any] struct {
 }
 
 type StandardListResp[T any] StandardResp[ListResp[T]]
+
+type NonStandardResp struct {
+	Data any
+}
