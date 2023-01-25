@@ -32,5 +32,7 @@ func main() {
 	})
 	middlewares.Initalize(app)
 	routers.Initalize(app)
-	log.Fatal(app.Listen(fmt.Sprintf("%s:%d", configs.Conf.Host, configs.Conf.Port)))
+	log.Fatal(
+		app.Listen(fmt.Sprintf("%s:%d", configs.Conf.Host, configs.Conf.Port)),
+	)
 }

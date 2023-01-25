@@ -7,7 +7,8 @@ import (
 
 // this will only handle error from panic
 func Panic(ctx *fiber.Ctx, err error) error {
-	return ctx.Status(fiber.StatusOK).JSON(schemas.EmptyResp{BizError: schemas.BizError{
-		ErrorCode: schemas.InternalServerError, ErrorMsg: nil,
-	}, Data: nil})
+	return ctx.Status(fiber.StatusOK).
+		JSON(schemas.EmptyResp{BizError: schemas.BizError{
+			ErrorCode: schemas.InternalServerError, ErrorMsg: nil,
+		}, Data: nil})
 }

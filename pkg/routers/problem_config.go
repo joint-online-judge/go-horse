@@ -5,8 +5,13 @@ import (
 	"github.com/joint-online-judge/go-horse/app/schemas"
 )
 
-func RegisterProblemConfig(router fiber.Router, wrapper schemas.ServerInterfaceWrapper) {
-	problem_configs := router.Group("/domains/:domain/problems/:problem/configs")
+func RegisterProblemConfig(
+	router fiber.Router,
+	wrapper schemas.ServerInterfaceWrapper,
+) {
+	problem_configs := router.Group(
+		"/domains/:domain/problems/:problem/configs",
+	)
 	problem_config := problem_configs.Group("/:config")
 	latest_problem_config := problem_configs.Group("/latest")
 	problem_configs.Get("", wrapper.ListProblemConfigCommits)
@@ -15,5 +20,8 @@ func RegisterProblemConfig(router fiber.Router, wrapper schemas.ServerInterfaceW
 	problem_config.Get("", wrapper.DownloadProblemConfigArchive)
 	problem_config.Get("/json", wrapper.GetProblemConfigJson)
 	latest_problem_config.Get("/diff", wrapper.DiffProblemConfigDefaultBranch)
-	latest_problem_config.Get("/ls", wrapper.ListLatestProblemConfigObjectsUnderAGivenPrefix)
+	latest_problem_config.Get(
+		"/ls",
+		wrapper.ListLatestProblemConfigObjectsUnderAGivenPrefix,
+	)
 }

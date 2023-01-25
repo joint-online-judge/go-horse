@@ -5,7 +5,10 @@ import (
 	"github.com/joint-online-judge/go-horse/app/schemas"
 )
 
-func RegisterDomain(router fiber.Router, wrapper schemas.ServerInterfaceWrapper) {
+func RegisterDomain(
+	router fiber.Router,
+	wrapper schemas.ServerInterfaceWrapper,
+) {
 	domains := router.Group("/domains")
 	domain := domains.Group("/:domain")
 	domain_invitations := domain.Group("/invitations")

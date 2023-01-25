@@ -34,6 +34,9 @@ func (s *ApiV1) ChangePassword(
 
 // Get User
 // (GET /users/{uid})
-func (s *ApiV1) GetUser(c *fiber.Ctx, request schemas.GetUserRequestObject) (any, error) {
+func (s *ApiV1) GetUser(
+	c *fiber.Ctx,
+	request schemas.GetUserRequestObject,
+) (any, error) {
 	return nil, nil
 }

@@ -31,7 +31,11 @@ type ServerInterface interface {
 	AdminGetUser(c *fiber.Ctx, uid string) error
 	// Admin List User Domains
 	// (GET /admin/{uid}/domains)
-	AdminListUserDomains(c *fiber.Ctx, uid string, params AdminListUserDomainsParams) error
+	AdminListUserDomains(
+		c *fiber.Ctx,
+		uid string,
+		params AdminListUserDomainsParams,
+	) error
 	// Login
 	// (POST /auth/login)
 	Login(c *fiber.Ctx, params LoginParams) error
@@ -43,7 +47,11 @@ type ServerInterface interface {
 	ListOauth2(c *fiber.Ctx) error
 	// Oauth Authorize
 	// (GET /auth/oauth2/{oauth2}/authorize)
-	OauthAuthorize(c *fiber.Ctx, oauth2 string, params OauthAuthorizeParams) error
+	OauthAuthorize(
+		c *fiber.Ctx,
+		oauth2 string,
+		params OauthAuthorizeParams,
+	) error
 	// Refresh
 	// (POST /auth/refresh)
 	Refresh(c *fiber.Ctx, params RefreshParams) error
@@ -73,10 +81,18 @@ type ServerInterface interface {
 	UpdateDomain(c *fiber.Ctx, domain string) error
 	// Search Domain Candidates
 	// (GET /domains/{domain}/candidates)
-	SearchDomainCandidates(c *fiber.Ctx, domain string, params SearchDomainCandidatesParams) error
+	SearchDomainCandidates(
+		c *fiber.Ctx,
+		domain string,
+		params SearchDomainCandidatesParams,
+	) error
 	// List Domain Invitations
 	// (GET /domains/{domain}/invitations)
-	ListDomainInvitations(c *fiber.Ctx, domain string, params ListDomainInvitationsParams) error
+	ListDomainInvitations(
+		c *fiber.Ctx,
+		domain string,
+		params ListDomainInvitationsParams,
+	) error
 	// Create Domain Invitation
 	// (POST /domains/{domain}/invitations)
 	CreateDomainInvitation(c *fiber.Ctx, domain string) error
@@ -91,10 +107,18 @@ type ServerInterface interface {
 	UpdateDomainInvitation(c *fiber.Ctx, domain string, invitation string) error
 	// Join Domain By Invitation
 	// (POST /domains/{domain}/join)
-	JoinDomainByInvitation(c *fiber.Ctx, domain string, params JoinDomainByInvitationParams) error
+	JoinDomainByInvitation(
+		c *fiber.Ctx,
+		domain string,
+		params JoinDomainByInvitationParams,
+	) error
 	// List Problem Sets
 	// (GET /domains/{domain}/problem_sets)
-	ListProblemSets(c *fiber.Ctx, domain string, params ListProblemSetsParams) error
+	ListProblemSets(
+		c *fiber.Ctx,
+		domain string,
+		params ListProblemSetsParams,
+	) error
 	// Create Problem Set
 	// (POST /domains/{domain}/problem_sets)
 	CreateProblemSet(c *fiber.Ctx, domain string) error
@@ -109,22 +133,46 @@ type ServerInterface interface {
 	UpdateProblemSet(c *fiber.Ctx, domain string, problemSet string) error
 	// List Problems In Problem Set
 	// (GET /domains/{domain}/problem_sets/{problemSet}/problems)
-	ListProblemsInProblemSet(c *fiber.Ctx, domain string, problemSet string) error
+	ListProblemsInProblemSet(
+		c *fiber.Ctx,
+		domain string,
+		problemSet string,
+	) error
 	// Add Problem In Problem Set
 	// (POST /domains/{domain}/problem_sets/{problemSet}/problems)
 	AddProblemInProblemSet(c *fiber.Ctx, domain string, problemSet string) error
 	// Delete Problem In Problem Set
 	// (DELETE /domains/{domain}/problem_sets/{problemSet}/problems/{problem})
-	DeleteProblemInProblemSet(c *fiber.Ctx, domain string, problemSet string, problem string) error
+	DeleteProblemInProblemSet(
+		c *fiber.Ctx,
+		domain string,
+		problemSet string,
+		problem string,
+	) error
 	// Get Problem In Problem Set
 	// (GET /domains/{domain}/problem_sets/{problemSet}/problems/{problem})
-	GetProblemInProblemSet(c *fiber.Ctx, domain string, problemSet string, problem string) error
+	GetProblemInProblemSet(
+		c *fiber.Ctx,
+		domain string,
+		problemSet string,
+		problem string,
+	) error
 	// Update Problem In Problem Set
 	// (PATCH /domains/{domain}/problem_sets/{problemSet}/problems/{problem})
-	UpdateProblemInProblemSet(c *fiber.Ctx, domain string, problemSet string, problem string) error
+	UpdateProblemInProblemSet(
+		c *fiber.Ctx,
+		domain string,
+		problemSet string,
+		problem string,
+	) error
 	// Submit Solution To Problem Set
 	// (POST /domains/{domain}/problem_sets/{problemSet}/problems/{problem}/submit)
-	SubmitSolutionToProblemSet(c *fiber.Ctx, domain string, problemSet string, problem string) error
+	SubmitSolutionToProblemSet(
+		c *fiber.Ctx,
+		domain string,
+		problemSet string,
+		problem string,
+	) error
 	// List Problems
 	// (GET /domains/{domain}/problems)
 	ListProblems(c *fiber.Ctx, domain string, params ListProblemsParams) error
@@ -192,16 +240,30 @@ type ServerInterface interface {
 	) error
 	// Get Problem Config Json
 	// (GET /domains/{domain}/problems/{problem}/configs/{config}/json)
-	GetProblemConfigJson(c *fiber.Ctx, domain string, problem string, config string) error
+	GetProblemConfigJson(
+		c *fiber.Ctx,
+		domain string,
+		problem string,
+		config string,
+	) error
 	// List Records In Domain
 	// (GET /domains/{domain}/records)
-	ListRecordsInDomain(c *fiber.Ctx, domain string, params ListRecordsInDomainParams) error
+	ListRecordsInDomain(
+		c *fiber.Ctx,
+		domain string,
+		params ListRecordsInDomainParams,
+	) error
 	// Get Record
 	// (GET /domains/{domain}/records/{record})
 	GetRecord(c *fiber.Ctx, domain string, record openapi_types.UUID) error
 	// Submit Case By Judger
 	// (PUT /domains/{domain}/records/{record}/cases/{index}/judge)
-	SubmitCaseByJudger(c *fiber.Ctx, domain string, record string, index int) error
+	SubmitCaseByJudger(
+		c *fiber.Ctx,
+		domain string,
+		record string,
+		index int,
+	) error
 	// Submit Record By Judger
 	// (PUT /domains/{domain}/records/{record}/judge)
 	SubmitRecordByJudger(c *fiber.Ctx, domain string, record string) error
@@ -210,7 +272,11 @@ type ServerInterface interface {
 	ClaimRecordByJudger(c *fiber.Ctx, domain string, record string) error
 	// List Domain Roles
 	// (GET /domains/{domain}/roles)
-	ListDomainRoles(c *fiber.Ctx, domain string, params ListDomainRolesParams) error
+	ListDomainRoles(
+		c *fiber.Ctx,
+		domain string,
+		params ListDomainRolesParams,
+	) error
 	// Create Domain Role
 	// (POST /domains/{domain}/roles)
 	CreateDomainRole(c *fiber.Ctx, domain string) error
@@ -228,7 +294,11 @@ type ServerInterface interface {
 	TransferDomain(c *fiber.Ctx, domain string) error
 	// List Domain Users
 	// (GET /domains/{domain}/users)
-	ListDomainUsers(c *fiber.Ctx, domain string, params ListDomainUsersParams) error
+	ListDomainUsers(
+		c *fiber.Ctx,
+		domain string,
+		params ListDomainUsersParams,
+	) error
 	// Add Domain User
 	// (POST /domains/{domain}/users)
 	AddDomainUser(c *fiber.Ctx, domain string) error
@@ -296,17 +366,32 @@ func (siw *ServerInterfaceWrapper) AdminListDomainRoles(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"offset",
+		query,
+		&params.Offset,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -316,7 +401,14 @@ func (siw *ServerInterfaceWrapper) AdminListDomainRoles(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "limit" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"limit",
+		query,
+		&params.Limit,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -346,17 +438,32 @@ func (siw *ServerInterfaceWrapper) AdminListJudgers(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"offset",
+		query,
+		&params.Offset,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -366,7 +473,14 @@ func (siw *ServerInterfaceWrapper) AdminListJudgers(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "limit" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"limit",
+		query,
+		&params.Limit,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -403,17 +517,32 @@ func (siw *ServerInterfaceWrapper) AdminListUsers(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"offset",
+		query,
+		&params.Offset,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -423,7 +552,14 @@ func (siw *ServerInterfaceWrapper) AdminListUsers(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "limit" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"limit",
+		query,
+		&params.Limit,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -441,7 +577,13 @@ func (siw *ServerInterfaceWrapper) AdminGetUser(c *fiber.Ctx) error {
 	// ------------- Path parameter "uid" -------------
 	var uid string
 
-	err = runtime.BindStyledParameter("simple", false, "uid", c.Params("uid"), &uid)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"uid",
+		c.Params("uid"),
+		&uid,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -461,7 +603,13 @@ func (siw *ServerInterfaceWrapper) AdminListUserDomains(c *fiber.Ctx) error {
 	// ------------- Path parameter "uid" -------------
 	var uid string
 
-	err = runtime.BindStyledParameter("simple", false, "uid", c.Params("uid"), &uid)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"uid",
+		c.Params("uid"),
+		&uid,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -484,7 +632,14 @@ func (siw *ServerInterfaceWrapper) AdminListUserDomains(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "role" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "role", query, &params.Role)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"role",
+		query,
+		&params.Role,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -494,7 +649,14 @@ func (siw *ServerInterfaceWrapper) AdminListUserDomains(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "groups" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "groups", query, &params.Groups)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"groups",
+		query,
+		&params.Groups,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -504,17 +666,32 @@ func (siw *ServerInterfaceWrapper) AdminListUserDomains(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"offset",
+		query,
+		&params.Offset,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -524,7 +701,14 @@ func (siw *ServerInterfaceWrapper) AdminListUserDomains(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "limit" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"limit",
+		query,
+		&params.Limit,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -552,7 +736,14 @@ func (siw *ServerInterfaceWrapper) Login(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "cookie" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "cookie", query, &params.Cookie)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"cookie",
+		query,
+		&params.Cookie,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -582,17 +773,26 @@ func (siw *ServerInterfaceWrapper) Login(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter responseType: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter responseType: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "redirectUrl" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "redirectUrl", query, &params.RedirectUrl)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"redirectUrl",
+		query,
+		&params.RedirectUrl,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter redirectUrl: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter redirectUrl: %w", err).
+				Error(),
 		)
 	}
 
@@ -618,7 +818,14 @@ func (siw *ServerInterfaceWrapper) Logout(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "cookie" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "cookie", query, &params.Cookie)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"cookie",
+		query,
+		&params.Cookie,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -648,17 +855,26 @@ func (siw *ServerInterfaceWrapper) Logout(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter responseType: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter responseType: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "redirectUrl" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "redirectUrl", query, &params.RedirectUrl)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"redirectUrl",
+		query,
+		&params.RedirectUrl,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter redirectUrl: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter redirectUrl: %w", err).
+				Error(),
 		)
 	}
 
@@ -677,7 +893,13 @@ func (siw *ServerInterfaceWrapper) OauthAuthorize(c *fiber.Ctx) error {
 	// ------------- Path parameter "oauth2" -------------
 	var oauth2 string
 
-	err = runtime.BindStyledParameter("simple", false, "oauth2", c.Params("oauth2"), &oauth2)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"oauth2",
+		c.Params("oauth2"),
+		&oauth2,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -698,7 +920,14 @@ func (siw *ServerInterfaceWrapper) OauthAuthorize(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "scopes" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "scopes", query, &params.Scopes)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"scopes",
+		query,
+		&params.Scopes,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -708,7 +937,14 @@ func (siw *ServerInterfaceWrapper) OauthAuthorize(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "cookie" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "cookie", query, &params.Cookie)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"cookie",
+		query,
+		&params.Cookie,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -738,17 +974,26 @@ func (siw *ServerInterfaceWrapper) OauthAuthorize(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter responseType: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter responseType: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "redirectUrl" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "redirectUrl", query, &params.RedirectUrl)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"redirectUrl",
+		query,
+		&params.RedirectUrl,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter redirectUrl: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter redirectUrl: %w", err).
+				Error(),
 		)
 	}
 
@@ -772,7 +1017,14 @@ func (siw *ServerInterfaceWrapper) Refresh(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "cookie" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "cookie", query, &params.Cookie)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"cookie",
+		query,
+		&params.Cookie,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -802,17 +1054,26 @@ func (siw *ServerInterfaceWrapper) Refresh(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter responseType: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter responseType: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "redirectUrl" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "redirectUrl", query, &params.RedirectUrl)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"redirectUrl",
+		query,
+		&params.RedirectUrl,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter redirectUrl: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter redirectUrl: %w", err).
+				Error(),
 		)
 	}
 
@@ -838,7 +1099,14 @@ func (siw *ServerInterfaceWrapper) Register(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "cookie" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "cookie", query, &params.Cookie)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"cookie",
+		query,
+		&params.Cookie,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -868,17 +1136,26 @@ func (siw *ServerInterfaceWrapper) Register(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter responseType: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter responseType: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "redirectUrl" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "redirectUrl", query, &params.RedirectUrl)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"redirectUrl",
+		query,
+		&params.RedirectUrl,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter redirectUrl: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter redirectUrl: %w", err).
+				Error(),
 		)
 	}
 
@@ -902,7 +1179,14 @@ func (siw *ServerInterfaceWrapper) GetToken(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "cookie" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "cookie", query, &params.Cookie)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"cookie",
+		query,
+		&params.Cookie,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -932,17 +1216,26 @@ func (siw *ServerInterfaceWrapper) GetToken(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter responseType: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter responseType: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "redirectUrl" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "redirectUrl", query, &params.RedirectUrl)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"redirectUrl",
+		query,
+		&params.RedirectUrl,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter redirectUrl: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter redirectUrl: %w", err).
+				Error(),
 		)
 	}
 
@@ -968,7 +1261,14 @@ func (siw *ServerInterfaceWrapper) ListDomains(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "roles" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "roles", query, &params.Roles)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"roles",
+		query,
+		&params.Roles,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -978,7 +1278,14 @@ func (siw *ServerInterfaceWrapper) ListDomains(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "groups" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "groups", query, &params.Groups)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"groups",
+		query,
+		&params.Groups,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -988,17 +1295,32 @@ func (siw *ServerInterfaceWrapper) ListDomains(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"offset",
+		query,
+		&params.Offset,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1008,7 +1330,14 @@ func (siw *ServerInterfaceWrapper) ListDomains(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "limit" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"limit",
+		query,
+		&params.Limit,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1054,7 +1383,14 @@ func (siw *ServerInterfaceWrapper) SearchDomainGroups(c *fiber.Ctx) error {
 		)
 	}
 
-	err = runtime.BindQueryParameter("form", true, true, "query", query, &params.Query)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		true,
+		"query",
+		query,
+		&params.Query,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1072,7 +1408,13 @@ func (siw *ServerInterfaceWrapper) DeleteDomain(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1092,7 +1434,13 @@ func (siw *ServerInterfaceWrapper) GetDomain(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1112,7 +1460,13 @@ func (siw *ServerInterfaceWrapper) UpdateDomain(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1132,7 +1486,13 @@ func (siw *ServerInterfaceWrapper) SearchDomainCandidates(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1164,7 +1524,14 @@ func (siw *ServerInterfaceWrapper) SearchDomainCandidates(c *fiber.Ctx) error {
 		)
 	}
 
-	err = runtime.BindQueryParameter("form", true, true, "query", query, &params.Query)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		true,
+		"query",
+		query,
+		&params.Query,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1174,11 +1541,19 @@ func (siw *ServerInterfaceWrapper) SearchDomainCandidates(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
@@ -1192,7 +1567,13 @@ func (siw *ServerInterfaceWrapper) ListDomainInvitations(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1215,17 +1596,32 @@ func (siw *ServerInterfaceWrapper) ListDomainInvitations(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"offset",
+		query,
+		&params.Offset,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1235,7 +1631,14 @@ func (siw *ServerInterfaceWrapper) ListDomainInvitations(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "limit" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"limit",
+		query,
+		&params.Limit,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1253,7 +1656,13 @@ func (siw *ServerInterfaceWrapper) CreateDomainInvitation(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1273,7 +1682,13 @@ func (siw *ServerInterfaceWrapper) DeleteDomainInvitation(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1294,7 +1709,8 @@ func (siw *ServerInterfaceWrapper) DeleteDomainInvitation(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter invitation: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter invitation: %w", err).
+				Error(),
 		)
 	}
 
@@ -1310,7 +1726,13 @@ func (siw *ServerInterfaceWrapper) GetDomainInvitation(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1331,7 +1753,8 @@ func (siw *ServerInterfaceWrapper) GetDomainInvitation(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter invitation: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter invitation: %w", err).
+				Error(),
 		)
 	}
 
@@ -1347,7 +1770,13 @@ func (siw *ServerInterfaceWrapper) UpdateDomainInvitation(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1368,7 +1797,8 @@ func (siw *ServerInterfaceWrapper) UpdateDomainInvitation(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter invitation: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter invitation: %w", err).
+				Error(),
 		)
 	}
 
@@ -1384,7 +1814,13 @@ func (siw *ServerInterfaceWrapper) JoinDomainByInvitation(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1427,7 +1863,8 @@ func (siw *ServerInterfaceWrapper) JoinDomainByInvitation(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter invitationCode: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter invitationCode: %w", err).
+				Error(),
 		)
 	}
 
@@ -1441,7 +1878,13 @@ func (siw *ServerInterfaceWrapper) ListProblemSets(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1464,17 +1907,32 @@ func (siw *ServerInterfaceWrapper) ListProblemSets(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"offset",
+		query,
+		&params.Offset,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1484,7 +1942,14 @@ func (siw *ServerInterfaceWrapper) ListProblemSets(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "limit" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"limit",
+		query,
+		&params.Limit,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1502,7 +1967,13 @@ func (siw *ServerInterfaceWrapper) CreateProblemSet(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1522,7 +1993,13 @@ func (siw *ServerInterfaceWrapper) DeleteProblemSet(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1543,7 +2020,8 @@ func (siw *ServerInterfaceWrapper) DeleteProblemSet(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter problemSet: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter problemSet: %w", err).
+				Error(),
 		)
 	}
 
@@ -1559,7 +2037,13 @@ func (siw *ServerInterfaceWrapper) GetProblemSet(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1580,7 +2064,8 @@ func (siw *ServerInterfaceWrapper) GetProblemSet(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter problemSet: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter problemSet: %w", err).
+				Error(),
 		)
 	}
 
@@ -1596,7 +2081,13 @@ func (siw *ServerInterfaceWrapper) UpdateProblemSet(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1617,7 +2108,8 @@ func (siw *ServerInterfaceWrapper) UpdateProblemSet(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter problemSet: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter problemSet: %w", err).
+				Error(),
 		)
 	}
 
@@ -1627,13 +2119,21 @@ func (siw *ServerInterfaceWrapper) UpdateProblemSet(c *fiber.Ctx) error {
 }
 
 // ListProblemsInProblemSet operation middleware
-func (siw *ServerInterfaceWrapper) ListProblemsInProblemSet(c *fiber.Ctx) error {
+func (siw *ServerInterfaceWrapper) ListProblemsInProblemSet(
+	c *fiber.Ctx,
+) error {
 	var err error
 
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1654,7 +2154,8 @@ func (siw *ServerInterfaceWrapper) ListProblemsInProblemSet(c *fiber.Ctx) error 
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter problemSet: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter problemSet: %w", err).
+				Error(),
 		)
 	}
 
@@ -1670,7 +2171,13 @@ func (siw *ServerInterfaceWrapper) AddProblemInProblemSet(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1691,7 +2198,8 @@ func (siw *ServerInterfaceWrapper) AddProblemInProblemSet(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter problemSet: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter problemSet: %w", err).
+				Error(),
 		)
 	}
 
@@ -1701,13 +2209,21 @@ func (siw *ServerInterfaceWrapper) AddProblemInProblemSet(c *fiber.Ctx) error {
 }
 
 // DeleteProblemInProblemSet operation middleware
-func (siw *ServerInterfaceWrapper) DeleteProblemInProblemSet(c *fiber.Ctx) error {
+func (siw *ServerInterfaceWrapper) DeleteProblemInProblemSet(
+	c *fiber.Ctx,
+) error {
 	var err error
 
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1728,14 +2244,21 @@ func (siw *ServerInterfaceWrapper) DeleteProblemInProblemSet(c *fiber.Ctx) error
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter problemSet: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter problemSet: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1755,7 +2278,13 @@ func (siw *ServerInterfaceWrapper) GetProblemInProblemSet(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1776,14 +2305,21 @@ func (siw *ServerInterfaceWrapper) GetProblemInProblemSet(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter problemSet: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter problemSet: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1797,13 +2333,21 @@ func (siw *ServerInterfaceWrapper) GetProblemInProblemSet(c *fiber.Ctx) error {
 }
 
 // UpdateProblemInProblemSet operation middleware
-func (siw *ServerInterfaceWrapper) UpdateProblemInProblemSet(c *fiber.Ctx) error {
+func (siw *ServerInterfaceWrapper) UpdateProblemInProblemSet(
+	c *fiber.Ctx,
+) error {
 	var err error
 
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1824,14 +2368,21 @@ func (siw *ServerInterfaceWrapper) UpdateProblemInProblemSet(c *fiber.Ctx) error
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter problemSet: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter problemSet: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1845,13 +2396,21 @@ func (siw *ServerInterfaceWrapper) UpdateProblemInProblemSet(c *fiber.Ctx) error
 }
 
 // SubmitSolutionToProblemSet operation middleware
-func (siw *ServerInterfaceWrapper) SubmitSolutionToProblemSet(c *fiber.Ctx) error {
+func (siw *ServerInterfaceWrapper) SubmitSolutionToProblemSet(
+	c *fiber.Ctx,
+) error {
 	var err error
 
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1872,14 +2431,21 @@ func (siw *ServerInterfaceWrapper) SubmitSolutionToProblemSet(c *fiber.Ctx) erro
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter problemSet: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter problemSet: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1889,7 +2455,12 @@ func (siw *ServerInterfaceWrapper) SubmitSolutionToProblemSet(c *fiber.Ctx) erro
 
 	c.Context().SetUserValue(HTTPBearerScopes, []string{""})
 
-	return siw.Handler.SubmitSolutionToProblemSet(c, domain, problemSet, problem)
+	return siw.Handler.SubmitSolutionToProblemSet(
+		c,
+		domain,
+		problemSet,
+		problem,
+	)
 }
 
 // ListProblems operation middleware
@@ -1899,7 +2470,13 @@ func (siw *ServerInterfaceWrapper) ListProblems(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1922,17 +2499,32 @@ func (siw *ServerInterfaceWrapper) ListProblems(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"offset",
+		query,
+		&params.Offset,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1942,7 +2534,14 @@ func (siw *ServerInterfaceWrapper) ListProblems(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "limit" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"limit",
+		query,
+		&params.Limit,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1960,7 +2559,13 @@ func (siw *ServerInterfaceWrapper) CreateProblem(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -1980,7 +2585,13 @@ func (siw *ServerInterfaceWrapper) CloneProblem(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2000,7 +2611,13 @@ func (siw *ServerInterfaceWrapper) DeleteProblem(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2011,7 +2628,13 @@ func (siw *ServerInterfaceWrapper) DeleteProblem(c *fiber.Ctx) error {
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2031,7 +2654,13 @@ func (siw *ServerInterfaceWrapper) GetProblem(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2042,7 +2671,13 @@ func (siw *ServerInterfaceWrapper) GetProblem(c *fiber.Ctx) error {
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2062,7 +2697,13 @@ func (siw *ServerInterfaceWrapper) UpdateProblem(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2073,7 +2714,13 @@ func (siw *ServerInterfaceWrapper) UpdateProblem(c *fiber.Ctx) error {
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2093,7 +2740,13 @@ func (siw *ServerInterfaceWrapper) SubmitSolutionToProblem(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2104,7 +2757,13 @@ func (siw *ServerInterfaceWrapper) SubmitSolutionToProblem(c *fiber.Ctx) error {
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2118,13 +2777,21 @@ func (siw *ServerInterfaceWrapper) SubmitSolutionToProblem(c *fiber.Ctx) error {
 }
 
 // ListProblemConfigCommits operation middleware
-func (siw *ServerInterfaceWrapper) ListProblemConfigCommits(c *fiber.Ctx) error {
+func (siw *ServerInterfaceWrapper) ListProblemConfigCommits(
+	c *fiber.Ctx,
+) error {
 	var err error
 
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2135,7 +2802,13 @@ func (siw *ServerInterfaceWrapper) ListProblemConfigCommits(c *fiber.Ctx) error 
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2158,17 +2831,32 @@ func (siw *ServerInterfaceWrapper) ListProblemConfigCommits(c *fiber.Ctx) error 
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"offset",
+		query,
+		&params.Offset,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2178,7 +2866,14 @@ func (siw *ServerInterfaceWrapper) ListProblemConfigCommits(c *fiber.Ctx) error 
 
 	// ------------- Optional query parameter "limit" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"limit",
+		query,
+		&params.Limit,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2190,13 +2885,21 @@ func (siw *ServerInterfaceWrapper) ListProblemConfigCommits(c *fiber.Ctx) error 
 }
 
 // UpdateProblemConfigByArchive operation middleware
-func (siw *ServerInterfaceWrapper) UpdateProblemConfigByArchive(c *fiber.Ctx) error {
+func (siw *ServerInterfaceWrapper) UpdateProblemConfigByArchive(
+	c *fiber.Ctx,
+) error {
 	var err error
 
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2207,7 +2910,13 @@ func (siw *ServerInterfaceWrapper) UpdateProblemConfigByArchive(c *fiber.Ctx) er
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2241,7 +2950,8 @@ func (siw *ServerInterfaceWrapper) UpdateProblemConfigByArchive(c *fiber.Ctx) er
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter configJsonOnMissing: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter configJsonOnMissing: %w", err).
+				Error(),
 		)
 	}
 
@@ -2255,7 +2965,13 @@ func (siw *ServerInterfaceWrapper) UpdateProblemConfigJson(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2266,7 +2982,13 @@ func (siw *ServerInterfaceWrapper) UpdateProblemConfigJson(c *fiber.Ctx) error {
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2280,13 +3002,21 @@ func (siw *ServerInterfaceWrapper) UpdateProblemConfigJson(c *fiber.Ctx) error {
 }
 
 // DiffProblemConfigDefaultBranch operation middleware
-func (siw *ServerInterfaceWrapper) DiffProblemConfigDefaultBranch(c *fiber.Ctx) error {
+func (siw *ServerInterfaceWrapper) DiffProblemConfigDefaultBranch(
+	c *fiber.Ctx,
+) error {
 	var err error
 
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2297,7 +3027,13 @@ func (siw *ServerInterfaceWrapper) DiffProblemConfigDefaultBranch(c *fiber.Ctx) 
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2320,7 +3056,14 @@ func (siw *ServerInterfaceWrapper) DiffProblemConfigDefaultBranch(c *fiber.Ctx) 
 
 	// ------------- Optional query parameter "after" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "after", query, &params.After)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"after",
+		query,
+		&params.After,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2330,7 +3073,14 @@ func (siw *ServerInterfaceWrapper) DiffProblemConfigDefaultBranch(c *fiber.Ctx) 
 
 	// ------------- Optional query parameter "amount" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "amount", query, &params.Amount)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"amount",
+		query,
+		&params.Amount,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2340,17 +3090,32 @@ func (siw *ServerInterfaceWrapper) DiffProblemConfigDefaultBranch(c *fiber.Ctx) 
 
 	// ------------- Optional query parameter "delimiter" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "delimiter", query, &params.Delimiter)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"delimiter",
+		query,
+		&params.Delimiter,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter delimiter: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter delimiter: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "prefix" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "prefix", query, &params.Prefix)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"prefix",
+		query,
+		&params.Prefix,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2358,7 +3123,12 @@ func (siw *ServerInterfaceWrapper) DiffProblemConfigDefaultBranch(c *fiber.Ctx) 
 		)
 	}
 
-	return siw.Handler.DiffProblemConfigDefaultBranch(c, domain, problem, params)
+	return siw.Handler.DiffProblemConfigDefaultBranch(
+		c,
+		domain,
+		problem,
+		params,
+	)
 }
 
 // ListLatestProblemConfigObjectsUnderAGivenPrefix operation middleware
@@ -2370,7 +3140,13 @@ func (siw *ServerInterfaceWrapper) ListLatestProblemConfigObjectsUnderAGivenPref
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2381,7 +3157,13 @@ func (siw *ServerInterfaceWrapper) ListLatestProblemConfigObjectsUnderAGivenPref
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2404,7 +3186,14 @@ func (siw *ServerInterfaceWrapper) ListLatestProblemConfigObjectsUnderAGivenPref
 
 	// ------------- Optional query parameter "after" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "after", query, &params.After)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"after",
+		query,
+		&params.After,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2414,7 +3203,14 @@ func (siw *ServerInterfaceWrapper) ListLatestProblemConfigObjectsUnderAGivenPref
 
 	// ------------- Optional query parameter "amount" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "amount", query, &params.Amount)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"amount",
+		query,
+		&params.Amount,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2424,17 +3220,32 @@ func (siw *ServerInterfaceWrapper) ListLatestProblemConfigObjectsUnderAGivenPref
 
 	// ------------- Optional query parameter "delimiter" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "delimiter", query, &params.Delimiter)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"delimiter",
+		query,
+		&params.Delimiter,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter delimiter: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter delimiter: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "prefix" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "prefix", query, &params.Prefix)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"prefix",
+		query,
+		&params.Prefix,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2442,17 +3253,30 @@ func (siw *ServerInterfaceWrapper) ListLatestProblemConfigObjectsUnderAGivenPref
 		)
 	}
 
-	return siw.Handler.ListLatestProblemConfigObjectsUnderAGivenPrefix(c, domain, problem, params)
+	return siw.Handler.ListLatestProblemConfigObjectsUnderAGivenPrefix(
+		c,
+		domain,
+		problem,
+		params,
+	)
 }
 
 // DownloadProblemConfigArchive operation middleware
-func (siw *ServerInterfaceWrapper) DownloadProblemConfigArchive(c *fiber.Ctx) error {
+func (siw *ServerInterfaceWrapper) DownloadProblemConfigArchive(
+	c *fiber.Ctx,
+) error {
 	var err error
 
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2463,7 +3287,13 @@ func (siw *ServerInterfaceWrapper) DownloadProblemConfigArchive(c *fiber.Ctx) er
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2474,7 +3304,13 @@ func (siw *ServerInterfaceWrapper) DownloadProblemConfigArchive(c *fiber.Ctx) er
 	// ------------- Path parameter "config" -------------
 	var config string
 
-	err = runtime.BindStyledParameter("simple", false, "config", c.Params("config"), &config)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"config",
+		c.Params("config"),
+		&config,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2508,11 +3344,18 @@ func (siw *ServerInterfaceWrapper) DownloadProblemConfigArchive(c *fiber.Ctx) er
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter archiveFormat: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter archiveFormat: %w", err).
+				Error(),
 		)
 	}
 
-	return siw.Handler.DownloadProblemConfigArchive(c, domain, problem, config, params)
+	return siw.Handler.DownloadProblemConfigArchive(
+		c,
+		domain,
+		problem,
+		config,
+		params,
+	)
 }
 
 // GetProblemConfigJson operation middleware
@@ -2522,7 +3365,13 @@ func (siw *ServerInterfaceWrapper) GetProblemConfigJson(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2533,7 +3382,13 @@ func (siw *ServerInterfaceWrapper) GetProblemConfigJson(c *fiber.Ctx) error {
 	// ------------- Path parameter "problem" -------------
 	var problem string
 
-	err = runtime.BindStyledParameter("simple", false, "problem", c.Params("problem"), &problem)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"problem",
+		c.Params("problem"),
+		&problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2544,7 +3399,13 @@ func (siw *ServerInterfaceWrapper) GetProblemConfigJson(c *fiber.Ctx) error {
 	// ------------- Path parameter "config" -------------
 	var config string
 
-	err = runtime.BindStyledParameter("simple", false, "config", c.Params("config"), &config)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"config",
+		c.Params("config"),
+		&config,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2564,7 +3425,13 @@ func (siw *ServerInterfaceWrapper) ListRecordsInDomain(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2587,17 +3454,32 @@ func (siw *ServerInterfaceWrapper) ListRecordsInDomain(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "problemSet" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "problemSet", query, &params.ProblemSet)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"problemSet",
+		query,
+		&params.ProblemSet,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter problemSet: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter problemSet: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "problem" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "problem", query, &params.Problem)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"problem",
+		query,
+		&params.Problem,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2607,27 +3489,50 @@ func (siw *ServerInterfaceWrapper) ListRecordsInDomain(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "submitterId" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "submitterId", query, &params.SubmitterId)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"submitterId",
+		query,
+		&params.SubmitterId,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter submitterId: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter submitterId: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"offset",
+		query,
+		&params.Offset,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2637,7 +3542,14 @@ func (siw *ServerInterfaceWrapper) ListRecordsInDomain(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "limit" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"limit",
+		query,
+		&params.Limit,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2655,7 +3567,13 @@ func (siw *ServerInterfaceWrapper) GetRecord(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2666,7 +3584,13 @@ func (siw *ServerInterfaceWrapper) GetRecord(c *fiber.Ctx) error {
 	// ------------- Path parameter "record" -------------
 	var record openapi_types.UUID
 
-	err = runtime.BindStyledParameter("simple", false, "record", c.Params("record"), &record)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"record",
+		c.Params("record"),
+		&record,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2686,7 +3610,13 @@ func (siw *ServerInterfaceWrapper) SubmitCaseByJudger(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2697,7 +3627,13 @@ func (siw *ServerInterfaceWrapper) SubmitCaseByJudger(c *fiber.Ctx) error {
 	// ------------- Path parameter "record" -------------
 	var record string
 
-	err = runtime.BindStyledParameter("simple", false, "record", c.Params("record"), &record)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"record",
+		c.Params("record"),
+		&record,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2708,7 +3644,13 @@ func (siw *ServerInterfaceWrapper) SubmitCaseByJudger(c *fiber.Ctx) error {
 	// ------------- Path parameter "index" -------------
 	var index int
 
-	err = runtime.BindStyledParameter("simple", false, "index", c.Params("index"), &index)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"index",
+		c.Params("index"),
+		&index,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2728,7 +3670,13 @@ func (siw *ServerInterfaceWrapper) SubmitRecordByJudger(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2739,7 +3687,13 @@ func (siw *ServerInterfaceWrapper) SubmitRecordByJudger(c *fiber.Ctx) error {
 	// ------------- Path parameter "record" -------------
 	var record string
 
-	err = runtime.BindStyledParameter("simple", false, "record", c.Params("record"), &record)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"record",
+		c.Params("record"),
+		&record,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2759,7 +3713,13 @@ func (siw *ServerInterfaceWrapper) ClaimRecordByJudger(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2770,7 +3730,13 @@ func (siw *ServerInterfaceWrapper) ClaimRecordByJudger(c *fiber.Ctx) error {
 	// ------------- Path parameter "record" -------------
 	var record string
 
-	err = runtime.BindStyledParameter("simple", false, "record", c.Params("record"), &record)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"record",
+		c.Params("record"),
+		&record,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2790,7 +3756,13 @@ func (siw *ServerInterfaceWrapper) ListDomainRoles(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2813,11 +3785,19 @@ func (siw *ServerInterfaceWrapper) ListDomainRoles(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
@@ -2831,7 +3811,13 @@ func (siw *ServerInterfaceWrapper) CreateDomainRole(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2851,7 +3837,13 @@ func (siw *ServerInterfaceWrapper) DeleteDomainRole(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2862,7 +3854,13 @@ func (siw *ServerInterfaceWrapper) DeleteDomainRole(c *fiber.Ctx) error {
 	// ------------- Path parameter "role" -------------
 	var role string
 
-	err = runtime.BindStyledParameter("simple", false, "role", c.Params("role"), &role)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"role",
+		c.Params("role"),
+		&role,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2882,7 +3880,13 @@ func (siw *ServerInterfaceWrapper) GetDomainRole(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2893,7 +3897,13 @@ func (siw *ServerInterfaceWrapper) GetDomainRole(c *fiber.Ctx) error {
 	// ------------- Path parameter "role" -------------
 	var role string
 
-	err = runtime.BindStyledParameter("simple", false, "role", c.Params("role"), &role)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"role",
+		c.Params("role"),
+		&role,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2913,7 +3923,13 @@ func (siw *ServerInterfaceWrapper) UpdateDomainRole(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2924,7 +3940,13 @@ func (siw *ServerInterfaceWrapper) UpdateDomainRole(c *fiber.Ctx) error {
 	// ------------- Path parameter "role" -------------
 	var role string
 
-	err = runtime.BindStyledParameter("simple", false, "role", c.Params("role"), &role)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"role",
+		c.Params("role"),
+		&role,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2944,7 +3966,13 @@ func (siw *ServerInterfaceWrapper) TransferDomain(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2964,7 +3992,13 @@ func (siw *ServerInterfaceWrapper) ListDomainUsers(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -2987,17 +4021,32 @@ func (siw *ServerInterfaceWrapper) ListDomainUsers(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"offset",
+		query,
+		&params.Offset,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3007,7 +4056,14 @@ func (siw *ServerInterfaceWrapper) ListDomainUsers(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "limit" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"limit",
+		query,
+		&params.Limit,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3025,7 +4081,13 @@ func (siw *ServerInterfaceWrapper) AddDomainUser(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3045,7 +4107,13 @@ func (siw *ServerInterfaceWrapper) RemoveDomainUser(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3056,7 +4124,13 @@ func (siw *ServerInterfaceWrapper) RemoveDomainUser(c *fiber.Ctx) error {
 	// ------------- Path parameter "user" -------------
 	var user string
 
-	err = runtime.BindStyledParameter("simple", false, "user", c.Params("user"), &user)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"user",
+		c.Params("user"),
+		&user,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3076,7 +4150,13 @@ func (siw *ServerInterfaceWrapper) GetDomainUser(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3087,7 +4167,13 @@ func (siw *ServerInterfaceWrapper) GetDomainUser(c *fiber.Ctx) error {
 	// ------------- Path parameter "user" -------------
 	var user string
 
-	err = runtime.BindStyledParameter("simple", false, "user", c.Params("user"), &user)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"user",
+		c.Params("user"),
+		&user,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3107,7 +4193,13 @@ func (siw *ServerInterfaceWrapper) UpdateDomainUser(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3118,7 +4210,13 @@ func (siw *ServerInterfaceWrapper) UpdateDomainUser(c *fiber.Ctx) error {
 	// ------------- Path parameter "user" -------------
 	var user string
 
-	err = runtime.BindStyledParameter("simple", false, "user", c.Params("user"), &user)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"user",
+		c.Params("user"),
+		&user,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3138,7 +4236,13 @@ func (siw *ServerInterfaceWrapper) GetDomainUserPermission(c *fiber.Ctx) error {
 	// ------------- Path parameter "domain" -------------
 	var domain string
 
-	err = runtime.BindStyledParameter("simple", false, "domain", c.Params("domain"), &domain)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"domain",
+		c.Params("domain"),
+		&domain,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3149,7 +4253,13 @@ func (siw *ServerInterfaceWrapper) GetDomainUserPermission(c *fiber.Ctx) error {
 	// ------------- Path parameter "user" -------------
 	var user string
 
-	err = runtime.BindStyledParameter("simple", false, "user", c.Params("user"), &user)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"user",
+		c.Params("user"),
+		&user,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3188,17 +4298,32 @@ func (siw *ServerInterfaceWrapper) ListProblemGroups(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "ordering" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "ordering", query, &params.Ordering)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"ordering",
+		query,
+		&params.Ordering,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
-			fmt.Errorf("invalid format for parameter ordering: %w", err).Error(),
+			fmt.Errorf("invalid format for parameter ordering: %w", err).
+				Error(),
 		)
 	}
 
 	// ------------- Optional query parameter "offset" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "offset", query, &params.Offset)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"offset",
+		query,
+		&params.Offset,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3208,7 +4333,14 @@ func (siw *ServerInterfaceWrapper) ListProblemGroups(c *fiber.Ctx) error {
 
 	// ------------- Optional query parameter "limit" -------------
 
-	err = runtime.BindQueryParameter("form", true, false, "limit", query, &params.Limit)
+	err = runtime.BindQueryParameter(
+		"form",
+		true,
+		false,
+		"limit",
+		query,
+		&params.Limit,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3252,7 +4384,13 @@ func (siw *ServerInterfaceWrapper) GetUser(c *fiber.Ctx) error {
 	// ------------- Path parameter "uid" -------------
 	var uid string
 
-	err = runtime.BindStyledParameter("simple", false, "uid", c.Params("uid"), &uid)
+	err = runtime.BindStyledParameter(
+		"simple",
+		false,
+		"uid",
+		c.Params("uid"),
+		&uid,
+	)
 	if err != nil {
 		return fiber.NewError(
 			fiber.StatusBadRequest,
@@ -3661,13 +4799,22 @@ type StrictServerInterface interface {
 	) (any, error)
 	// Admin List Judgers
 	// (GET /admin/judgers)
-	AdminListJudgers(ctx *fiber.Ctx, request AdminListJudgersRequestObject) (any, error)
+	AdminListJudgers(
+		ctx *fiber.Ctx,
+		request AdminListJudgersRequestObject,
+	) (any, error)
 	// Admin Create Judger
 	// (POST /admin/judgers)
-	AdminCreateJudger(ctx *fiber.Ctx, request AdminCreateJudgerRequestObject) (any, error)
+	AdminCreateJudger(
+		ctx *fiber.Ctx,
+		request AdminCreateJudgerRequestObject,
+	) (any, error)
 	// Admin List Users
 	// (GET /admin/users)
-	AdminListUsers(ctx *fiber.Ctx, request AdminListUsersRequestObject) (any, error)
+	AdminListUsers(
+		ctx *fiber.Ctx,
+		request AdminListUsersRequestObject,
+	) (any, error)
 	// Admin Get User
 	// (GET /admin/{uid})
 	AdminGetUser(ctx *fiber.Ctx, request AdminGetUserRequestObject) (any, error)
@@ -3688,7 +4835,10 @@ type StrictServerInterface interface {
 	ListOauth2(ctx *fiber.Ctx, request ListOauth2RequestObject) (any, error)
 	// Oauth Authorize
 	// (GET /auth/oauth2/{oauth2}/authorize)
-	OauthAuthorize(ctx *fiber.Ctx, request OauthAuthorizeRequestObject) (any, error)
+	OauthAuthorize(
+		ctx *fiber.Ctx,
+		request OauthAuthorizeRequestObject,
+	) (any, error)
 	// Refresh
 	// (POST /auth/refresh)
 	Refresh(ctx *fiber.Ctx, request RefreshRequestObject) (any, error)
@@ -3706,7 +4856,10 @@ type StrictServerInterface interface {
 	CreateDomain(ctx *fiber.Ctx, request CreateDomainRequestObject) (any, error)
 	// Search Domain Groups
 	// (GET /domains/groups)
-	SearchDomainGroups(ctx *fiber.Ctx, request SearchDomainGroupsRequestObject) (any, error)
+	SearchDomainGroups(
+		ctx *fiber.Ctx,
+		request SearchDomainGroupsRequestObject,
+	) (any, error)
 	// Delete Domain
 	// (DELETE /domains/{domain})
 	DeleteDomain(ctx *fiber.Ctx, request DeleteDomainRequestObject) (any, error)
@@ -3742,7 +4895,10 @@ type StrictServerInterface interface {
 	) (any, error)
 	// Get Domain Invitation
 	// (GET /domains/{domain}/invitations/{invitation})
-	GetDomainInvitation(ctx *fiber.Ctx, request GetDomainInvitationRequestObject) (any, error)
+	GetDomainInvitation(
+		ctx *fiber.Ctx,
+		request GetDomainInvitationRequestObject,
+	) (any, error)
 	// Update Domain Invitation
 	// (PATCH /domains/{domain}/invitations/{invitation})
 	UpdateDomainInvitation(
@@ -3757,19 +4913,34 @@ type StrictServerInterface interface {
 	) (any, error)
 	// List Problem Sets
 	// (GET /domains/{domain}/problem_sets)
-	ListProblemSets(ctx *fiber.Ctx, request ListProblemSetsRequestObject) (any, error)
+	ListProblemSets(
+		ctx *fiber.Ctx,
+		request ListProblemSetsRequestObject,
+	) (any, error)
 	// Create Problem Set
 	// (POST /domains/{domain}/problem_sets)
-	CreateProblemSet(ctx *fiber.Ctx, request CreateProblemSetRequestObject) (any, error)
+	CreateProblemSet(
+		ctx *fiber.Ctx,
+		request CreateProblemSetRequestObject,
+	) (any, error)
 	// Delete Problem Set
 	// (DELETE /domains/{domain}/problem_sets/{problemSet})
-	DeleteProblemSet(ctx *fiber.Ctx, request DeleteProblemSetRequestObject) (any, error)
+	DeleteProblemSet(
+		ctx *fiber.Ctx,
+		request DeleteProblemSetRequestObject,
+	) (any, error)
 	// Get Problem Set
 	// (GET /domains/{domain}/problem_sets/{problemSet})
-	GetProblemSet(ctx *fiber.Ctx, request GetProblemSetRequestObject) (any, error)
+	GetProblemSet(
+		ctx *fiber.Ctx,
+		request GetProblemSetRequestObject,
+	) (any, error)
 	// Update Problem Set
 	// (PATCH /domains/{domain}/problem_sets/{problemSet})
-	UpdateProblemSet(ctx *fiber.Ctx, request UpdateProblemSetRequestObject) (any, error)
+	UpdateProblemSet(
+		ctx *fiber.Ctx,
+		request UpdateProblemSetRequestObject,
+	) (any, error)
 	// List Problems In Problem Set
 	// (GET /domains/{domain}/problem_sets/{problemSet}/problems)
 	ListProblemsInProblemSet(
@@ -3811,19 +4982,28 @@ type StrictServerInterface interface {
 	ListProblems(ctx *fiber.Ctx, request ListProblemsRequestObject) (any, error)
 	// Create Problem
 	// (POST /domains/{domain}/problems)
-	CreateProblem(ctx *fiber.Ctx, request CreateProblemRequestObject) (any, error)
+	CreateProblem(
+		ctx *fiber.Ctx,
+		request CreateProblemRequestObject,
+	) (any, error)
 	// Clone Problem
 	// (POST /domains/{domain}/problems/clone)
 	CloneProblem(ctx *fiber.Ctx, request CloneProblemRequestObject) (any, error)
 	// Delete Problem
 	// (DELETE /domains/{domain}/problems/{problem})
-	DeleteProblem(ctx *fiber.Ctx, request DeleteProblemRequestObject) (any, error)
+	DeleteProblem(
+		ctx *fiber.Ctx,
+		request DeleteProblemRequestObject,
+	) (any, error)
 	// Get Problem
 	// (GET /domains/{domain}/problems/{problem})
 	GetProblem(ctx *fiber.Ctx, request GetProblemRequestObject) (any, error)
 	// Update Problem
 	// (PATCH /domains/{domain}/problems/{problem})
-	UpdateProblem(ctx *fiber.Ctx, request UpdateProblemRequestObject) (any, error)
+	UpdateProblem(
+		ctx *fiber.Ctx,
+		request UpdateProblemRequestObject,
+	) (any, error)
 	// Submit Solution To Problem
 	// (POST /domains/{domain}/problems/{problem})
 	SubmitSolutionToProblem(
@@ -3874,13 +5054,19 @@ type StrictServerInterface interface {
 	) (any, error)
 	// List Records In Domain
 	// (GET /domains/{domain}/records)
-	ListRecordsInDomain(ctx *fiber.Ctx, request ListRecordsInDomainRequestObject) (any, error)
+	ListRecordsInDomain(
+		ctx *fiber.Ctx,
+		request ListRecordsInDomainRequestObject,
+	) (any, error)
 	// Get Record
 	// (GET /domains/{domain}/records/{record})
 	GetRecord(ctx *fiber.Ctx, request GetRecordRequestObject) (any, error)
 	// Submit Case By Judger
 	// (PUT /domains/{domain}/records/{record}/cases/{index}/judge)
-	SubmitCaseByJudger(ctx *fiber.Ctx, request SubmitCaseByJudgerRequestObject) (any, error)
+	SubmitCaseByJudger(
+		ctx *fiber.Ctx,
+		request SubmitCaseByJudgerRequestObject,
+	) (any, error)
 	// Submit Record By Judger
 	// (PUT /domains/{domain}/records/{record}/judge)
 	SubmitRecordByJudger(
@@ -3889,40 +5075,76 @@ type StrictServerInterface interface {
 	) (any, error)
 	// Claim Record By Judger
 	// (POST /domains/{domain}/records/{record}/judge/claim)
-	ClaimRecordByJudger(ctx *fiber.Ctx, request ClaimRecordByJudgerRequestObject) (any, error)
+	ClaimRecordByJudger(
+		ctx *fiber.Ctx,
+		request ClaimRecordByJudgerRequestObject,
+	) (any, error)
 	// List Domain Roles
 	// (GET /domains/{domain}/roles)
-	ListDomainRoles(ctx *fiber.Ctx, request ListDomainRolesRequestObject) (any, error)
+	ListDomainRoles(
+		ctx *fiber.Ctx,
+		request ListDomainRolesRequestObject,
+	) (any, error)
 	// Create Domain Role
 	// (POST /domains/{domain}/roles)
-	CreateDomainRole(ctx *fiber.Ctx, request CreateDomainRoleRequestObject) (any, error)
+	CreateDomainRole(
+		ctx *fiber.Ctx,
+		request CreateDomainRoleRequestObject,
+	) (any, error)
 	// Delete Domain Role
 	// (DELETE /domains/{domain}/roles/{role})
-	DeleteDomainRole(ctx *fiber.Ctx, request DeleteDomainRoleRequestObject) (any, error)
+	DeleteDomainRole(
+		ctx *fiber.Ctx,
+		request DeleteDomainRoleRequestObject,
+	) (any, error)
 	// Get Domain Role
 	// (GET /domains/{domain}/roles/{role})
-	GetDomainRole(ctx *fiber.Ctx, request GetDomainRoleRequestObject) (any, error)
+	GetDomainRole(
+		ctx *fiber.Ctx,
+		request GetDomainRoleRequestObject,
+	) (any, error)
 	// Update Domain Role
 	// (PATCH /domains/{domain}/roles/{role})
-	UpdateDomainRole(ctx *fiber.Ctx, request UpdateDomainRoleRequestObject) (any, error)
+	UpdateDomainRole(
+		ctx *fiber.Ctx,
+		request UpdateDomainRoleRequestObject,
+	) (any, error)
 	// Transfer Domain
 	// (POST /domains/{domain}/transfer)
-	TransferDomain(ctx *fiber.Ctx, request TransferDomainRequestObject) (any, error)
+	TransferDomain(
+		ctx *fiber.Ctx,
+		request TransferDomainRequestObject,
+	) (any, error)
 	// List Domain Users
 	// (GET /domains/{domain}/users)
-	ListDomainUsers(ctx *fiber.Ctx, request ListDomainUsersRequestObject) (any, error)
+	ListDomainUsers(
+		ctx *fiber.Ctx,
+		request ListDomainUsersRequestObject,
+	) (any, error)
 	// Add Domain User
 	// (POST /domains/{domain}/users)
-	AddDomainUser(ctx *fiber.Ctx, request AddDomainUserRequestObject) (any, error)
+	AddDomainUser(
+		ctx *fiber.Ctx,
+		request AddDomainUserRequestObject,
+	) (any, error)
 	// Remove Domain User
 	// (DELETE /domains/{domain}/users/{user})
-	RemoveDomainUser(ctx *fiber.Ctx, request RemoveDomainUserRequestObject) (any, error)
+	RemoveDomainUser(
+		ctx *fiber.Ctx,
+		request RemoveDomainUserRequestObject,
+	) (any, error)
 	// Get Domain User
 	// (GET /domains/{domain}/users/{user})
-	GetDomainUser(ctx *fiber.Ctx, request GetDomainUserRequestObject) (any, error)
+	GetDomainUser(
+		ctx *fiber.Ctx,
+		request GetDomainUserRequestObject,
+	) (any, error)
 	// Update Domain User
 	// (PATCH /domains/{domain}/users/{user})
-	UpdateDomainUser(ctx *fiber.Ctx, request UpdateDomainUserRequestObject) (any, error)
+	UpdateDomainUser(
+		ctx *fiber.Ctx,
+		request UpdateDomainUserRequestObject,
+	) (any, error)
 	// Get Domain User Permission
 	// (GET /domains/{domain}/users/{user}/permission)
 	GetDomainUserPermission(
@@ -3934,19 +5156,34 @@ type StrictServerInterface interface {
 	JwtDecoded(ctx *fiber.Ctx, request JwtDecodedRequestObject) (any, error)
 	// List Problem Groups
 	// (GET /problem_groups)
-	ListProblemGroups(ctx *fiber.Ctx, request ListProblemGroupsRequestObject) (any, error)
+	ListProblemGroups(
+		ctx *fiber.Ctx,
+		request ListProblemGroupsRequestObject,
+	) (any, error)
 	// Test Error Report
 	// (GET /test/report)
-	TestErrorReport(ctx *fiber.Ctx, request TestErrorReportRequestObject) (any, error)
+	TestErrorReport(
+		ctx *fiber.Ctx,
+		request TestErrorReportRequestObject,
+	) (any, error)
 	// Get Current User
 	// (GET /users/me)
-	GetCurrentUser(ctx *fiber.Ctx, request GetCurrentUserRequestObject) (any, error)
+	GetCurrentUser(
+		ctx *fiber.Ctx,
+		request GetCurrentUserRequestObject,
+	) (any, error)
 	// Update Current User
 	// (PATCH /users/me)
-	UpdateCurrentUser(ctx *fiber.Ctx, request UpdateCurrentUserRequestObject) (any, error)
+	UpdateCurrentUser(
+		ctx *fiber.Ctx,
+		request UpdateCurrentUserRequestObject,
+	) (any, error)
 	// Change Password
 	// (PATCH /users/me/password)
-	ChangePassword(ctx *fiber.Ctx, request ChangePasswordRequestObject) (any, error)
+	ChangePassword(
+		ctx *fiber.Ctx,
+		request ChangePasswordRequestObject,
+	) (any, error)
 	// Get User
 	// (GET /users/{uid})
 	GetUser(ctx *fiber.Ctx, request GetUserRequestObject) (any, error)
@@ -3966,7 +5203,11 @@ func NewStrictHandler(
 	middlewares []StrictMiddlewareFunc,
 	responseHandler StrictRespHandlerFunc,
 ) ServerInterface {
-	return &strictHandler{ssi: ssi, middlewares: middlewares, responseHandler: responseHandler}
+	return &strictHandler{
+		ssi:             ssi,
+		middlewares:     middlewares,
+		responseHandler: responseHandler,
+	}
 }
 
 type strictHandler struct {
@@ -3999,13 +5240,19 @@ func (sh *strictHandler) AdminListDomainRoles(
 }
 
 // AdminListJudgers operation middleware
-func (sh *strictHandler) AdminListJudgers(ctx *fiber.Ctx, params AdminListJudgersParams) error {
+func (sh *strictHandler) AdminListJudgers(
+	ctx *fiber.Ctx,
+	params AdminListJudgersParams,
+) error {
 	var request AdminListJudgersRequestObject
 
 	request.Params = params
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.AdminListJudgers(ctx, request.(AdminListJudgersRequestObject))
+		return sh.ssi.AdminListJudgers(
+			ctx,
+			request.(AdminListJudgersRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "AdminListJudgers")
@@ -4026,7 +5273,10 @@ func (sh *strictHandler) AdminCreateJudger(ctx *fiber.Ctx) error {
 	request.Body = &body
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.AdminCreateJudger(ctx, request.(AdminCreateJudgerRequestObject))
+		return sh.ssi.AdminCreateJudger(
+			ctx,
+			request.(AdminCreateJudgerRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "AdminCreateJudger")
@@ -4037,7 +5287,10 @@ func (sh *strictHandler) AdminCreateJudger(ctx *fiber.Ctx) error {
 }
 
 // AdminListUsers operation middleware
-func (sh *strictHandler) AdminListUsers(ctx *fiber.Ctx, params AdminListUsersParams) error {
+func (sh *strictHandler) AdminListUsers(
+	ctx *fiber.Ctx,
+	params AdminListUsersParams,
+) error {
 	var request AdminListUsersRequestObject
 
 	request.Params = params
@@ -4230,7 +5483,10 @@ func (sh *strictHandler) GetToken(ctx *fiber.Ctx, params GetTokenParams) error {
 }
 
 // ListDomains operation middleware
-func (sh *strictHandler) ListDomains(ctx *fiber.Ctx, params ListDomainsParams) error {
+func (sh *strictHandler) ListDomains(
+	ctx *fiber.Ctx,
+	params ListDomainsParams,
+) error {
 	var request ListDomainsRequestObject
 
 	request.Params = params
@@ -4268,7 +5524,10 @@ func (sh *strictHandler) CreateDomain(ctx *fiber.Ctx) error {
 }
 
 // SearchDomainGroups operation middleware
-func (sh *strictHandler) SearchDomainGroups(ctx *fiber.Ctx, params SearchDomainGroupsParams) error {
+func (sh *strictHandler) SearchDomainGroups(
+	ctx *fiber.Ctx,
+	params SearchDomainGroupsParams,
+) error {
 	var request SearchDomainGroupsRequestObject
 
 	request.Params = params
@@ -4395,7 +5654,10 @@ func (sh *strictHandler) ListDomainInvitations(
 }
 
 // CreateDomainInvitation operation middleware
-func (sh *strictHandler) CreateDomainInvitation(ctx *fiber.Ctx, domain string) error {
+func (sh *strictHandler) CreateDomainInvitation(
+	ctx *fiber.Ctx,
+	domain string,
+) error {
 	var request CreateDomainInvitationRequestObject
 
 	request.Domain = domain
@@ -4538,7 +5800,10 @@ func (sh *strictHandler) ListProblemSets(
 	request.Params = params
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.ListProblemSets(ctx, request.(ListProblemSetsRequestObject))
+		return sh.ssi.ListProblemSets(
+			ctx,
+			request.(ListProblemSetsRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "ListProblemSets")
@@ -4561,7 +5826,10 @@ func (sh *strictHandler) CreateProblemSet(ctx *fiber.Ctx, domain string) error {
 	request.Body = &body
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.CreateProblemSet(ctx, request.(CreateProblemSetRequestObject))
+		return sh.ssi.CreateProblemSet(
+			ctx,
+			request.(CreateProblemSetRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "CreateProblemSet")
@@ -4572,14 +5840,21 @@ func (sh *strictHandler) CreateProblemSet(ctx *fiber.Ctx, domain string) error {
 }
 
 // DeleteProblemSet operation middleware
-func (sh *strictHandler) DeleteProblemSet(ctx *fiber.Ctx, domain string, problemSet string) error {
+func (sh *strictHandler) DeleteProblemSet(
+	ctx *fiber.Ctx,
+	domain string,
+	problemSet string,
+) error {
 	var request DeleteProblemSetRequestObject
 
 	request.Domain = domain
 	request.ProblemSet = problemSet
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.DeleteProblemSet(ctx, request.(DeleteProblemSetRequestObject))
+		return sh.ssi.DeleteProblemSet(
+			ctx,
+			request.(DeleteProblemSetRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "DeleteProblemSet")
@@ -4590,7 +5865,11 @@ func (sh *strictHandler) DeleteProblemSet(ctx *fiber.Ctx, domain string, problem
 }
 
 // GetProblemSet operation middleware
-func (sh *strictHandler) GetProblemSet(ctx *fiber.Ctx, domain string, problemSet string) error {
+func (sh *strictHandler) GetProblemSet(
+	ctx *fiber.Ctx,
+	domain string,
+	problemSet string,
+) error {
 	var request GetProblemSetRequestObject
 
 	request.Domain = domain
@@ -4608,7 +5887,11 @@ func (sh *strictHandler) GetProblemSet(ctx *fiber.Ctx, domain string, problemSet
 }
 
 // UpdateProblemSet operation middleware
-func (sh *strictHandler) UpdateProblemSet(ctx *fiber.Ctx, domain string, problemSet string) error {
+func (sh *strictHandler) UpdateProblemSet(
+	ctx *fiber.Ctx,
+	domain string,
+	problemSet string,
+) error {
 	var request UpdateProblemSetRequestObject
 
 	request.Domain = domain
@@ -4621,7 +5904,10 @@ func (sh *strictHandler) UpdateProblemSet(ctx *fiber.Ctx, domain string, problem
 	request.Body = &body
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.UpdateProblemSet(ctx, request.(UpdateProblemSetRequestObject))
+		return sh.ssi.UpdateProblemSet(
+			ctx,
+			request.(UpdateProblemSetRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "UpdateProblemSet")
@@ -4875,7 +6161,11 @@ func (sh *strictHandler) CloneProblem(ctx *fiber.Ctx, domain string) error {
 }
 
 // DeleteProblem operation middleware
-func (sh *strictHandler) DeleteProblem(ctx *fiber.Ctx, domain string, problem string) error {
+func (sh *strictHandler) DeleteProblem(
+	ctx *fiber.Ctx,
+	domain string,
+	problem string,
+) error {
 	var request DeleteProblemRequestObject
 
 	request.Domain = domain
@@ -4893,7 +6183,11 @@ func (sh *strictHandler) DeleteProblem(ctx *fiber.Ctx, domain string, problem st
 }
 
 // GetProblem operation middleware
-func (sh *strictHandler) GetProblem(ctx *fiber.Ctx, domain string, problem string) error {
+func (sh *strictHandler) GetProblem(
+	ctx *fiber.Ctx,
+	domain string,
+	problem string,
+) error {
 	var request GetProblemRequestObject
 
 	request.Domain = domain
@@ -4911,7 +6205,11 @@ func (sh *strictHandler) GetProblem(ctx *fiber.Ctx, domain string, problem strin
 }
 
 // UpdateProblem operation middleware
-func (sh *strictHandler) UpdateProblem(ctx *fiber.Ctx, domain string, problem string) error {
+func (sh *strictHandler) UpdateProblem(
+	ctx *fiber.Ctx,
+	domain string,
+	problem string,
+) error {
 	var request UpdateProblemRequestObject
 
 	request.Domain = domain
@@ -5101,7 +6399,10 @@ func (sh *strictHandler) ListLatestProblemConfigObjectsUnderAGivenPrefix(
 		)
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "ListLatestProblemConfigObjectsUnderAGivenPrefix")
+		handler = middleware(
+			handler,
+			"ListLatestProblemConfigObjectsUnderAGivenPrefix",
+		)
 	}
 
 	response, err := handler(ctx, request)
@@ -5190,7 +6491,11 @@ func (sh *strictHandler) ListRecordsInDomain(
 }
 
 // GetRecord operation middleware
-func (sh *strictHandler) GetRecord(ctx *fiber.Ctx, domain string, record openapi_types.UUID) error {
+func (sh *strictHandler) GetRecord(
+	ctx *fiber.Ctx,
+	domain string,
+	record openapi_types.UUID,
+) error {
 	var request GetRecordRequestObject
 
 	request.Domain = domain
@@ -5241,7 +6546,11 @@ func (sh *strictHandler) SubmitCaseByJudger(
 }
 
 // SubmitRecordByJudger operation middleware
-func (sh *strictHandler) SubmitRecordByJudger(ctx *fiber.Ctx, domain string, record string) error {
+func (sh *strictHandler) SubmitRecordByJudger(
+	ctx *fiber.Ctx,
+	domain string,
+	record string,
+) error {
 	var request SubmitRecordByJudgerRequestObject
 
 	request.Domain = domain
@@ -5268,7 +6577,11 @@ func (sh *strictHandler) SubmitRecordByJudger(ctx *fiber.Ctx, domain string, rec
 }
 
 // ClaimRecordByJudger operation middleware
-func (sh *strictHandler) ClaimRecordByJudger(ctx *fiber.Ctx, domain string, record string) error {
+func (sh *strictHandler) ClaimRecordByJudger(
+	ctx *fiber.Ctx,
+	domain string,
+	record string,
+) error {
 	var request ClaimRecordByJudgerRequestObject
 
 	request.Domain = domain
@@ -5306,7 +6619,10 @@ func (sh *strictHandler) ListDomainRoles(
 	request.Params = params
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.ListDomainRoles(ctx, request.(ListDomainRolesRequestObject))
+		return sh.ssi.ListDomainRoles(
+			ctx,
+			request.(ListDomainRolesRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "ListDomainRoles")
@@ -5329,7 +6645,10 @@ func (sh *strictHandler) CreateDomainRole(ctx *fiber.Ctx, domain string) error {
 	request.Body = &body
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.CreateDomainRole(ctx, request.(CreateDomainRoleRequestObject))
+		return sh.ssi.CreateDomainRole(
+			ctx,
+			request.(CreateDomainRoleRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "CreateDomainRole")
@@ -5340,14 +6659,21 @@ func (sh *strictHandler) CreateDomainRole(ctx *fiber.Ctx, domain string) error {
 }
 
 // DeleteDomainRole operation middleware
-func (sh *strictHandler) DeleteDomainRole(ctx *fiber.Ctx, domain string, role string) error {
+func (sh *strictHandler) DeleteDomainRole(
+	ctx *fiber.Ctx,
+	domain string,
+	role string,
+) error {
 	var request DeleteDomainRoleRequestObject
 
 	request.Domain = domain
 	request.Role = role
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.DeleteDomainRole(ctx, request.(DeleteDomainRoleRequestObject))
+		return sh.ssi.DeleteDomainRole(
+			ctx,
+			request.(DeleteDomainRoleRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "DeleteDomainRole")
@@ -5358,7 +6684,11 @@ func (sh *strictHandler) DeleteDomainRole(ctx *fiber.Ctx, domain string, role st
 }
 
 // GetDomainRole operation middleware
-func (sh *strictHandler) GetDomainRole(ctx *fiber.Ctx, domain string, role string) error {
+func (sh *strictHandler) GetDomainRole(
+	ctx *fiber.Ctx,
+	domain string,
+	role string,
+) error {
 	var request GetDomainRoleRequestObject
 
 	request.Domain = domain
@@ -5376,7 +6706,11 @@ func (sh *strictHandler) GetDomainRole(ctx *fiber.Ctx, domain string, role strin
 }
 
 // UpdateDomainRole operation middleware
-func (sh *strictHandler) UpdateDomainRole(ctx *fiber.Ctx, domain string, role string) error {
+func (sh *strictHandler) UpdateDomainRole(
+	ctx *fiber.Ctx,
+	domain string,
+	role string,
+) error {
 	var request UpdateDomainRoleRequestObject
 
 	request.Domain = domain
@@ -5389,7 +6723,10 @@ func (sh *strictHandler) UpdateDomainRole(ctx *fiber.Ctx, domain string, role st
 	request.Body = &body
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.UpdateDomainRole(ctx, request.(UpdateDomainRoleRequestObject))
+		return sh.ssi.UpdateDomainRole(
+			ctx,
+			request.(UpdateDomainRoleRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "UpdateDomainRole")
@@ -5434,7 +6771,10 @@ func (sh *strictHandler) ListDomainUsers(
 	request.Params = params
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.ListDomainUsers(ctx, request.(ListDomainUsersRequestObject))
+		return sh.ssi.ListDomainUsers(
+			ctx,
+			request.(ListDomainUsersRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "ListDomainUsers")
@@ -5468,14 +6808,21 @@ func (sh *strictHandler) AddDomainUser(ctx *fiber.Ctx, domain string) error {
 }
 
 // RemoveDomainUser operation middleware
-func (sh *strictHandler) RemoveDomainUser(ctx *fiber.Ctx, domain string, user string) error {
+func (sh *strictHandler) RemoveDomainUser(
+	ctx *fiber.Ctx,
+	domain string,
+	user string,
+) error {
 	var request RemoveDomainUserRequestObject
 
 	request.Domain = domain
 	request.User = user
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.RemoveDomainUser(ctx, request.(RemoveDomainUserRequestObject))
+		return sh.ssi.RemoveDomainUser(
+			ctx,
+			request.(RemoveDomainUserRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "RemoveDomainUser")
@@ -5486,7 +6833,11 @@ func (sh *strictHandler) RemoveDomainUser(ctx *fiber.Ctx, domain string, user st
 }
 
 // GetDomainUser operation middleware
-func (sh *strictHandler) GetDomainUser(ctx *fiber.Ctx, domain string, user string) error {
+func (sh *strictHandler) GetDomainUser(
+	ctx *fiber.Ctx,
+	domain string,
+	user string,
+) error {
 	var request GetDomainUserRequestObject
 
 	request.Domain = domain
@@ -5504,7 +6855,11 @@ func (sh *strictHandler) GetDomainUser(ctx *fiber.Ctx, domain string, user strin
 }
 
 // UpdateDomainUser operation middleware
-func (sh *strictHandler) UpdateDomainUser(ctx *fiber.Ctx, domain string, user string) error {
+func (sh *strictHandler) UpdateDomainUser(
+	ctx *fiber.Ctx,
+	domain string,
+	user string,
+) error {
 	var request UpdateDomainUserRequestObject
 
 	request.Domain = domain
@@ -5517,7 +6872,10 @@ func (sh *strictHandler) UpdateDomainUser(ctx *fiber.Ctx, domain string, user st
 	request.Body = &body
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.UpdateDomainUser(ctx, request.(UpdateDomainUserRequestObject))
+		return sh.ssi.UpdateDomainUser(
+			ctx,
+			request.(UpdateDomainUserRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "UpdateDomainUser")
@@ -5528,7 +6886,11 @@ func (sh *strictHandler) UpdateDomainUser(ctx *fiber.Ctx, domain string, user st
 }
 
 // GetDomainUserPermission operation middleware
-func (sh *strictHandler) GetDomainUserPermission(ctx *fiber.Ctx, domain string, user string) error {
+func (sh *strictHandler) GetDomainUserPermission(
+	ctx *fiber.Ctx,
+	domain string,
+	user string,
+) error {
 	var request GetDomainUserPermissionRequestObject
 
 	request.Domain = domain
@@ -5564,13 +6926,19 @@ func (sh *strictHandler) JwtDecoded(ctx *fiber.Ctx) error {
 }
 
 // ListProblemGroups operation middleware
-func (sh *strictHandler) ListProblemGroups(ctx *fiber.Ctx, params ListProblemGroupsParams) error {
+func (sh *strictHandler) ListProblemGroups(
+	ctx *fiber.Ctx,
+	params ListProblemGroupsParams,
+) error {
 	var request ListProblemGroupsRequestObject
 
 	request.Params = params
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.ListProblemGroups(ctx, request.(ListProblemGroupsRequestObject))
+		return sh.ssi.ListProblemGroups(
+			ctx,
+			request.(ListProblemGroupsRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "ListProblemGroups")
@@ -5585,7 +6953,10 @@ func (sh *strictHandler) TestErrorReport(ctx *fiber.Ctx) error {
 	var request TestErrorReportRequestObject
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.TestErrorReport(ctx, request.(TestErrorReportRequestObject))
+		return sh.ssi.TestErrorReport(
+			ctx,
+			request.(TestErrorReportRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "TestErrorReport")
@@ -5621,7 +6992,10 @@ func (sh *strictHandler) UpdateCurrentUser(ctx *fiber.Ctx) error {
 	request.Body = &body
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.UpdateCurrentUser(ctx, request.(UpdateCurrentUserRequestObject))
+		return sh.ssi.UpdateCurrentUser(
+			ctx,
+			request.(UpdateCurrentUserRequestObject),
+		)
 	}
 	for _, middleware := range sh.middlewares {
 		handler = middleware(handler, "UpdateCurrentUser")

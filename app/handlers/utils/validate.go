@@ -29,7 +29,12 @@ func ValidateStruct(object any) (any, error) {
 			return vierr, fiber.ErrInternalServerError
 		}
 		for _, e := range err.(validator.ValidationErrors) {
-			log.Errorf("validation error: %v, %v, %v", e.StructNamespace(), e.Tag(), e.Param())
+			log.Errorf(
+				"validation error: %v, %v, %v",
+				e.StructNamespace(),
+				e.Tag(),
+				e.Param(),
+			)
 			validationError = append(
 				validationError,
 				schemas.ValidationError{
@@ -43,7 +48,10 @@ func ValidateStruct(object any) (any, error) {
 	return nil, nil
 }
 
-func ValidateRequest(f schemas.StrictHandlerFunc, operationID string) schemas.StrictHandlerFunc {
+func ValidateRequest(
+	f schemas.StrictHandlerFunc,
+	operationID string,
+) schemas.StrictHandlerFunc {
 	return func(ctx *fiber.Ctx, request any) (any, error) {
 		if response, err := ValidateStruct(request); err != nil {
 			return response, err

@@ -5,7 +5,10 @@ import (
 	"github.com/joint-online-judge/go-horse/app/schemas"
 )
 
-func RegisterProblem(router fiber.Router, wrapper schemas.ServerInterfaceWrapper) {
+func RegisterProblem(
+	router fiber.Router,
+	wrapper schemas.ServerInterfaceWrapper,
+) {
 	problems := router.Group("/domains/:domain/problems")
 	problem := problems.Group("/:problem")
 	problems.Get("", wrapper.ListProblems)

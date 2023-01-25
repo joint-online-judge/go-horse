@@ -13,14 +13,20 @@ import (
 
 // Login
 // (POST /auth/login)
-func (s *ApiV1) Login(c *fiber.Ctx, request schemas.LoginRequestObject) (any, error) {
+func (s *ApiV1) Login(
+	c *fiber.Ctx,
+	request schemas.LoginRequestObject,
+) (any, error) {
 	userModel := models.User{Username: *request.Body.Username}
 	user, err := db.GetObj[models.User, schemas.User](&userModel)
 	if err != nil {
 		return nil, schemas.NewBizError(schemas.UserNotFoundError)
 	}
 	if !user.VerifyPassword(*request.Body.Password) {
-		return nil, schemas.NewBizError(schemas.UsernamePasswordError, "incorrect password")
+		return nil, schemas.NewBizError(
+			schemas.UsernamePasswordError,
+			"incorrect password",
+		)
 	}
 	log.Infof("user login: %+v", user)
 	userModel.ID = user.Id.String()
@@ -41,7 +47,10 @@ func (s *ApiV1) Login(c *fiber.Ctx, request schemas.LoginRequestObject) (any, er
 
 // Logout
 // (POST /auth/logout)
-func (s *ApiV1) Logout(c *fiber.Ctx, request schemas.LogoutRequestObject) (any, error) {
+func (s *ApiV1) Logout(
+	c *fiber.Ctx,
+	request schemas.LogoutRequestObject,
+) (any, error) {
 	return nil, nil
 }
 
@@ -65,7 +74,10 @@ func (s *ApiV1) OauthAuthorize(
 
 // Refresh
 // (POST /auth/refresh)
-func (s *ApiV1) Refresh(c *fiber.Ctx, request schemas.RefreshRequestObject) (any, error) {
+func (s *ApiV1) Refresh(
+	c *fiber.Ctx,
+	request schemas.RefreshRequestObject,
+) (any, error) {
 	return nil, nil
 }
 

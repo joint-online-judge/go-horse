@@ -1775,14 +1775,18 @@ func (t ValidationError_Loc_Item) AsValidationErrorLoc0() (ValidationErrorLoc0, 
 }
 
 // FromValidationErrorLoc0 overwrites any union data inside the ValidationError_Loc_Item as the provided ValidationErrorLoc0
-func (t *ValidationError_Loc_Item) FromValidationErrorLoc0(v ValidationErrorLoc0) error {
+func (t *ValidationError_Loc_Item) FromValidationErrorLoc0(
+	v ValidationErrorLoc0,
+) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
 // MergeValidationErrorLoc0 performs a merge with any union data inside the ValidationError_Loc_Item, using the provided ValidationErrorLoc0
-func (t *ValidationError_Loc_Item) MergeValidationErrorLoc0(v ValidationErrorLoc0) error {
+func (t *ValidationError_Loc_Item) MergeValidationErrorLoc0(
+	v ValidationErrorLoc0,
+) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -1801,14 +1805,18 @@ func (t ValidationError_Loc_Item) AsValidationErrorLoc1() (ValidationErrorLoc1, 
 }
 
 // FromValidationErrorLoc1 overwrites any union data inside the ValidationError_Loc_Item as the provided ValidationErrorLoc1
-func (t *ValidationError_Loc_Item) FromValidationErrorLoc1(v ValidationErrorLoc1) error {
+func (t *ValidationError_Loc_Item) FromValidationErrorLoc1(
+	v ValidationErrorLoc1,
+) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
 // MergeValidationErrorLoc1 performs a merge with any union data inside the ValidationError_Loc_Item, using the provided ValidationErrorLoc1
-func (t *ValidationError_Loc_Item) MergeValidationErrorLoc1(v ValidationErrorLoc1) error {
+func (t *ValidationError_Loc_Item) MergeValidationErrorLoc1(
+	v ValidationErrorLoc1,
+) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err

@@ -5,7 +5,10 @@ import (
 	"github.com/joint-online-judge/go-horse/app/schemas"
 )
 
-func RegisterAdmin(router fiber.Router, wrapper schemas.ServerInterfaceWrapper) {
+func RegisterAdmin(
+	router fiber.Router,
+	wrapper schemas.ServerInterfaceWrapper,
+) {
 	admin := router.Group("/admin")
 	admin.Get("/domain_roles", wrapper.AdminListDomainRoles)
 	admin.Get("/judgers", wrapper.AdminListJudgers)

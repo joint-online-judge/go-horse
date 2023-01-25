@@ -5,7 +5,10 @@ import (
 	"github.com/joint-online-judge/go-horse/app/schemas"
 )
 
-func RegisterRecord(router fiber.Router, wrapper schemas.ServerInterfaceWrapper) {
+func RegisterRecord(
+	router fiber.Router,
+	wrapper schemas.ServerInterfaceWrapper,
+) {
 	records := router.Group("/domains/:domain/records")
 	record := records.Group("/:record")
 	records.Get("", wrapper.ListRecordsInDomain)

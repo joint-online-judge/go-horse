@@ -47,9 +47,10 @@ func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
 	}
 	if errors.Is(err, fiber.ErrInternalServerError) {
 		msg := response.(error).Error()
-		return ctx.Status(code).JSON(schemas.EmptyResp{BizError: schemas.BizError{
-			ErrorCode: schemas.InternalServerError, ErrorMsg: &msg,
-		}, Data: nil})
+		return ctx.Status(code).
+			JSON(schemas.EmptyResp{BizError: schemas.BizError{
+				ErrorCode: schemas.InternalServerError, ErrorMsg: &msg,
+			}, Data: nil})
 	}
 	b := make([]byte, 4096)
 	n := runtime.Stack(b, false)

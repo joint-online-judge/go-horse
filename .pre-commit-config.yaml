@@ -27,6 +27,7 @@ repos:
       rev: v0.11.0
       hooks:
           - id: golines
+            args: [-m, '80']
     - repo: https://github.com/dnephin/pre-commit-golang
       rev: v0.5.1
       hooks:

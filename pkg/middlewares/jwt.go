@@ -33,7 +33,11 @@ func JWT() fiber.Handler {
 	})
 }
 
-func NewAccessToken(user schemas.User, category, oauth_name string, fresh bool) (string, error) {
+func NewAccessToken(
+	user schemas.User,
+	category, oauth_name string,
+	fresh bool,
+) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, schemas.JWTClaims{
 		Type:      "access",
 		Fresh:     fresh,
@@ -46,7 +50,8 @@ func NewAccessToken(user schemas.User, category, oauth_name string, fresh bool) 
 		OauthName: oauth_name,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(
-				time.Now().Add(time.Duration(configs.Conf.JwtExpireSeconds) * time.Second),
+				time.Now().
+					Add(time.Duration(configs.Conf.JwtExpireSeconds) * time.Second),
 			),
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 			NotBefore: jwt.NewNumericDate(time.Now()),
