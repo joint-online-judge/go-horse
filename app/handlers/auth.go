@@ -5,9 +5,9 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/models"
+	"github.com/joint-online-judge/go-horse/app/querys"
 	"github.com/joint-online-judge/go-horse/app/schemas"
 	"github.com/joint-online-judge/go-horse/pkg/middlewares"
-	"github.com/joint-online-judge/go-horse/platform/db"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -18,7 +18,7 @@ func (s *ApiV1) Login(
 	request schemas.LoginRequestObject,
 ) (any, error) {
 	userModel := models.User{Username: *request.Body.Username}
-	user, err := db.GetObj[models.User, schemas.User](&userModel)
+	user, err := querys.GetObj[models.User, schemas.User](&userModel)
 	if err != nil {
 		return nil, schemas.NewBizError(schemas.UserNotFoundError)
 	}
@@ -32,7 +32,7 @@ func (s *ApiV1) Login(
 	userModel.ID = user.Id.String()
 	userModel.LoginAt = time.Now()
 	userModel.LoginIP = c.Context().RemoteAddr().String()
-	err = db.SaveObj(&userModel)
+	err = querys.SaveObj(&userModel)
 	if err != nil {
 		return nil, err
 	}

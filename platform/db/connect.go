@@ -12,6 +12,9 @@ import (
 	"gorm.io/gorm/logger"
 )
 
+// DB gorm connector
+var DB *gorm.DB
+
 func ConnectDB() {
 	var err error // define error here to prevent overshadowing the global DB
 	conf := configs.Conf

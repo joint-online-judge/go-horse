@@ -1,4 +1,4 @@
-package db
+package querys
 
 import (
 	"github.com/joint-online-judge/go-horse/app/models"

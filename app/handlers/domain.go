@@ -3,8 +3,8 @@ package handlers
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/models"
+	"github.com/joint-online-judge/go-horse/app/querys"
 	"github.com/joint-online-judge/go-horse/app/schemas"
-	"github.com/joint-online-judge/go-horse/platform/db"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -14,7 +14,7 @@ func (s *ApiV1) ListDomains(
 	c *fiber.Ctx,
 	request schemas.ListDomainsRequestObject,
 ) (any, error) {
-	objs, count, err := db.ListObjs[models.Domain, schemas.Domain]()
+	objs, count, err := querys.ListObjs[models.Domain, schemas.Domain]()
 	return schemas.NewListResp(count, objs), err
 }
 
