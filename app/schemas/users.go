@@ -5,6 +5,7 @@ import (
 	"time"
 
 	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
+	"github.com/matthewhartstonge/argon2"
 )
 
 // User defines model for User.
@@ -16,9 +17,9 @@ type User struct {
 	Username string             `json:"username"`
 }
 
-func (u User) VerifyPassword(password string) bool {
-	// TODO: verify password
-	return true
+func VerifyPassword(password, hashed_password string) bool {
+	ok, err := argon2.VerifyEncoded([]byte(password), []byte(hashed_password))
+	return ok && err == nil
 }
 
 // UserCreate defines model for UserCreate.

@@ -21,7 +21,10 @@ func (s *ApiV1) Login(
 	if err != nil {
 		return nil, schemas.NewBizError(schemas.UserNotFoundError)
 	}
-	if !user.VerifyPassword(*request.Body.Password) {
+	if !schemas.VerifyPassword(
+		*request.Body.Password,
+		userModel.HashedPassword,
+	) {
 		return nil, schemas.NewBizError(
 			schemas.UsernamePasswordError,
 			"incorrect password",
