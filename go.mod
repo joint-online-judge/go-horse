@@ -13,6 +13,7 @@ require (
 )
 
 require (
+	github.com/antonfisher/nested-logrus-formatter v1.3.1
 	github.com/aws/aws-sdk-go v1.44.186
 	github.com/bytedance/sonic v1.7.0
 	github.com/caarlos0/env/v6 v6.10.1

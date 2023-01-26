@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	nested "github.com/antonfisher/nested-logrus-formatter"
 	"github.com/joint-online-judge/go-horse/pkg/configs"
 	"github.com/joint-online-judge/go-horse/pkg/middlewares"
 	"github.com/joint-online-judge/go-horse/pkg/routers"
@@ -26,6 +27,10 @@ import (
 //	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
 //	@BasePath		/api/v1
 func main() {
+	log.SetFormatter(&nested.Formatter{
+		HideKeys:    true,
+		FieldsOrder: []string{"component", "category"},
+	})
 	configs.Initalize()
 	error.ConnectRollbar()
 	db.ConnectPostgres()

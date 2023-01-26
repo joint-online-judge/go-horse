@@ -1,10 +1,13 @@
-.PHONY: dev clean pre-commit test build swag
+.PHONY: dev clean pre-commit test build swag pre-dev
 
 APP_NAME = go-horse
 BUILD_DIR = $(PWD)/build
 
 dev:
-	DEBUG=1 fiber dev -p "make swag" -D docs
+	DEBUG=1 fiber dev -p "make pre-dev" -D docs
+
+pre-dev: swag
+	go mod tidy
 
 clean:
 	rm -rf ./build
