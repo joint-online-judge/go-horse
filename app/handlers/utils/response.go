@@ -19,11 +19,10 @@ func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
 				Data:     nil,
 			})
 		}
-		switch response.(type) {
+		switch typedResponse := response.(type) {
 		// non standard response
 		case schemas.NonStandardResp:
-			resp := response
-			return ctx.Status(code).JSON(resp)
+			return ctx.Status(code).JSON(typedResponse.Data)
 		default:
 			if reflect.ValueOf(response).Kind() == reflect.Struct {
 				validate_response, validate_err := ValidateStruct(response)

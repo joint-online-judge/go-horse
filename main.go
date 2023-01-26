@@ -11,6 +11,7 @@ import (
 
 	_ "github.com/joint-online-judge/go-horse/docs" // load API Docs files (Swagger)
 
+	"github.com/bytedance/sonic"
 	"github.com/gofiber/fiber/v2"
 	log "github.com/sirupsen/logrus"
 )
@@ -34,7 +35,9 @@ func main() {
 	// storage.ConnectS3()
 	app := fiber.New(fiber.Config{
 		// ErrorHandler: utils.Panic,
-		Prefork: !configs.Conf.Debug,
+		Prefork:     !configs.Conf.Debug,
+		JSONEncoder: sonic.Marshal,
+		JSONDecoder: sonic.Unmarshal,
 	})
 	middlewares.Initalize(app)
 	routers.Initalize(app)
