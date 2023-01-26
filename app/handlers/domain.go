@@ -36,8 +36,7 @@ func (s *ApiV1) CreateDomain(
 		Hidden:   *domain.Hidden,
 		Group_:   *domain.Group,
 	}
-	err := querys.CreateObj(&domainModel)
-	return domainModel, err
+	return querys.CreateObj[schemas.Domain](&domainModel)
 }
 
 // Get Domain
