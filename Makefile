@@ -4,7 +4,7 @@ APP_NAME = go-horse
 BUILD_DIR = $(PWD)/build
 
 dev:
-	DEBUG=1 fiber dev -p "swag init" -D docs
+	DEBUG=1 fiber dev -p "make swag" -D docs
 
 clean:
 	rm -rf ./build
@@ -24,3 +24,4 @@ run: swag build
 
 swag:
 	swag init
+	pre-commit run --files ./docs/swagger.* || true
