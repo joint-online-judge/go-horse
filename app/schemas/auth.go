@@ -31,6 +31,18 @@ func JWT(c *fiber.Ctx) *JWTClaims {
 	return c.Locals("jwt").(*JWTClaims)
 }
 
+func JWTUser(c *fiber.Ctx) *User {
+	claims := c.Locals("jwt").(*JWTClaims)
+	user := User{
+		Gravatar: &claims.Gravatar,
+		Id:       uuid.MustParse(claims.ID),
+		IsActive: &claims.IsActive,
+		Role:     &claims.Role,
+		Username: claims.Username,
+	}
+	return &user
+}
+
 func NewAccessToken(
 	user User,
 	oauth_name, category string,

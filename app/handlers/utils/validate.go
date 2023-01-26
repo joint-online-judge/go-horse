@@ -45,7 +45,7 @@ func ValidateStruct(object any) (any, error) {
 		}
 		return validationError, fiber.ErrUnprocessableEntity
 	}
-	return nil, schemas.NewBizError(schemas.APINotImplementedError)
+	return nil, nil
 }
 
 func ValidateRequest(

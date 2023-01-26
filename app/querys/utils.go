@@ -30,3 +30,7 @@ func GetObj[Model, Schema any](model *Model) (Schema, error) {
 func SaveObj(model any) error {
 	return DB.Save(model).Error
 }
+
+func CreateObj(model any) error {
+	return DB.Create(model).Error
+}

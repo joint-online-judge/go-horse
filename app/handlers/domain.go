@@ -24,9 +24,20 @@ func (s *ApiV1) CreateDomain(
 	c *fiber.Ctx,
 	request schemas.CreateDomainRequestObject,
 ) (any, error) {
-	b := request.Body
-	log.Infof("request.Body: %v", b)
-	return nil, schemas.NewBizError(schemas.APINotImplementedError)
+	// TODO: verify input values
+	domain := request.Body
+	user := schemas.JWTUser(c)
+	domainModel := models.Domain{
+		OwnerID:  user.Id,
+		URL:      *domain.Url,
+		Name:     domain.Name,
+		Gravatar: *domain.Gravatar,
+		Bulletin: *domain.Bulletin,
+		Hidden:   *domain.Hidden,
+		Group_:   *domain.Group,
+	}
+	err := querys.CreateObj(&domainModel)
+	return domainModel, err
 }
 
 // Get Domain
