@@ -24,7 +24,7 @@ type Record struct {
 	CommitterID     uuid.UUID `gorm:"column:committer_id"                                                         json:"committer_id"`
 	JudgerID        uuid.UUID `gorm:"column:judger_id"                                                            json:"judger_id"`
 	State           string    `gorm:"column:state;not null;default:processing"                                    json:"state"`
-	Language        string    `gorm:"column:language;not null;default:''::character varying"                      json:"language"`
+	Language        string    `gorm:"column:language;not null;default:''"                                         json:"language"`
 	TaskID          string    `gorm:"column:task_id"                                                              json:"task_id"`
 	Cases           string    `gorm:"column:cases;not null;default:'[]'::json"                                    json:"cases"`
 	DomainID        uuid.UUID `gorm:"column:domain_id;not null"                                                   json:"domain_id"`

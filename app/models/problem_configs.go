@@ -16,9 +16,9 @@ type ProblemConfig struct {
 	ProblemID     uuid.UUID `gorm:"column:problem_id"                                                           json:"problem_id"`
 	CommitterID   uuid.UUID `gorm:"column:committer_id"                                                         json:"committer_id"`
 	ID            uuid.UUID `gorm:"column:id;primaryKey"                                                        json:"id"`
-	CommitID      string    `gorm:"column:commit_id;not null;default:''::character varying"                     json:"commit_id"`
+	CommitID      string    `gorm:"column:commit_id;not null;default:''"                                        json:"commit_id"`
 	DataVersion   int32     `gorm:"column:data_version;not null;default:2"                                      json:"data_version"`
-	CommitMessage string    `gorm:"column:commit_message;not null;default:''::character varying"                json:"commit_message"`
+	CommitMessage string    `gorm:"column:commit_message;not null;default:''"                                   json:"commit_message"`
 }
 
 // TableName ProblemConfig's table name

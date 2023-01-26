@@ -20,7 +20,7 @@ type Domain struct {
 	Bulletin  string    `gorm:"column:bulletin;not null"                                                    json:"bulletin"`
 	Hidden    bool      `gorm:"column:hidden;not null"                                                      json:"hidden"`
 	ID        uuid.UUID `gorm:"column:id;primaryKey"                                                        json:"id"`
-	Group_    string    `gorm:"column:group;not null;default:''::character varying"                         json:"group"`
+	Group_    string    `gorm:"column:group;not null;default:''"                                            json:"group"`
 	Tag       string    `gorm:"column:tag"                                                                  json:"tag"`
 }
 
