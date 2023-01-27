@@ -56,7 +56,7 @@ func (e BizError) Error() string {
 }
 
 func NewBizError(errorCode ErrorCode, errorMsg ...string) BizError {
-	if len(errorMsg) == 0 {
+	if len(errorMsg) < 1 {
 		return BizError{errorCode, nil}
 	}
 	return BizError{errorCode, &errorMsg[0]}

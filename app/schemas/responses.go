@@ -5,7 +5,12 @@ type StandardResp[T any] struct {
 	Data T `json:"data,omitempty"`
 }
 
-type EmptyResp StandardResp[*any]
+func NewEmptyResp(errorCode ErrorCode, errorMsg ...string) StandardResp[any] {
+	return StandardResp[any]{
+		BizError: NewBizError(errorCode, errorMsg...),
+		Data:     nil,
+	}
+}
 
 type ListResp[T any] struct {
 	Count   int64 `json:"count"`

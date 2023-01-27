@@ -7,7 +7,5 @@ import (
 
 func Error(ctx *fiber.Ctx, err error) error {
 	return ctx.Status(fiber.StatusOK).
-		JSON(schemas.EmptyResp{BizError: schemas.BizError{
-			ErrorCode: schemas.InternalServerError, ErrorMsg: nil,
-		}, Data: nil})
+		JSON(schemas.NewEmptyResp(schemas.InternalServerError))
 }
