@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/joint-online-judge/go-horse/pkg/configs"
-	"github.com/joint-online-judge/go-horse/pkg/logger"
 	"github.com/redis/go-redis/v9"
+	"github.com/sirupsen/logrus"
 )
 
 var RDB *redis.Client
@@ -20,6 +20,6 @@ func ConnectRedis() {
 	})
 	status := RDB.Ping(context.Background())
 	if err := status.Err(); err != nil {
-		logger.Fatalf("failed to ping to redis: %+v", err)
+		logrus.Fatalf("failed to ping to redis: %+v", err)
 	}
 }

@@ -7,7 +7,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	"github.com/joint-online-judge/go-horse/pkg/logger"
+	"github.com/sirupsen/logrus"
 
 	"github.com/rollbar/rollbar-go"
 )
@@ -22,7 +22,7 @@ var recoverHandler = recover.New(recover.Config{
 	Next:             nil,
 	EnableStackTrace: true,
 	StackTraceHandler: func(c *fiber.Ctx, e interface{}) {
-		logger.Errorf("panic: %v\n%s\n", e, debug.Stack())
+		logrus.Errorf("panic: %v\n%s\n", e, debug.Stack())
 		rollbar.Critical(
 			errors.New(fmt.Sprint(e)),
 			// getCallers(3),

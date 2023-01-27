@@ -3,7 +3,8 @@ package configs
 import (
 	"github.com/caarlos0/env/v6"
 	_ "github.com/joho/godotenv/autoload"
-	"github.com/joint-online-judge/go-horse/pkg/logger"
+	_ "github.com/joint-online-judge/go-horse/pkg/logger"
+	"github.com/sirupsen/logrus"
 )
 
 type conf struct {
@@ -77,8 +78,8 @@ var Conf *conf
 func init() {
 	cfg := conf{}
 	if err := env.Parse(&cfg); err != nil {
-		logger.Fatalf("failed to parse config: %+v", err)
+		logrus.Fatalf("failed to parse config: %+v", err)
 	}
-	logger.Infof("config object: %+v", cfg)
+	logrus.Infof("config object: %+v", cfg)
 	Conf = &cfg
 }

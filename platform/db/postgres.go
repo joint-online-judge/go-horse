@@ -6,7 +6,7 @@ import (
 
 	"github.com/joint-online-judge/go-horse/app/querys"
 	"github.com/joint-online-judge/go-horse/pkg/configs"
-	"github.com/joint-online-judge/go-horse/pkg/logger"
+	"github.com/sirupsen/logrus"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	gorm_logger "gorm.io/gorm/logger"
@@ -31,7 +31,7 @@ func ConnectPostgres() {
 		logLevel = gorm_logger.Info
 	}
 	newLogger := gorm_logger.New(
-		logger.StandardLogger(),
+		logrus.StandardLogger(),
 		gorm_logger.Config{
 			SlowThreshold:             time.Second,
 			LogLevel:                  logLevel,
@@ -44,11 +44,11 @@ func ConnectPostgres() {
 	})
 	querys.DB = DB
 	if err != nil {
-		logger.Fatalf("failed to connect to Postgres: %+v", err)
+		logrus.Fatalf("failed to connect to Postgres: %+v", err)
 	}
 	// TODO: run auto migrate
 	// err = DB.AutoMigrate(&model.User{})
 	// if err != nil {
-	// 	logger.Fatal(err)
+	// 	logrus.Fatal(err)
 	// }
 }

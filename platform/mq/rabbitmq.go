@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/joint-online-judge/go-horse/pkg/configs"
-	"github.com/joint-online-judge/go-horse/pkg/logger"
 	amqp "github.com/rabbitmq/amqp091-go"
+	"github.com/sirupsen/logrus"
 )
 
 var Conn *amqp.Connection
@@ -26,11 +26,11 @@ func ConnectRabbitMQ() {
 	)
 	Conn, err := amqp.DialConfig(uri, config)
 	if err != nil {
-		logger.Fatalf("failed to dial to rabbitmq: %+v", err)
+		logrus.Fatalf("failed to dial to rabbitmq: %+v", err)
 	}
 	channel, err := Conn.Channel()
 	if err != nil {
-		logger.Fatalf("fail to get a channel in rabbitmq: %+v", err)
+		logrus.Fatalf("fail to get a channel in rabbitmq: %+v", err)
 	}
 	defer channel.Close()
 }

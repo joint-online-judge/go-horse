@@ -5,11 +5,11 @@ import (
 
 	"github.com/joint-online-judge/go-horse/app/handlers"
 	"github.com/joint-online-judge/go-horse/pkg/configs"
-	"github.com/joint-online-judge/go-horse/pkg/logger"
 	"github.com/joint-online-judge/go-horse/pkg/middlewares"
 	"github.com/joint-online-judge/go-horse/pkg/routers"
 	"github.com/joint-online-judge/go-horse/platform/db"
 	"github.com/joint-online-judge/go-horse/platform/error"
+	"github.com/sirupsen/logrus"
 
 	_ "github.com/joint-online-judge/go-horse/docs" // load API Docs files (Swagger)
 
@@ -41,7 +41,7 @@ func main() {
 	})
 	middlewares.Register(app)
 	routers.Register(app)
-	logger.Fatal(
+	logrus.Fatal(
 		app.Listen(fmt.Sprintf("%s:%d", configs.Conf.Host, configs.Conf.Port)),
 	)
 }

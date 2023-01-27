@@ -5,7 +5,7 @@ import (
 	"github.com/joint-online-judge/go-horse/app/models"
 	"github.com/joint-online-judge/go-horse/app/querys"
 	"github.com/joint-online-judge/go-horse/app/schemas"
-	"github.com/joint-online-judge/go-horse/pkg/logger"
+	"github.com/sirupsen/logrus"
 )
 
 // List Domains
@@ -45,7 +45,7 @@ func (s *Api) GetDomain(
 	c *fiber.Ctx,
 	request schemas.GetDomainRequestObject,
 ) (any, error) {
-	logger.Info("get domain")
+	logrus.Info("get domain")
 	return nil, schemas.NewBizError(schemas.APINotImplementedError)
 }
 

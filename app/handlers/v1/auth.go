@@ -7,7 +7,7 @@ import (
 	"github.com/joint-online-judge/go-horse/app/models"
 	"github.com/joint-online-judge/go-horse/app/querys"
 	"github.com/joint-online-judge/go-horse/app/schemas"
-	"github.com/joint-online-judge/go-horse/pkg/logger"
+	"github.com/sirupsen/logrus"
 )
 
 // Login
@@ -30,7 +30,7 @@ func (s *Api) Login(
 			"incorrect password",
 		)
 	}
-	logger.Infof("user login: %+v", user)
+	logrus.Infof("user login: %+v", user)
 	userModel.ID = user.Id
 	userModel.LoginAt = time.Now()
 	userModel.LoginIP = c.Context().RemoteAddr().String()
