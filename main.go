@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/joint-online-judge/go-horse/app/handlers"
 	"github.com/joint-online-judge/go-horse/pkg/configs"
 	"github.com/joint-online-judge/go-horse/pkg/logger"
 	"github.com/joint-online-judge/go-horse/pkg/middlewares"
@@ -26,8 +27,6 @@ import (
 //	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
 //	@BasePath		/api/v1
 func main() {
-	logger.Initalize()
-	configs.Initalize()
 	error.ConnectRollbar()
 	db.ConnectPostgres()
 	// cache.ConnectRedis()
@@ -35,13 +34,13 @@ func main() {
 	// storage.ConnectLakeFS()
 	// storage.ConnectS3()
 	app := fiber.New(fiber.Config{
-		// ErrorHandler: utils.Panic,
-		Prefork:     !configs.Conf.Debug,
-		JSONEncoder: sonic.Marshal,
-		JSONDecoder: sonic.Unmarshal,
+		ErrorHandler: handlers.Error,
+		Prefork:      !configs.Conf.Debug,
+		JSONEncoder:  sonic.Marshal,
+		JSONDecoder:  sonic.Unmarshal,
 	})
-	middlewares.Initalize(app)
-	routers.Initalize(app)
+	middlewares.Register(app)
+	routers.Register(app)
 	logger.Fatal(
 		app.Listen(fmt.Sprintf("%s:%d", configs.Conf.Host, configs.Conf.Port)),
 	)

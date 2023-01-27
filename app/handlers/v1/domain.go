@@ -1,4 +1,4 @@
-package handlers
+package v1
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -10,7 +10,7 @@ import (
 
 // List Domains
 // (GET /domains)
-func (s *ApiV1) ListDomains(
+func (s *Api) ListDomains(
 	c *fiber.Ctx,
 	request schemas.ListDomainsRequestObject,
 ) (any, error) {
@@ -20,7 +20,7 @@ func (s *ApiV1) ListDomains(
 
 // Create Domain
 // (POST /domains)
-func (s *ApiV1) CreateDomain(
+func (s *Api) CreateDomain(
 	c *fiber.Ctx,
 	request schemas.CreateDomainRequestObject,
 ) (any, error) {
@@ -41,7 +41,7 @@ func (s *ApiV1) CreateDomain(
 
 // Get Domain
 // (GET /domains/{domain})
-func (s *ApiV1) GetDomain(
+func (s *Api) GetDomain(
 	c *fiber.Ctx,
 	request schemas.GetDomainRequestObject,
 ) (any, error) {
@@ -51,7 +51,7 @@ func (s *ApiV1) GetDomain(
 
 // Search Domain Groups
 // (GET /domains/groups)
-func (s *ApiV1) SearchDomainGroups(
+func (s *Api) SearchDomainGroups(
 	c *fiber.Ctx,
 	request schemas.SearchDomainGroupsRequestObject,
 ) (any, error) {
@@ -60,7 +60,7 @@ func (s *ApiV1) SearchDomainGroups(
 
 // Delete Domain
 // (DELETE /domains/{domain})
-func (s *ApiV1) DeleteDomain(
+func (s *Api) DeleteDomain(
 	c *fiber.Ctx,
 	request schemas.DeleteDomainRequestObject,
 ) (any, error) {
@@ -69,7 +69,7 @@ func (s *ApiV1) DeleteDomain(
 
 // Update Domain
 // (PATCH /domains/{domain})
-func (s *ApiV1) UpdateDomain(
+func (s *Api) UpdateDomain(
 	c *fiber.Ctx,
 	request schemas.UpdateDomainRequestObject,
 ) (any, error) {
@@ -78,7 +78,7 @@ func (s *ApiV1) UpdateDomain(
 
 // Search Domain Candidates
 // (GET /domains/{domain}/candidates)
-func (s *ApiV1) SearchDomainCandidates(
+func (s *Api) SearchDomainCandidates(
 	c *fiber.Ctx,
 	request schemas.SearchDomainCandidatesRequestObject,
 ) (any, error) {
@@ -87,7 +87,7 @@ func (s *ApiV1) SearchDomainCandidates(
 
 // List Domain Invitations
 // (GET /domains/{domain}/invitations)
-func (s *ApiV1) ListDomainInvitations(
+func (s *Api) ListDomainInvitations(
 	c *fiber.Ctx,
 	request schemas.ListDomainInvitationsRequestObject,
 ) (any, error) {
@@ -96,7 +96,7 @@ func (s *ApiV1) ListDomainInvitations(
 
 // Create Domain Invitation
 // (POST /domains/{domain}/invitations)
-func (s *ApiV1) CreateDomainInvitation(
+func (s *Api) CreateDomainInvitation(
 	c *fiber.Ctx,
 	request schemas.CreateDomainInvitationRequestObject,
 ) (any, error) {
@@ -105,7 +105,7 @@ func (s *ApiV1) CreateDomainInvitation(
 
 // Delete Domain Invitation
 // (DELETE /domains/{domain}/invitations/{invitation})
-func (s *ApiV1) DeleteDomainInvitation(
+func (s *Api) DeleteDomainInvitation(
 	c *fiber.Ctx,
 	request schemas.DeleteDomainInvitationRequestObject,
 ) (any, error) {
@@ -114,7 +114,7 @@ func (s *ApiV1) DeleteDomainInvitation(
 
 // Get Domain Invitation
 // (GET /domains/{domain}/invitations/{invitation})
-func (s *ApiV1) GetDomainInvitation(
+func (s *Api) GetDomainInvitation(
 	c *fiber.Ctx,
 	request schemas.GetDomainInvitationRequestObject,
 ) (any, error) {
@@ -123,7 +123,7 @@ func (s *ApiV1) GetDomainInvitation(
 
 // Update Domain Invitation
 // (PATCH /domains/{domain}/invitations/{invitation})
-func (s *ApiV1) UpdateDomainInvitation(
+func (s *Api) UpdateDomainInvitation(
 	c *fiber.Ctx,
 	request schemas.UpdateDomainInvitationRequestObject,
 ) (any, error) {
@@ -132,7 +132,7 @@ func (s *ApiV1) UpdateDomainInvitation(
 
 // Join Domain By Invitation
 // (POST /domains/{domain}/join)
-func (s *ApiV1) JoinDomainByInvitation(
+func (s *Api) JoinDomainByInvitation(
 	c *fiber.Ctx,
 	request schemas.JoinDomainByInvitationRequestObject,
 ) (any, error) {
@@ -141,7 +141,7 @@ func (s *ApiV1) JoinDomainByInvitation(
 
 // List Domain Roles
 // (GET /domains/{domain}/roles)
-func (s *ApiV1) ListDomainRoles(
+func (s *Api) ListDomainRoles(
 	c *fiber.Ctx,
 	request schemas.ListDomainRolesRequestObject,
 ) (any, error) {
@@ -150,7 +150,7 @@ func (s *ApiV1) ListDomainRoles(
 
 // Create Domain Role
 // (POST /domains/{domain}/roles)
-func (s *ApiV1) CreateDomainRole(
+func (s *Api) CreateDomainRole(
 	c *fiber.Ctx,
 	request schemas.CreateDomainRoleRequestObject,
 ) (any, error) {
@@ -159,7 +159,7 @@ func (s *ApiV1) CreateDomainRole(
 
 // Delete Domain Role
 // (DELETE /domains/{domain}/roles/{role})
-func (s *ApiV1) DeleteDomainRole(
+func (s *Api) DeleteDomainRole(
 	c *fiber.Ctx,
 	request schemas.DeleteDomainRoleRequestObject,
 ) (any, error) {
@@ -168,7 +168,7 @@ func (s *ApiV1) DeleteDomainRole(
 
 // Get Domain Role
 // (GET /domains/{domain}/roles/{role})
-func (s *ApiV1) GetDomainRole(
+func (s *Api) GetDomainRole(
 	c *fiber.Ctx,
 	request schemas.GetDomainRoleRequestObject,
 ) (any, error) {
@@ -177,7 +177,7 @@ func (s *ApiV1) GetDomainRole(
 
 // Update Domain Role
 // (PATCH /domains/{domain}/roles/{role})
-func (s *ApiV1) UpdateDomainRole(
+func (s *Api) UpdateDomainRole(
 	c *fiber.Ctx,
 	request schemas.UpdateDomainRoleRequestObject,
 ) (any, error) {
@@ -186,7 +186,7 @@ func (s *ApiV1) UpdateDomainRole(
 
 // Transfer Domain
 // (POST /domains/{domain}/transfer)
-func (s *ApiV1) TransferDomain(
+func (s *Api) TransferDomain(
 	c *fiber.Ctx,
 	request schemas.TransferDomainRequestObject,
 ) (any, error) {
@@ -195,7 +195,7 @@ func (s *ApiV1) TransferDomain(
 
 // List Domain Users
 // (GET /domains/{domain}/users)
-func (s *ApiV1) ListDomainUsers(
+func (s *Api) ListDomainUsers(
 	c *fiber.Ctx,
 	request schemas.ListDomainUsersRequestObject,
 ) (any, error) {
@@ -204,7 +204,7 @@ func (s *ApiV1) ListDomainUsers(
 
 // Add Domain User
 // (POST /domains/{domain}/users)
-func (s *ApiV1) AddDomainUser(
+func (s *Api) AddDomainUser(
 	c *fiber.Ctx,
 	request schemas.AddDomainUserRequestObject,
 ) (any, error) {
@@ -213,7 +213,7 @@ func (s *ApiV1) AddDomainUser(
 
 // Remove Domain User
 // (DELETE /domains/{domain}/users/{user})
-func (s *ApiV1) RemoveDomainUser(
+func (s *Api) RemoveDomainUser(
 	c *fiber.Ctx,
 	request schemas.RemoveDomainUserRequestObject,
 ) (any, error) {
@@ -222,7 +222,7 @@ func (s *ApiV1) RemoveDomainUser(
 
 // Get Domain User
 // (GET /domains/{domain}/users/{user})
-func (s *ApiV1) GetDomainUser(
+func (s *Api) GetDomainUser(
 	c *fiber.Ctx,
 	request schemas.GetDomainUserRequestObject,
 ) (any, error) {
@@ -231,7 +231,7 @@ func (s *ApiV1) GetDomainUser(
 
 // Update Domain User
 // (PATCH /domains/{domain}/users/{user})
-func (s *ApiV1) UpdateDomainUser(
+func (s *Api) UpdateDomainUser(
 	c *fiber.Ctx,
 	request schemas.UpdateDomainUserRequestObject,
 ) (any, error) {
@@ -240,7 +240,7 @@ func (s *ApiV1) UpdateDomainUser(
 
 // Get Domain User Permission
 // (GET /domains/{domain}/users/{user}/permission)
-func (s *ApiV1) GetDomainUserPermission(
+func (s *Api) GetDomainUserPermission(
 	c *fiber.Ctx,
 	request schemas.GetDomainUserPermissionRequestObject,
 ) (any, error) {

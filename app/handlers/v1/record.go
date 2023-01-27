@@ -1,4 +1,4 @@
-package handlers
+package v1
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -7,7 +7,7 @@ import (
 
 // List Records In Domain
 // (GET /domains/{domain}/records)
-func (s *ApiV1) ListRecordsInDomain(
+func (s *Api) ListRecordsInDomain(
 	c *fiber.Ctx,
 	request schemas.ListRecordsInDomainRequestObject,
 ) (any, error) {
@@ -16,7 +16,7 @@ func (s *ApiV1) ListRecordsInDomain(
 
 // Get Record
 // (GET /domains/{domain}/records/{record})
-func (s *ApiV1) GetRecord(
+func (s *Api) GetRecord(
 	c *fiber.Ctx,
 	request schemas.GetRecordRequestObject,
 ) (any, error) {
@@ -25,7 +25,7 @@ func (s *ApiV1) GetRecord(
 
 // Submit Case By Judger
 // (PUT /domains/{domain}/records/{record}/cases/{index}/judge)
-func (s *ApiV1) SubmitCaseByJudger(
+func (s *Api) SubmitCaseByJudger(
 	c *fiber.Ctx,
 	request schemas.SubmitCaseByJudgerRequestObject,
 ) (any, error) {
@@ -34,7 +34,7 @@ func (s *ApiV1) SubmitCaseByJudger(
 
 // Submit Record By Judger
 // (PUT /domains/{domain}/records/{record}/judge)
-func (s *ApiV1) SubmitRecordByJudger(
+func (s *Api) SubmitRecordByJudger(
 	c *fiber.Ctx,
 	request schemas.SubmitRecordByJudgerRequestObject,
 ) (any, error) {
@@ -43,7 +43,7 @@ func (s *ApiV1) SubmitRecordByJudger(
 
 // Claim Record By Judger
 // (POST /domains/{domain}/records/{record}/judge/claim)
-func (s *ApiV1) ClaimRecordByJudger(
+func (s *Api) ClaimRecordByJudger(
 	c *fiber.Ctx,
 	request schemas.ClaimRecordByJudgerRequestObject,
 ) (any, error) {

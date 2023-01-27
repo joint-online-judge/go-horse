@@ -1,4 +1,4 @@
-package handlers
+package v1
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -7,7 +7,7 @@ import (
 
 // Get Current User
 // (GET /users/me)
-func (s *ApiV1) GetCurrentUser(
+func (s *Api) GetCurrentUser(
 	c *fiber.Ctx,
 	request schemas.GetCurrentUserRequestObject,
 ) (any, error) {
@@ -16,7 +16,7 @@ func (s *ApiV1) GetCurrentUser(
 
 // Update Current User
 // (PATCH /users/me)
-func (s *ApiV1) UpdateCurrentUser(
+func (s *Api) UpdateCurrentUser(
 	c *fiber.Ctx,
 	request schemas.UpdateCurrentUserRequestObject,
 ) (any, error) {
@@ -25,7 +25,7 @@ func (s *ApiV1) UpdateCurrentUser(
 
 // Change Password
 // (PATCH /users/me/password)
-func (s *ApiV1) ChangePassword(
+func (s *Api) ChangePassword(
 	c *fiber.Ctx,
 	request schemas.ChangePasswordRequestObject,
 ) (any, error) {
@@ -34,7 +34,7 @@ func (s *ApiV1) ChangePassword(
 
 // Get User
 // (GET /users/{uid})
-func (s *ApiV1) GetUser(
+func (s *Api) GetUser(
 	c *fiber.Ctx,
 	request schemas.GetUserRequestObject,
 ) (any, error) {

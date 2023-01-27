@@ -1,4 +1,4 @@
-package handlers
+package v1
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -8,7 +8,7 @@ import (
 
 // Jwt Decoded
 // (GET /jwt_decoded)
-func (s *ApiV1) JwtDecoded(
+func (s *Api) JwtDecoded(
 	c *fiber.Ctx,
 	request schemas.JwtDecodedRequestObject,
 ) (any, error) {
@@ -17,7 +17,7 @@ func (s *ApiV1) JwtDecoded(
 
 // Test Error Report
 // (GET /test/report)
-func (s *ApiV1) TestErrorReport(
+func (s *Api) TestErrorReport(
 	c *fiber.Ctx,
 	request schemas.TestErrorReportRequestObject,
 ) (any, error) {
@@ -27,7 +27,7 @@ func (s *ApiV1) TestErrorReport(
 
 // Version
 // (GET /version)
-func (s *ApiV1) Version(
+func (s *Api) Version(
 	c *fiber.Ctx,
 	request schemas.VersionRequestObject,
 ) (any, error) {

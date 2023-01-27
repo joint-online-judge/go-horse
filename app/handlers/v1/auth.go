@@ -1,4 +1,4 @@
-package handlers
+package v1
 
 import (
 	"time"
@@ -12,7 +12,7 @@ import (
 
 // Login
 // (POST /auth/login)
-func (s *ApiV1) Login(
+func (s *Api) Login(
 	c *fiber.Ctx,
 	request schemas.LoginRequestObject,
 ) (any, error) {
@@ -55,7 +55,7 @@ func (s *ApiV1) Login(
 
 // Logout
 // (POST /auth/logout)
-func (s *ApiV1) Logout(
+func (s *Api) Logout(
 	c *fiber.Ctx,
 	request schemas.LogoutRequestObject,
 ) (any, error) {
@@ -64,7 +64,7 @@ func (s *ApiV1) Logout(
 
 // List Oauth2
 // (GET /auth/oauth2)
-func (s *ApiV1) ListOauth2(
+func (s *Api) ListOauth2(
 	c *fiber.Ctx,
 	request schemas.ListOauth2RequestObject,
 ) (any, error) {
@@ -73,7 +73,7 @@ func (s *ApiV1) ListOauth2(
 
 // Oauth Authorize
 // (GET /auth/oauth2/{oauth2}/authorize)
-func (s *ApiV1) OauthAuthorize(
+func (s *Api) OauthAuthorize(
 	c *fiber.Ctx,
 	request schemas.OauthAuthorizeRequestObject,
 ) (any, error) {
@@ -82,7 +82,7 @@ func (s *ApiV1) OauthAuthorize(
 
 // Refresh
 // (POST /auth/refresh)
-func (s *ApiV1) Refresh(
+func (s *Api) Refresh(
 	c *fiber.Ctx,
 	request schemas.RefreshRequestObject,
 ) (any, error) {
@@ -91,7 +91,7 @@ func (s *ApiV1) Refresh(
 
 // Register
 // (POST /auth/register)
-func (s *ApiV1) Register(
+func (s *Api) Register(
 	c *fiber.Ctx,
 	request schemas.RegisterRequestObject,
 ) (any, error) {
@@ -100,7 +100,7 @@ func (s *ApiV1) Register(
 
 // Get Token
 // (GET /auth/token)
-func (s *ApiV1) GetToken(
+func (s *Api) GetToken(
 	c *fiber.Ctx,
 	request schemas.GetTokenRequestObject,
 ) (any, error) {

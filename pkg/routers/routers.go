@@ -3,17 +3,17 @@ package routers
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/handlers"
-	"github.com/joint-online-judge/go-horse/app/handlers/utils"
+	v1 "github.com/joint-online-judge/go-horse/app/handlers/v1"
 	"github.com/joint-online-judge/go-horse/app/schemas"
 	"github.com/joint-online-judge/go-horse/pkg/middlewares"
 )
 
-func Initalize(router *fiber.App) {
+func Register(router *fiber.App) {
 	wrapper := schemas.ServerInterfaceWrapper{
 		Handler: schemas.NewStrictHandler(
-			&handlers.ApiV1{},
-			[]schemas.StrictMiddlewareFunc{utils.ValidateRequest},
-			utils.ResponseHandler,
+			&v1.Api{},
+			[]schemas.StrictMiddlewareFunc{handlers.ValidateRequest},
+			handlers.ResponseHandler,
 		),
 	}
 	api := router.Group("/api") // /api

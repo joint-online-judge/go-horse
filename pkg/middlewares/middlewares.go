@@ -14,7 +14,7 @@ import (
 	"github.com/joint-online-judge/go-horse/pkg/configs"
 )
 
-func Initalize(router *fiber.App) {
+func Register(router *fiber.App) {
 	if configs.Conf.Debug {
 		router.Use(redirect.New(redirect.Config{
 			Rules: map[string]string{

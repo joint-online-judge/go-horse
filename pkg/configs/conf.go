@@ -2,7 +2,7 @@ package configs
 
 import (
 	"github.com/caarlos0/env/v6"
-	"github.com/joho/godotenv"
+	_ "github.com/joho/godotenv/autoload"
 	"github.com/joint-online-judge/go-horse/pkg/logger"
 )
 
@@ -74,10 +74,7 @@ type conf struct {
 
 var Conf *conf
 
-func Initalize() {
-	if err := godotenv.Load(); err != nil {
-		logger.Fatalf("failed to load .env: %+v", err)
-	}
+func init() {
 	cfg := conf{}
 	if err := env.Parse(&cfg); err != nil {
 		logger.Fatalf("failed to parse config: %+v", err)

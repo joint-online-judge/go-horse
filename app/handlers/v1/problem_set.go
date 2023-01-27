@@ -1,4 +1,4 @@
-package handlers
+package v1
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -7,7 +7,7 @@ import (
 
 // List Problem Sets
 // (GET /domains/{domain}/problem_sets)
-func (s *ApiV1) ListProblemSets(
+func (s *Api) ListProblemSets(
 	c *fiber.Ctx,
 	request schemas.ListProblemSetsRequestObject,
 ) (any, error) {
@@ -16,7 +16,7 @@ func (s *ApiV1) ListProblemSets(
 
 // Create Problem Set
 // (POST /domains/{domain}/problem_sets)
-func (s *ApiV1) CreateProblemSet(
+func (s *Api) CreateProblemSet(
 	c *fiber.Ctx,
 	request schemas.CreateProblemSetRequestObject,
 ) (any, error) {
@@ -25,7 +25,7 @@ func (s *ApiV1) CreateProblemSet(
 
 // Delete Problem Set
 // (DELETE /domains/{domain}/problem_sets/{problemSet})
-func (s *ApiV1) DeleteProblemSet(
+func (s *Api) DeleteProblemSet(
 	c *fiber.Ctx,
 	request schemas.DeleteProblemSetRequestObject,
 ) (any, error) {
@@ -34,7 +34,7 @@ func (s *ApiV1) DeleteProblemSet(
 
 // Get Problem Set
 // (GET /domains/{domain}/problem_sets/{problemSet})
-func (s *ApiV1) GetProblemSet(
+func (s *Api) GetProblemSet(
 	c *fiber.Ctx,
 	request schemas.GetProblemSetRequestObject,
 ) (any, error) {
@@ -43,7 +43,7 @@ func (s *ApiV1) GetProblemSet(
 
 // Update Problem Set
 // (PATCH /domains/{domain}/problem_sets/{problemSet})
-func (s *ApiV1) UpdateProblemSet(
+func (s *Api) UpdateProblemSet(
 	c *fiber.Ctx,
 	request schemas.UpdateProblemSetRequestObject,
 ) (any, error) {
@@ -52,7 +52,7 @@ func (s *ApiV1) UpdateProblemSet(
 
 // List Problems In Problem Set
 // (GET /domains/{domain}/problem_sets/{problemSet}/problems)
-func (s *ApiV1) ListProblemsInProblemSet(
+func (s *Api) ListProblemsInProblemSet(
 	c *fiber.Ctx,
 	request schemas.ListProblemsInProblemSetRequestObject,
 ) (any, error) {
@@ -61,7 +61,7 @@ func (s *ApiV1) ListProblemsInProblemSet(
 
 // Add Problem In Problem Set
 // (POST /domains/{domain}/problem_sets/{problemSet}/problems)
-func (s *ApiV1) AddProblemInProblemSet(
+func (s *Api) AddProblemInProblemSet(
 	c *fiber.Ctx,
 	request schemas.AddProblemInProblemSetRequestObject,
 ) (any, error) {
@@ -70,7 +70,7 @@ func (s *ApiV1) AddProblemInProblemSet(
 
 // Delete Problem In Problem Set
 // (DELETE /domains/{domain}/problem_sets/{problemSet}/problems/{problem})
-func (s *ApiV1) DeleteProblemInProblemSet(
+func (s *Api) DeleteProblemInProblemSet(
 	c *fiber.Ctx,
 	request schemas.DeleteProblemInProblemSetRequestObject,
 ) (any, error) {
@@ -79,7 +79,7 @@ func (s *ApiV1) DeleteProblemInProblemSet(
 
 // Get Problem In Problem Set
 // (GET /domains/{domain}/problem_sets/{problemSet}/problems/{problem})
-func (s *ApiV1) GetProblemInProblemSet(
+func (s *Api) GetProblemInProblemSet(
 	c *fiber.Ctx,
 	request schemas.GetProblemInProblemSetRequestObject,
 ) (any, error) {
@@ -88,7 +88,7 @@ func (s *ApiV1) GetProblemInProblemSet(
 
 // Update Problem In Problem Set
 // (PATCH /domains/{domain}/problem_sets/{problemSet}/problems/{problem})
-func (s *ApiV1) UpdateProblemInProblemSet(
+func (s *Api) UpdateProblemInProblemSet(
 	c *fiber.Ctx,
 	request schemas.UpdateProblemInProblemSetRequestObject,
 ) (any, error) {
@@ -97,7 +97,7 @@ func (s *ApiV1) UpdateProblemInProblemSet(
 
 // Submit Solution To Problem Set
 // (POST /domains/{domain}/problem_sets/{problemSet}/problems/{problem}/submit)
-func (s *ApiV1) SubmitSolutionToProblemSet(
+func (s *Api) SubmitSolutionToProblemSet(
 	c *fiber.Ctx,
 	request schemas.SubmitSolutionToProblemSetRequestObject,
 ) (any, error) {

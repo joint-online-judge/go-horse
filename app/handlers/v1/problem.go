@@ -1,4 +1,4 @@
-package handlers
+package v1
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -7,7 +7,7 @@ import (
 
 // List Problems
 // (GET /domains/{domain}/problems)
-func (s *ApiV1) ListProblems(
+func (s *Api) ListProblems(
 	c *fiber.Ctx,
 	request schemas.ListProblemsRequestObject,
 ) (any, error) {
@@ -16,7 +16,7 @@ func (s *ApiV1) ListProblems(
 
 // Create Problem
 // (POST /domains/{domain}/problems)
-func (s *ApiV1) CreateProblem(
+func (s *Api) CreateProblem(
 	c *fiber.Ctx,
 	request schemas.CreateProblemRequestObject,
 ) (any, error) {
@@ -25,7 +25,7 @@ func (s *ApiV1) CreateProblem(
 
 // Clone Problem
 // (POST /domains/{domain}/problems/clone)
-func (s *ApiV1) CloneProblem(
+func (s *Api) CloneProblem(
 	c *fiber.Ctx,
 	request schemas.CloneProblemRequestObject,
 ) (any, error) {
@@ -34,7 +34,7 @@ func (s *ApiV1) CloneProblem(
 
 // Delete Problem
 // (DELETE /domains/{domain}/problems/{problem})
-func (s *ApiV1) DeleteProblem(
+func (s *Api) DeleteProblem(
 	c *fiber.Ctx,
 	request schemas.DeleteProblemRequestObject,
 ) (any, error) {
@@ -43,7 +43,7 @@ func (s *ApiV1) DeleteProblem(
 
 // Get Problem
 // (GET /domains/{domain}/problems/{problem})
-func (s *ApiV1) GetProblem(
+func (s *Api) GetProblem(
 	c *fiber.Ctx,
 	request schemas.GetProblemRequestObject,
 ) (any, error) {
@@ -52,7 +52,7 @@ func (s *ApiV1) GetProblem(
 
 // Update Problem
 // (PATCH /domains/{domain}/problems/{problem})
-func (s *ApiV1) UpdateProblem(
+func (s *Api) UpdateProblem(
 	c *fiber.Ctx,
 	request schemas.UpdateProblemRequestObject,
 ) (any, error) {
@@ -61,7 +61,7 @@ func (s *ApiV1) UpdateProblem(
 
 // Submit Solution To Problem
 // (POST /domains/{domain}/problems/{problem})
-func (s *ApiV1) SubmitSolutionToProblem(
+func (s *Api) SubmitSolutionToProblem(
 	c *fiber.Ctx,
 	request schemas.SubmitSolutionToProblemRequestObject,
 ) (any, error) {

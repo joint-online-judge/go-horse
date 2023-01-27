@@ -1,4 +1,4 @@
-package handlers
+package v1
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -7,7 +7,7 @@ import (
 
 // Admin List Domain Roles
 // (GET /admin/domain_roles)
-func (s *ApiV1) AdminListDomainRoles(
+func (s *Api) AdminListDomainRoles(
 	c *fiber.Ctx,
 	request schemas.AdminListDomainRolesRequestObject,
 ) (any, error) {
@@ -16,7 +16,7 @@ func (s *ApiV1) AdminListDomainRoles(
 
 // Admin List Judgers
 // (GET /admin/judgers)
-func (s *ApiV1) AdminListJudgers(
+func (s *Api) AdminListJudgers(
 	c *fiber.Ctx,
 	request schemas.AdminListJudgersRequestObject,
 ) (any, error) {
@@ -25,7 +25,7 @@ func (s *ApiV1) AdminListJudgers(
 
 // Admin Create Judger
 // (POST /admin/judgers)
-func (s *ApiV1) AdminCreateJudger(
+func (s *Api) AdminCreateJudger(
 	c *fiber.Ctx,
 	request schemas.AdminCreateJudgerRequestObject,
 ) (any, error) {
@@ -34,7 +34,7 @@ func (s *ApiV1) AdminCreateJudger(
 
 // Admin List Users
 // (GET /admin/users)
-func (s *ApiV1) AdminListUsers(
+func (s *Api) AdminListUsers(
 	c *fiber.Ctx,
 	request schemas.AdminListUsersRequestObject,
 ) (any, error) {
@@ -43,7 +43,7 @@ func (s *ApiV1) AdminListUsers(
 
 // Admin Get User
 // (GET /admin/{uid})
-func (s *ApiV1) AdminGetUser(
+func (s *Api) AdminGetUser(
 	c *fiber.Ctx,
 	request schemas.AdminGetUserRequestObject,
 ) (any, error) {
@@ -52,7 +52,7 @@ func (s *ApiV1) AdminGetUser(
 
 // Admin List User Domains
 // (GET /admin/{uid}/domains)
-func (s *ApiV1) AdminListUserDomains(
+func (s *Api) AdminListUserDomains(
 	c *fiber.Ctx,
 	request schemas.AdminListUserDomainsRequestObject,
 ) (any, error) {

@@ -1,4 +1,4 @@
-package handlers
+package v1
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -7,7 +7,7 @@ import (
 
 // List Problem Groups
 // (GET /problem_groups)
-func (s *ApiV1) ListProblemGroups(
+func (s *Api) ListProblemGroups(
 	c *fiber.Ctx,
 	request schemas.ListProblemGroupsRequestObject,
 ) (any, error) {
