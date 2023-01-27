@@ -3,7 +3,7 @@ package configs
 import (
 	"github.com/caarlos0/env/v6"
 	"github.com/joho/godotenv"
-	log "github.com/sirupsen/logrus"
+	"github.com/joint-online-judge/go-horse/pkg/logger"
 )
 
 type conf struct {
@@ -76,12 +76,12 @@ var Conf *conf
 
 func Initalize() {
 	if err := godotenv.Load(); err != nil {
-		log.Fatalf("failed to load .env: %+v", err)
+		logger.Fatalf("failed to load .env: %+v", err)
 	}
 	cfg := conf{}
 	if err := env.Parse(&cfg); err != nil {
-		log.Fatalf("failed to parse config: %+v", err)
+		logger.Fatalf("failed to parse config: %+v", err)
 	}
-	log.Infof("config object: %+v", cfg)
+	logger.Infof("config object: %+v", cfg)
 	Conf = &cfg
 }

@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	nested "github.com/antonfisher/nested-logrus-formatter"
 	"github.com/joint-online-judge/go-horse/pkg/configs"
+	"github.com/joint-online-judge/go-horse/pkg/logger"
 	"github.com/joint-online-judge/go-horse/pkg/middlewares"
 	"github.com/joint-online-judge/go-horse/pkg/routers"
 	"github.com/joint-online-judge/go-horse/platform/db"
@@ -14,7 +14,6 @@ import (
 
 	"github.com/bytedance/sonic"
 	"github.com/gofiber/fiber/v2"
-	log "github.com/sirupsen/logrus"
 )
 
 // Swagger information
@@ -27,10 +26,7 @@ import (
 //	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
 //	@BasePath		/api/v1
 func main() {
-	log.SetFormatter(&nested.Formatter{
-		HideKeys:    true,
-		FieldsOrder: []string{"component", "category"},
-	})
+	logger.Initalize()
 	configs.Initalize()
 	error.ConnectRollbar()
 	db.ConnectPostgres()
@@ -46,7 +42,7 @@ func main() {
 	})
 	middlewares.Initalize(app)
 	routers.Initalize(app)
-	log.Fatal(
+	logger.Fatal(
 		app.Listen(fmt.Sprintf("%s:%d", configs.Conf.Host, configs.Conf.Port)),
 	)
 }

@@ -4,7 +4,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schemas"
-	log "github.com/sirupsen/logrus"
+	"github.com/joint-online-judge/go-horse/pkg/logger"
 )
 
 var validate = validator.New()
@@ -15,21 +15,21 @@ func isDomainUrl(fl validator.FieldLevel) bool {
 
 func init() {
 	if err := validate.RegisterValidation("domain_url", isDomainUrl); err != nil {
-		log.Fatalf("failed to register validation domain_url, %+v", err)
+		logger.Fatalf("failed to register validation domain_url, %+v", err)
 	}
 }
 
 func ValidateStruct(object any) (any, error) {
-	log.Infof("validating %T as struct, %v", object, object)
+	logger.Infof("validating %T as struct, %v", object, object)
 	var validationError []schemas.ValidationError
 	if err := validate.Struct(object); err != nil {
 		vierr, ok := err.(*validator.InvalidValidationError)
 		if ok {
-			log.Errorf("invalid validation error: %v", vierr)
+			logger.Errorf("invalid validation error: %v", vierr)
 			return vierr, fiber.ErrInternalServerError
 		}
 		for _, e := range err.(validator.ValidationErrors) {
-			log.Errorf(
+			logger.Errorf(
 				"validation error: %v, %v, %v",
 				e.StructNamespace(),
 				e.Tag(),

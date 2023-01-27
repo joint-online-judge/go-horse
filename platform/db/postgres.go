@@ -2,15 +2,14 @@ package db
 
 import (
 	"fmt"
-	stdlog "log"
 	"time"
 
 	"github.com/joint-online-judge/go-horse/app/querys"
 	"github.com/joint-online-judge/go-horse/pkg/configs"
-	log "github.com/sirupsen/logrus"
+	"github.com/joint-online-judge/go-horse/pkg/logger"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
+	gorm_logger "gorm.io/gorm/logger"
 )
 
 // DB gorm connector
@@ -27,13 +26,13 @@ func ConnectPostgres() {
 		conf.DBName,
 		conf.DBPort,
 	)
-	logLevel := logger.Silent
+	logLevel := gorm_logger.Silent
 	if conf.DBEcho {
-		logLevel = logger.Info
+		logLevel = gorm_logger.Info
 	}
-	newLogger := logger.New(
-		stdlog.New(log.StandardLogger().Out, "\r\n", stdlog.LstdFlags),
-		logger.Config{
+	newLogger := gorm_logger.New(
+		logger.StandardLogger(),
+		gorm_logger.Config{
 			SlowThreshold:             time.Second,
 			LogLevel:                  logLevel,
 			IgnoreRecordNotFoundError: true,
@@ -45,11 +44,11 @@ func ConnectPostgres() {
 	})
 	querys.DB = DB
 	if err != nil {
-		log.Fatalf("failed to connect to Postgres: %+v", err)
+		logger.Fatalf("failed to connect to Postgres: %+v", err)
 	}
 	// TODO: run auto migrate
 	// err = DB.AutoMigrate(&model.User{})
 	// if err != nil {
-	// 	log.Fatal(err)
+	// 	logger.Fatal(err)
 	// }
 }

@@ -7,7 +7,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schemas"
-	log "github.com/sirupsen/logrus"
+	"github.com/joint-online-judge/go-horse/pkg/logger"
 )
 
 func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
@@ -54,7 +54,7 @@ func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
 	b := make([]byte, 4096)
 	n := runtime.Stack(b, false)
 	s := string(b[:n])
-	log.Infof("unknown error: %T, %v, %s", err, err, s)
+	logger.Infof("unknown error: %T, %v, %s", err, err, s)
 	return ctx.Status(code).JSON(schemas.EmptyResp{BizError: schemas.BizError{
 		ErrorCode: schemas.InternalServerError, ErrorMsg: &s,
 	}, Data: nil})
