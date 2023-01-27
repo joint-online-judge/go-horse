@@ -7,9 +7,8 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	"github.com/sirupsen/logrus"
-
 	"github.com/rollbar/rollbar-go"
+	"github.com/sirupsen/logrus"
 )
 
 // func getCallers(skip int) (pc []uintptr) {
@@ -21,13 +20,14 @@ import (
 var recoverHandler = recover.New(recover.Config{
 	Next:             nil,
 	EnableStackTrace: true,
-	StackTraceHandler: func(c *fiber.Ctx, e interface{}) {
-		logrus.Errorf("panic: %v\n%s\n", e, debug.Stack())
+	StackTraceHandler: func(ctx *fiber.Ctx, err interface{}) {
+		logrus.Errorf("recover middleware panic: %v\n%s\n", err, debug.Stack())
+		ctx.Locals("rollbar_reported", 1)
 		rollbar.Critical(
-			errors.New(fmt.Sprint(e)),
+			errors.New(fmt.Sprint(err)),
 			// getCallers(3),
 			map[string]interface{}{
-				"endpoint": c.Request().URI().String(),
+				"endpoint": ctx.Request().URI().String(),
 			},
 		)
 	},
