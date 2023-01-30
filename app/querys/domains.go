@@ -14,7 +14,7 @@ func GetDomain[Schema any](
 	} else {
 		query.ID = domainID
 	}
-	domainModel, err = GetObj[models.Domain, models.Domain](&query)
+	domainModel, err = GetObj[models.Domain](&query)
 	if err != nil {
 		return
 	}

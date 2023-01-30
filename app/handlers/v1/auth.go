@@ -17,7 +17,7 @@ func (s *Api) Login(
 	request schemas.LoginRequestObject,
 ) (any, error) {
 	userModel := models.User{Username: *request.Body.Username}
-	user, err := querys.GetObj[models.User, schemas.User](&userModel)
+	user, err := querys.GetObj[schemas.User](&userModel)
 	if err != nil {
 		return nil, schemas.NewBizError(schemas.UserNotFoundError)
 	}
