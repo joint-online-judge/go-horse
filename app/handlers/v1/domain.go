@@ -2,10 +2,10 @@ package v1
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/models"
 	"github.com/joint-online-judge/go-horse/app/querys"
 	"github.com/joint-online-judge/go-horse/app/schemas"
-	"github.com/sirupsen/logrus"
 )
 
 // List Domains
@@ -45,8 +45,13 @@ func (s *Api) GetDomain(
 	c *fiber.Ctx,
 	request schemas.GetDomainRequestObject,
 ) (any, error) {
-	logrus.Info("get domain")
-	return nil, schemas.NewBizError(schemas.APINotImplementedError)
+	var domainModel models.Domain
+	if domainID, err := uuid.Parse(request.Domain); err != nil {
+		domainModel.URL = request.Domain
+	} else {
+		domainModel.ID = domainID
+	}
+	return querys.GetObj[models.Domain, schemas.Domain](&domainModel)
 }
 
 // Search Domain Groups
