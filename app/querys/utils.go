@@ -30,8 +30,8 @@ func ListObjs[Model, Schema any]() ([]Schema, int64, error) {
 	return schemas, count, nil
 }
 
-func GetObj[Model, Schema any](model *Model) (schema Schema, err error) {
-	err = DB.Where(model).First(&schema).Error
+func GetObj[Model, Dest any](model *Model) (dest Dest, err error) {
+	err = DB.Where(model).First(&dest).Error
 	return
 }
 

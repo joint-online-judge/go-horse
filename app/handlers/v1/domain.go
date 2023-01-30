@@ -2,10 +2,10 @@ package v1
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/models"
 	"github.com/joint-online-judge/go-horse/app/querys"
 	"github.com/joint-online-judge/go-horse/app/schemas"
+	"github.com/sirupsen/logrus"
 )
 
 // List Domains
@@ -45,13 +45,8 @@ func (s *Api) GetDomain(
 	c *fiber.Ctx,
 	request schemas.GetDomainRequestObject,
 ) (any, error) {
-	var domainModel models.Domain
-	if domainID, err := uuid.Parse(request.Domain); err != nil {
-		domainModel.URL = request.Domain
-	} else {
-		domainModel.ID = domainID
-	}
-	return querys.GetObj[models.Domain, schemas.Domain](&domainModel)
+	_, domain, err := querys.GetDomain[schemas.Domain](request.Domain)
+	return domain, err
 }
 
 // Search Domain Groups
@@ -78,7 +73,19 @@ func (s *Api) UpdateDomain(
 	c *fiber.Ctx,
 	request schemas.UpdateDomainRequestObject,
 ) (any, error) {
-	return nil, schemas.NewBizError(schemas.APINotImplementedError)
+	domainEdit := request.Body
+	domainModel, _, err := querys.GetDomain[schemas.Domain](request.Domain)
+	if err != nil {
+		return nil, err
+	}
+	if err := models.Update(&domainModel, domainEdit); err != nil {
+		return nil, err
+	}
+	logrus.Infof("update domain to: %+v", domainModel)
+	if err = querys.SaveObj(&domainModel); err != nil {
+		return nil, err
+	}
+	return querys.ConvertTo[schemas.Domain](domainModel)
 }
 
 // Search Domain Candidates
