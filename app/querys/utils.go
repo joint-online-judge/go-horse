@@ -35,13 +35,13 @@ func GetObj[Model, Dest any](model *Model) (dest Dest, err error) {
 	return
 }
 
-func SaveObj(model any) error {
-	return DB.Save(model).Error
+func SaveObj(modelPtr any) error {
+	return DB.Save(modelPtr).Error
 }
 
-func CreateObj[Schema any](model any) (schema Schema, err error) {
-	if err = DB.Create(model).Error; err != nil {
+func CreateObj[Schema any](modelPtr any) (schema Schema, err error) {
+	if err = DB.Create(modelPtr).Error; err != nil {
 		return
 	}
-	return ConvertTo[Schema](model)
+	return ConvertTo[Schema](modelPtr)
 }
