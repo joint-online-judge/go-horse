@@ -96,6 +96,26 @@ func NewRefreshToken(user User, oauth_name string) (string, error) {
 	return token.SignedString([]byte(configs.Conf.JwtSecret))
 }
 
+func NewAuthTokens(user User, oauth_name string) (*AuthTokens, error) {
+	category := ""
+	if oauth_name != "" {
+		category = "oauth"
+	}
+	accessToken, err := NewAccessToken(user, oauth_name, category, true)
+	if err != nil {
+		return nil, err
+	}
+	refreshToken, err := NewRefreshToken(user, oauth_name)
+	if err != nil {
+		return nil, err
+	}
+	return &AuthTokens{
+		AccessToken:  accessToken,
+		RefreshToken: refreshToken,
+		TokenType:    "bearer",
+	}, err
+}
+
 // AuthTokens defines model for AuthTokens.
 type AuthTokens struct {
 	AccessToken  string `json:"accessToken"`

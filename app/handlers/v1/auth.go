@@ -34,23 +34,10 @@ func (s *Api) Login(
 	userModel.ID = user.Id
 	userModel.LoginAt = time.Now()
 	userModel.LoginIP = c.Context().RemoteAddr().String()
-	err = querys.SaveObj(&userModel)
-	if err != nil {
+	if err = querys.SaveObj(&userModel); err != nil {
 		return nil, err
 	}
-	accessToken, err := schemas.NewAccessToken(user, "", "user", true)
-	if err != nil {
-		return nil, err
-	}
-	refreshToken, err := schemas.NewRefreshToken(user, "")
-	if err != nil {
-		return nil, err
-	}
-	return schemas.AuthTokens{
-		AccessToken:  accessToken,
-		RefreshToken: refreshToken,
-		TokenType:    "bearer",
-	}, err
+	return schemas.NewAuthTokens(user, "")
 }
 
 // Logout
@@ -95,7 +82,43 @@ func (s *Api) Register(
 	c *fiber.Ctx,
 	request schemas.RegisterRequestObject,
 ) (any, error) {
-	return nil, schemas.NewBizError(schemas.APINotImplementedError)
+	userCreate := request.Body
+	if *userCreate.Password == "" {
+		return nil, schemas.NewBizError(
+			schemas.UserRegisterError,
+			"password not provided",
+		)
+	} else if *userCreate.Username == "" {
+		return nil, schemas.NewBizError(
+			schemas.UserRegisterError,
+			"username not provided",
+		)
+	} else if *userCreate.Email == "" {
+		return nil, schemas.NewBizError(
+			schemas.UserRegisterError,
+			"email not provided",
+		)
+	}
+	hashedPassword, err := schemas.HashPassword(*userCreate.Password)
+	if err != nil {
+		return nil, err
+	}
+	ip := c.Context().RemoteAddr().String()
+	userModel := models.User{
+		Username:       *userCreate.Username,
+		Email:          *userCreate.Email,
+		StudentID:      "",
+		RealName:       "",
+		IsActive:       false,
+		HashedPassword: hashedPassword,
+		RegisterIP:     ip,
+		LoginIP:        ip,
+	}
+	user, err := querys.CreateObj[schemas.User](userModel)
+	if err != nil {
+		return nil, err
+	}
+	return schemas.NewAuthTokens(user, "")
 }
 
 // Get Token

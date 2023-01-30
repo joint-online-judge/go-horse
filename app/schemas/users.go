@@ -22,6 +22,12 @@ func VerifyPassword(password, hashed_password string) bool {
 	return ok && err == nil
 }
 
+func HashPassword(password string) (string, error) {
+	argon := argon2.DefaultConfig()
+	encoded, err := argon.HashEncoded([]byte(password))
+	return string(encoded), err
+}
+
 // UserCreate defines model for UserCreate.
 type UserCreate struct {
 	Email          *string `json:"email,omitempty"`
