@@ -127,5 +127,6 @@ func (s *Api) GetToken(
 	c *fiber.Ctx,
 	request schemas.GetTokenRequestObject,
 ) (any, error) {
-	return nil, schemas.NewBizError(schemas.APINotImplementedError)
+	user := schemas.JWTUser(c)
+	return schemas.NewAuthTokens(*user, "")
 }
