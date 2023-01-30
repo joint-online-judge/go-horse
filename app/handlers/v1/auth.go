@@ -37,7 +37,7 @@ func (s *Api) Login(
 	if err = querys.SaveObj(&userModel); err != nil {
 		return nil, err
 	}
-	return schemas.NewAuthTokens(user, "")
+	return schemas.NewAuthTokens(user, "", true)
 }
 
 // Logout
@@ -73,7 +73,8 @@ func (s *Api) Refresh(
 	c *fiber.Ctx,
 	request schemas.RefreshRequestObject,
 ) (any, error) {
-	return nil, schemas.NewBizError(schemas.APINotImplementedError)
+	user := schemas.JWTUser(c)
+	return schemas.NewAuthTokens(*user, "", false)
 }
 
 // Register
@@ -118,7 +119,7 @@ func (s *Api) Register(
 	if err != nil {
 		return nil, err
 	}
-	return schemas.NewAuthTokens(user, "")
+	return schemas.NewAuthTokens(user, "", true)
 }
 
 // Get Token
@@ -128,5 +129,5 @@ func (s *Api) GetToken(
 	request schemas.GetTokenRequestObject,
 ) (any, error) {
 	user := schemas.JWTUser(c)
-	return schemas.NewAuthTokens(*user, "")
+	return schemas.NewAuthTokens(*user, "", true)
 }

@@ -9,10 +9,10 @@ import (
 func RegisterAuth(router fiber.Router, wrapper schemas.ServerInterfaceWrapper) {
 	auth := router.Group("/auth")
 	auth.Post("/login", wrapper.Login)
+	auth.Post("/register", wrapper.Register)
 	auth.Get("/oauth2", wrapper.ListOauth2)
 	auth.Get("/oauth2/:oauth2/authorize", wrapper.OauthAuthorize)
-	auth.Post("/refresh", wrapper.Refresh)
-	auth.Get("/token", wrapper.GetToken)
 	auth.Post("/logout", middlewares.JWT(), wrapper.Logout)
-	auth.Post("/register", middlewares.JWT(), wrapper.Register)
+	auth.Post("/refresh", middlewares.JWT(), wrapper.Refresh)
+	auth.Get("/token", middlewares.JWT(), wrapper.GetToken)
 }

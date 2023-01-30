@@ -96,12 +96,16 @@ func NewRefreshToken(user User, oauth_name string) (string, error) {
 	return token.SignedString([]byte(configs.Conf.JwtSecret))
 }
 
-func NewAuthTokens(user User, oauth_name string) (*AuthTokens, error) {
+func NewAuthTokens(
+	user User,
+	oauth_name string,
+	fresh bool,
+) (*AuthTokens, error) {
 	category := ""
 	if oauth_name != "" {
 		category = "oauth"
 	}
-	accessToken, err := NewAccessToken(user, oauth_name, category, true)
+	accessToken, err := NewAccessToken(user, oauth_name, category, fresh)
 	if err != nil {
 		return nil, err
 	}
