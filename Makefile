@@ -4,7 +4,7 @@ APP_NAME = go-horse
 BUILD_DIR = $(PWD)/build
 
 dev:
-	DEBUG=1 fiber dev -p "make pre-dev" -D docs -e "env"
+	DEBUG=1 fiber dev -p "make pre-dev" -D docs -e go -e env
 
 pre-dev: swag
 	go mod tidy

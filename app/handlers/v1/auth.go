@@ -115,10 +115,11 @@ func (s *Api) Register(
 		RegisterIP:     ip,
 		LoginIP:        ip,
 	}
-	user, err := querys.CreateObj[schemas.User](userModel)
+	user, err := querys.CreateObj[schemas.User](&userModel)
 	if err != nil {
 		return nil, err
 	}
+	logrus.Infof("user: %T + 1, %v", user, user)
 	return schemas.NewAuthTokens(user, "", true)
 }
 
