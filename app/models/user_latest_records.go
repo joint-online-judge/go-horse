@@ -11,13 +11,17 @@ const TableNameUserLatestRecord = "user_latest_records"
 
 // UserLatestRecord mapped from table <user_latest_records>
 type UserLatestRecord struct {
-	CreatedAt    time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"created_at"`
-	UpdatedAt    time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"updated_at"`
-	UserID       uuid.UUID `gorm:"column:user_id;not null"                                                     json:"user_id"`
-	ProblemID    uuid.UUID `gorm:"column:problem_id;not null"                                                  json:"problem_id"`
-	ProblemSetID uuid.UUID `gorm:"column:problem_set_id"                                                       json:"problem_set_id"`
-	RecordID     uuid.UUID `gorm:"column:record_id;not null"                                                   json:"record_id"`
-	ID           uuid.UUID `gorm:"column:id;primaryKey"                                                        json:"id"`
+	CreatedAt    time.Time  `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"created_at"`
+	UpdatedAt    time.Time  `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"updated_at"`
+	UserID       uuid.UUID  `gorm:"column:user_id;not null;type:uuid"                                           json:"user_id"`
+	User         User       `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
+	ProblemID    uuid.UUID  `gorm:"column:problem_id;not null;type:uuid"                                        json:"problem_id"`
+	Problem      Problem    `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
+	ProblemSetID uuid.UUID  `gorm:"column:problem_set_id;type:uuid"                                             json:"problem_set_id"`
+	ProblemSet   ProblemSet `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
+	RecordID     uuid.UUID  `gorm:"column:record_id;not null;type:uuid"                                         json:"record_id"`
+	Record       Record     `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
+	ID           uuid.UUID  `gorm:"column:id;primaryKey;type:uuid"                                              json:"id"`
 }
 
 // TableName UserLatestRecord's table name

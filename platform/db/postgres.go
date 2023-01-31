@@ -20,12 +20,12 @@ func ConnectPostgres() {
 	var err error // define error here to prevent overshadowing the global DB
 	conf := configs.Conf
 	dsn := fmt.Sprintf(
-		"host=%s user=%s password=%s dbname=%s port=%d sslmode=disable",
+		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		conf.DBHost,
+		conf.DBPort,
 		conf.DBUsername,
 		conf.DBPassword,
 		conf.DBName,
-		conf.DBPort,
 	)
 	logLevel := gorm_logger.Silent
 	if conf.DBEcho {
@@ -40,10 +40,10 @@ func ConnectPostgres() {
 			Colorful:                  true,
 		},
 	)
-	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
-		Logger: newLogger,
-	})
+	gormConfig := gorm.Config{Logger: newLogger}
+	DB, err = gorm.Open(postgres.Open(dsn), &gormConfig)
 	querys.DB = DB
+	// TODO: create the database if non-exist
 	if err != nil {
 		logrus.Fatalf("failed to connect to Postgres: %+v", err)
 	}

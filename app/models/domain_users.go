@@ -13,9 +13,11 @@ const TableNameDomainUser = "domain_users"
 type DomainUser struct {
 	CreatedAt time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"created_at"`
 	UpdatedAt time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"updated_at"`
-	DomainID  uuid.UUID `gorm:"column:domain_id;not null"                                                   json:"domain_id"`
-	UserID    uuid.UUID `gorm:"column:user_id;not null"                                                     json:"user_id"`
-	ID        uuid.UUID `gorm:"column:id;primaryKey"                                                        json:"id"`
+	DomainID  uuid.UUID `gorm:"column:domain_id;not null;type:uuid"                                         json:"domain_id"`
+	Domain    Domain    `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
+	UserID    uuid.UUID `gorm:"column:user_id;not null;type:uuid"                                           json:"user_id"`
+	User      User      `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
+	ID        uuid.UUID `gorm:"column:id;primaryKey;type:uuid"                                              json:"id"`
 	Role      string    `gorm:"column:role;not null"                                                        json:"role"`
 }
 
