@@ -16,8 +16,49 @@ import (
 // DB gorm connector
 var DB *gorm.DB
 
-func ConnectPostgres() {
-	var err error // define error here to prevent overshadowing the global DB
+func createDatabase(gormConfig *gorm.Config) error {
+	conf := configs.Conf
+	dsn := fmt.Sprintf(
+		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
+		conf.DBHost,
+		conf.DBPort,
+		conf.DBUsername,
+		conf.DBPassword,
+		"postgres",
+	)
+	db, err := gorm.Open(postgres.Open(dsn), gormConfig)
+	if err != nil {
+		return err
+	}
+	// check if db exists
+	stmt := fmt.Sprintf(
+		"SELECT * FROM pg_database WHERE datname = '%s';",
+		conf.DBName,
+	)
+	rs := db.Raw(stmt)
+	if rs.Error != nil {
+		return rs.Error
+	}
+	// if not create it
+	rec := make(map[string]interface{})
+	if rs.Find(rec); len(rec) == 0 {
+		stmt := fmt.Sprintf("CREATE DATABASE %s;", conf.DBName)
+		if rs := db.Exec(stmt); rs.Error != nil {
+			return rs.Error
+		}
+		// close db connection
+		sql, err := db.DB()
+		defer func() {
+			_ = sql.Close()
+		}()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func connectDatabase(gormConfig *gorm.Config) (err error) {
 	conf := configs.Conf
 	dsn := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
@@ -27,27 +68,13 @@ func ConnectPostgres() {
 		conf.DBPassword,
 		conf.DBName,
 	)
-	logLevel := gorm_logger.Silent
-	if conf.DBEcho {
-		logLevel = gorm_logger.Info
-	}
-	newLogger := gorm_logger.New(
-		logrus.StandardLogger(),
-		gorm_logger.Config{
-			SlowThreshold:             time.Second,
-			LogLevel:                  logLevel,
-			IgnoreRecordNotFoundError: true,
-			Colorful:                  true,
-		},
-	)
-	gormConfig := gorm.Config{Logger: newLogger}
-	DB, err = gorm.Open(postgres.Open(dsn), &gormConfig)
+	DB, err = gorm.Open(postgres.Open(dsn), gormConfig)
 	querys.DB = DB
-	// TODO: create the database if non-exist
-	if err != nil {
-		logrus.Fatalf("failed to connect to Postgres: %+v", err)
-	}
-	err = DB.AutoMigrate(
+	return
+}
+
+func migrateDatabase() error {
+	return DB.AutoMigrate(
 		&models.DomainInvitation{},
 		&models.DomainRole{},
 		&models.DomainUser{},
@@ -62,7 +89,35 @@ func ConnectPostgres() {
 		&models.UserOauthAccount{},
 		&models.User{},
 	)
-	if err != nil {
-		logrus.Fatal(err)
+}
+
+func getGormConfig() gorm.Config {
+	conf := configs.Conf
+	logLevel := gorm_logger.Silent
+	if conf.DBEcho {
+		logLevel = gorm_logger.Info
+	}
+	gormConfig := gorm.Config{Logger: gorm_logger.New(
+		logrus.StandardLogger(),
+		gorm_logger.Config{
+			SlowThreshold:             time.Second,
+			LogLevel:                  logLevel,
+			IgnoreRecordNotFoundError: true,
+			Colorful:                  true,
+		},
+	)}
+	return gormConfig
+}
+
+func ConnectPostgres() {
+	gormConfig := getGormConfig()
+	if err := createDatabase(&gormConfig); err != nil {
+		logrus.Fatalf("failed to create db in Postgres: %+v", err)
+	}
+	if err := connectDatabase(&gormConfig); err != nil {
+		logrus.Fatalf("failed to connect to Postgres: %+v", err)
+	}
+	if err := migrateDatabase(); err != nil {
+		logrus.Fatalf("failed to migrate in Postgres: %+v", err)
 	}
 }
