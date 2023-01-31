@@ -11,9 +11,9 @@ const TableNameProblemGroup = "problem_groups"
 
 // ProblemGroup mapped from table <problem_groups>
 type ProblemGroup struct {
-	CreatedAt time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"created_at"`
-	UpdatedAt time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"updated_at"`
-	ID        uuid.UUID `gorm:"column:id;primaryKey;type:uuid"                                              json:"id"`
+	CreatedAt time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"created_at"`
+	UpdatedAt time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"updated_at"`
+	ID        uuid.UUID `gorm:"column:id;primaryKey;type:uuid"                                                    json:"id"`
 }
 
 // TableName ProblemGroup's table name

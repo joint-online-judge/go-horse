@@ -10,7 +10,7 @@ type ProblemProblemSetLink struct {
 	Problem      Problem    `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
 	ProblemSetID uuid.UUID  `gorm:"column:problem_set_id;primaryKey;type:uuid"     json:"problem_set_id"`
 	ProblemSet   ProblemSet `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
-	Position     int32      `gorm:"column:position;not null"                       json:"position"`
+	Position     int32      `gorm:"column:position;not null;index"                 json:"position"`
 }
 
 // TableName ProblemProblemSetLink's table name
