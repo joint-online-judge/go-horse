@@ -70,6 +70,10 @@ func connectDatabase(gormConfig *gorm.Config) (err error) {
 	)
 	DB, err = gorm.Open(postgres.Open(dsn), gormConfig)
 	querys.DB = DB
+	if err != nil {
+		return
+	}
+	err = DB.Exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";").Error
 	return
 }
 

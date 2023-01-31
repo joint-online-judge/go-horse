@@ -28,7 +28,7 @@ func (s *Api) CreateDomain(
 	domain := request.Body
 	user := schemas.JWTUser(c)
 	domainModel := models.Domain{
-		Owner:    models.User{ID: user.Id},
+		Owner:    models.User{Base: models.Base{ID: user.Id}},
 		URL:      *domain.Url,
 		Name:     domain.Name,
 		Gravatar: *domain.Gravatar,
