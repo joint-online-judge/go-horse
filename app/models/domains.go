@@ -1,6 +1,9 @@
 package models
 
-import "github.com/google/uuid"
+import (
+	"github.com/google/uuid"
+	"gorm.io/gorm"
+)
 
 const TableNameDomain = "domains"
 
@@ -21,4 +24,18 @@ type Domain struct {
 // TableName Domain's table name
 func (*Domain) TableName() string {
 	return TableNameDomain
+}
+
+func (t *Domain) BeforeSave(tx *gorm.DB) (err error) {
+	if t.URL == "" {
+		t.URL = uuid.NewString() // placeholder
+	}
+	return
+}
+
+func (t *Domain) AfterSave(tx *gorm.DB) (err error) {
+	if _, err := uuid.Parse(t.URL); err == nil {
+		t.URL = t.ID.String()
+	}
+	return
 }

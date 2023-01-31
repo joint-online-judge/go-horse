@@ -44,10 +44,18 @@ type DomainCreate struct {
 	Hidden *bool `json:"hidden,omitempty"`
 
 	// Name displayed name of the domain
-	Name string `json:"name"`
+	Name string `json:"name" validate:"required"`
 
 	// Url (unique) url of the domain
 	Url *string `json:"url,omitempty" validate:"domain_url"`
+}
+
+func (t *DomainCreate) ApplyDefault() {
+	t.Bulletin = Pointer("")
+	t.Gravatar = Pointer("")
+	t.Group = Pointer("")
+	t.Hidden = Pointer(true)
+	t.Url = Pointer("")
 }
 
 // DomainDetail defines model for DomainDetail.

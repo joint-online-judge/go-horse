@@ -5369,6 +5369,7 @@ func (sh *strictHandler) CreateDomain(ctx *fiber.Ctx) error {
 	var request CreateDomainRequestObject
 
 	var body CreateDomainJSONRequestBody
+	body.ApplyDefault()
 	if err := ctx.BodyParser(&body); err != nil {
 		return fiber.NewError(fiber.StatusBadRequest, err.Error())
 	}
