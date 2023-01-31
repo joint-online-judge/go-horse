@@ -469,8 +469,8 @@ type Diff struct {
 	Path string `json:"path"`
 
 	// PathType An enumeration.
-	PathType  PathTypeEnum `json:"path_type"`
-	SizeBytes *int         `json:"size_bytes,omitempty"`
+	PathType  PathTypeEnum `json:"pathType"`
+	SizeBytes *int         `json:"sizeBytes,omitempty"`
 
 	// Type An enumeration.
 	Type DiffTypeEnum `json:"type"`
@@ -490,13 +490,13 @@ type FileUpload struct {
 // ObjectStats defines model for ObjectStats.
 type ObjectStats struct {
 	Checksum    string  `json:"checksum"`
-	ContentType *string `json:"content_type,omitempty"`
+	ContentType *string `json:"contentType,omitempty"`
 	Mtime       int     `json:"mtime"`
 	Path        string  `json:"path"`
 
 	// PathType An enumeration.
-	PathType  PathTypeEnum `json:"path_type"`
-	SizeBytes *int         `json:"size_bytes,omitempty"`
+	PathType  PathTypeEnum `json:"pathType"`
+	SizeBytes *int         `json:"sizeBytes,omitempty"`
 }
 
 // ObjectStatsList defines model for ObjectStatsList.

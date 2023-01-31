@@ -11,10 +11,10 @@ const TableNameDomainInvitation = "domain_invitations"
 
 // DomainInvitation mapped from table <domain_invitations>
 type DomainInvitation struct {
-	CreatedAt time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index"                                                                json:"created_at"`
-	UpdatedAt time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index"                                                                json:"updated_at"`
-	ExpireAt  time.Time `gorm:"column:expire_at"                                                                                                                                 json:"expire_at"`
-	DomainID  uuid.UUID `gorm:"column:domain_id;not null;type:uuid;index:idx_domain_invitations_domain_id_code_key,unique;index:idx_domain_invitations_domain_id_url_key,unique" json:"domain_id"`
+	CreatedAt time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index"                                                                json:"createdAt"`
+	UpdatedAt time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index"                                                                json:"updatedAt"`
+	ExpireAt  time.Time `gorm:"column:expire_at"                                                                                                                                 json:"expireAt"`
+	DomainID  uuid.UUID `gorm:"column:domain_id;not null;type:uuid;index:idx_domain_invitations_domain_id_code_key,unique;index:idx_domain_invitations_domain_id_url_key,unique" json:"domainId"`
 	Domain    Domain    `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
 	URL       string    `gorm:"column:url;not null;index;index:idx_domain_invitations_domain_id_url_key,unique"                                                                  json:"url"`
 	Code      string    `gorm:"column:code;not null;index;index:idx_domain_invitations_domain_id_code_key,unique"                                                                json:"code"`

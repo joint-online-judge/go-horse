@@ -11,11 +11,11 @@ const TableNameDomain = "domains"
 
 // Domain mapped from table <domains>
 type Domain struct {
-	CreatedAt time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"created_at"`
-	UpdatedAt time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"updated_at"`
-	OwnerID   uuid.UUID `gorm:"column:owner_id;type:uuid"                                                         json:"owner_id"`
+	CreatedAt time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"createdAt"`
+	UpdatedAt time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"updatedAt"`
+	OwnerID   uuid.UUID `gorm:"column:owner_id;type:uuid"                                                         json:"ownerId"`
 	Owner     User      `gorm:"constraint:OnDelete:SET NULL,OnUpdate:NO ACTION"`
-	URL       string    `gorm:"column:url;not null;index:unique"                                                  json:"url"        validate:"domain_url"`
+	URL       string    `gorm:"column:url;not null;index:unique"                                                  json:"url"       validate:"domain_url"`
 	Name      string    `gorm:"column:name;not null"                                                              json:"name"`
 	Gravatar  string    `gorm:"column:gravatar;not null"                                                          json:"gravatar"`
 	Bulletin  string    `gorm:"column:bulletin;not null"                                                          json:"bulletin"`

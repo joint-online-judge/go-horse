@@ -11,23 +11,23 @@ const TableNameProblemSet = "problem_sets"
 
 // ProblemSet mapped from table <problem_sets>
 type ProblemSet struct {
-	CreatedAt        time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index"   json:"created_at"`
-	UpdatedAt        time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index"   json:"updated_at"`
-	DomainID         uuid.UUID `gorm:"column:domain_id;not null;type:uuid;index:idx_problem_sets_domain_id_url_key,unique" json:"domain_id"`
+	CreatedAt        time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index"   json:"createdAt"`
+	UpdatedAt        time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index"   json:"updatedAt"`
+	DomainID         uuid.UUID `gorm:"column:domain_id;not null;type:uuid;index:idx_problem_sets_domain_id_url_key,unique" json:"domainId"`
 	Domain           Domain    `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
-	OwnerID          uuid.UUID `gorm:"column:owner_id;type:uuid"                                                           json:"owner_id"`
+	OwnerID          uuid.UUID `gorm:"column:owner_id;type:uuid"                                                           json:"ownerId"`
 	Owner            User      `gorm:"constraint:OnDelete:SET NULL,OnUpdate:NO ACTION"`
 	ID               uuid.UUID `gorm:"column:id;primaryKey;type:uuid"                                                      json:"id"`
 	URL              string    `gorm:"column:url;not null;index;index:idx_problem_sets_domain_id_url_key,unique"           json:"url"`
 	Title            string    `gorm:"column:title;not null"                                                               json:"title"`
 	Content          string    `gorm:"column:content;not null"                                                             json:"content"`
 	Hidden           bool      `gorm:"column:hidden;not null"                                                              json:"hidden"`
-	ScoreboardHidden bool      `gorm:"column:scoreboard_hidden;not null"                                                   json:"scoreboard_hidden"`
-	NumSubmit        int32     `gorm:"column:num_submit;not null"                                                          json:"num_submit"`
-	NumAccept        int32     `gorm:"column:num_accept;not null"                                                          json:"num_accept"`
-	DueAt            time.Time `gorm:"column:due_at"                                                                       json:"due_at"`
-	LockAt           time.Time `gorm:"column:lock_at"                                                                      json:"lock_at"`
-	UnlockAt         time.Time `gorm:"column:unlock_at"                                                                    json:"unlock_at"`
+	ScoreboardHidden bool      `gorm:"column:scoreboard_hidden;not null"                                                   json:"scoreboardHidden"`
+	NumSubmit        int32     `gorm:"column:num_submit;not null"                                                          json:"numSubmit"`
+	NumAccept        int32     `gorm:"column:num_accept;not null"                                                          json:"numAccept"`
+	DueAt            time.Time `gorm:"column:due_at"                                                                       json:"dueAt"`
+	LockAt           time.Time `gorm:"column:lock_at"                                                                      json:"lockAt"`
+	UnlockAt         time.Time `gorm:"column:unlock_at"                                                                    json:"unlockAt"`
 }
 
 // TableName ProblemSet's table name

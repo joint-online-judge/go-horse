@@ -31,8 +31,8 @@ func HashPassword(password string) (string, error) {
 // UserCreate defines model for UserCreate.
 type UserCreate struct {
 	Email          *string `json:"email,omitempty"`
-	OauthAccountId *string `json:"oauth_account_id,omitempty"`
-	OauthName      *string `json:"oauth_name,omitempty"`
+	OauthAccountId *string `json:"oauthAccountId,omitempty"`
+	OauthName      *string `json:"oauthName,omitempty"`
 	Password       *string `json:"password,omitempty"`
 	Username       *string `json:"username,omitempty"`
 }

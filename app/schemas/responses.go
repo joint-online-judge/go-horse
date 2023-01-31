@@ -293,8 +293,8 @@ type HTTPValidationError struct {
 
 // Pagination defines model for Pagination.
 type Pagination struct {
-	HasMore    bool   `json:"has_more"`
-	MaxPerPage int    `json:"max_per_page"`
-	NextOffset string `json:"next_offset"`
+	HasMore    bool   `json:"hasMore"`
+	MaxPerPage int    `json:"maxPerPage"`
+	NextOffset string `json:"nextOffset"`
 	Results    int    `json:"results"`
 }
