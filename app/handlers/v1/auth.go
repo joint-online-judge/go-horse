@@ -33,7 +33,7 @@ func (s *Api) Login(
 	logrus.Infof("user login: %+v", user)
 	userModel.ID = user.Id
 	userModel.LoginAt = time.Now()
-	userModel.LoginIP = c.Context().RemoteAddr().String()
+	userModel.LoginIP = c.IP()
 	if err = querys.SaveObj(&userModel); err != nil {
 		return nil, err
 	}
@@ -104,7 +104,7 @@ func (s *Api) Register(
 	if err != nil {
 		return nil, err
 	}
-	ip := c.Context().RemoteAddr().String()
+	ip := c.IP()
 	userModel := models.User{
 		Username:       *userCreate.Username,
 		Email:          *userCreate.Email,
