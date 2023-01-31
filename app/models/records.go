@@ -26,7 +26,7 @@ type Record struct {
 	State           string    `gorm:"column:state;not null;default:processing"                                    json:"state"`
 	Language        string    `gorm:"column:language;not null;default:''"                                         json:"language"`
 	TaskID          string    `gorm:"column:task_id"                                                              json:"task_id"`
-	Cases           string    `gorm:"column:cases;not null;default:'[]'::json"                                    json:"cases"`
+	Cases           string    `gorm:"column:cases;not null;default:'[]'"                                          json:"cases"`
 	DomainID        uuid.UUID `gorm:"column:domain_id;not null"                                                   json:"domain_id"`
 	JudgedAt        time.Time `gorm:"column:judged_at"                                                            json:"judged_at"`
 }

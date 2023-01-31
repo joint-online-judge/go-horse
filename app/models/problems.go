@@ -23,7 +23,7 @@ type Problem struct {
 	Hidden         bool      `gorm:"column:hidden;not null"                                                      json:"hidden"`
 	NumSubmit      int32     `gorm:"column:num_submit;not null"                                                  json:"num_submit"`
 	NumAccept      int32     `gorm:"column:num_accept;not null"                                                  json:"num_accept"`
-	Languages      string    `gorm:"column:languages;not null;default:'[]'::json"                                json:"languages"`
+	Languages      string    `gorm:"column:languages;not null;default:'[]'"                                      json:"languages"`
 }
 
 // TableName Problem's table name

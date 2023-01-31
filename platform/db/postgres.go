@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/joint-online-judge/go-horse/app/models"
 	"github.com/joint-online-judge/go-horse/app/querys"
 	"github.com/joint-online-judge/go-horse/pkg/configs"
 	"github.com/sirupsen/logrus"
@@ -46,9 +47,22 @@ func ConnectPostgres() {
 	if err != nil {
 		logrus.Fatalf("failed to connect to Postgres: %+v", err)
 	}
-	// TODO: run auto migrate
-	// err = DB.AutoMigrate(&model.User{})
-	// if err != nil {
-	// 	logrus.Fatal(err)
-	// }
+	err = DB.AutoMigrate(
+		&models.DomainInvitation{},
+		&models.DomainRole{},
+		&models.DomainUser{},
+		&models.Domain{},
+		&models.ProblemConfig{},
+		&models.ProblemGroup{},
+		&models.ProblemProblemSetLink{},
+		&models.ProblemSet{},
+		&models.Problem{},
+		&models.Record{},
+		&models.UserLatestRecord{},
+		&models.UserOauthAccount{},
+		&models.User{},
+	)
+	if err != nil {
+		logrus.Fatal(err)
+	}
 }
