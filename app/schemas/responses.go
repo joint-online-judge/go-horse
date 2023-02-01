@@ -290,11 +290,3 @@ type ValidationError struct {
 type HTTPValidationError struct {
 	Detail *[]ValidationError `json:"detail,omitempty"`
 }
-
-// Pagination defines model for Pagination.
-type Pagination struct {
-	HasMore    bool   `json:"hasMore"`
-	MaxPerPage int    `json:"maxPerPage"`
-	NextOffset string `json:"nextOffset"`
-	Results    int    `json:"results"`
-}

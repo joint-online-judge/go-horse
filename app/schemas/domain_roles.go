@@ -66,9 +66,6 @@ type GeneralPermission struct {
 
 // ListDomainRolesParams defines parameters for ListDomainRoles.
 type ListDomainRolesParams struct {
-	// Ordering Comma separated list of ordering the results.
-	// You may specify reverse orderings by prefixing the field name with '-'.
-	//
 	// Available fields: created_at,updated_at
 	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
 }

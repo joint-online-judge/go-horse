@@ -381,37 +381,13 @@ type ProblemWithLatestRecordList struct {
 }
 
 // ListProblemSetsParams defines parameters for ListProblemSets.
-type ListProblemSetsParams struct {
-	// Ordering Comma separated list of ordering the results.
-	// You may specify reverse orderings by prefixing the field name with '-'.
-	//
-	// Available fields: created_at,updated_at
-	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
-}
+type ListProblemSetsParams struct{ Pagination }
 
 // ListProblemsParams defines parameters for ListProblems.
-type ListProblemsParams struct {
-	// Ordering Comma separated list of ordering the results.
-	// You may specify reverse orderings by prefixing the field name with '-'.
-	//
-	// Available fields: created_at,updated_at
-	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
-}
+type ListProblemsParams struct{ Pagination }
 
 // ListProblemConfigCommitsParams defines parameters for ListProblemConfigCommits.
-type ListProblemConfigCommitsParams struct {
-	// Ordering Comma separated list of ordering the results.
-	// You may specify reverse orderings by prefixing the field name with '-'.
-	//
-	// Available fields: created_at,updated_at
-	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
-}
+type ListProblemConfigCommitsParams struct{ Pagination }
 
 // UpdateProblemConfigByArchiveParams defines parameters for UpdateProblemConfigByArchive.
 type UpdateProblemConfigByArchiveParams struct {
@@ -454,15 +430,7 @@ type DownloadProblemConfigArchiveParams struct {
 }
 
 // ListProblemGroupsParams defines parameters for ListProblemGroups.
-type ListProblemGroupsParams struct {
-	// Ordering Comma separated list of ordering the results.
-	// You may specify reverse orderings by prefixing the field name with '-'.
-	//
-	// Available fields: created_at,updated_at
-	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
-}
+type ListProblemGroupsParams struct{ Pagination }
 
 // Diff defines model for Diff.
 type Diff struct {

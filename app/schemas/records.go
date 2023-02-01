@@ -132,12 +132,5 @@ type ListRecordsInDomainParams struct {
 
 	// SubmitterId submitter uid
 	SubmitterId *openapi_types.UUID `form:"submitterId,omitempty" json:"submitterId,omitempty"`
-
-	// Ordering Comma separated list of ordering the results.
-	// You may specify reverse orderings by prefixing the field name with '-'.
-	//
-	// Available fields: created_at,updated_at
-	Ordering *string `form:"ordering,omitempty" json:"ordering,omitempty"`
-	Offset   *int    `form:"offset,omitempty"   json:"offset,omitempty"`
-	Limit    *int    `form:"limit,omitempty"    json:"limit,omitempty"`
+	Pagination
 }

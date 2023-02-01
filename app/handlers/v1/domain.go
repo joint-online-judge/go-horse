@@ -14,7 +14,9 @@ func (s *Api) ListDomains(
 	c *fiber.Ctx,
 	request schemas.ListDomainsRequestObject,
 ) (any, error) {
-	objs, count, err := querys.ListObjs[models.Domain, schemas.Domain]()
+	objs, count, err := querys.ListObjs[models.Domain, schemas.Domain](
+		request.Params.Pagination,
+	)
 	return schemas.NewListResp(count, objs), err
 }
 
@@ -202,7 +204,7 @@ func (s *Api) ListDomainUsers(
 	c *fiber.Ctx,
 	request schemas.ListDomainUsersRequestObject,
 ) (any, error) {
-	return nil, schemas.NewBizError(schemas.APINotImplementedError)
+	return schemas.NewListResp[schemas.UserWithDomainRole](0), nil
 }
 
 // Add Domain User
