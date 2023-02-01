@@ -14,9 +14,10 @@ func (s *Api) ListDomains(
 	c *fiber.Ctx,
 	request schemas.ListDomainsRequestObject,
 ) (any, error) {
-	objs, count, err := querys.ListObjs[models.Domain, schemas.Domain](
-		request.Params.Pagination,
-	)
+	// TODO: filter by domain users
+	objs, count, err := querys.ListObjsByType[
+		models.Domain, schemas.Domain,
+	](request.Params.Pagination)
 	return schemas.NewListResp(count, objs), err
 }
 

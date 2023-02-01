@@ -22,15 +22,18 @@ func ConvertTo[DstType any](src any) (dst DstType, err error) {
 	return
 }
 
-func ListObjs[Model, Schema any](pagination schemas.Pagination) ([]Schema, int64, error) {
-	var schemas []Schema
+func ListObjsByType[Model, Schema any](pagination schemas.Pagination) ([]Schema, int64, error) {
 	var model Model
-	u := DB.Model(model)
+	return ListObjs[Schema](DB.Model(model), pagination)
+}
+
+func ListObjs[Schema any](statement *gorm.DB, pagination schemas.Pagination) ([]Schema, int64, error) {
+	var schemas []Schema
 	var count int64
-	if err := u.Count(&count).Error; err != nil {
+	if err := statement.Count(&count).Error; err != nil {
 		return nil, 0, errors.Wrapf(err, "failed get %T count", schemas)
 	}
-	err := u.Scopes(Paginate(pagination)).Find(&schemas).Error
+	err := statement.Scopes(Paginate(pagination)).Scan(&schemas).Error
 	if err != nil {
 		return nil, 0, errors.WithStack(err)
 	}
