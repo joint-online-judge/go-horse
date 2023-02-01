@@ -15,6 +15,12 @@ clean:
 pre-commit:
 	pre-commit run --all-files
 
+pre-commit-install:
+	python3 -m pip install -U pre-commit
+	go install golang.org/x/tools/cmd/goimports@latest
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+	pre-commit install
+
 test: clean critic
 	go test -v -timeout 30s -coverprofile=cover.out -cover ./...
 	go tool cover -func=cover.out
