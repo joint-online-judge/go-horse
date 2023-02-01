@@ -23,11 +23,11 @@ repos:
       hooks:
           - id: toml-sort
             args: [--in-place, --all, --ignore-case]
-    - repo: https://github.com/segmentio/golines
-      rev: v0.11.0
-      hooks:
-          - id: golines
-            args: [-m, '80']
+    # - repo: https://github.com/segmentio/golines
+    #   rev: v0.11.0
+    #   hooks:
+    #       - id: golines
+    #         args: [-m, '80']
     - repo: https://github.com/dnephin/pre-commit-golang
       rev: v0.5.1
       hooks:
