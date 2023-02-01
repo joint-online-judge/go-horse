@@ -72,10 +72,12 @@ func Paginate(pagination schemas.Pagination) func(db *gorm.DB) *gorm.DB {
 				name = strings.TrimLeft(item, "-")
 				desc = true
 			}
-			statement = statement.Order(clause.OrderByColumn{
-				Column: clause.Column{Name: name},
-				Desc:   desc,
-			})
+			if name != "" {
+				statement = statement.Order(clause.OrderByColumn{
+					Column: clause.Column{Name: name},
+					Desc:   desc,
+				})
+			}
 		}
 		return statement
 	}

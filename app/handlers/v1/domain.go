@@ -204,7 +204,14 @@ func (s *Api) ListDomainUsers(
 	c *fiber.Ctx,
 	request schemas.ListDomainUsersRequestObject,
 ) (any, error) {
-	return schemas.NewListResp[schemas.UserWithDomainRole](0), nil
+	domainId, err := querys.GetDomainId(request.Domain)
+	if err != nil {
+		return nil, err
+	}
+	objs, count, err := querys.ListDomainUsers(
+		domainId, request.Params.Pagination,
+	)
+	return schemas.NewListResp(count, objs), err
 }
 
 // Add Domain User
