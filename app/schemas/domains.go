@@ -6,6 +6,18 @@ import (
 	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
 )
 
+type DefaultRole string
+
+const (
+	ROOT   DefaultRole = "root"
+	ADMIN  DefaultRole = "admin"
+	USER   DefaultRole = "user"
+	GUEST  DefaultRole = "guest"
+	JUDGER DefaultRole = "judger"
+)
+
+var DefaultRoles = []DefaultRole{ROOT, ADMIN, USER, GUEST, JUDGER}
+
 // Domain defines model for Domain.
 type Domain struct {
 	// Bulletin bulletin of the domain

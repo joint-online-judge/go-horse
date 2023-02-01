@@ -27,16 +27,7 @@ func (s *Api) CreateDomain(
 	// TODO: verify input values
 	domain := request.Body
 	user := schemas.JWTUser(c)
-	domainModel := models.Domain{
-		Owner:    models.User{Base: models.Base{ID: user.Id}},
-		URL:      *domain.Url,
-		Name:     domain.Name,
-		Gravatar: *domain.Gravatar,
-		Bulletin: *domain.Bulletin,
-		Hidden:   *domain.Hidden,
-		Group_:   *domain.Group,
-	}
-	return querys.CreateObj[schemas.Domain](&domainModel)
+	return querys.CreateDomain(domain, user)
 }
 
 // Get Domain
