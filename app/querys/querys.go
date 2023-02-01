@@ -55,10 +55,10 @@ func CreateObj[Schema any](modelPtr any) (schema Schema, err error) {
 
 func Paginate(pagination schemas.Pagination) func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
-		if pagination.Offset == nil {
+		if pagination.Offset == nil || *pagination.Offset < 0 {
 			pagination.Offset = schemas.Pointer(0)
 		}
-		if pagination.Limit == nil {
+		if pagination.Limit == nil || *pagination.Limit > 100 {
 			pagination.Limit = schemas.Pointer(100)
 		}
 		if pagination.Ordering == nil {
