@@ -4,7 +4,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/models"
 	"github.com/joint-online-judge/go-horse/app/schemas"
-	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
@@ -74,18 +73,9 @@ func CreateDomain(
 }
 
 func ListDomainUsers(domainId string, pagination schemas.Pagination) ([]schemas.UserWithDomainRole, int64, error) {
-	var results []schemas.UserWithDomainRole
-	u := DB.Table("domain_users").
+	statment := DB.Table("domain_users").
 		Select("domain_users.created_at, domain_users.updated_at, domain_users.domain_id, domain_users.user_id, domain_users.id, domain_users.role as domain_role, users.username, users.gravatar").
 		Joins("JOIN users ON domain_users.user_id = users.id").
 		Where("domain_users.domain_id = ?", domainId)
-	var count int64
-	if err := u.Count(&count).Error; err != nil {
-		return nil, 0, errors.Wrapf(err, "failed get %T count", models.DomainUser{})
-	}
-	err := u.Scopes(Paginate(pagination)).Scan(&results).Error
-	if err != nil {
-		return nil, 0, errors.WithStack(err)
-	}
-	return results, count, nil
+	return ListObjs[schemas.UserWithDomainRole](statment, pagination)
 }
