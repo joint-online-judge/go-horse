@@ -221,7 +221,15 @@ func (s *Api) AddDomainUser(
 	c *fiber.Ctx,
 	request schemas.AddDomainUserRequestObject,
 ) (any, error) {
-	return nil, schemas.NewBizError(schemas.APINotImplementedError)
+	domainId, err := querys.GetDomainId(request.Domain)
+	if err != nil {
+		return nil, err
+	}
+	user, err := querys.GetUser(c, request.Body.User)
+	if err != nil {
+		return nil, err
+	}
+	return querys.AddDomainUser(domainId, user, *request.Body.Role)
 }
 
 // Remove Domain User

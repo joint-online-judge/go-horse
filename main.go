@@ -13,8 +13,8 @@ import (
 
 	_ "github.com/joint-online-judge/go-horse/docs" // load API Docs files (Swagger)
 
-	"github.com/bytedance/sonic"
 	"github.com/gofiber/fiber/v2"
+	"github.com/joint-online-judge/go-horse/pkg/json"
 )
 
 // Swagger information
@@ -36,8 +36,8 @@ func main() {
 	app := fiber.New(fiber.Config{
 		ErrorHandler: handlers.Error,
 		Prefork:      !configs.Conf.Debug,
-		JSONEncoder:  sonic.Marshal,
-		JSONDecoder:  sonic.Unmarshal,
+		JSONEncoder:  json.Marshal,
+		JSONDecoder:  json.Unmarshal,
 	})
 	middlewares.Register(app)
 	routers.Register(app)

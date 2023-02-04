@@ -3,9 +3,8 @@ package models
 import (
 	"time"
 
-	"github.com/bytedance/sonic"
-
 	"github.com/google/uuid"
+	"github.com/joint-online-judge/go-horse/pkg/json"
 )
 
 type Base struct {
@@ -15,9 +14,9 @@ type Base struct {
 }
 
 func Update(modelPtr any, schema any) error {
-	schemaBytes, err := sonic.Marshal(schema)
+	schemaBytes, err := json.Marshal(schema)
 	if err != nil {
 		return err
 	}
-	return sonic.Unmarshal(schemaBytes, modelPtr)
+	return json.Unmarshal(schemaBytes, modelPtr)
 }

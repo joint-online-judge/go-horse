@@ -25,7 +25,7 @@ func GetDomain[Schema any](
 	return
 }
 
-func GetDomainId(domain string) (string, error) {
+func GetDomainId(domain string) (uuid.UUID, error) {
 	var query models.Domain
 	if domainID, err := uuid.Parse(domain); err != nil {
 		query.URL = domain
@@ -33,7 +33,7 @@ func GetDomainId(domain string) (string, error) {
 		query.ID = domainID
 	}
 	err := DB.Select("id").First(&query).Error
-	return query.ID.String(), err
+	return query.ID, err
 }
 
 func CreateDomain(
@@ -72,10 +72,31 @@ func CreateDomain(
 	return ConvertTo[schemas.Domain](&domain)
 }
 
-func ListDomainUsers(domainId string, pagination schemas.Pagination) ([]schemas.UserWithDomainRole, int64, error) {
+func ListDomainUsers(domainId uuid.UUID, pagination schemas.Pagination) (
+	[]schemas.UserWithDomainRole, int64, error,
+) {
 	statment := DB.Table("domain_users").
 		Select("domain_users.created_at, domain_users.updated_at, domain_users.domain_id, domain_users.user_id, domain_users.id, domain_users.role as domain_role, users.username, users.gravatar").
 		Joins("JOIN users ON domain_users.user_id = users.id").
 		Where("domain_users.domain_id = ?", domainId)
 	return ListObjs[schemas.UserWithDomainRole](statment, pagination)
+}
+
+func AddDomainUser(domainId uuid.UUID, user schemas.User, role string) (
+	schema schemas.UserWithDomainRole, err error,
+) {
+	model := models.DomainUser{
+		Domain: models.Domain{Base: models.Base{ID: domainId}},
+		User:   models.User{Base: models.Base{ID: user.Id}},
+		Role:   role,
+	}
+	schema, err = CreateObj[schemas.UserWithDomainRole](&model)
+	if err != nil {
+		return
+	}
+	schema.DomainRole = &model.Role
+	schema.Gravatar = user.Gravatar
+	schema.Id = user.Id
+	schema.Username = user.Username
+	return
 }
