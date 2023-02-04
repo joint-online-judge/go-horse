@@ -1,6 +1,6 @@
 module github.com/joint-online-judge/go-horse
 
-go 1.19
+go 1.20
 
 require (
 	github.com/deepmap/oapi-codegen v1.12.4
