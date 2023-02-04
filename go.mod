@@ -17,6 +17,7 @@ require (
 	github.com/aws/aws-sdk-go v1.44.194
 	github.com/bytedance/sonic v1.7.0
 	github.com/caarlos0/env/v6 v6.10.1
+	github.com/caarlos0/env/v7 v7.0.0
 	github.com/gofiber/jwt/v3 v3.3.5
 	github.com/gofiber/redirect/v2 v2.1.30
 	github.com/gofiber/swagger v0.1.8
