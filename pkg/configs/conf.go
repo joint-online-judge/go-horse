@@ -1,7 +1,7 @@
 package configs
 
 import (
-	"github.com/caarlos0/env/v6"
+	"github.com/caarlos0/env/v7"
 	_ "github.com/joho/godotenv/autoload"
 	_ "github.com/joint-online-judge/go-horse/pkg/logger"
 	"github.com/sirupsen/logrus"
