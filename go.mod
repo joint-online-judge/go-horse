@@ -22,7 +22,7 @@ require (
 	github.com/gofiber/swagger v0.1.8
 	github.com/golang-jwt/jwt/v4 v4.4.3
 	github.com/matthewhartstonge/argon2 v0.3.2
-	github.com/rabbitmq/amqp091-go v1.6.0
+	github.com/rabbitmq/amqp091-go v1.6.1
 	github.com/redis/go-redis/v9 v9.0.0-rc.4
 	github.com/swaggo/swag v1.8.9
 )
