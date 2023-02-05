@@ -8,9 +8,9 @@ import (
 	"gorm.io/gorm"
 )
 
-func GetDomain[Schema any](
+func GetDomain(
 	domain string,
-) (domainModel models.Domain, domainSchema Schema, err error) {
+) (domainModel models.Domain, err error) {
 	var query models.Domain
 	if domainID, err := uuid.Parse(domain); err != nil {
 		query.URL = domain
@@ -21,7 +21,6 @@ func GetDomain[Schema any](
 	if err != nil {
 		return
 	}
-	domainSchema, err = ConvertTo[Schema](domainModel)
 	return
 }
 
@@ -76,7 +75,10 @@ func ListDomainUsers(domainId uuid.UUID, pagination schemas.Pagination) (
 	[]schemas.UserWithDomainRole, int64, error,
 ) {
 	statment := DB.Table("domain_users").
-		Select("domain_users.created_at, domain_users.updated_at, domain_users.domain_id, domain_users.user_id, domain_users.id, domain_users.role as domain_role, users.username, users.gravatar").
+		Select("domain_users.created_at, domain_users.updated_at, "+
+			"domain_users.domain_id, domain_users.user_id, "+
+			"domain_users.id, domain_users.role as domain_role, "+
+			"users.username, users.gravatar").
 		Joins("JOIN users ON domain_users.user_id = users.id").
 		Where("domain_users.domain_id = ?", domainId)
 	return ListObjs[schemas.UserWithDomainRole](statment, pagination)
@@ -99,4 +101,19 @@ func AddDomainUser(domainId uuid.UUID, user schemas.User, role string) (
 	schema.Id = user.Id
 	schema.Username = user.Username
 	return
+}
+
+func SearchDomainCandidates(
+	domainId uuid.UUID, query string, pagination schemas.Pagination,
+) ([]schemas.UserWithDomainRole, error) {
+	statment := DB.Table("users").
+		Select("users.id, users.username, users.gravatar, "+
+			"domain_users.role as domain_role, domain_users.domain_id").
+		Joins("LEFT OUTER JOIN domain_users ON "+
+			"users.id = domain_users.user_id").
+		Where("users.username ILIKE ?", query).
+		Where(DB.Where("domain_users.domain_id = ?", domainId).
+			Or("domain_users.domain_id IS NULL"))
+	res, _, err := ListObjs[schemas.UserWithDomainRole](statment, pagination)
+	return res, err
 }

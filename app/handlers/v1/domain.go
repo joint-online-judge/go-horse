@@ -39,8 +39,11 @@ func (s *Api) GetDomain(
 	c *fiber.Ctx,
 	request schemas.GetDomainRequestObject,
 ) (any, error) {
-	_, domain, err := querys.GetDomain[schemas.Domain](request.Domain)
-	return domain, err
+	domainModel, err := querys.GetDomain(request.Domain)
+	if err != nil {
+		return nil, err
+	}
+	return querys.ConvertTo[schemas.Domain](domainModel)
 }
 
 // Search Domain Groups
@@ -68,7 +71,7 @@ func (s *Api) UpdateDomain(
 	request schemas.UpdateDomainRequestObject,
 ) (any, error) {
 	domainEdit := request.Body
-	domainModel, _, err := querys.GetDomain[schemas.Domain](request.Domain)
+	domainModel, err := querys.GetDomain(request.Domain)
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +91,18 @@ func (s *Api) SearchDomainCandidates(
 	c *fiber.Ctx,
 	request schemas.SearchDomainCandidatesRequestObject,
 ) (any, error) {
-	return nil, schemas.NewBizError(schemas.APINotImplementedError)
+	domainModel, err := querys.GetDomain(request.Domain)
+	if err != nil {
+		return nil, err
+	}
+	pagination := schemas.Pagination{
+		Ordering: request.Params.Ordering,
+		Offset:   nil,
+		Limit:    nil,
+	}
+	return querys.SearchDomainCandidates(
+		domainModel.ID, request.Params.Query, pagination,
+	)
 }
 
 // List Domain Invitations
