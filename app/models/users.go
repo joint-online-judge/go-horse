@@ -21,8 +21,8 @@ type User struct {
 	Role           string    `gorm:"column:role;not null;index"                                                json:"role"`
 	IsActive       bool      `gorm:"column:is_active;not null"                                                 json:"isActive"`
 	HashedPassword string    `gorm:"column:hashed_password;not null"                                           json:"hashedPassword"`
-	UsernameLower  string    `gorm:"column:username_lower;not null;index:,unique"                              json:"usernameLower"`
-	EmailLower     string    `gorm:"column:email_lower;not null;index:,unique"                                 json:"emailLower"`
+	UsernameLower  string    `gorm:"column:username_lower;not null;index:idx_user_username_lower,unique"                              json:"usernameLower"`
+	EmailLower     string    `gorm:"column:email_lower;not null;index:idx_user_email_lower,unique"                                 json:"emailLower"`
 	RegisterIP     string    `gorm:"column:register_ip;not null"                                               json:"registerIp"`
 	LoginIP        string    `gorm:"column:login_ip;not null"                                                  json:"loginIp"`
 }
