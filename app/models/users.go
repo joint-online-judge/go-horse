@@ -32,7 +32,7 @@ func (*User) TableName() string {
 	return TableNameUser
 }
 
-func (u *User) BeforeUpdate(tx *gorm.DB) error {
+func (u *User) BeforeSave(tx *gorm.DB) error {
 	u.UsernameLower = strings.ToLower(u.Username)
 	u.EmailLower = strings.ToLower(u.Email)
 	return nil
