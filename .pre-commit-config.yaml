@@ -11,23 +11,27 @@ repos:
       rev: v4.4.0
       hooks:
           - id: check-yaml
-          - id: check-toml
+      # - id: check-toml
           - id: end-of-file-fixer
           - id: trailing-whitespace
     - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
       rev: 0.2.2
       hooks:
           - id: yamlfmt
-    - repo: https://github.com/pappasam/toml-sort.git
-      rev: v0.22.2
+    - repo: https://github.com/mrtazz/checkmake.git
+      rev: c047d51fe0a08be186dc0c734151793924ebb249
       hooks:
-          - id: toml-sort
-            args: [--in-place, --all, --ignore-case]
-    # - repo: https://github.com/segmentio/golines
-    #   rev: v0.11.0
-    #   hooks:
-    #       - id: golines
-    #         args: [-m, '80']
+          - id: checkmake
+  # - repo: https://github.com/pappasam/toml-sort.git
+  #   rev: v0.22.2
+  #   hooks:
+  #       - id: toml-sort
+  #         args: [--in-place, --all, --ignore-case]
+  # - repo: https://github.com/segmentio/golines
+  #   rev: v0.11.0
+  #   hooks:
+  #       - id: golines
+  #         args: [-m, '80']
     - repo: https://github.com/dnephin/pre-commit-golang
       rev: v0.5.1
       hooks:

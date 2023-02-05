@@ -1,7 +1,9 @@
-.PHONY: dev clean pre-commit test build swag pre-dev
+.PHONY: all dev clean pre-commit test build swag pre-dev
 
 APP_NAME = go-horse
 BUILD_DIR = $(PWD)/build
+
+all: dev
 
 dev:
 	DEBUG=1 fiber dev -p "make pre-dev" -D docs -e go -e env
