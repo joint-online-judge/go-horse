@@ -11,7 +11,8 @@ import (
 	"github.com/joint-online-judge/go-horse/platform/error"
 	"github.com/sirupsen/logrus"
 
-	_ "github.com/joint-online-judge/go-horse/docs" // load API Docs files (Swagger)
+	// _ "github.com/joint-online-judge/go-horse/docs" // load API Docs files (Swagger)
+	_ "github.com/joint-online-judge/go-horse/docs/horse" // load API Docs files (Swagger)
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/pkg/json"
