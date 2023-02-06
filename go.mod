@@ -6,7 +6,7 @@ require (
 	github.com/deepmap/oapi-codegen v1.12.4
 	github.com/go-playground/validator/v10 v10.11.2
 	github.com/gofiber/fiber/v2 v2.42.0
-	github.com/joho/godotenv v1.5.0
+	github.com/joho/godotenv v1.5.1
 	github.com/sirupsen/logrus v1.9.0
 	gorm.io/driver/postgres v1.4.6
 	gorm.io/gorm v1.24.5
