@@ -16,7 +16,7 @@ require (
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
 	github.com/aws/aws-sdk-go v1.44.194
 	github.com/caarlos0/env/v7 v7.0.0
-	github.com/gofiber/jwt/v3 v3.3.5
+	github.com/gofiber/jwt/v3 v3.3.6
 	github.com/gofiber/redirect/v2 v2.1.30
 	github.com/gofiber/swagger v0.1.8
 	github.com/golang-jwt/jwt/v4 v4.4.3
