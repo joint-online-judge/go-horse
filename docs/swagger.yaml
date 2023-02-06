@@ -1,6 +1,120 @@
 ---
 basePath: /api/v1
 definitions:
+    schemas.AuthTokens:
+        properties:
+            accessToken:
+                type: string
+            refreshToken:
+                type: string
+            tokenType:
+                type: string
+        type: object
+    schemas.AuthTokensResp:
+        properties:
+            data:
+                $ref: '#/definitions/schemas.AuthTokens'
+            errorCode:
+                $ref: '#/definitions/schemas.ErrorCode'
+            errorMsg:
+                type: string
+        type: object
+    schemas.ErrorCode:
+        enum:
+            - Success
+            - APINotImplementedError
+            - DeleteProblemBadRequestError
+            - DomainInvitationBadRequestError
+            - DomainInvitationExpiredError
+            - DomainNotFoundError
+            - DomainNotOwnerError
+            - DomainNotRootError
+            - DomainRoleNotFoundError
+            - DomainRoleNotUniqueError
+            - DomainRoleReadOnlyError
+            - DomainRoleUsedError
+            - DomainUserNotFoundError
+            - Error
+            - FileDownloadError
+            - FileSystemError
+            - FileUpdateError
+            - FileValidationError
+            - IllegalFieldError
+            - IntegrityError
+            - InternalServerError
+            - InvalidUrlError
+            - LockError
+            - ProblemConfigJsonNotFoundError
+            - ProblemConfigNotFoundError
+            - ProblemGroupNotFoundError
+            - ProblemNotFoundError
+            - ProblemSetNotFoundError
+            - RecordNotFoundError
+            - ScoreboardHiddenBadRequestError
+            - UnknownFieldError
+            - UnsupportedLanguageError
+            - UserAlreadyInDomainBadRequestError
+            - UserNotFoundError
+            - UserNotJudgerError
+            - UserRegisterError
+            - UsernamePasswordError
+        type: string
+        x-enum-varnames:
+            - Success
+            - APINotImplementedError
+            - DeleteProblemBadRequestError
+            - DomainInvitationBadRequestError
+            - DomainInvitationExpiredError
+            - DomainNotFoundError
+            - DomainNotOwnerError
+            - DomainNotRootError
+            - DomainRoleNotFoundError
+            - DomainRoleNotUniqueError
+            - DomainRoleReadOnlyError
+            - DomainRoleUsedError
+            - DomainUserNotFoundError
+            - Error
+            - FileDownloadError
+            - FileSystemError
+            - FileUpdateError
+            - FileValidationError
+            - IllegalFieldError
+            - IntegrityError
+            - InternalServerError
+            - InvalidUrlError
+            - LockError
+            - ProblemConfigJsonNotFoundError
+            - ProblemConfigNotFoundError
+            - ProblemGroupNotFoundError
+            - ProblemNotFoundError
+            - ProblemSetNotFoundError
+            - RecordNotFoundError
+            - ScoreboardHiddenBadRequestError
+            - UnknownFieldError
+            - UnsupportedLanguageError
+            - UserAlreadyInDomainBadRequestError
+            - UserNotFoundError
+            - UserNotJudgerError
+            - UserRegisterError
+            - UsernamePasswordError
+    schemas.ForbiddenResp:
+        properties:
+            detail:
+                type: string
+        type: object
+    schemas.RegisterJSONRequestBody:
+        properties:
+            email:
+                type: string
+            oauthAccountId:
+                type: string
+            oauthName:
+                type: string
+            password:
+                type: string
+            username:
+                type: string
+        type: object
     schemas.Version:
         properties:
             git:
@@ -18,6 +132,46 @@ info:
     title: API
     version: '1.0'
 paths:
+    /auth/register:
+        post:
+            consumes:
+                - application/json
+            parameters:
+                - default: true
+                  description: Add Set/Delete-Cookie on response header
+                  in: query
+                  name: cookie
+                  type: boolean
+                - default: json
+                  description: Response type
+                  in: query
+                  name: responseType
+                  required: true
+                  type: string
+                - description: The redirect url after the operation
+                  in: query
+                  name: redirectUrl
+                  type: string
+                - description: Request body
+                  in: body
+                  name: body
+                  required: true
+                  schema:
+                      $ref: '#/definitions/schemas.RegisterJSONRequestBody'
+            produces:
+                - application/json
+            responses:
+                '200':
+                    description: OK
+                    schema:
+                        $ref: '#/definitions/schemas.AuthTokensResp'
+                '403':
+                    description: Forbidden
+                    schema:
+                        $ref: '#/definitions/schemas.ForbiddenResp'
+            summary: Register
+            tags:
+                - auth
     /version:
         get:
             consumes:

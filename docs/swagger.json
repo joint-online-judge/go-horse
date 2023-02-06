@@ -14,6 +14,66 @@
     },
     "basePath": "/api/v1",
     "paths": {
+        "/auth/register": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Register",
+                "parameters": [
+                    {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Add Set/Delete-Cookie on response header",
+                        "name": "cookie",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "default": "json",
+                        "description": "Response type",
+                        "name": "responseType",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "The redirect url after the operation",
+                        "name": "redirectUrl",
+                        "in": "query"
+                    },
+                    {
+                        "description": "Request body",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/schemas.RegisterJSONRequestBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/schemas.AuthTokensResp"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/schemas.ForbiddenResp"
+                        }
+                    }
+                }
+            }
+        },
         "/version": {
             "get": {
                 "consumes": [
@@ -38,6 +98,143 @@
         }
     },
     "definitions": {
+        "schemas.AuthTokens": {
+            "type": "object",
+            "properties": {
+                "accessToken": {
+                    "type": "string"
+                },
+                "refreshToken": {
+                    "type": "string"
+                },
+                "tokenType": {
+                    "type": "string"
+                }
+            }
+        },
+        "schemas.AuthTokensResp": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/schemas.AuthTokens"
+                },
+                "errorCode": {
+                    "$ref": "#/definitions/schemas.ErrorCode"
+                },
+                "errorMsg": {
+                    "type": "string"
+                }
+            }
+        },
+        "schemas.ErrorCode": {
+            "type": "string",
+            "enum": [
+                "Success",
+                "APINotImplementedError",
+                "DeleteProblemBadRequestError",
+                "DomainInvitationBadRequestError",
+                "DomainInvitationExpiredError",
+                "DomainNotFoundError",
+                "DomainNotOwnerError",
+                "DomainNotRootError",
+                "DomainRoleNotFoundError",
+                "DomainRoleNotUniqueError",
+                "DomainRoleReadOnlyError",
+                "DomainRoleUsedError",
+                "DomainUserNotFoundError",
+                "Error",
+                "FileDownloadError",
+                "FileSystemError",
+                "FileUpdateError",
+                "FileValidationError",
+                "IllegalFieldError",
+                "IntegrityError",
+                "InternalServerError",
+                "InvalidUrlError",
+                "LockError",
+                "ProblemConfigJsonNotFoundError",
+                "ProblemConfigNotFoundError",
+                "ProblemGroupNotFoundError",
+                "ProblemNotFoundError",
+                "ProblemSetNotFoundError",
+                "RecordNotFoundError",
+                "ScoreboardHiddenBadRequestError",
+                "UnknownFieldError",
+                "UnsupportedLanguageError",
+                "UserAlreadyInDomainBadRequestError",
+                "UserNotFoundError",
+                "UserNotJudgerError",
+                "UserRegisterError",
+                "UsernamePasswordError"
+            ],
+            "x-enum-varnames": [
+                "Success",
+                "APINotImplementedError",
+                "DeleteProblemBadRequestError",
+                "DomainInvitationBadRequestError",
+                "DomainInvitationExpiredError",
+                "DomainNotFoundError",
+                "DomainNotOwnerError",
+                "DomainNotRootError",
+                "DomainRoleNotFoundError",
+                "DomainRoleNotUniqueError",
+                "DomainRoleReadOnlyError",
+                "DomainRoleUsedError",
+                "DomainUserNotFoundError",
+                "Error",
+                "FileDownloadError",
+                "FileSystemError",
+                "FileUpdateError",
+                "FileValidationError",
+                "IllegalFieldError",
+                "IntegrityError",
+                "InternalServerError",
+                "InvalidUrlError",
+                "LockError",
+                "ProblemConfigJsonNotFoundError",
+                "ProblemConfigNotFoundError",
+                "ProblemGroupNotFoundError",
+                "ProblemNotFoundError",
+                "ProblemSetNotFoundError",
+                "RecordNotFoundError",
+                "ScoreboardHiddenBadRequestError",
+                "UnknownFieldError",
+                "UnsupportedLanguageError",
+                "UserAlreadyInDomainBadRequestError",
+                "UserNotFoundError",
+                "UserNotJudgerError",
+                "UserRegisterError",
+                "UsernamePasswordError"
+            ]
+        },
+        "schemas.ForbiddenResp": {
+            "type": "object",
+            "properties": {
+                "detail": {
+                    "type": "string"
+                }
+            }
+        },
+        "schemas.RegisterJSONRequestBody": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "oauthAccountId": {
+                    "type": "string"
+                },
+                "oauthName": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
         "schemas.Version": {
             "type": "object",
             "properties": {

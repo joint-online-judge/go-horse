@@ -1067,6 +1067,18 @@ func (siw *ServerInterfaceWrapper) Refresh(c *fiber.Ctx) error {
 }
 
 // Register operation middleware
+//
+//	@Summary	Register
+//	@Tags		auth
+//	@Accept		json
+//	@Produce	json
+//	@Param		cookie			query		boolean							false	"Add Set/Delete-Cookie on response header"	default(true)
+//	@Param		responseType	query		string							true	"Response type"								Enum(redirect, json)	default(json)
+//	@Param		redirectUrl		query		string							false	"The redirect url after the operation"
+//	@Param		body			body		schemas.RegisterJSONRequestBody	true	"Request body"
+//	@Success	200				{object}	schemas.AuthTokensResp
+//	@Success	403				{object}	schemas.ForbiddenResp
+//	@Router		/auth/register [post]
 func (siw *ServerInterfaceWrapper) Register(c *fiber.Ctx) error {
 	var err error
 

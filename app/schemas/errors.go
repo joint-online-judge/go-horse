@@ -7,6 +7,7 @@ type ErrorCode string
 
 // Defines values for ErrorCode.
 const (
+	Success                            ErrorCode = "Success"
 	APINotImplementedError             ErrorCode = "APINotImplementedError"
 	DeleteProblemBadRequestError       ErrorCode = "DeleteProblemBadRequestError"
 	DomainInvitationBadRequestError    ErrorCode = "DomainInvitationBadRequestError"
@@ -36,7 +37,6 @@ const (
 	ProblemSetNotFoundError            ErrorCode = "ProblemSetNotFoundError"
 	RecordNotFoundError                ErrorCode = "RecordNotFoundError"
 	ScoreboardHiddenBadRequestError    ErrorCode = "ScoreboardHiddenBadRequestError"
-	Success                            ErrorCode = "Success"
 	UnknownFieldError                  ErrorCode = "UnknownFieldError"
 	UnsupportedLanguageError           ErrorCode = "UnsupportedLanguageError"
 	UserAlreadyInDomainBadRequestError ErrorCode = "UserAlreadyInDomainBadRequestError"

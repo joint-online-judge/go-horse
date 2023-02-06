@@ -290,3 +290,7 @@ type ValidationError struct {
 type HTTPValidationError struct {
 	Detail *[]ValidationError `json:"detail,omitempty"`
 }
+
+type ForbiddenResp struct {
+	Detail string `json:"detail"`
+}
