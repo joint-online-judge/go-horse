@@ -7,8 +7,7 @@ import (
 	"github.com/joint-online-judge/go-horse/pkg/configs"
 	"github.com/joint-online-judge/go-horse/pkg/middlewares"
 	"github.com/joint-online-judge/go-horse/pkg/routers"
-	"github.com/joint-online-judge/go-horse/platform/db"
-	"github.com/joint-online-judge/go-horse/platform/error"
+	"github.com/joint-online-judge/go-horse/platform"
 	"github.com/sirupsen/logrus"
 
 	_ "github.com/joint-online-judge/go-horse/docs" // load API Docs files (Swagger)
@@ -27,12 +26,7 @@ import (
 //	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
 //	@BasePath		/api/v1
 func main() {
-	error.ConnectRollbar()
-	db.ConnectPostgres()
-	// cache.ConnectRedis()
-	// mq.ConnectRabbitMQ()
-	// storage.ConnectLakeFS()
-	// storage.ConnectS3()
+	platform.Bootstrap()
 	app := fiber.New(fiber.Config{
 		ErrorHandler: handlers.Error,
 		Prefork:      !configs.Conf.Debug,
