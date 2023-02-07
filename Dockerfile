@@ -14,6 +14,10 @@ WORKDIR /app
 
 COPY --from=build /go/src/fiber/app .
 
-EXPOSE 3000
+ENV HOST="localhost" \
+    PORT=34764 \
+    JWT_SECRET="secret"
+
+EXPOSE $PORT
 
 CMD ["./app"]
