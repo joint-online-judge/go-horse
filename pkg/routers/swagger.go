@@ -8,7 +8,7 @@ import (
 func RegisterSwagger(router fiber.Router) {
 	docs := router.Group("/docs")
 	docs.Get("/*", swagger.New(swagger.Config{
-		URL:          "https://raw.githubusercontent.com/joint-online-judge/horse/openapi/openapi.json",
+		URL:          "/api/v1/horse/static/openapi.json",
 		DocExpansion: "none",
 	}))
 }
