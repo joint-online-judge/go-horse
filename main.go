@@ -5,7 +5,6 @@ import (
 
 	"github.com/joint-online-judge/go-horse/app/handlers"
 	"github.com/joint-online-judge/go-horse/pkg/configs"
-	"github.com/joint-online-judge/go-horse/pkg/middlewares"
 	"github.com/joint-online-judge/go-horse/pkg/routers"
 	"github.com/joint-online-judge/go-horse/platform"
 	"github.com/sirupsen/logrus"
@@ -33,7 +32,6 @@ func main() {
 		JSONEncoder:  json.Marshal,
 		JSONDecoder:  json.Unmarshal,
 	})
-	middlewares.Register(app)
 	routers.Register(app)
 	logrus.Fatal(
 		app.Listen(fmt.Sprintf("%s:%d", configs.Conf.Host, configs.Conf.Port)),
