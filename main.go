@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime/debug"
 
 	"github.com/joint-online-judge/go-horse/app/handlers"
 	"github.com/joint-online-judge/go-horse/pkg/configs"
@@ -33,7 +34,6 @@ func main() {
 		JSONDecoder:  json.Unmarshal,
 	})
 	routers.Register(app)
-	logrus.Fatal(
-		app.Listen(fmt.Sprintf("%s:%d", configs.Conf.Host, configs.Conf.Port)),
-	)
+	err := app.Listen(fmt.Sprintf("%s:%d", configs.Conf.Host, configs.Conf.Port))
+	logrus.Fatalf("app.Listen error: %v\n%s\n", err, debug.Stack())
 }
