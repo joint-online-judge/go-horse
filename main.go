@@ -29,9 +29,9 @@ func main() {
 	platform.Bootstrap()
 	app := fiber.New(fiber.Config{
 		ErrorHandler: handlers.Error,
-		// Prefork:      !configs.Conf.Debug,
-		JSONEncoder: json.Marshal,
-		JSONDecoder: json.Unmarshal,
+		Prefork:      !configs.Conf.Debug,
+		JSONEncoder:  json.Marshal,
+		JSONDecoder:  json.Unmarshal,
 	})
 	routers.Register(app)
 	err := app.Listen(fmt.Sprintf("%s:%d", configs.Conf.Host, configs.Conf.Port))
