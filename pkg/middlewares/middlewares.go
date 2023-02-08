@@ -38,7 +38,7 @@ func Register(router fiber.Router) {
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}))
 	router.Use(Recover)
-	if !configs.Conf.Debug {
+	if !configs.Conf.Debug && configs.Conf.Prod {
 		router.Use(Security)
 		router.Use(csrf.New())
 	}

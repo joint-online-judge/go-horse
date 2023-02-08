@@ -9,6 +9,7 @@ import (
 
 type conf struct {
 	// server config
+	Prod              bool     `env:"PROD"                envDefault:"false"`
 	Debug             bool     `env:"DEBUG"               envDefault:"false"`
 	Https             bool     `env:"HTTPS"               envDefault:"false"`
 	Host              string   `env:"HOST"                envDefault:"127.0.0.1"`
