@@ -1,12 +1,14 @@
 # Go-Horse
 
-## Install `pre-commit` (Run Once)
+## Install Dev Deps (Run Once)
+
+Make sure `$(go env GOPATH)/bin` is in your `$PATH`.
 
 ```bash
-$ make pre-commit-install
+$ make install-dev
 ```
 
-## Run
+## Development (With joj-deploy-lite started)
 
 ```bash
 $ make dev

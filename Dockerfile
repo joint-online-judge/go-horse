@@ -12,12 +12,12 @@ COPY . .
 
 # Set necessary environment variables needed for our image and build the API server.
 ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64
-RUN go build -ldflags="-s -w" -o apiserver .
+RUN go build -ldflags="-s -w" -o go-horse .
 
 FROM scratch
 
 # Copy binary and config files from /build to root folder of scratch container.
-COPY --from=builder ["/build/apiserver", "/"]
+COPY --from=builder ["/build/go-horse", "/"]
 
 ENV HOST="localhost" \
     PORT=34764 \
@@ -26,4 +26,4 @@ ENV HOST="localhost" \
 EXPOSE $PORT
 
 # Command to run when starting the container.
-ENTRYPOINT ["/apiserver"]
+ENTRYPOINT ["/go-horse"]
