@@ -9,6 +9,7 @@ import (
 )
 
 func Register(router *fiber.App) {
+	middlewares.Register(router)
 	wrapper := schemas.ServerInterfaceWrapper{
 		Handler: schemas.NewStrictHandler(
 			&v1.Api{},
@@ -18,7 +19,6 @@ func Register(router *fiber.App) {
 	}
 	api := router.Group("/api") // /api
 	v1 := api.Group("/v1")      // /api/v1
-	middlewares.Register(v1)
 	RegisterHorseStatic(v1)
 	RegisterSwagger(v1)
 	RegisterMisc(v1, wrapper)
