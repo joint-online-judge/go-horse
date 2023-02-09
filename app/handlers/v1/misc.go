@@ -1,6 +1,8 @@
 package v1
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schemas"
 	"github.com/joint-online-judge/go-horse/pkg/configs"
@@ -32,7 +34,7 @@ func (s *Api) Version(
 	request schemas.VersionRequestObject,
 ) (any, error) {
 	return schemas.NewNonStandardResp(schemas.Version{
-		Git:     configs.GitCommit,
+		Git:     fmt.Sprintf("%s %s", configs.GitCommit, configs.BuiltAt),
 		Version: configs.Version,
 	}), nil
 }

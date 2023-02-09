@@ -34,11 +34,21 @@ test: clean
 	go test -v -timeout 30s -coverprofile=cover.out -cover ./...
 	go tool cover -func=cover.out
 
+BUILT_AT := $(shell date +'%F %T %z')
+GO_VERSION := $(shell go version)
+GIT_AUTHOR := $(shell git show -s --format='format:%aN <%ae>' HEAD)
+GIT_COMMIT := $(shell git log --pretty=format:"%H" -1)
+VERSION := dev
+FLAGS := "-s -w \
+-X 'github.com/joint-online-judge/go-horse/pkg/configs.BuiltAt=$(BUILT_AT)' \
+-X 'github.com/joint-online-judge/go-horse/pkg/configs.GoVersion=$(GO_VERSION)' \
+-X 'github.com/joint-online-judge/go-horse/pkg/configs.GitAuthor=$(GIT_AUTHOR)' \
+-X 'github.com/joint-online-judge/go-horse/pkg/configs.GitCommit=$(GIT_COMMIT)' \
+-X 'github.com/joint-online-judge/go-horse/pkg/configs.Version=$(VERSION)'"
 build:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o $(BUILD_DIR)/$(APP_NAME) .
-
-run: swag build
-	$(BUILD_DIR)/$(APP_NAME)
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
+	go build -ldflags=$(FLAGS) -o $(BUILD_DIR)/$(APP_NAME) .
 
 swag:
 	swag init
+	pre-commit run --files ./docs/swagger.* || true
