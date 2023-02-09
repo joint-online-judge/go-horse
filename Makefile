@@ -51,4 +51,3 @@ build:
 
 swag:
 	swag init
-	pre-commit run --files ./docs/swagger.* || true
