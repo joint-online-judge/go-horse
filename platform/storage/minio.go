@@ -3,14 +3,14 @@ package storage
 import (
 	"fmt"
 
-	"github.com/joint-online-judge/go-horse/pkg/configs"
+	"github.com/joint-online-judge/go-horse/pkg/config"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
 	"github.com/sirupsen/logrus"
 )
 
 func ConnectMinio() {
-	conf := configs.Conf
+	conf := config.Conf
 	endpoint := fmt.Sprintf("%s:%d", conf.S3Host, conf.S3Port)
 	accessKeyID := conf.S3Username
 	secretAccessKey := conf.S3Password

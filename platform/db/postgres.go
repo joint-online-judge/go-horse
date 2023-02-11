@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/joint-online-judge/go-horse/app/models"
-	"github.com/joint-online-judge/go-horse/app/querys"
-	"github.com/joint-online-judge/go-horse/pkg/configs"
+	"github.com/joint-online-judge/go-horse/app/model"
+	"github.com/joint-online-judge/go-horse/app/query"
+	"github.com/joint-online-judge/go-horse/pkg/config"
 	"github.com/sirupsen/logrus"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -17,7 +17,7 @@ import (
 var DB *gorm.DB
 
 func createDatabase(gormConfig *gorm.Config) error {
-	conf := configs.Conf
+	conf := config.Conf
 	dsn := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		conf.DBHost,
@@ -59,7 +59,7 @@ func createDatabase(gormConfig *gorm.Config) error {
 }
 
 func connectDatabase(gormConfig *gorm.Config) (err error) {
-	conf := configs.Conf
+	conf := config.Conf
 	dsn := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		conf.DBHost,
@@ -69,7 +69,7 @@ func connectDatabase(gormConfig *gorm.Config) (err error) {
 		conf.DBName,
 	)
 	DB, err = gorm.Open(postgres.Open(dsn), gormConfig)
-	querys.DB = DB
+	query.DB = DB
 	if err != nil {
 		return
 	}
@@ -79,24 +79,24 @@ func connectDatabase(gormConfig *gorm.Config) (err error) {
 
 func migrateDatabase() error {
 	return DB.AutoMigrate(
-		&models.DomainInvitation{},
-		&models.DomainRole{},
-		&models.DomainUser{},
-		&models.Domain{},
-		&models.ProblemConfig{},
-		&models.ProblemGroup{},
-		&models.ProblemProblemSetLink{},
-		&models.ProblemSet{},
-		&models.Problem{},
-		&models.Record{},
-		&models.UserLatestRecord{},
-		&models.UserOauthAccount{},
-		&models.User{},
+		&model.DomainInvitation{},
+		&model.DomainRole{},
+		&model.DomainUser{},
+		&model.Domain{},
+		&model.ProblemConfig{},
+		&model.ProblemGroup{},
+		&model.ProblemProblemSetLink{},
+		&model.ProblemSet{},
+		&model.Problem{},
+		&model.Record{},
+		&model.UserLatestRecord{},
+		&model.UserOauthAccount{},
+		&model.User{},
 	)
 }
 
 func getGormConfig() gorm.Config {
-	conf := configs.Conf
+	conf := config.Conf
 	logLevel := gorm_logger.Silent
 	if conf.DBEcho {
 		logLevel = gorm_logger.Info

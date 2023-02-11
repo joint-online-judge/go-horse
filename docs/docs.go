@@ -61,7 +61,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/schemas.RegisterJSONRequestBody"
+                            "$ref": "#/definitions/schema.RegisterJSONRequestBody"
                         }
                     }
                 ],
@@ -69,13 +69,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/schemas.AuthTokensResp"
+                            "$ref": "#/definitions/schema.AuthTokensResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/schemas.ForbiddenResp"
+                            "$ref": "#/definitions/schema.ForbiddenResp"
                         }
                     }
                 }
@@ -97,7 +97,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/schemas.Version"
+                            "$ref": "#/definitions/schema.Version"
                         }
                     }
                 }
@@ -105,7 +105,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "schemas.AuthTokens": {
+        "schema.AuthTokens": {
             "type": "object",
             "properties": {
                 "accessToken": {
@@ -119,21 +119,21 @@ const docTemplate = `{
                 }
             }
         },
-        "schemas.AuthTokensResp": {
+        "schema.AuthTokensResp": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/schemas.AuthTokens"
+                    "$ref": "#/definitions/schema.AuthTokens"
                 },
                 "errorCode": {
-                    "$ref": "#/definitions/schemas.ErrorCode"
+                    "$ref": "#/definitions/schema.ErrorCode"
                 },
                 "errorMsg": {
                     "type": "string"
                 }
             }
         },
-        "schemas.ErrorCode": {
+        "schema.ErrorCode": {
             "type": "string",
             "enum": [
                 "Success",
@@ -214,7 +214,7 @@ const docTemplate = `{
                 "UsernamePasswordError"
             ]
         },
-        "schemas.ForbiddenResp": {
+        "schema.ForbiddenResp": {
             "type": "object",
             "properties": {
                 "detail": {
@@ -222,7 +222,7 @@ const docTemplate = `{
                 }
             }
         },
-        "schemas.RegisterJSONRequestBody": {
+        "schema.RegisterJSONRequestBody": {
             "type": "object",
             "properties": {
                 "email": {
@@ -242,7 +242,7 @@ const docTemplate = `{
                 }
             }
         },
-        "schemas.Version": {
+        "schema.Version": {
             "type": "object",
             "properties": {
                 "git": {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/joint-online-judge/go-horse/pkg/configs"
+	"github.com/joint-online-judge/go-horse/pkg/config"
 	"github.com/redis/go-redis/v9"
 	"github.com/sirupsen/logrus"
 )
@@ -12,7 +12,7 @@ import (
 var RDB *redis.Client
 
 func ConnectRedis() {
-	conf := configs.Conf
+	conf := config.Conf
 	RDB = redis.NewClient(&redis.Options{
 		Addr:     fmt.Sprintf("%s:%d", conf.RedisHost, conf.RedisPort),
 		Password: conf.RedisPassword,

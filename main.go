@@ -7,11 +7,11 @@ import (
 	_ "github.com/joint-online-judge/go-horse/pkg/logger"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/joint-online-judge/go-horse/app/handlers"
+	"github.com/joint-online-judge/go-horse/app/handler"
 	_ "github.com/joint-online-judge/go-horse/docs" // load API Docs files (Swagger)
-	"github.com/joint-online-judge/go-horse/pkg/configs"
+	"github.com/joint-online-judge/go-horse/pkg/config"
 	"github.com/joint-online-judge/go-horse/pkg/json"
-	"github.com/joint-online-judge/go-horse/pkg/routers"
+	"github.com/joint-online-judge/go-horse/pkg/router"
 	"github.com/joint-online-judge/go-horse/platform"
 	"github.com/sirupsen/logrus"
 )
@@ -28,12 +28,12 @@ import (
 func main() {
 	platform.Bootstrap()
 	app := fiber.New(fiber.Config{
-		ErrorHandler: handlers.Error,
-		Prefork:      !configs.Conf.Debug,
+		ErrorHandler: handler.Error,
+		Prefork:      !config.Conf.Debug,
 		JSONEncoder:  json.Marshal,
 		JSONDecoder:  json.Unmarshal,
 	})
-	routers.Register(app)
-	err := app.Listen(fmt.Sprintf("%s:%d", configs.Conf.Host, configs.Conf.Port))
+	router.Register(app)
+	err := app.Listen(fmt.Sprintf("%s:%d", config.Conf.Host, config.Conf.Port))
 	logrus.Fatalf("app.Listen error: %v\n%s\n", err, debug.Stack())
 }

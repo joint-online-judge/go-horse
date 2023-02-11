@@ -4,12 +4,12 @@ import (
 	"fmt"
 
 	"github.com/hibiken/asynq"
-	"github.com/joint-online-judge/go-horse/pkg/configs"
+	"github.com/joint-online-judge/go-horse/pkg/config"
 	"github.com/sirupsen/logrus"
 )
 
 func ConnectAsyncq() {
-	conf := configs.Conf
+	conf := config.Conf
 	config := asynq.RedisClientOpt{
 		Addr:     fmt.Sprintf("%s:%d", conf.RedisHost, conf.RedisPort),
 		Password: conf.RedisPassword,

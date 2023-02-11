@@ -1,7 +1,7 @@
 package platform
 
 import (
-	_ "github.com/joint-online-judge/go-horse/pkg/configs" // load config
+	_ "github.com/joint-online-judge/go-horse/pkg/config" // load config
 	"github.com/joint-online-judge/go-horse/platform/db"
 	"github.com/joint-online-judge/go-horse/platform/error"
 )
