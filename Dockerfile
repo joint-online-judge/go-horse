@@ -14,10 +14,10 @@ COPY . .
 ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64
 RUN go build -ldflags="-s -w" -o go-horse .
 
-FROM scratch
+FROM gcr.io/distroless/base
 
-# Copy binary and config files from /build to root folder of scratch container.
-COPY --from=builder ["/build/go-horse", "/"]
+# Copy binary and config files from /build to root folder of distroless container.
+COPY --from=builder ["/build/go-horse", "."]
 
 ENV HOST="localhost" \
     PORT=34764 \
@@ -26,4 +26,4 @@ ENV HOST="localhost" \
 EXPOSE $PORT
 
 # Command to run when starting the container.
-ENTRYPOINT ["/go-horse"]
+ENTRYPOINT ["./go-horse"]

@@ -12,7 +12,7 @@ dev:
 pre-dev: swag
 	go mod tidy
 	make build
-	docker cp ./build/go-horse joj2-go-horse:/go-horse
+	docker cp ./build/go-horse joj2-go-horse:.
 	docker restart joj2-go-horse
 	docker logs -f joj2-go-horse
 
