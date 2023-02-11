@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"runtime/debug"
 
+	_ "github.com/joint-online-judge/go-horse/pkg/logger"
+
+	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/handlers"
+	_ "github.com/joint-online-judge/go-horse/docs" // load API Docs files (Swagger)
 	"github.com/joint-online-judge/go-horse/pkg/configs"
+	"github.com/joint-online-judge/go-horse/pkg/json"
 	"github.com/joint-online-judge/go-horse/pkg/routers"
 	"github.com/joint-online-judge/go-horse/platform"
 	"github.com/sirupsen/logrus"
-
-	_ "github.com/joint-online-judge/go-horse/docs" // load API Docs files (Swagger)
-
-	"github.com/gofiber/fiber/v2"
-	"github.com/joint-online-judge/go-horse/pkg/json"
 )
 
 // Swagger information
