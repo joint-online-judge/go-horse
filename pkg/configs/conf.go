@@ -70,7 +70,7 @@ type conf struct {
 	OauthGithubId     string `env:"OAUTH_GITHUB_ID"     envDefault:""`
 	OauthGithubSecret string `env:"OAUTH_GITHUB_SECRET" envDefault:""`
 
-	// rollbar `envDefault:config`
+	// rollbar
 	RollbarAccessToken string `env:"ROLLBAR_ACCESS_TOKEN" envDefault:""`
 }
 
