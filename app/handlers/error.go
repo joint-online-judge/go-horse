@@ -13,9 +13,14 @@ import (
 )
 
 func Error(ctx *fiber.Ctx, err error) error {
+	var e *fiber.Error
+	if errors.As(err, &e) {
+		return ctx.Status(e.Code).
+			JSON(schemas.NewEmptyResp(schemas.InternalServerError, e.Message))
+	}
 	stack := debug.Stack()
 	if n, ok := ctx.Locals("rollbar_reported").(int); !ok || n == 0 {
-		logrus.Errorf("error handler panic: %v\n%s\n", err, stack)
+		logrus.Errorf("error handler panic: %T, %v\n%s\n", err, err, stack)
 		rollbar.Critical(
 			errors.New(fmt.Sprint(err)),
 			map[string]interface{}{
