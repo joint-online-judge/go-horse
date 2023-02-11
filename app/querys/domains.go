@@ -74,14 +74,14 @@ func CreateDomain(
 func ListDomainUsers(domainId uuid.UUID, pagination schemas.Pagination) (
 	[]schemas.UserWithDomainRole, int64, error,
 ) {
-	statment := DB.Table("domain_users").
+	statement := DB.Table("domain_users").
 		Select("domain_users.created_at, domain_users.updated_at, "+
 			"domain_users.domain_id, domain_users.user_id, "+
 			"domain_users.id, domain_users.role as domain_role, "+
 			"users.username, users.gravatar").
 		Joins("JOIN users ON domain_users.user_id = users.id").
 		Where("domain_users.domain_id = ?", domainId)
-	return ListObjs[schemas.UserWithDomainRole](statment, pagination)
+	return ListObjs[schemas.UserWithDomainRole](statement, pagination)
 }
 
 func AddDomainUser(domainId uuid.UUID, user schemas.User, role string) (
