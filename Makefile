@@ -9,7 +9,7 @@ dev:
 	mkdir -p build
 	air
 
-pre-dev: swag
+pre-dev:
 	go mod tidy
 	make build
 	docker cp ./build/go-horse joj2-go-horse:.
