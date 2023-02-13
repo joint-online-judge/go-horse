@@ -21,7 +21,7 @@ require (
 	github.com/golang-jwt/jwt/v4 v4.4.3
 	github.com/hibiken/asynq v0.24.0
 	github.com/matthewhartstonge/argon2 v0.3.2
-	github.com/minio/minio-go/v7 v7.0.47
+	github.com/minio/minio-go/v7 v7.0.48
 	github.com/redis/go-redis/v9 v9.0.2
 	github.com/swaggo/swag v1.8.10
 )
