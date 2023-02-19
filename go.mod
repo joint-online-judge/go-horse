@@ -18,7 +18,7 @@ require (
 	github.com/gofiber/jwt/v3 v3.3.6
 	github.com/gofiber/redirect/v2 v2.1.31
 	github.com/gofiber/swagger v0.1.9
-	github.com/golang-jwt/jwt/v4 v4.4.3
+	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/hibiken/asynq v0.24.0
 	github.com/matthewhartstonge/argon2 v0.3.2
 	github.com/minio/minio-go/v7 v7.0.49
