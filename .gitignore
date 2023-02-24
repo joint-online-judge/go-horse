@@ -14,3 +14,5 @@ tmp/
 
 # Environment variables
 .env
+
+.idea/

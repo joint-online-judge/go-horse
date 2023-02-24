@@ -4,8 +4,9 @@ package schema
 import (
 	"time"
 
+	"golang.org/x/crypto/bcrypt"
+
 	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
-	"github.com/matthewhartstonge/argon2"
 )
 
 // User defines model for User.
@@ -18,13 +19,12 @@ type User struct {
 }
 
 func VerifyPassword(password, hashed_password string) bool {
-	ok, err := argon2.VerifyEncoded([]byte(password), []byte(hashed_password))
-	return ok && err == nil
+	err := bcrypt.CompareHashAndPassword([]byte(hashed_password), []byte(password))
+	return err == nil
 }
 
 func HashPassword(password string) (string, error) {
-	argon := argon2.DefaultConfig()
-	encoded, err := argon.HashEncoded([]byte(password))
+	encoded, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	return string(encoded), err
 }
 

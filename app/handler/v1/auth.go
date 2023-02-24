@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/jinzhu/copier"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
@@ -17,10 +18,16 @@ func (s *Api) Login(
 	request schema.LoginRequestObject,
 ) (any, error) {
 	userModel := model.User{Username: *request.Body.Username}
-	user, err := query.GetObj[schema.User](&userModel)
+	err := query.DB.Where(userModel).First(&userModel).Error
 	if err != nil {
 		return nil, schema.NewBizError(schema.UserNotFoundError)
 	}
+
+	var user schema.User
+	if err = copier.Copy(&user, &userModel); err != nil {
+		return nil, schema.NewBizError(schema.DataCopyError)
+	}
+
 	if !schema.VerifyPassword(
 		*request.Body.Password,
 		userModel.HashedPassword,
@@ -30,11 +37,10 @@ func (s *Api) Login(
 			"incorrect password",
 		)
 	}
-	logrus.Infof("user login: %+v", user)
-	userModel.ID = user.Id
+	logrus.Debugf("user login: %+v", user)
 	userModel.LoginAt = time.Now()
 	userModel.LoginIP = c.IP()
-	if err = query.SaveObj(&userModel); err != nil {
+	if err = query.DB.Save(&userModel).Error; err != nil {
 		return nil, err
 	}
 	return schema.NewAuthTokens(user, "", true)
