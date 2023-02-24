@@ -2,6 +2,7 @@ package logger
 
 import (
 	nested "github.com/antonfisher/nested-logrus-formatter"
+	"github.com/joint-online-judge/go-horse/pkg/config"
 	"github.com/sirupsen/logrus"
 )
 
@@ -13,4 +14,7 @@ func init() {
 		FieldsOrder:     []string{"component", "category"},
 		CallerFirst:     true,
 	})
+	if config.Conf.Debug {
+		logrus.SetLevel(logrus.DebugLevel)
+	}
 }
