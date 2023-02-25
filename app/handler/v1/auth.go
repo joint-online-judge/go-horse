@@ -1,15 +1,10 @@
 package v1
 
 import (
-	"time"
-
 	"github.com/joint-online-judge/go-horse/app/service"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/joint-online-judge/go-horse/app/model"
-	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
-	"github.com/joint-online-judge/go-horse/pkg/convert"
 	"github.com/sirupsen/logrus"
 )
 
@@ -19,32 +14,7 @@ func (s *Api) Login(
 	c *fiber.Ctx,
 	request schema.LoginRequestObject,
 ) (any, error) {
-	userModel, err := query.GetObj[model.User](
-		&model.User{Username: *request.Body.Username},
-	)
-	if err != nil {
-		return nil, schema.NewBizError(schema.UserNotFoundError)
-	}
-	if !schema.VerifyPassword(
-		*request.Body.Password,
-		userModel.HashedPassword,
-	) {
-		return nil, schema.NewBizError(
-			schema.UsernamePasswordError,
-			"incorrect password",
-		)
-	}
-	logrus.Debugf("user login: %+v", userModel)
-	userModel.LoginAt = time.Now()
-	userModel.LoginIP = c.IP()
-	if err = query.SaveObj(&userModel); err != nil {
-		return nil, err
-	}
-	user, err := convert.To[schema.User](&userModel)
-	if err != nil {
-		return nil, err
-	}
-	return service.Auth(c).NewAuthTokens(user, "", true)
+	return service.Auth(c).Login(request.Body)
 }
 
 // Logout
@@ -53,7 +23,8 @@ func (s *Api) Logout(
 	c *fiber.Ctx,
 	request schema.LogoutRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	service.Auth(c).Logout()
+	return nil, nil
 }
 
 // List Oauth2

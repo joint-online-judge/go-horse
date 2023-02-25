@@ -6,6 +6,7 @@ import (
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
 )
 
 type userImpl struct {
@@ -18,7 +19,7 @@ func User(c *fiber.Ctx) *userImpl {
 	}
 }
 
-func (s *userImpl) GetUser(user string) (u schema.User, err error) {
+func (s *userImpl) GetUser(user string) (userModel *model.User, err error) {
 	var userId uuid.UUID
 	if user == "me" {
 		userId = Auth(s.c).JWTUser().ID
@@ -28,7 +29,16 @@ func (s *userImpl) GetUser(user string) (u schema.User, err error) {
 			return
 		}
 	}
-	userModel := model.User{ID: userId}
-	u, err = query.GetObj[schema.User](&userModel)
+	userModel = &model.User{ID: userId}
+	err = query.GetObj(&userModel)
 	return
+}
+
+func (s *userImpl) GetCurrentUser() (*schema.UserDetail, error) {
+	userModel, err := User(s.c).GetUser("me")
+	if err != nil {
+		return nil, schema.NewBizError(schema.UserNotFoundError)
+	}
+	userDetail, err := convert.To[schema.UserDetail](userModel)
+	return &userDetail, err
 }

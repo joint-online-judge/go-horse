@@ -3,6 +3,7 @@ package v1
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/app/service"
 )
 
 // Get Current User
@@ -11,7 +12,7 @@ func (s *Api) GetCurrentUser(
 	c *fiber.Ctx,
 	request schema.GetCurrentUserRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	return service.User(c).GetCurrentUser()
 }
 
 // Update Current User

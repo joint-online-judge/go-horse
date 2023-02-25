@@ -3,6 +3,9 @@ package service
 import (
 	"time"
 
+	"github.com/joint-online-judge/go-horse/pkg/convert"
+	"github.com/sirupsen/logrus"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
@@ -124,11 +127,22 @@ func (s *authImpl) CreateAuthTokens(
 	if err != nil {
 		return nil, err
 	}
-	cookie := new(fiber.Cookie)
-	cookie.Name = "refresh_token_cookie"
-	cookie.Value = token.RefreshToken
-	cookie.Expires = time.Now().Add(time.Duration(config.Conf.JwtRefreshExpireSeconds) * time.Second)
-	s.c.Cookie(cookie)
+	// Set cookie: access token
+	s.c.Cookie(&fiber.Cookie{
+		Name:     "access_token_cookie",
+		Value:    token.AccessToken,
+		Expires:  time.Now().Add(time.Duration(config.Conf.JwtExpireSeconds) * time.Second),
+		HTTPOnly: true,
+		SameSite: "lax",
+	})
+	// Set cookie: refresh token
+	s.c.Cookie(&fiber.Cookie{
+		Name:     "refresh_token_cookie",
+		Value:    token.RefreshToken,
+		Expires:  time.Now().Add(time.Duration(config.Conf.JwtRefreshExpireSeconds) * time.Second),
+		HTTPOnly: true,
+		SameSite: "lax",
+	})
 	return token, nil
 }
 
@@ -150,4 +164,49 @@ func (s *authImpl) RegisterNewUser(userCreate *schema.UserCreate) (*schema.User,
 	}
 	user, err := query.CreateObj[schema.User](&userModel)
 	return &user, err
+}
+
+func (s *authImpl) Login(loginForm *schema.OAuth2PasswordRequestForm) (*schema.AuthTokens, error) {
+	userModel := model.User{Username: *loginForm.Username}
+	err := query.GetObj(&userModel)
+	if err != nil {
+		return nil, schema.NewBizError(schema.UserNotFoundError)
+	}
+	if !schema.VerifyPassword(
+		*loginForm.Password,
+		userModel.HashedPassword,
+	) {
+		return nil, schema.NewBizError(
+			schema.UsernamePasswordError,
+			"incorrect password",
+		)
+	}
+	logrus.Debugf("user login: %+v", userModel)
+	userModel.LoginAt = time.Now()
+	userModel.LoginIP = s.c.IP()
+	if err = query.SaveObj(&userModel); err != nil {
+		return nil, err
+	}
+	user, err := convert.To[schema.User](&userModel)
+	if err != nil {
+		return nil, err
+	}
+	return Auth(s.c).CreateAuthTokens(&user, "", true)
+}
+
+func (s *authImpl) Logout() {
+	s.c.Cookie(&fiber.Cookie{
+		Name: "access_token_cookie",
+		// Set expiry date to the past
+		Expires:  time.Now().Add(-(time.Hour * 2)),
+		HTTPOnly: true,
+		SameSite: "lax",
+	})
+	s.c.Cookie(&fiber.Cookie{
+		Name: "refresh_token_cookie",
+		// Set expiry date to the past
+		Expires:  time.Now().Add(-(time.Hour * 2)),
+		HTTPOnly: true,
+		SameSite: "lax",
+	})
 }

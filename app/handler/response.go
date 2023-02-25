@@ -33,8 +33,13 @@ func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
 	}
 	// Retrieve the custom status code if it's a schema.BizError
 	if e, ok := err.(schema.BizError); ok {
-		return ctx.Status(code).
-			JSON(schema.NewEmptyResp(e.ErrorCode, *e.ErrorMsg))
+		if e.ErrorMsg == nil {
+			return ctx.Status(code).
+				JSON(schema.NewEmptyResp(e.ErrorCode))
+		} else {
+			return ctx.Status(code).
+				JSON(schema.NewEmptyResp(e.ErrorCode, *e.ErrorMsg))
+		}
 	} else if errors.Is(err, fiber.ErrUnprocessableEntity) {
 		return ctx.Status(fiber.StatusUnprocessableEntity).JSON(response)
 	} else if errors.Is(err, fiber.ErrInternalServerError) {
