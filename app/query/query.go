@@ -11,7 +11,11 @@ import (
 	"github.com/pkg/errors"
 )
 
-var DB *gorm.DB
+var db *gorm.DB
+
+func NewDB(newDB *gorm.DB) {
+	db = newDB
+}
 
 func ConvertTo[DstType any](src any) (dst DstType, err error) {
 	b, err := json.Marshal(src)
@@ -24,7 +28,7 @@ func ConvertTo[DstType any](src any) (dst DstType, err error) {
 
 func ListObjsByType[Model, Schema any](pagination schema.Pagination) ([]Schema, int64, error) {
 	var model Model
-	return ListObjs[Schema](DB.Model(model), pagination)
+	return ListObjs[Schema](db.Model(model), pagination)
 }
 
 func ListObjs[Schema any](statement *gorm.DB, pagination schema.Pagination) ([]Schema, int64, error) {
@@ -41,16 +45,16 @@ func ListObjs[Schema any](statement *gorm.DB, pagination schema.Pagination) ([]S
 }
 
 func GetObj[Dest any](modelPtr any) (dest Dest, err error) {
-	err = DB.Where(modelPtr).First(&dest).Error
+	err = db.Where(modelPtr).First(&dest).Error
 	return
 }
 
 func SaveObj(modelPtr any) error {
-	return DB.Save(modelPtr).Error
+	return db.Save(modelPtr).Error
 }
 
 func CreateObj[Schema any](modelPtr any) (schema Schema, err error) {
-	if err = DB.Create(modelPtr).Error; err != nil {
+	if err = db.Create(modelPtr).Error; err != nil {
 		return
 	}
 	return ConvertTo[Schema](modelPtr)

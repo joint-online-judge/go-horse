@@ -31,7 +31,7 @@ func GetDomainId(domain string) (uuid.UUID, error) {
 	} else {
 		query.ID = domainID
 	}
-	err := DB.Select("id").First(&query).Error
+	err := db.Select("id").First(&query).Error
 	return query.ID, err
 }
 
@@ -49,7 +49,7 @@ func CreateDomain(
 		Hidden:   *domainCreate.Hidden,
 		Group:    *domainCreate.Group,
 	}
-	if err := DB.Transaction(func(tx *gorm.DB) error {
+	if err := db.Transaction(func(tx *gorm.DB) error {
 		if err := tx.Create(&domain).Error; err != nil {
 			return err
 		}
@@ -74,7 +74,7 @@ func CreateDomain(
 func ListDomainUsers(domainId uuid.UUID, pagination schema.Pagination) (
 	[]schema.UserWithDomainRole, int64, error,
 ) {
-	statement := DB.Table("domain_users").
+	statement := db.Table("domain_users").
 		Select("domain_users.created_at, domain_users.updated_at, "+
 			"domain_users.domain_id, domain_users.user_id, "+
 			"domain_users.id, domain_users.role as domain_role, "+
@@ -106,13 +106,13 @@ func AddDomainUser(domainId uuid.UUID, user schema.User, role string) (
 func SearchDomainCandidates(
 	domainId uuid.UUID, query string, pagination schema.Pagination,
 ) ([]schema.UserWithDomainRole, error) {
-	statement := DB.Table("users").
+	statement := db.Table("users").
 		Select("users.id, users.username, users.gravatar, "+
 			"domain_users.role as domain_role, domain_users.domain_id").
 		Joins("LEFT OUTER JOIN domain_users ON "+
 			"users.id = domain_users.user_id").
 		Where("users.username ILIKE ?", query).
-		Where(DB.Where("domain_users.domain_id = ?", domainId).
+		Where(db.Where("domain_users.domain_id = ?", domainId).
 			Or("domain_users.domain_id IS NULL"))
 	res, _, err := ListObjs[schema.UserWithDomainRole](statement, pagination)
 	return res, err

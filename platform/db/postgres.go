@@ -69,7 +69,7 @@ func connectDatabase(gormConfig *gorm.Config) (err error) {
 		conf.DBName,
 	)
 	DB, err = gorm.Open(postgres.Open(dsn), gormConfig)
-	query.DB = DB
+	query.NewDB(DB)
 	if err != nil {
 		return
 	}
