@@ -4,6 +4,7 @@ import (
 	"time"
 
 	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
+	"github.com/google/uuid"
 )
 
 // DomainPermission All permissions in a domain
@@ -17,7 +18,7 @@ type DomainPermission struct {
 // DomainRole defines model for DomainRole.
 type DomainRole struct {
 	DomainId openapi_types.UUID `json:"domainId"`
-	Id       openapi_types.UUID `json:"id"`
+	ID       uuid.UUID          `json:"id"`
 
 	// Permission All permissions in a domain
 	Permission DomainPermission `json:"permission"`
@@ -35,7 +36,7 @@ type DomainRoleCreate struct {
 type DomainRoleDetail struct {
 	CreatedAt *time.Time         `json:"createdAt,omitempty"`
 	DomainId  openapi_types.UUID `json:"domainId"`
-	Id        openapi_types.UUID `json:"id"`
+	ID        uuid.UUID          `json:"id"`
 
 	// Permission All permissions in a domain
 	Permission DomainPermission `json:"permission"`

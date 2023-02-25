@@ -5,16 +5,17 @@ import (
 	"time"
 
 	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
+	"github.com/google/uuid"
 	"github.com/matthewhartstonge/argon2"
 )
 
 // User defines model for User.
 type User struct {
-	Gravatar *string            `json:"gravatar,omitempty"`
-	Id       openapi_types.UUID `json:"id"`
-	IsActive *bool              `json:"isActive,omitempty"`
-	Role     *string            `json:"role,omitempty"`
-	Username string             `json:"username"`
+	Gravatar *string   `json:"gravatar,omitempty"`
+	ID       uuid.UUID `json:"id"`
+	IsActive *bool     `json:"isActive,omitempty"`
+	Role     *string   `json:"role,omitempty"`
+	Username string    `json:"username"`
 }
 
 func VerifyPassword(password, hashed_password string) bool {
@@ -42,7 +43,7 @@ type UserDetail struct {
 	CreatedAt  *time.Time          `json:"createdAt,omitempty"`
 	Email      openapi_types.Email `json:"email"`
 	Gravatar   *string             `json:"gravatar,omitempty"`
-	Id         openapi_types.UUID  `json:"id"`
+	ID         uuid.UUID           `json:"id"`
 	IsActive   *bool               `json:"isActive,omitempty"`
 	LoginAt    time.Time           `json:"loginAt"`
 	LoginIp    string              `json:"loginIp"`
@@ -61,7 +62,7 @@ type UserDetailWithDomainRole struct {
 	DomainRole *string             `json:"domainRole,omitempty"`
 	Email      openapi_types.Email `json:"email"`
 	Gravatar   *string             `json:"gravatar,omitempty"`
-	Id         openapi_types.UUID  `json:"id"`
+	ID         uuid.UUID           `json:"id"`
 	IsActive   *bool               `json:"isActive,omitempty"`
 	LoginAt    time.Time           `json:"loginAt"`
 	LoginIp    string              `json:"loginIp"`
@@ -92,9 +93,9 @@ type UserList struct {
 
 // UserPreview defines model for UserPreview.
 type UserPreview struct {
-	Gravatar *string            `json:"gravatar,omitempty"`
-	Id       openapi_types.UUID `json:"id"`
-	Username string             `json:"username"`
+	Gravatar *string   `json:"gravatar,omitempty"`
+	ID       uuid.UUID `json:"id"`
+	Username string    `json:"username"`
 }
 
 // UserResetPassword defines model for UserResetPassword.
@@ -108,7 +109,7 @@ type UserWithDomainRole struct {
 	DomainId   *openapi_types.UUID `json:"domainId,omitempty"`
 	DomainRole *string             `json:"domainRole,omitempty"`
 	Gravatar   *string             `json:"gravatar,omitempty"`
-	Id         openapi_types.UUID  `json:"id"`
+	ID         uuid.UUID           `json:"id"`
 	Username   string              `json:"username"`
 }
 

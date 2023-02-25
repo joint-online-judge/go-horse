@@ -10,7 +10,7 @@ import (
 func GetUser(c *fiber.Ctx, user string) (u schema.User, err error) {
 	var userId uuid.UUID
 	if user == "me" {
-		userId = schema.JWTUser(c).Id
+		userId = schema.JWTUser(c).ID
 	} else {
 		userId, err = uuid.Parse(user)
 		if err != nil {

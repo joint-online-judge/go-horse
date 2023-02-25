@@ -4,6 +4,7 @@ import (
 	"time"
 
 	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
+	"github.com/google/uuid"
 )
 
 // DomainInvitation defines model for DomainInvitation.
@@ -13,8 +14,8 @@ type DomainInvitation struct {
 	DomainId openapi_types.UUID `json:"domainId"`
 
 	// ExpireAt expire time of invitation
-	ExpireAt *time.Time         `json:"expireAt,omitempty"`
-	Id       openapi_types.UUID `json:"id"`
+	ExpireAt *time.Time `json:"expireAt,omitempty"`
+	ID       uuid.UUID  `json:"id"`
 
 	// Role domain role after invitation
 	Role *string `json:"role,omitempty"`

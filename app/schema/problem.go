@@ -5,6 +5,7 @@ import (
 	"time"
 
 	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
+	"github.com/google/uuid"
 )
 
 // Problem defines model for Problem.
@@ -13,7 +14,7 @@ type Problem struct {
 
 	// Hidden is the problem hidden
 	Hidden         *bool               `json:"hidden,omitempty"`
-	Id             openapi_types.UUID  `json:"id"`
+	ID             uuid.UUID           `json:"id"`
 	NumAccept      *int                `json:"numAccept,omitempty"`
 	NumSubmit      *int                `json:"numSubmit,omitempty"`
 	OwnerId        *openapi_types.UUID `json:"ownerId,omitempty"`
@@ -44,7 +45,7 @@ type ProblemConfigDataDetail struct {
 	CreatedAt     *time.Time          `json:"createdAt,omitempty"`
 	Data          ProblemConfigJson   `json:"data"`
 	DataVersion   *int                `json:"dataVersion,omitempty"`
-	Id            openapi_types.UUID  `json:"id"`
+	ID            uuid.UUID           `json:"id"`
 	UpdatedAt     *time.Time          `json:"updatedAt,omitempty"`
 }
 
@@ -55,7 +56,7 @@ type ProblemConfigDetail struct {
 	CommitterId   *openapi_types.UUID `json:"committerId,omitempty"`
 	CreatedAt     *time.Time          `json:"createdAt,omitempty"`
 	DataVersion   *int                `json:"dataVersion,omitempty"`
-	Id            openapi_types.UUID  `json:"id"`
+	ID            uuid.UUID           `json:"id"`
 	UpdatedAt     *time.Time          `json:"updatedAt,omitempty"`
 }
 
@@ -125,7 +126,7 @@ type ProblemDetail struct {
 
 	// Hidden is the problem hidden
 	Hidden         *bool               `json:"hidden,omitempty"`
-	Id             openapi_types.UUID  `json:"id"`
+	ID             uuid.UUID           `json:"id"`
 	Languages      *[]string           `json:"languages,omitempty"`
 	NumAccept      *int                `json:"numAccept,omitempty"`
 	NumSubmit      *int                `json:"numSubmit,omitempty"`
@@ -149,7 +150,7 @@ type ProblemDetailWithLatestRecord struct {
 
 	// Hidden is the problem hidden
 	Hidden         *bool               `json:"hidden,omitempty"`
-	Id             openapi_types.UUID  `json:"id"`
+	ID             uuid.UUID           `json:"id"`
 	Languages      *[]string           `json:"languages,omitempty"`
 	LatestRecord   *RecordPreview      `json:"latestRecord,omitempty"`
 	NumAccept      *int                `json:"numAccept,omitempty"`
@@ -175,7 +176,7 @@ type ProblemEdit struct {
 
 // ProblemGroup defines model for ProblemGroup.
 type ProblemGroup struct {
-	Id openapi_types.UUID `json:"id"`
+	ID uuid.UUID `json:"id"`
 }
 
 // ProblemGroupList defines model for ProblemGroupList.
@@ -204,7 +205,7 @@ type ProblemPermission struct {
 type ProblemPreviewWithLatestRecord struct {
 	// Hidden is the problem hidden
 	Hidden       *bool               `json:"hidden,omitempty"`
-	Id           openapi_types.UUID  `json:"id"`
+	ID           uuid.UUID           `json:"id"`
 	LatestRecord *RecordPreview      `json:"latestRecord,omitempty"`
 	OwnerId      *openapi_types.UUID `json:"ownerId,omitempty"`
 
@@ -225,8 +226,8 @@ type ProblemSet struct {
 	DueAt *time.Time `json:"dueAt,omitempty"`
 
 	// Hidden whether the problem set is hidden
-	Hidden *bool              `json:"hidden,omitempty"`
-	Id     openapi_types.UUID `json:"id"`
+	Hidden *bool     `json:"hidden,omitempty"`
+	ID     uuid.UUID `json:"id"`
 
 	// LockAt the problem set is locked after this date
 	LockAt    *time.Time          `json:"lockAt,omitempty"`
@@ -288,8 +289,8 @@ type ProblemSetDetail struct {
 	DueAt *time.Time `json:"dueAt,omitempty"`
 
 	// Hidden whether the problem set is hidden
-	Hidden *bool              `json:"hidden,omitempty"`
-	Id     openapi_types.UUID `json:"id"`
+	Hidden *bool     `json:"hidden,omitempty"`
+	ID     uuid.UUID `json:"id"`
 
 	// LockAt the problem set is locked after this date
 	LockAt    *time.Time                        `json:"lockAt,omitempty"`
@@ -360,7 +361,7 @@ type ProblemWithLatestRecord struct {
 
 	// Hidden is the problem hidden
 	Hidden         *bool               `json:"hidden,omitempty"`
-	Id             openapi_types.UUID  `json:"id"`
+	ID             uuid.UUID           `json:"id"`
 	LatestRecord   *RecordPreview      `json:"latestRecord,omitempty"`
 	NumAccept      *int                `json:"numAccept,omitempty"`
 	NumSubmit      *int                `json:"numSubmit,omitempty"`

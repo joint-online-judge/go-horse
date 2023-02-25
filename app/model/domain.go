@@ -17,7 +17,7 @@ type Domain struct {
 	Gravatar string    `gorm:"column:gravatar;not null"                        json:"gravatar"`
 	Bulletin string    `gorm:"column:bulletin;not null"                        json:"bulletin"`
 	Hidden   bool      `gorm:"column:hidden;not null"                          json:"hidden"`
-	Group_   string    `gorm:"column:group;not null;default:''"                json:"group"`
+	Group    string    `gorm:"column:group;not null;default:''"                json:"group"`
 	Tag      string    `gorm:"column:tag"                                      json:"tag"`
 }
 

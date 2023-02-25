@@ -35,7 +35,7 @@ func JWTUser(c *fiber.Ctx) *User {
 	claims := c.Locals("jwt").(*JWTClaims)
 	user := User{
 		Gravatar: &claims.Gravatar,
-		Id:       uuid.MustParse(claims.ID),
+		ID:       uuid.MustParse(claims.ID),
 		IsActive: &claims.IsActive,
 		Role:     &claims.Role,
 		Username: claims.Username,
@@ -60,8 +60,8 @@ func NewAccessToken(
 				IssuedAt:  jwt.NewNumericDate(time.Now()),
 				NotBefore: jwt.NewNumericDate(time.Now()),
 				Issuer:    uuid.New().String(),
-				ID:        user.Id.String(),
-				Subject:   user.Id.String(),
+				ID:        user.ID.String(),
+				Subject:   user.ID.String(),
 				// Audience:  []string{"somebody_else"},
 			},
 		},
@@ -88,8 +88,8 @@ func NewRefreshToken(user User, oauth_name string) (string, error) {
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 			NotBefore: jwt.NewNumericDate(time.Now()),
 			Issuer:    uuid.New().String(),
-			ID:        user.Id.String(),
-			Subject:   user.Id.String(),
+			ID:        user.ID.String(),
+			Subject:   user.ID.String(),
 			// Audience:  []string{"somebody_else"},
 		},
 	})

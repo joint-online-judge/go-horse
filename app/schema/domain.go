@@ -4,6 +4,7 @@ import (
 	"time"
 
 	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
+	"github.com/google/uuid"
 )
 
 type DefaultRole string
@@ -30,8 +31,8 @@ type Domain struct {
 	Group *string `json:"group,omitempty"`
 
 	// Hidden is the domain hidden
-	Hidden *bool              `json:"hidden,omitempty"`
-	Id     openapi_types.UUID `json:"id"`
+	Hidden *bool     `json:"hidden,omitempty"`
+	ID     uuid.UUID `json:"id"`
 
 	// Name displayed name of the domain
 	Name    string              `json:"name"`
@@ -83,8 +84,8 @@ type DomainDetail struct {
 	Group *string `json:"group,omitempty"`
 
 	// Hidden is the domain hidden
-	Hidden *bool              `json:"hidden,omitempty"`
-	Id     openapi_types.UUID `json:"id"`
+	Hidden *bool     `json:"hidden,omitempty"`
+	ID     uuid.UUID `json:"id"`
 
 	// Name displayed name of the domain
 	Name      string              `json:"name"`

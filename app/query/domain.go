@@ -39,7 +39,7 @@ func CreateDomain(
 	domainCreate *schema.DomainCreate,
 	user *schema.User,
 ) (any, error) {
-	owner := model.User{Base: model.Base{ID: user.Id}}
+	owner := model.User{Base: model.Base{ID: user.ID}}
 	domain := model.Domain{
 		Owner:    owner,
 		URL:      *domainCreate.Url,
@@ -47,7 +47,7 @@ func CreateDomain(
 		Gravatar: *domainCreate.Gravatar,
 		Bulletin: *domainCreate.Bulletin,
 		Hidden:   *domainCreate.Hidden,
-		Group_:   *domainCreate.Group,
+		Group:    *domainCreate.Group,
 	}
 	if err := DB.Transaction(func(tx *gorm.DB) error {
 		if err := tx.Create(&domain).Error; err != nil {
@@ -89,7 +89,7 @@ func AddDomainUser(domainId uuid.UUID, user schema.User, role string) (
 ) {
 	model := model.DomainUser{
 		Domain: model.Domain{Base: model.Base{ID: domainId}},
-		User:   model.User{Base: model.Base{ID: user.Id}},
+		User:   model.User{Base: model.Base{ID: user.ID}},
 		Role:   role,
 	}
 	u, err = CreateObj[schema.UserWithDomainRole](&model)
@@ -98,7 +98,7 @@ func AddDomainUser(domainId uuid.UUID, user schema.User, role string) (
 	}
 	u.DomainRole = &model.Role
 	u.Gravatar = user.Gravatar
-	u.Id = user.Id
+	u.ID = user.ID
 	u.Username = user.Username
 	return
 }
