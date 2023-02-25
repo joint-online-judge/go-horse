@@ -3,6 +3,8 @@ package v1
 import (
 	"time"
 
+	"github.com/joint-online-judge/go-horse/app/service"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
@@ -42,7 +44,7 @@ func (s *Api) Login(
 	if err != nil {
 		return nil, err
 	}
-	return schema.NewAuthTokens(user, "", true)
+	return service.Auth(c).NewAuthTokens(user, "", true)
 }
 
 // Logout
@@ -78,8 +80,8 @@ func (s *Api) Refresh(
 	c *fiber.Ctx,
 	request schema.RefreshRequestObject,
 ) (any, error) {
-	user := schema.JWTUser(c)
-	return schema.NewAuthTokens(*user, "", false)
+	user := service.Auth(c).JWTUser()
+	return service.Auth(c).NewAuthTokens(*user, "", false)
 }
 
 // Register
@@ -105,27 +107,12 @@ func (s *Api) Register(
 			"email not provided",
 		)
 	}
-	hashedPassword, err := schema.HashPassword(*userCreate.Password)
-	if err != nil {
-		return nil, err
-	}
-	ip := c.IP()
-	userModel := model.User{
-		Username:       *userCreate.Username,
-		Email:          *userCreate.Email,
-		StudentID:      "",
-		RealName:       "",
-		IsActive:       false,
-		HashedPassword: hashedPassword,
-		RegisterIP:     ip,
-		LoginIP:        ip,
-	}
-	user, err := query.CreateObj[schema.User](&userModel)
+	user, err := service.Auth(c).RegisterNewUser(userCreate)
 	if err != nil {
 		return nil, err
 	}
 	logrus.Infof("user: %T + 1, %v", user, user)
-	return schema.NewAuthTokens(user, "", true)
+	return service.Auth(c).CreateAuthTokens(user, "", true)
 }
 
 // Get Token
@@ -134,6 +121,6 @@ func (s *Api) GetToken(
 	c *fiber.Ctx,
 	request schema.GetTokenRequestObject,
 ) (any, error) {
-	user := schema.JWTUser(c)
-	return schema.NewAuthTokens(*user, "", true)
+	user := service.Auth(c).JWTUser()
+	return service.Auth(c).NewAuthTokens(*user, "", true)
 }

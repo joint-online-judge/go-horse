@@ -5,6 +5,7 @@ import (
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/app/service"
 	"github.com/joint-online-judge/go-horse/pkg/convert"
 	"github.com/sirupsen/logrus"
 )
@@ -30,7 +31,7 @@ func (s *Api) CreateDomain(
 ) (any, error) {
 	// TODO: verify input values
 	domain := request.Body
-	user := schema.JWTUser(c)
+	user := service.Auth(c).JWTUser()
 	return query.CreateDomain(domain, user)
 }
 
@@ -240,7 +241,7 @@ func (s *Api) AddDomainUser(
 	if err != nil {
 		return nil, err
 	}
-	user, err := query.GetUser(c, request.Body.User)
+	user, err := service.User(c).GetUser(request.Body.User)
 	if err != nil {
 		return nil, err
 	}

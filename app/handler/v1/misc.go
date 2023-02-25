@@ -3,6 +3,8 @@ package v1
 import (
 	"fmt"
 
+	"github.com/joint-online-judge/go-horse/app/service"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schema"
 	"github.com/joint-online-judge/go-horse/pkg/config"
@@ -14,7 +16,7 @@ func (s *Api) JwtDecoded(
 	c *fiber.Ctx,
 	request schema.JwtDecodedRequestObject,
 ) (any, error) {
-	return schema.JWT(c), nil
+	return service.Auth(c).JWT(), nil
 }
 
 // Test Error Report

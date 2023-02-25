@@ -2,12 +2,7 @@
 package schema
 
 import (
-	"time"
-
-	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/google/uuid"
-	"github.com/joint-online-judge/go-horse/pkg/config"
 )
 
 type JWTCommon struct {
@@ -25,99 +20,6 @@ type JWTClaims struct {
 	Gravatar string `json:"gravatar"`
 	Role     string `json:"role"`
 	IsActive bool   `json:"isActive"`
-}
-
-func JWT(c *fiber.Ctx) *JWTClaims {
-	return c.Locals("jwt").(*JWTClaims)
-}
-
-func JWTUser(c *fiber.Ctx) *User {
-	claims := c.Locals("jwt").(*JWTClaims)
-	user := User{
-		Gravatar: &claims.Gravatar,
-		ID:       uuid.MustParse(claims.ID),
-		IsActive: &claims.IsActive,
-		Role:     &claims.Role,
-		Username: claims.Username,
-	}
-	return &user
-}
-
-func NewAccessToken(
-	user User,
-	oauth_name, category string,
-	fresh bool,
-) (string, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, JWTClaims{
-		JWTCommon: JWTCommon{
-			Type:      "access",
-			OauthName: oauth_name,
-			RegisteredClaims: jwt.RegisteredClaims{
-				ExpiresAt: jwt.NewNumericDate(
-					time.Now().
-						Add(time.Duration(config.Conf.JwtExpireSeconds) * time.Second),
-				),
-				IssuedAt:  jwt.NewNumericDate(time.Now()),
-				NotBefore: jwt.NewNumericDate(time.Now()),
-				Issuer:    uuid.New().String(),
-				ID:        user.ID.String(),
-				Subject:   user.ID.String(),
-				// Audience:  []string{"somebody_else"},
-			},
-		},
-		Fresh:    fresh,
-		Csrf:     "test", // FIXME: do we need it as we can use csrf middleware?
-		Category: category,
-		Username: user.Username,
-		Gravatar: *user.Gravatar,
-		Role:     *user.Role,
-		IsActive: *user.IsActive,
-	})
-	return token.SignedString([]byte(config.Conf.JwtSecret))
-}
-
-func NewRefreshToken(user User, oauth_name string) (string, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, JWTCommon{
-		Type:      "refresh",
-		OauthName: oauth_name,
-		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(
-				time.Now().
-					Add(time.Duration(config.Conf.JwtExpireSeconds) * time.Second),
-			),
-			IssuedAt:  jwt.NewNumericDate(time.Now()),
-			NotBefore: jwt.NewNumericDate(time.Now()),
-			Issuer:    uuid.New().String(),
-			ID:        user.ID.String(),
-			Subject:   user.ID.String(),
-			// Audience:  []string{"somebody_else"},
-		},
-	})
-	return token.SignedString([]byte(config.Conf.JwtSecret))
-}
-
-func NewAuthTokens(
-	user User,
-	oauth_name string,
-	fresh bool,
-) (*AuthTokens, error) {
-	category := ""
-	if oauth_name != "" {
-		category = "oauth"
-	}
-	accessToken, err := NewAccessToken(user, oauth_name, category, fresh)
-	if err != nil {
-		return nil, err
-	}
-	refreshToken, err := NewRefreshToken(user, oauth_name)
-	if err != nil {
-		return nil, err
-	}
-	return &AuthTokens{
-		AccessToken:  accessToken,
-		RefreshToken: refreshToken,
-		TokenType:    "bearer",
-	}, err
 }
 
 // AuthTokens defines model for AuthTokens.

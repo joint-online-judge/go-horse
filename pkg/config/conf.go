@@ -58,7 +58,8 @@ type conf struct {
 	// jwt config
 	JwtSecret string `env:"JWT_SECRET"         envDefault:"secret"`
 	// JwtAlgorithm     string `env:"JWT_ALGORITHM"      envDefault:"HS256"`
-	JwtExpireSeconds int64 `env:"JWT_EXPIRE_SECONDS" envDefault:"1209600"` // 14 days, in seconds
+	JwtExpireSeconds        int64 `env:"JWT_EXPIRE_SECONDS" envDefault:"1209600"`         // 14 days, in seconds
+	JwtRefreshExpireSeconds int64 `env:"JWT_REFRESH_EXPIRE_SECONDS" envDefault:"1209600"` // 14 days, in seconds
 
 	// oauth config
 	OauthJaccount       bool   `env:"OAUTH_JACCOUNT"        envDefault:"False"`
