@@ -16,8 +16,9 @@ func (s *Api) Login(
 	c *fiber.Ctx,
 	request schema.LoginRequestObject,
 ) (any, error) {
-	userModel := model.User{Username: *request.Body.Username}
-	user, err := query.GetObj[schema.User](&userModel)
+	userModel, err := query.GetObj[model.User](
+		&model.User{Username: *request.Body.Username},
+	)
 	if err != nil {
 		return nil, schema.NewBizError(schema.UserNotFoundError)
 	}
@@ -30,11 +31,14 @@ func (s *Api) Login(
 			"incorrect password",
 		)
 	}
-	logrus.Infof("user login: %+v", user)
-	userModel.ID = user.Id
+	logrus.Debugf("user login: %+v", userModel)
 	userModel.LoginAt = time.Now()
 	userModel.LoginIP = c.IP()
 	if err = query.SaveObj(&userModel); err != nil {
+		return nil, err
+	}
+	user, err := query.ConvertTo[schema.User](userModel)
+	if err != nil {
 		return nil, err
 	}
 	return schema.NewAuthTokens(user, "", true)
