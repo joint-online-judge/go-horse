@@ -35,16 +35,16 @@ func ListObjs[Schema any](statement *gorm.DB, pagination schema.Pagination) ([]S
 	return schema, count, nil
 }
 
-func GetObj[Dest any](modelPtr any) (dest Dest, err error) {
+func GetObj[Dest any, Model any](modelPtr *Model) (dest Dest, err error) {
 	err = db.Where(modelPtr).First(&dest).Error
 	return
 }
 
-func SaveObj(modelPtr any) error {
+func SaveObj[Model any](modelPtr *Model) error {
 	return db.Save(modelPtr).Error
 }
 
-func CreateObj[Schema any](modelPtr any) (schema Schema, err error) {
+func CreateObj[Schema any, Model any](modelPtr *Model) (schema Schema, err error) {
 	if err = db.Create(modelPtr).Error; err != nil {
 		return
 	}

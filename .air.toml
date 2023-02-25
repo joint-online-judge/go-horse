@@ -1,13 +1,13 @@
 root = "."
 testdata_dir = "testdata"
-tmp_dir = "build/tmp"
+tmp_dir = "tmp"
 
 [build]
-  args_bin = ["-c", "exit"]
-  bin = "/bin/sh"
-  cmd = "make pre-dev"
+  args_bin = []
+  bin = "./tmp/main"
+  cmd = "go build -o ./tmp/main ."
   delay = 0
-  exclude_dir = ["docs", "build"]
+  exclude_dir = ["assets", "tmp", "vendor", "testdata"]
   exclude_file = []
   exclude_regex = ["_test.go"]
   exclude_unchanged = false
@@ -32,7 +32,7 @@ tmp_dir = "build/tmp"
 
 [log]
   main_only = false
-  time = true
+  time = false
 
 [misc]
   clean_on_exit = false
