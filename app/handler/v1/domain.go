@@ -5,6 +5,7 @@ import (
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
 	"github.com/sirupsen/logrus"
 )
 
@@ -43,7 +44,7 @@ func (s *Api) GetDomain(
 	if err != nil {
 		return nil, err
 	}
-	return query.ConvertTo[schema.Domain](domainModel)
+	return convert.To[schema.Domain](domainModel)
 }
 
 // Search Domain Groups
@@ -82,7 +83,7 @@ func (s *Api) UpdateDomain(
 	if err = query.SaveObj(&domainModel); err != nil {
 		return nil, err
 	}
-	return query.ConvertTo[schema.Domain](domainModel)
+	return convert.To[schema.Domain](domainModel)
 }
 
 // Search Domain Candidates

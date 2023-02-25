@@ -7,6 +7,7 @@ import (
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
 	"github.com/sirupsen/logrus"
 )
 
@@ -37,7 +38,7 @@ func (s *Api) Login(
 	if err = query.SaveObj(&userModel); err != nil {
 		return nil, err
 	}
-	user, err := query.ConvertTo[schema.User](userModel)
+	user, err := convert.To[schema.User](userModel)
 	if err != nil {
 		return nil, err
 	}

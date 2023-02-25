@@ -6,8 +6,8 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 
-	"github.com/jinzhu/copier"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
 	"github.com/pkg/errors"
 )
 
@@ -15,11 +15,6 @@ var db *gorm.DB
 
 func NewDB(newDB *gorm.DB) {
 	db = newDB
-}
-
-func ConvertTo[DstType any](src any) (dst DstType, err error) {
-	err = copier.Copy(&src, &dst)
-	return
 }
 
 func ListObjsByType[Model, Schema any](pagination schema.Pagination) ([]Schema, int64, error) {
@@ -53,7 +48,7 @@ func CreateObj[Schema any](modelPtr any) (schema Schema, err error) {
 	if err = db.Create(modelPtr).Error; err != nil {
 		return
 	}
-	return ConvertTo[Schema](modelPtr)
+	return convert.To[Schema](modelPtr)
 }
 
 func Paginate(pagination schema.Pagination) func(db *gorm.DB) *gorm.DB {

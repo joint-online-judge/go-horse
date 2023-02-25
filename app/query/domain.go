@@ -4,6 +4,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
@@ -68,7 +69,7 @@ func CreateDomain(
 	}); err != nil {
 		return nil, err
 	}
-	return ConvertTo[schema.Domain](&domain)
+	return convert.To[schema.Domain](&domain)
 }
 
 func ListDomainUsers(domainId uuid.UUID, pagination schema.Pagination) (
