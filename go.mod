@@ -20,6 +20,7 @@ require (
 	github.com/gofiber/swagger v0.1.9
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/hibiken/asynq v0.24.0
+	github.com/jinzhu/copier v0.3.5
 	github.com/matthewhartstonge/argon2 v0.3.2
 	github.com/minio/minio-go/v7 v7.0.49
 	github.com/redis/go-redis/v9 v9.0.2

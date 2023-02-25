@@ -1,12 +1,12 @@
 package query
 
 import (
-	"encoding/json"
 	"strings"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 
+	"github.com/jinzhu/copier"
 	"github.com/joint-online-judge/go-horse/app/schema"
 	"github.com/pkg/errors"
 )
@@ -18,11 +18,7 @@ func NewDB(newDB *gorm.DB) {
 }
 
 func ConvertTo[DstType any](src any) (dst DstType, err error) {
-	b, err := json.Marshal(src)
-	if err != nil {
-		return
-	}
-	err = json.Unmarshal(b, &dst)
+	err = copier.Copy(&src, &dst)
 	return
 }
 
