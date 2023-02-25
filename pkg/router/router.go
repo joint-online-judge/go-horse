@@ -5,6 +5,7 @@ import (
 	"github.com/joint-online-judge/go-horse/app/handler"
 	v1 "github.com/joint-online-judge/go-horse/app/handler/v1"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/app/validator"
 	"github.com/joint-online-judge/go-horse/pkg/middleware"
 )
 
@@ -13,7 +14,7 @@ func Register(router *fiber.App) {
 	wrapper := schema.ServerInterfaceWrapper{
 		Handler: schema.NewStrictHandler(
 			&v1.Api{},
-			[]schema.StrictMiddlewareFunc{handler.ValidateRequest},
+			[]schema.StrictMiddlewareFunc{validator.ValidateRequest},
 			handler.ResponseHandler,
 		),
 	}

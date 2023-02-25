@@ -5,6 +5,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/app/validator"
 )
 
 func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
@@ -19,7 +20,7 @@ func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
 			return ctx.Status(code).JSON(typedResponse.Data)
 		default:
 			// it should always be a struct
-			validate_response, validate_err := ValidateStruct(response)
+			validate_response, validate_err := validator.ValidateStruct(response)
 			if validate_err == nil {
 				return ctx.Status(code).JSON(schema.StandardResp[any]{
 					BizError: schema.BizError{ErrorCode: schema.Success},
