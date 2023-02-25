@@ -1,12 +1,18 @@
 package model
 
-import "github.com/google/uuid"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 const TableNameUserOauthAccount = "user_oauth_accounts"
 
 // UserOauthAccount mapped from table <user_oauth_accounts>
 type UserOauthAccount struct {
-	Base
+	ID           uuid.UUID `gorm:"column:id;primaryKey;type:uuid;default:uuid_generate_v4()"                         json:"id"`
+	CreatedAt    time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"createdAt"`
+	UpdatedAt    time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"updatedAt"`
 	UserID       uuid.UUID `gorm:"column:user_id;type:uuid"                       json:"userId"`
 	User         User      `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
 	OauthName    string    `gorm:"column:oauth_name;not null"                     json:"oauthName"`

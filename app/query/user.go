@@ -17,7 +17,7 @@ func GetUser(c *fiber.Ctx, user string) (u schema.User, err error) {
 			return
 		}
 	}
-	model := model.User{Base: model.Base{ID: userId}}
+	model := model.User{ID: userId}
 	u, err = GetObj[schema.User](&model)
 	return
 }

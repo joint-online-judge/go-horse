@@ -1,12 +1,18 @@
 package model
 
-import "github.com/google/uuid"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 const TableNameProblemConfig = "problem_configs"
 
 // ProblemConfig mapped from table <problem_configs>
 type ProblemConfig struct {
-	Base
+	ID            uuid.UUID `gorm:"column:id;primaryKey;type:uuid;default:uuid_generate_v4()"                         json:"id"`
+	CreatedAt     time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"createdAt"`
+	UpdatedAt     time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"updatedAt"`
 	ProblemID     uuid.UUID `gorm:"column:problem_id;type:uuid"                     json:"problemId"`
 	Problem       Problem   `gorm:"constraint:OnDelete:SET NULL,OnUpdate:NO ACTION"`
 	CommitterID   uuid.UUID `gorm:"column:committer_id;type:uuid"                   json:"committerId"`

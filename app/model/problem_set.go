@@ -10,7 +10,9 @@ const TableNameProblemSet = "problem_sets"
 
 // ProblemSet mapped from table <problem_sets>
 type ProblemSet struct {
-	Base
+	ID               uuid.UUID `gorm:"column:id;primaryKey;type:uuid;default:uuid_generate_v4()"                         json:"id"`
+	CreatedAt        time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"createdAt"`
+	UpdatedAt        time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"updatedAt"`
 	DomainID         uuid.UUID `gorm:"column:domain_id;not null;type:uuid;index:idx_problem_sets_domain_id_url_key,unique" json:"domainId"`
 	Domain           Domain    `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
 	OwnerID          uuid.UUID `gorm:"column:owner_id;type:uuid"                                                           json:"ownerId"`

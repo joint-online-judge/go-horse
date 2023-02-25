@@ -39,7 +39,7 @@ func CreateDomain(
 	domainCreate *schema.DomainCreate,
 	user *schema.User,
 ) (any, error) {
-	owner := model.User{Base: model.Base{ID: user.ID}}
+	owner := model.User{ID: user.ID}
 	domain := model.Domain{
 		Owner:    owner,
 		URL:      *domainCreate.Url,
@@ -88,8 +88,8 @@ func AddDomainUser(domainId uuid.UUID, user schema.User, role string) (
 	u schema.UserWithDomainRole, err error,
 ) {
 	model := model.DomainUser{
-		Domain: model.Domain{Base: model.Base{ID: domainId}},
-		User:   model.User{Base: model.Base{ID: user.ID}},
+		Domain: model.Domain{ID: domainId},
+		User:   model.User{ID: user.ID},
 		Role:   role,
 	}
 	u, err = CreateObj[schema.UserWithDomainRole](&model)

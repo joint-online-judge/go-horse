@@ -10,7 +10,9 @@ const TableNameRecord = "records"
 
 // Record mapped from table <records>
 type Record struct {
-	Base
+	ID              uuid.UUID     `gorm:"column:id;primaryKey;type:uuid;default:uuid_generate_v4()"                         json:"id"`
+	CreatedAt       time.Time     `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"createdAt"`
+	UpdatedAt       time.Time     `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"updatedAt"`
 	ProblemSetID    uuid.UUID     `gorm:"column:problem_set_id;type:uuid"                 json:"problemSetId"`
 	ProblemSet      ProblemSet    `gorm:"constraint:OnDelete:SET NULL,OnUpdate:NO ACTION"`
 	ProblemID       uuid.UUID     `gorm:"column:problem_id;type:uuid"                     json:"problemId"`
