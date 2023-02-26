@@ -64,7 +64,7 @@ func Paginate(pagination schema.Pagination) func(db *gorm.DB) *gorm.DB {
 			pagination.Limit = schema.Pointer(100)
 		}
 		if pagination.Ordering == nil {
-			pagination.Ordering = schema.Pointer("updated_at")
+			pagination.Ordering = schema.Pointer("-created_at")
 		}
 		statement := db.Offset(*pagination.Offset).Limit(*pagination.Limit)
 		for _, item := range strings.Split(*pagination.Ordering, ",") {

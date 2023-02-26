@@ -10,6 +10,7 @@ func RegisterDomain(
 	router fiber.Router,
 	wrapper schema.ServerInterfaceWrapper,
 ) {
+	P := middleware.Perm.RequiresDomainPermissions
 	domains := router.Group("/domains")
 	domain := domains.Group("/:domain", middleware.Domain)
 	domain_invitations := domain.Group("/invitations")
@@ -22,7 +23,7 @@ func RegisterDomain(
 	domains.Post("", wrapper.CreateDomain)
 	domains.Get("/groups", wrapper.SearchDomainGroups)
 	domain.Delete("", wrapper.DeleteDomain)
-	domain.Get("", wrapper.GetDomain)
+	domain.Get("", P([]string{"general:view"}), wrapper.GetDomain)
 	domain.Patch("", wrapper.UpdateDomain)
 	domain.Get("/candidates", wrapper.SearchDomainCandidates)
 	domain_invitations.Get("", wrapper.ListDomainInvitations)

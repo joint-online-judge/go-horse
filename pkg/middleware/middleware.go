@@ -43,4 +43,5 @@ func Register(router fiber.Router) {
 		router.Use(csrf.New())
 	}
 	router.Use(Json)
+	InitCasbinMiddleware()
 }
