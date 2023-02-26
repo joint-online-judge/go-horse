@@ -30,7 +30,7 @@ func Register(router fiber.Router) {
 	}
 	router.Use(logger.New(logger.Config{
 		// Format:     "[${ip}]:${port} ${status} - ${method} ${path}\n",
-		Format:     "${time} [${ip}:${port}] ${status} - ${latency} ${method} ${path}\n",
+		Format:     "${time} [${yellow}${ip}:${port}${reset}] ${status} - ${latency} ${method} ${path}\n",
 		TimeFormat: "2006-01-02 15:04:03.000",
 	}))
 	router.Use(cors.New(cors.Config{
