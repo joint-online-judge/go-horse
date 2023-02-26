@@ -4,6 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schema"
 	"github.com/joint-online-judge/go-horse/app/service"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
 )
 
 // Get Current User
@@ -12,7 +13,11 @@ func (s *Api) GetCurrentUser(
 	c *fiber.Ctx,
 	request schema.GetCurrentUserRequestObject,
 ) (any, error) {
-	return service.User(c).GetCurrentUser()
+	userModel, err := service.User(c).GetCurrentUser()
+	if err != nil {
+		return nil, schema.NewBizError(schema.UserNotFoundError)
+	}
+	return convert.To[schema.UserDetail](userModel)
 }
 
 // Update Current User
@@ -39,5 +44,9 @@ func (s *Api) GetUser(
 	c *fiber.Ctx,
 	request schema.GetUserRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	userModel, err := service.User(c).GetUser(request.Uid)
+	if err != nil {
+		return nil, schema.NewBizError(schema.UserNotFoundError)
+	}
+	return convert.To[schema.UserPreview](userModel)
 }

@@ -5,8 +5,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
-	"github.com/joint-online-judge/go-horse/app/schema"
-	"github.com/joint-online-judge/go-horse/pkg/convert"
 )
 
 type userImpl struct {
@@ -34,11 +32,6 @@ func (s *userImpl) GetUser(user string) (userModel *model.User, err error) {
 	return
 }
 
-func (s *userImpl) GetCurrentUser() (*schema.UserDetail, error) {
-	userModel, err := User(s.c).GetUser("me")
-	if err != nil {
-		return nil, schema.NewBizError(schema.UserNotFoundError)
-	}
-	userDetail, err := convert.To[schema.UserDetail](userModel)
-	return &userDetail, err
+func (s *userImpl) GetCurrentUser() (*model.User, error) {
+	return User(s.c).GetUser("me")
 }
