@@ -14,6 +14,7 @@ require (
 
 require (
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
+	github.com/bytedance/sonic v1.8.2
 	github.com/caarlos0/env/v7 v7.0.0
 	github.com/gofiber/jwt/v3 v3.3.6
 	github.com/gofiber/redirect/v2 v2.1.31
@@ -32,6 +33,7 @@ require (
 	github.com/PuerkitoBio/purell v1.1.1 // indirect
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
+	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/go-openapi/jsonpointer v0.19.5 // indirect
@@ -56,7 +58,9 @@ require (
 	github.com/spf13/cast v1.3.1 // indirect
 	github.com/swaggo/files v0.0.0-20220728132757-551d4a08d97a // indirect
 	github.com/tinylib/msgp v1.1.6 // indirect
+	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	go.uber.org/goleak v1.2.0 // indirect
+	golang.org/x/arch v0.0.0-20210923205945-b76863e36670 // indirect
 	golang.org/x/net v0.7.0 // indirect
 	golang.org/x/time v0.0.0-20220411224347-583f2d630306 // indirect
 	golang.org/x/tools v0.3.0 // indirect
