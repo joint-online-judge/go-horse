@@ -40,7 +40,7 @@ func createDatabase(gormConfig *gorm.Config) error {
 		return rs.Error
 	}
 	// if not create it
-	rec := make(map[string]interface{})
+	rec := make(map[string]any)
 	if rs.Find(rec); len(rec) == 0 {
 		stmt := fmt.Sprintf("CREATE DATABASE %s;", conf.DBName)
 		if rs := db.Exec(stmt); rs.Error != nil {

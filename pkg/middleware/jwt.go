@@ -19,7 +19,7 @@ func JWT() fiber.Handler {
 			token, err := jwt.ParseWithClaims(
 				tokenString,
 				&schema.JWTClaims{},
-				func(t *jwt.Token) (interface{}, error) { return []byte(config.Conf.JwtSecret), nil },
+				func(t *jwt.Token) (any, error) { return []byte(config.Conf.JwtSecret), nil },
 			)
 			if err != nil {
 				return err

@@ -20,13 +20,13 @@ import (
 var recoverHandler = recover.New(recover.Config{
 	Next:             nil,
 	EnableStackTrace: true,
-	StackTraceHandler: func(ctx *fiber.Ctx, err interface{}) {
+	StackTraceHandler: func(ctx *fiber.Ctx, err any) {
 		logrus.Errorf("recover middleware panic: %v\n%s\n", err, debug.Stack())
 		ctx.Locals("rollbar_reported", 1)
 		rollbar.Critical(
 			errors.New(fmt.Sprint(err)),
 			// getCallers(3),
-			map[string]interface{}{
+			map[string]any{
 				"endpoint": ctx.Request().URI().String(),
 			},
 		)

@@ -4,10 +4,10 @@ import (
 	"github.com/bytedance/sonic"
 )
 
-func Marshal(val interface{}) ([]byte, error) {
+func Marshal(val any) ([]byte, error) {
 	return sonic.Marshal(val)
 }
 
-func Unmarshal(buf []byte, val interface{}) error {
+func Unmarshal(buf []byte, val any) error {
 	return sonic.Unmarshal(buf, val)
 }

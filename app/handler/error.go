@@ -23,7 +23,7 @@ func Error(ctx *fiber.Ctx, err error) error {
 		logrus.Errorf("error handler panic: %T, %v\n%s\n", err, err, stack)
 		rollbar.Critical(
 			errors.New(fmt.Sprint(err)),
-			map[string]interface{}{
+			map[string]any{
 				"endpoint": ctx.Request().URI().String(),
 			},
 		)
