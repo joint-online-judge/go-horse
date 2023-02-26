@@ -39,7 +39,11 @@ func (s *Api) ChangePassword(
 	c *fiber.Ctx,
 	request schema.ChangePasswordRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	user, err := service.User(c).ChangePassword(*request.Body)
+	if err != nil {
+		return nil, err
+	}
+	return convert.To[schema.UserDetail](user)
 }
 
 // Get User

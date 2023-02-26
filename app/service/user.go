@@ -53,3 +53,29 @@ func (s *userImpl) UpdateCurrentUser(userEdit schema.UserEdit) (
 	err = query.SaveObj(&u)
 	return
 }
+
+func (s *userImpl) ChangePassword(userResetPassword schema.UserResetPassword) (
+	u model.User, err error,
+) {
+	u, err = s.GetCurrentUser()
+	if err != nil {
+		return
+	}
+	if (userResetPassword.CurrentPassword == nil && u.HashedPassword != "") ||
+		!schema.VerifyPassword(
+			*userResetPassword.CurrentPassword,
+			u.HashedPassword,
+		) {
+		err = schema.NewBizError(
+			schema.UsernamePasswordError,
+			"incorrect password",
+		)
+		return
+	}
+	u.HashedPassword, err = schema.HashPassword(userResetPassword.NewPassword)
+	if err != nil {
+		return
+	}
+	err = query.SaveObj(&u)
+	return
+}
