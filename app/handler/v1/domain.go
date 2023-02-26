@@ -77,7 +77,7 @@ func (s *Api) UpdateDomain(
 	if err != nil {
 		return nil, err
 	}
-	if err := model.Update(&domainModel, domainEdit); err != nil {
+	if err := convert.Update(&domainModel, domainEdit); err != nil {
 		return nil, err
 	}
 	logrus.Infof("update domain to: %+v", domainModel)
