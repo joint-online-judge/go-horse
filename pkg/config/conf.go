@@ -72,9 +72,6 @@ type conf struct {
 
 	// rollbar
 	RollbarAccessToken string `env:"ROLLBAR_ACCESS_TOKEN" envDefault:""`
-
-	// fibercasbin config
-	CasbinModelFilePath string `env:"CASBIN_MODEL_FILE_PATH" envDefault:"rbac_with_domains_model.conf"`
 }
 
 var Conf *conf

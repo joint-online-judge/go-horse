@@ -4,7 +4,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/schema"
-	"github.com/joint-online-judge/go-horse/pkg/convert"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
@@ -37,9 +36,9 @@ func GetDomainId(domain string) (uuid.UUID, error) {
 }
 
 func CreateDomain(
-	domainCreate *schema.DomainCreate,
+	domainCreate schema.DomainCreate,
 	user *schema.User,
-) (any, error) {
+) (model.Domain, error) {
 	owner := model.User{ID: user.ID}
 	domain := model.Domain{
 		Owner:    owner,
@@ -50,7 +49,7 @@ func CreateDomain(
 		Hidden:   *domainCreate.Hidden,
 		Group:    *domainCreate.Group,
 	}
-	if err := db.Transaction(func(tx *gorm.DB) error {
+	err := db.Transaction(func(tx *gorm.DB) error {
 		if err := tx.Create(&domain).Error; err != nil {
 			return err
 		}
@@ -66,13 +65,11 @@ func CreateDomain(
 		logrus.Infof("create domain user: %+v", domainUser)
 		// TODO: create domain roles with permissions
 		return nil
-	}); err != nil {
-		return nil, err
-	}
-	return convert.To[schema.Domain](domain)
+	})
+	return domain, err
 }
 
-func ListDomainUsers(domainId uuid.UUID, pagination schema.Pagination) (
+func ListDomainUsers(domain *model.Domain, pagination schema.Pagination) (
 	[]schema.UserWithDomainRole, int64, error,
 ) {
 	statement := db.Table("domain_users").
@@ -81,7 +78,7 @@ func ListDomainUsers(domainId uuid.UUID, pagination schema.Pagination) (
 			"domain_users.id, domain_users.role as domain_role, "+
 			"users.username, users.gravatar").
 		Joins("JOIN users ON domain_users.user_id = users.id").
-		Where("domain_users.domain_id = ?", domainId)
+		Where("domain_users.domain_id = ?", domain.ID)
 	return ListObjs[schema.UserWithDomainRole](statement, pagination)
 }
 
@@ -106,7 +103,7 @@ func AddDomainUser(domainId uuid.UUID, user model.User, role string) (
 
 func SearchDomainCandidates(
 	domainId uuid.UUID, query string, pagination schema.Pagination,
-) ([]schema.UserWithDomainRole, error) {
+) ([]schema.UserWithDomainRole, int64, error) {
 	statement := db.Table("users").
 		Select("users.id, users.username, users.gravatar, "+
 			"domain_users.role as domain_role, domain_users.domain_id").
@@ -115,6 +112,5 @@ func SearchDomainCandidates(
 		Where("users.username ILIKE ?", query).
 		Where(db.Where("domain_users.domain_id = ?", domainId).
 			Or("domain_users.domain_id IS NULL"))
-	res, _, err := ListObjs[schema.UserWithDomainRole](statement, pagination)
-	return res, err
+	return ListObjs[schema.UserWithDomainRole](statement, pagination)
 }

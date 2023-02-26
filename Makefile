@@ -14,7 +14,7 @@ pre-dev:
 	make build
 	docker cp ./build/go-horse joj2-go-horse:.
 	docker restart joj2-go-horse
-	docker logs -f joj2-go-horse
+	docker logs --since 0s -f joj2-go-horse
 
 clean:
 	rm -rf ./build

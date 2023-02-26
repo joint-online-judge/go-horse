@@ -79,7 +79,7 @@ func (m *Middleware) RequiresDomainPermissions(permissions []string, opts ...Opt
 			return m.config.Unauthorized(c)
 		}
 
-		dom := m.config.LookupDom(c)
+		dom := m.config.LookupDomain(c)
 		if len(dom) == 0 {
 			return m.config.Forbidden(c)
 		}

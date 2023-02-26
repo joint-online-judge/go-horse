@@ -2,12 +2,9 @@ package v1
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/joint-online-judge/go-horse/app/model"
-	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
 	"github.com/joint-online-judge/go-horse/app/service"
 	"github.com/joint-online-judge/go-horse/pkg/convert"
-	"github.com/sirupsen/logrus"
 )
 
 // List Domains
@@ -16,11 +13,7 @@ func (s *Api) ListDomains(
 	c *fiber.Ctx,
 	request schema.ListDomainsRequestObject,
 ) (any, error) {
-	// TODO: filter by domain users
-	objs, count, err := query.ListObjsByType[
-		model.Domain, schema.Domain,
-	](request.Params.Pagination)
-	return schema.NewListResp(count, objs), err
+	return service.Domain(c).ListDomains(request.Params)
 }
 
 // Create Domain
@@ -29,10 +22,11 @@ func (s *Api) CreateDomain(
 	c *fiber.Ctx,
 	request schema.CreateDomainRequestObject,
 ) (any, error) {
-	// TODO: verify input values
-	domain := request.Body
-	user := service.Auth(c).JWTUser()
-	return query.CreateDomain(domain, user)
+	domain, err := service.Domain(c).CreateDomain(*request.Body)
+	if err != nil {
+		return nil, err
+	}
+	return convert.To[schema.Domain](domain)
 }
 
 // Get Domain
@@ -41,11 +35,11 @@ func (s *Api) GetDomain(
 	c *fiber.Ctx,
 	request schema.GetDomainRequestObject,
 ) (any, error) {
-	domainModel, err := query.GetDomain(request.Domain)
+	domain, err := service.Domain(c).GetCurrentDomain()
 	if err != nil {
 		return nil, err
 	}
-	return convert.To[schema.Domain](domainModel)
+	return convert.To[schema.Domain](domain)
 }
 
 // Search Domain Groups
@@ -72,19 +66,11 @@ func (s *Api) UpdateDomain(
 	c *fiber.Ctx,
 	request schema.UpdateDomainRequestObject,
 ) (any, error) {
-	domainEdit := request.Body
-	domainModel, err := query.GetDomain(request.Domain)
+	domain, err := service.Domain(c).UpdateDomain(*request.Body)
 	if err != nil {
 		return nil, err
 	}
-	if err := convert.Update(&domainModel, domainEdit); err != nil {
-		return nil, err
-	}
-	logrus.Infof("update domain to: %+v", domainModel)
-	if err = query.SaveObj(&domainModel); err != nil {
-		return nil, err
-	}
-	return convert.To[schema.Domain](domainModel)
+	return convert.To[schema.Domain](domain)
 }
 
 // Search Domain Candidates
@@ -93,17 +79,8 @@ func (s *Api) SearchDomainCandidates(
 	c *fiber.Ctx,
 	request schema.SearchDomainCandidatesRequestObject,
 ) (any, error) {
-	domainModel, err := query.GetDomain(request.Domain)
-	if err != nil {
-		return nil, err
-	}
-	pagination := schema.Pagination{
-		Ordering: request.Params.Ordering,
-		Offset:   nil,
-		Limit:    nil,
-	}
-	return query.SearchDomainCandidates(
-		domainModel.ID, request.Params.Query, pagination,
+	return service.Domain(c).SearchDomainCandidates(
+		request.Params.Ordering, request.Params.Query,
 	)
 }
 
@@ -221,14 +198,7 @@ func (s *Api) ListDomainUsers(
 	c *fiber.Ctx,
 	request schema.ListDomainUsersRequestObject,
 ) (any, error) {
-	domainId, err := query.GetDomainId(request.Domain)
-	if err != nil {
-		return nil, err
-	}
-	objs, count, err := query.ListDomainUsers(
-		domainId, request.Params.Pagination,
-	)
-	return schema.NewListResp(count, objs), err
+	return service.Domain(c).ListDomainUsers(request.Params.Pagination)
 }
 
 // Add Domain User
@@ -237,15 +207,7 @@ func (s *Api) AddDomainUser(
 	c *fiber.Ctx,
 	request schema.AddDomainUserRequestObject,
 ) (any, error) {
-	domainId, err := query.GetDomainId(request.Domain)
-	if err != nil {
-		return nil, err
-	}
-	user, err := service.User(c).GetUser(request.Body.User)
-	if err != nil {
-		return nil, err
-	}
-	return query.AddDomainUser(domainId, user, *request.Body.Role)
+	return service.Domain(c).AddDomainUser(request.Body.User, request.Body.Role)
 }
 
 // Remove Domain User

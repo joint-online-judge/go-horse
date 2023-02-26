@@ -2,7 +2,7 @@ package platform
 
 import (
 	_ "github.com/joint-online-judge/go-horse/pkg/config" // load config
-	"github.com/joint-online-judge/go-horse/platform/casbin"
+	"github.com/joint-online-judge/go-horse/platform/auth"
 	"github.com/joint-online-judge/go-horse/platform/db"
 	"github.com/joint-online-judge/go-horse/platform/error"
 )
@@ -10,7 +10,7 @@ import (
 func Bootstrap() {
 	error.ConnectRollbar()
 	db.ConnectPostgres()
-	casbin.Init()
+	auth.Init()
 	// cache.ConnectRedis()
 	// queue.ConnectAsyncq()
 	// storage.ConnectMinio()

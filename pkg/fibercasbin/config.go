@@ -26,10 +26,10 @@ type Config struct {
 	// Optional. Default: func(c *fiber.Ctx) string { return "" }
 	Lookup func(*fiber.Ctx) string
 
-	// LookupDom is a function that is used to look up current domain.
+	// LookupDomain is a function that is used to look up current domain.
 	// An empty string is considered as unauthorized.
 	// Optional. Default: func(c *fiber.Ctx) string { return "" }
-	LookupDom func(*fiber.Ctx) string
+	LookupDomain func(*fiber.Ctx) string
 
 	// Unauthorized defines the response body for unauthorized responses.
 	// Optional. Default: func(c *fiber.Ctx) error { return c.SendStatus(401) }
@@ -44,7 +44,7 @@ var ConfigDefault = Config{
 	ModelFilePath: "./model.conf",
 	PolicyAdapter: fileadapter.NewAdapter("./policy.csv"),
 	Lookup:        func(c *fiber.Ctx) string { return "" },
-	LookupDom:     func(c *fiber.Ctx) string { return "" },
+	LookupDomain:  func(c *fiber.Ctx) string { return "" },
 	Unauthorized:  func(c *fiber.Ctx) error { return c.SendStatus(fiber.StatusUnauthorized) },
 	Forbidden:     func(c *fiber.Ctx) error { return c.SendStatus(fiber.StatusForbidden) },
 }
@@ -80,8 +80,8 @@ func configDefault(config ...Config) (Config, error) {
 		cfg.Lookup = ConfigDefault.Lookup
 	}
 
-	if cfg.LookupDom == nil {
-		cfg.LookupDom = ConfigDefault.LookupDom
+	if cfg.LookupDomain == nil {
+		cfg.LookupDomain = ConfigDefault.LookupDomain
 	}
 
 	if cfg.Unauthorized == nil {
