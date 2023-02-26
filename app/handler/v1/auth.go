@@ -82,7 +82,7 @@ func (s *Api) Register(
 	if err != nil {
 		return nil, err
 	}
-	logrus.Infof("user: %T + 1, %v", user, user)
+	logrus.Debugf("user register: %T, %v", user, user)
 	return service.Auth(c).CreateAuthTokens(user, "", true)
 }
 

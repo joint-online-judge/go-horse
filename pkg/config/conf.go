@@ -81,6 +81,6 @@ func init() {
 	if err := env.Parse(&cfg); err != nil {
 		logrus.Fatalf("failed to parse config: %+v", err)
 	}
-	logrus.Infof("config object: %+v", cfg)
+	logrus.Debugf("config object: %+v", cfg)
 	Conf = &cfg
 }

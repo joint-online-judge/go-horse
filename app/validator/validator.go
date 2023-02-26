@@ -10,7 +10,7 @@ import (
 var validate = validator.New()
 
 func ValidateStruct(object any) (any, error) {
-	logrus.Infof("validating %T as struct, %v", object, object)
+	logrus.Debugf("validating %T as struct, %v", object, object)
 	var validationError []schema.ValidationError
 	if err := validate.Struct(object); err != nil {
 		vierr, ok := err.(*validator.InvalidValidationError)

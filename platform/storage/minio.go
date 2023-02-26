@@ -22,5 +22,5 @@ func ConnectMinio() {
 	if err != nil {
 		logrus.Fatal(err)
 	}
-	logrus.Infof("minioClient: %+v", minioClient)
+	logrus.Debugf("minioClient: %+v", minioClient)
 }

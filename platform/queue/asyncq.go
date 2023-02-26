@@ -16,6 +16,6 @@ func ConnectAsyncq() {
 		DB:       conf.RedisDbIndex,
 	}
 	client := asynq.NewClient(config)
-	logrus.Infof("asyncq client: %+v", client)
+	logrus.Debugf("asyncq client: %+v", client)
 	defer client.Close()
 }
