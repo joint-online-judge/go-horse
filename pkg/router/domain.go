@@ -3,6 +3,7 @@ package router
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/pkg/middleware"
 )
 
 func RegisterDomain(
@@ -10,7 +11,7 @@ func RegisterDomain(
 	wrapper schema.ServerInterfaceWrapper,
 ) {
 	domains := router.Group("/domains")
-	domain := domains.Group("/:domain")
+	domain := domains.Group("/:domain", middleware.Domain)
 	domain_invitations := domain.Group("/invitations")
 	domain_invitation := domain_invitations.Group("/:invitation")
 	domain_roles := domain.Group("/roles")

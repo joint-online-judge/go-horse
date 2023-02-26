@@ -3,13 +3,14 @@ package router
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/pkg/middleware"
 )
 
 func RegisterProblemSet(
 	router fiber.Router,
 	wrapper schema.ServerInterfaceWrapper,
 ) {
-	problem_sets := router.Group("/domains/:domain/problem_sets")
+	problem_sets := router.Group("/domains/:domain/problem_sets", middleware.Domain)
 	problem_set := problem_sets.Group("/:problemSet")
 	problems := problem_set.Group("/problems")
 	problem := problems.Group("/:problem")
