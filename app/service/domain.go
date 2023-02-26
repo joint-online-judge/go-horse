@@ -16,6 +16,10 @@ func Domain(c *fiber.Ctx) *domainImpl {
 	}
 }
 
+func (s *domainImpl) Domain() *model.Domain {
+	return s.c.Locals("domain").(*model.Domain)
+}
+
 // GetCurrentDomain Assume we require current domain to be non-null when calling this method
 func (s *domainImpl) GetCurrentDomain() (*model.Domain, error) {
 	domain := s.c.Locals("domain")

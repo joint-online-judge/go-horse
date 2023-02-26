@@ -16,9 +16,8 @@ func Domain(c *fiber.Ctx) error {
 			return c.Status(fiber.StatusOK).
 				JSON(schema.NewEmptyResp(schema.DomainNotFoundError, "invalid domain ID or url"))
 		}
-		c.Locals("domain", domain)
+		c.Locals("domain", &domain)
 		c.Locals("domainId", domain.ID.String())
-		logrus.Infof("Get Current Domain: %v", domain)
 	}
 	return c.Next()
 }
