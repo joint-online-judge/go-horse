@@ -26,7 +26,11 @@ func (s *Api) UpdateCurrentUser(
 	c *fiber.Ctx,
 	request schema.UpdateCurrentUserRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	user, err := service.User(c).UpdateCurrentUser(*request.Body)
+	if err != nil {
+		return nil, err
+	}
+	return convert.To[schema.UserDetail](user)
 }
 
 // Change Password

@@ -5,6 +5,9 @@ import (
 	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
+	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
+	"github.com/sirupsen/logrus"
 )
 
 type userImpl struct {
@@ -34,4 +37,19 @@ func (s *userImpl) GetUser(user string) (userModel model.User, err error) {
 
 func (s *userImpl) GetCurrentUser() (model.User, error) {
 	return s.GetUser("me")
+}
+
+func (s *userImpl) UpdateCurrentUser(userEdit schema.UserEdit) (
+	u model.User, err error,
+) {
+	u, err = s.GetCurrentUser()
+	if err != nil {
+		return
+	}
+	if err = convert.Update(&u, userEdit); err != nil {
+		return
+	}
+	logrus.Infof("update user to: %+v", u)
+	err = query.SaveObj(&u)
+	return
 }
