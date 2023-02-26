@@ -69,7 +69,7 @@ func CreateDomain(
 	}); err != nil {
 		return nil, err
 	}
-	return convert.To[schema.Domain](&domain)
+	return convert.To[schema.Domain](domain)
 }
 
 func ListDomainUsers(domainId uuid.UUID, pagination schema.Pagination) (
@@ -85,12 +85,12 @@ func ListDomainUsers(domainId uuid.UUID, pagination schema.Pagination) (
 	return ListObjs[schema.UserWithDomainRole](statement, pagination)
 }
 
-func AddDomainUser(domainId uuid.UUID, user *model.User, role string) (
+func AddDomainUser(domainId uuid.UUID, user model.User, role string) (
 	u schema.UserWithDomainRole, err error,
 ) {
 	model := model.DomainUser{
 		Domain: model.Domain{ID: domainId},
-		User:   *user,
+		User:   user,
 		Role:   role,
 	}
 	u, err = CreateObj[schema.UserWithDomainRole](&model)

@@ -45,7 +45,7 @@ func (s *Api) GetDomain(
 	if err != nil {
 		return nil, err
 	}
-	return convert.To[schema.Domain](&domainModel)
+	return convert.To[schema.Domain](domainModel)
 }
 
 // Search Domain Groups
@@ -84,7 +84,7 @@ func (s *Api) UpdateDomain(
 	if err = query.SaveObj(&domainModel); err != nil {
 		return nil, err
 	}
-	return convert.To[schema.Domain](&domainModel)
+	return convert.To[schema.Domain](domainModel)
 }
 
 // Search Domain Candidates

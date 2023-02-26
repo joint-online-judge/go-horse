@@ -187,7 +187,7 @@ func (s *authImpl) Login(loginForm *schema.OAuth2PasswordRequestForm) (*schema.A
 	if err = query.SaveObj(&userModel); err != nil {
 		return nil, err
 	}
-	user, err := convert.To[schema.User](&userModel)
+	user, err := convert.To[schema.User](userModel)
 	if err != nil {
 		return nil, err
 	}

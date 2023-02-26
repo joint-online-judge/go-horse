@@ -17,7 +17,7 @@ func User(c *fiber.Ctx) *userImpl {
 	}
 }
 
-func (s *userImpl) GetUser(user string) (userModel *model.User, err error) {
+func (s *userImpl) GetUser(user string) (userModel model.User, err error) {
 	var userId uuid.UUID
 	if user == "me" {
 		userId = Auth(s.c).JWTUser().ID
@@ -27,11 +27,11 @@ func (s *userImpl) GetUser(user string) (userModel *model.User, err error) {
 			return
 		}
 	}
-	userModel = &model.User{ID: userId}
+	userModel = model.User{ID: userId}
 	err = query.GetObj(&userModel)
 	return
 }
 
-func (s *userImpl) GetCurrentUser() (*model.User, error) {
+func (s *userImpl) GetCurrentUser() (model.User, error) {
 	return User(s.c).GetUser("me")
 }
