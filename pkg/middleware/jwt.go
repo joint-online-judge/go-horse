@@ -13,7 +13,7 @@ func JWT() fiber.Handler {
 		// SigningMethod: config.Config.JwtAlgorithm,
 		SigningMethod: "HS256",
 		SigningKey:    []byte(config.Conf.JwtSecret),
-		TokenLookup:   "cookie:access_token_cookie",
+		TokenLookup:   "header:Authorization,cookie:access_token_cookie",
 		SuccessHandler: func(c *fiber.Ctx) error {
 			tokenString := c.Locals("user").(*jwt.Token).Raw
 			token, err := jwt.ParseWithClaims(
