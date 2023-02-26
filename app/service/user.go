@@ -33,5 +33,5 @@ func (s *userImpl) GetUser(user string) (userModel model.User, err error) {
 }
 
 func (s *userImpl) GetCurrentUser() (model.User, error) {
-	return User(s.c).GetUser("me")
+	return s.GetUser("me")
 }
