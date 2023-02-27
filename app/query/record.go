@@ -21,10 +21,20 @@ func GetRecord(db *gorm.DB, domain *model.Domain, record string) (
 }
 
 func ListRecords(
-	db *gorm.DB, domain *model.Domain, pagination schema.Pagination,
+	db *gorm.DB, domain *model.Domain, problemSetId *uuid.UUID,
+	problemId *uuid.UUID, submitterId *uuid.UUID, pagination schema.Pagination,
 ) ([]schema.RecordListDetail, int64, error) {
 	statement := db.Model(model.Record{}).
 		Where("domain_id = ?", domain.Id)
+	if problemSetId != nil {
+		statement = statement.Where("problem_set_id = ?", problemSetId)
+	}
+	if problemId != nil {
+		statement = statement.Where("problem_id = ?", problemId)
+	}
+	if submitterId != nil {
+		statement = statement.Where("committer_id = ?", submitterId)
+	}
 	return ListObjs[schema.RecordListDetail](
 		statement, pagination,
 	)
