@@ -7,6 +7,7 @@ import (
 	"github.com/joint-online-judge/go-horse/app/schema"
 	"github.com/joint-online-judge/go-horse/pkg/convert"
 	"github.com/sirupsen/logrus"
+	"gorm.io/gorm"
 )
 
 type domainImpl struct {
@@ -52,7 +53,23 @@ func (s *domainImpl) CreateDomain(domainCreate schema.DomainCreate) (
 		return
 	}
 	domain.Owner = owner
-	err = query.CreateDomain(&domain, owner)
+	err = db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Create(&domain).Error; err != nil {
+			return err
+		}
+		logrus.Debugf("create domain: %+v", domain)
+		domainUser := model.DomainUser{
+			Domain: domain,
+			User:   owner,
+			Role:   string(schema.ROOT),
+		}
+		if err := tx.Create(&domainUser).Error; err != nil {
+			return err
+		}
+		logrus.Debugf("create domain user: %+v", domainUser)
+		// TODO: create domain roles with permissions
+		return nil
+	})
 	return
 }
 
@@ -66,7 +83,7 @@ func (s *domainImpl) UpdateDomain(domainEdit schema.DomainEdit) (
 	if err = convert.Update(domain, domainEdit); err != nil {
 		return
 	}
-	logrus.Infof("update domain to: %+v", domain)
+	logrus.Debugf("update domain to: %+v", domain)
 	err = db.Save(domain).Error
 	return
 }
@@ -84,7 +101,7 @@ func (s *domainImpl) SearchDomainCandidates(
 		Limit:    nil,
 	}
 	objs, count, err := query.SearchDomainCandidates(
-		domain.Id, searchQuery, pagination,
+		db, domain.Id, searchQuery, pagination,
 	)
 	return schema.NewListResp(count, objs), err
 }
@@ -96,7 +113,7 @@ func (s *domainImpl) ListDomainUsers(
 	if err != nil {
 		return
 	}
-	objs, count, err := query.ListDomainUsers(domain, pagination)
+	objs, count, err := query.ListDomainUsers(db, domain, pagination)
 	return schema.NewListResp(count, objs), err
 }
 
@@ -114,7 +131,12 @@ func (s *domainImpl) AddDomainUser(
 	if role == nil {
 		role = schema.Pointer(string(schema.USER))
 	}
-	err = query.AddDomainUser(domain.Id, userModel, *role)
+	model := model.DomainUser{
+		Domain: model.Domain{Id: domain.Id},
+		User:   userModel,
+		Role:   *role,
+	}
+	err = db.Create(&model).Error
 	if err != nil {
 		return
 	}

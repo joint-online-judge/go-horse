@@ -5,19 +5,20 @@ import (
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/platform/db"
 	"github.com/sirupsen/logrus"
 )
 
 func ProblemSet(c *fiber.Ctx) error {
 	problemSetUrl := c.Params("problemSet")
-	logrus.Infof("problemSetUrl: %v", problemSetUrl)
+	logrus.Debugf("problemSetUrl: %v", problemSetUrl)
 	if len(problemSetUrl) != 0 {
 		domain, ok := c.Locals("domain").(*model.Domain)
 		if !ok {
 			return c.Status(fiber.StatusOK).
 				JSON(schema.NewEmptyResp(schema.DomainNotFoundError, "invalid domain Id or url"))
 		}
-		problemSet, err := query.GetProblemSet(domain, problemSetUrl)
+		problemSet, err := query.GetProblemSet(db.DB, domain, problemSetUrl)
 		if err != nil {
 			return c.Status(fiber.StatusOK).
 				JSON(schema.NewEmptyResp(schema.ProblemSetNotFoundError, "invalid problemSet Id or url"))

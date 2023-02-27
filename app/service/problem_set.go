@@ -26,7 +26,7 @@ func (s *problemsetImpl) ListProblemSets(
 		return
 	}
 	objs, count, err := query.ListProblemSets(
-		domain, params.Pagination, false,
+		db, domain, params.Pagination, false,
 	)
 	return schema.NewListResp(count, objs), err
 }

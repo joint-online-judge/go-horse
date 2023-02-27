@@ -48,7 +48,7 @@ func (s *userImpl) UpdateCurrentUser(userEdit schema.UserEdit) (
 	if err = convert.Update(&u, userEdit); err != nil {
 		return
 	}
-	logrus.Infof("update user to: %+v", u)
+	logrus.Debugf("update user to: %+v", u)
 	err = db.Save(&u).Error
 	return
 }

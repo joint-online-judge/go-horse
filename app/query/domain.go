@@ -4,12 +4,11 @@ import (
 	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/schema"
-	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
 
 func GetDomain(
-	domain string,
+	db *gorm.DB, domain string,
 ) (domainModel model.Domain, err error) {
 	if domainId, err := uuid.Parse(domain); err != nil {
 		domainModel.Url = domain
@@ -20,44 +19,9 @@ func GetDomain(
 	return
 }
 
-func GetDomainId(domain string) (uuid.UUID, error) {
-	var query model.Domain
-	if domainId, err := uuid.Parse(domain); err != nil {
-		query.Url = domain
-	} else {
-		query.Id = domainId
-	}
-	err := db.Select("id").First(&query).Error
-	return query.Id, err
-}
-
-func CreateDomain(
-	domain *model.Domain,
-	owner model.User,
-) error {
-	err := db.Transaction(func(tx *gorm.DB) error {
-		if err := tx.Create(domain).Error; err != nil {
-			return err
-		}
-		logrus.Infof("create domain: %+v", domain)
-		domainUser := model.DomainUser{
-			Domain: *domain,
-			User:   owner,
-			Role:   string(schema.ROOT),
-		}
-		if err := tx.Create(&domainUser).Error; err != nil {
-			return err
-		}
-		logrus.Infof("create domain user: %+v", domainUser)
-		// TODO: create domain roles with permissions
-		return nil
-	})
-	return err
-}
-
-func ListDomainUsers(domain *model.Domain, pagination schema.Pagination) (
-	[]schema.UserWithDomainRole, int64, error,
-) {
+func ListDomainUsers(
+	db *gorm.DB, domain *model.Domain, pagination schema.Pagination,
+) ([]schema.UserWithDomainRole, int64, error) {
 	statement := db.Table("domain_users").
 		Select("domain_users.created_at, domain_users.updated_at, "+
 			"domain_users.domain_id, domain_users.user_id, "+
@@ -68,20 +32,8 @@ func ListDomainUsers(domain *model.Domain, pagination schema.Pagination) (
 	return ListObjs[schema.UserWithDomainRole](statement, pagination)
 }
 
-func AddDomainUser(domainId uuid.UUID, user model.User, role string) (
-	err error,
-) {
-	model := model.DomainUser{
-		Domain: model.Domain{Id: domainId},
-		User:   user,
-		Role:   role,
-	}
-	err = db.Create(&model).Error
-	return
-}
-
 func SearchDomainCandidates(
-	domainId uuid.UUID, query string, pagination schema.Pagination,
+	db *gorm.DB, domainId uuid.UUID, query string, pagination schema.Pagination,
 ) ([]schema.UserWithDomainRole, int64, error) {
 	statement := db.Table("users").
 		Select("users.id, users.username, users.gravatar, "+

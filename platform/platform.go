@@ -3,7 +3,6 @@ package platform
 import (
 	_ "github.com/joint-online-judge/go-horse/pkg/config" // load config
 
-	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/service"
 	"github.com/joint-online-judge/go-horse/platform/auth"
 	"github.com/joint-online-judge/go-horse/platform/db"
@@ -18,5 +17,4 @@ func Bootstrap() {
 	// queue.ConnectAsyncq()
 	// storage.ConnectMinio()
 	service.NewDB(db.DB)
-	query.NewDB(db.DB)
 }
