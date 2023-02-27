@@ -11,16 +11,12 @@ import (
 func GetDomain(
 	domain string,
 ) (domainModel model.Domain, err error) {
-	var query model.Domain
 	if domainId, err := uuid.Parse(domain); err != nil {
-		query.Url = domain
+		domainModel.Url = domain
 	} else {
-		query.Id = domainId
+		domainModel.Id = domainId
 	}
-	domainModel, err = GetObjTo[model.Domain](&query)
-	if err != nil {
-		return
-	}
+	err = db.Where(&domainModel).First(&domainModel).Error
 	return
 }
 
@@ -80,10 +76,7 @@ func AddDomainUser(domainId uuid.UUID, user model.User, role string) (
 		User:   user,
 		Role:   role,
 	}
-	err = CreateObj(&model)
-	if err != nil {
-		return
-	}
+	err = db.Create(&model).Error
 	return
 }
 

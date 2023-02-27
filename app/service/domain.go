@@ -35,9 +35,9 @@ func (s *domainImpl) ListDomains(params schema.ListDomainsParams) (
 	schema.ListResp[schema.Domain], error,
 ) {
 	// TODO: filter by domain users
-	objs, count, err := query.ListObjsByType[
-		model.Domain, schema.Domain,
-	](params.Pagination)
+	objs, count, err := query.ListObjs[schema.Domain](
+		db.Model(model.Domain{}), params.Pagination,
+	)
 	return schema.NewListResp(count, objs), err
 }
 
@@ -67,7 +67,7 @@ func (s *domainImpl) UpdateDomain(domainEdit schema.DomainEdit) (
 		return
 	}
 	logrus.Infof("update domain to: %+v", domain)
-	err = query.SaveObj(domain)
+	err = db.Save(domain).Error
 	return
 }
 

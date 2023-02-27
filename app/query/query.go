@@ -16,11 +16,6 @@ func NewDB(newDB *gorm.DB) {
 	db = newDB
 }
 
-func ListObjsByType[Model, Schema any](pagination schema.Pagination) ([]Schema, int64, error) {
-	var model Model
-	return ListObjs[Schema](db.Model(model), pagination)
-}
-
 func ListObjs[Schema any](statement *gorm.DB, pagination schema.Pagination) ([]Schema, int64, error) {
 	var schema []Schema
 	var count int64
@@ -32,23 +27,6 @@ func ListObjs[Schema any](statement *gorm.DB, pagination schema.Pagination) ([]S
 		return nil, 0, errors.WithStack(err)
 	}
 	return schema, count, nil
-}
-
-func GetObjTo[Dest any, Model any](model *Model) (dest Dest, err error) {
-	err = db.Where(model).First(&dest).Error
-	return
-}
-
-func GetObj[Model any](model *Model) error {
-	return db.Where(model).First(&model).Error
-}
-
-func SaveObj[Model any](model *Model) error {
-	return db.Save(model).Error
-}
-
-func CreateObj[Model any](model *Model) (err error) {
-	return db.Create(model).Error
 }
 
 func Paginate(pagination schema.Pagination) func(db *gorm.DB) *gorm.DB {

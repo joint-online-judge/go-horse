@@ -29,9 +29,6 @@ func GetProblemSet(domain *model.Domain, problemSet string) (
 		query.Id = problemSetId
 	}
 	query.DomainId = domain.Id
-	problemSetModel, err = GetObjTo[model.ProblemSet](&query)
-	if err != nil {
-		return
-	}
+	err = db.Where(&problemSetModel).First(&problemSetModel).Error
 	return
 }

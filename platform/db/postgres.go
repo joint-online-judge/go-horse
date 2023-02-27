@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/joint-online-judge/go-horse/app/model"
-	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/pkg/config"
 	"github.com/sirupsen/logrus"
 	"gorm.io/driver/postgres"
@@ -69,7 +68,6 @@ func connectDatabase(gormConfig *gorm.Config) (err error) {
 		conf.DBName,
 	)
 	DB, err = gorm.Open(postgres.Open(dsn), gormConfig)
-	query.NewDB(DB)
 	if err != nil {
 		return
 	}

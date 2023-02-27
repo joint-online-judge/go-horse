@@ -10,7 +10,6 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
-	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
 	"github.com/joint-online-judge/go-horse/pkg/config"
 )
@@ -98,20 +97,20 @@ func (s *authImpl) NewAuthTokens(
 	user schema.User,
 	oauth_name string,
 	fresh bool,
-) (*schema.AuthTokens, error) {
+) (authTokens schema.AuthTokens, err error) {
 	category := ""
 	if oauth_name != "" {
 		category = "oauth"
 	}
 	accessToken, err := s.NewAccessToken(user, oauth_name, category, fresh)
 	if err != nil {
-		return nil, err
+		return
 	}
 	refreshToken, err := s.NewRefreshToken(user, oauth_name)
 	if err != nil {
-		return nil, err
+		return
 	}
-	return &schema.AuthTokens{
+	return schema.AuthTokens{
 		AccessToken:  accessToken,
 		RefreshToken: refreshToken,
 		TokenType:    "bearer",
@@ -122,15 +121,15 @@ func (s *authImpl) CreateAuthTokens(
 	user schema.User,
 	oauthName string,
 	fresh bool,
-) (*schema.AuthTokens, error) {
-	token, err := s.NewAuthTokens(user, oauthName, fresh)
+) (authTokens schema.AuthTokens, err error) {
+	authTokens, err = s.NewAuthTokens(user, oauthName, fresh)
 	if err != nil {
-		return nil, err
+		return
 	}
 	// Set cookie: access token
 	s.c.Cookie(&fiber.Cookie{
 		Name:     "access_token_cookie",
-		Value:    token.AccessToken,
+		Value:    authTokens.AccessToken,
 		Expires:  time.Now().Add(time.Duration(config.Conf.JwtExpireSeconds) * time.Second),
 		HTTPOnly: true,
 		SameSite: "lax",
@@ -138,12 +137,12 @@ func (s *authImpl) CreateAuthTokens(
 	// Set cookie: refresh token
 	s.c.Cookie(&fiber.Cookie{
 		Name:     "refresh_token_cookie",
-		Value:    token.RefreshToken,
+		Value:    authTokens.RefreshToken,
 		Expires:  time.Now().Add(time.Duration(config.Conf.JwtRefreshExpireSeconds) * time.Second),
 		HTTPOnly: true,
 		SameSite: "lax",
 	})
-	return token, nil
+	return
 }
 
 func (s *authImpl) RegisterNewUser(userCreate *schema.UserCreate) (
@@ -164,37 +163,41 @@ func (s *authImpl) RegisterNewUser(userCreate *schema.UserCreate) (
 		RegisterIP:     ip,
 		LoginIP:        ip,
 	}
-	err = query.CreateObj(&userModel)
+	err = db.Create(&userModel).Error
 	if err != nil {
 		return
 	}
 	return convert.To[schema.User](userModel)
 }
 
-func (s *authImpl) Login(loginForm *schema.OAuth2PasswordRequestForm) (*schema.AuthTokens, error) {
+func (s *authImpl) Login(loginForm *schema.OAuth2PasswordRequestForm) (
+	authTokens schema.AuthTokens, err error,
+) {
 	userModel := model.User{Username: *loginForm.Username}
-	err := query.GetObj(&userModel)
+	err = db.Where(&userModel).First(&userModel).Error
 	if err != nil {
-		return nil, schema.NewBizError(schema.UserNotFoundError)
+		err = schema.NewBizError(schema.UserNotFoundError)
+		return
 	}
 	if !schema.VerifyPassword(
 		*loginForm.Password,
 		userModel.HashedPassword,
 	) {
-		return nil, schema.NewBizError(
+		err = schema.NewBizError(
 			schema.UsernamePasswordError,
 			"incorrect password",
 		)
+		return
 	}
 	logrus.Debugf("user login: %+v", userModel)
 	userModel.LoginAt = time.Now()
 	userModel.LoginIP = s.c.IP()
-	if err = query.SaveObj(&userModel); err != nil {
-		return nil, err
+	if err = db.Save(&userModel).Error; err != nil {
+		return
 	}
 	user, err := convert.To[schema.User](userModel)
 	if err != nil {
-		return nil, err
+		return
 	}
 	return Auth(s.c).CreateAuthTokens(user, "", true)
 }

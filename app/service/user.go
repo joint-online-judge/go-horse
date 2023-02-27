@@ -4,7 +4,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
-	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
 	"github.com/joint-online-judge/go-horse/pkg/convert"
 	"github.com/sirupsen/logrus"
@@ -31,7 +30,7 @@ func (s *userImpl) GetUser(user string) (userModel model.User, err error) {
 		}
 	}
 	userModel = model.User{Id: userId}
-	err = query.GetObj(&userModel)
+	err = db.Where(&userModel).First(&userModel).Error
 	return
 }
 
@@ -50,7 +49,7 @@ func (s *userImpl) UpdateCurrentUser(userEdit schema.UserEdit) (
 		return
 	}
 	logrus.Infof("update user to: %+v", u)
-	err = query.SaveObj(&u)
+	err = db.Save(&u).Error
 	return
 }
 
@@ -76,6 +75,6 @@ func (s *userImpl) ChangePassword(userResetPassword schema.UserResetPassword) (
 	if err != nil {
 		return
 	}
-	err = query.SaveObj(&u)
+	err = db.Save(&u).Error
 	return
 }
