@@ -7,7 +7,6 @@ import (
 	"gorm.io/gorm/clause"
 
 	"github.com/joint-online-judge/go-horse/app/schema"
-	"github.com/joint-online-judge/go-horse/pkg/convert"
 	"github.com/pkg/errors"
 )
 
@@ -48,11 +47,8 @@ func SaveObj[Model any](model *Model) error {
 	return db.Save(model).Error
 }
 
-func CreateObj[Schema any, Model any](model *Model) (schema Schema, err error) {
-	if err = db.Create(model).Error; err != nil {
-		return
-	}
-	return convert.To[Schema](*model)
+func CreateObj[Model any](model *Model) (err error) {
+	return db.Create(model).Error
 }
 
 func Paginate(pagination schema.Pagination) func(db *gorm.DB) *gorm.DB {

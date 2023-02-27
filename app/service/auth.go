@@ -29,7 +29,7 @@ func (s *authImpl) JWT() *schema.JWTClaims {
 	return s.c.Locals("jwt").(*schema.JWTClaims)
 }
 
-func (s *authImpl) JWTUser() *schema.User {
+func (s *authImpl) JWTUser() schema.User {
 	claims := s.c.Locals("jwt").(*schema.JWTClaims)
 	user := schema.User{
 		Gravatar: &claims.Gravatar,
@@ -38,7 +38,7 @@ func (s *authImpl) JWTUser() *schema.User {
 		Role:     &claims.Role,
 		Username: claims.Username,
 	}
-	return &user
+	return user
 }
 
 func (s *authImpl) NewAccessToken(
@@ -119,11 +119,11 @@ func (s *authImpl) NewAuthTokens(
 }
 
 func (s *authImpl) CreateAuthTokens(
-	user *schema.User,
+	user schema.User,
 	oauthName string,
 	fresh bool,
 ) (*schema.AuthTokens, error) {
-	token, err := s.NewAuthTokens(*user, oauthName, fresh)
+	token, err := s.NewAuthTokens(user, oauthName, fresh)
 	if err != nil {
 		return nil, err
 	}
@@ -146,10 +146,12 @@ func (s *authImpl) CreateAuthTokens(
 	return token, nil
 }
 
-func (s *authImpl) RegisterNewUser(userCreate *schema.UserCreate) (*schema.User, error) {
+func (s *authImpl) RegisterNewUser(userCreate *schema.UserCreate) (
+	user schema.User, err error,
+) {
 	hashedPassword, err := schema.HashPassword(*userCreate.Password)
 	if err != nil {
-		return nil, err
+		return
 	}
 	ip := s.c.IP()
 	userModel := model.User{
@@ -162,8 +164,11 @@ func (s *authImpl) RegisterNewUser(userCreate *schema.UserCreate) (*schema.User,
 		RegisterIP:     ip,
 		LoginIP:        ip,
 	}
-	user, err := query.CreateObj[schema.User](&userModel)
-	return &user, err
+	err = query.CreateObj(&userModel)
+	if err != nil {
+		return
+	}
+	return convert.To[schema.User](userModel)
 }
 
 func (s *authImpl) Login(loginForm *schema.OAuth2PasswordRequestForm) (*schema.AuthTokens, error) {
@@ -191,7 +196,7 @@ func (s *authImpl) Login(loginForm *schema.OAuth2PasswordRequestForm) (*schema.A
 	if err != nil {
 		return nil, err
 	}
-	return Auth(s.c).CreateAuthTokens(&user, "", true)
+	return Auth(s.c).CreateAuthTokens(user, "", true)
 }
 
 func (s *authImpl) Logout() {

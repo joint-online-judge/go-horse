@@ -42,11 +42,18 @@ func (s *domainImpl) ListDomains(params schema.ListDomainsParams) (
 }
 
 func (s *domainImpl) CreateDomain(domainCreate schema.DomainCreate) (
-	model.Domain, error,
+	domain model.Domain, err error,
 ) {
-	// TODO: verify input values
 	user := Auth(s.c).JWTUser()
-	return query.CreateDomain(domainCreate, user)
+	// TODO: verify input values
+	owner := model.User{Id: user.Id}
+	err = convert.Update(&domain, domainCreate)
+	if err != nil {
+		return
+	}
+	domain.Owner = owner
+	err = query.CreateDomain(&domain, owner)
+	return
 }
 
 func (s *domainImpl) UpdateDomain(domainEdit schema.DomainEdit) (
@@ -107,5 +114,13 @@ func (s *domainImpl) AddDomainUser(
 	if role == nil {
 		role = schema.Pointer(string(schema.USER))
 	}
-	return query.AddDomainUser(domain.Id, userModel, *role)
+	err = query.AddDomainUser(domain.Id, userModel, *role)
+	if err != nil {
+		return
+	}
+	resp.DomainRole = role
+	resp.Gravatar = &userModel.Gravatar
+	resp.Id = userModel.Id
+	resp.Username = userModel.Username
+	return
 }

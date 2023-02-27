@@ -4,7 +4,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/schema"
-	"github.com/joint-online-judge/go-horse/pkg/convert"
 )
 
 func ListProblemSets(
@@ -18,22 +17,6 @@ func ListProblemSets(
 	return ListObjs[schema.ProblemSet](
 		statement, pagination,
 	)
-}
-
-func CreateProblemSet(
-	problemSetCreate schema.ProblemSetCreate,
-	domain *model.Domain,
-	user *schema.User,
-) (problemSet model.ProblemSet, err error) {
-	owner := model.User{Id: user.Id}
-	err = convert.Update(&problemSet, problemSetCreate)
-	if err != nil {
-		return
-	}
-	problemSet.Domain = *domain
-	problemSet.Owner = owner
-	err = SaveObj(&problemSet)
-	return problemSet, err
 }
 
 func GetProblemSet(domain *model.Domain, problemSet string) (

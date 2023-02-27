@@ -52,7 +52,7 @@ func (s *Api) Refresh(
 	request schema.RefreshRequestObject,
 ) (any, error) {
 	user := service.Auth(c).JWTUser()
-	return service.Auth(c).NewAuthTokens(*user, "", false)
+	return service.Auth(c).NewAuthTokens(user, "", false)
 }
 
 // Register
@@ -93,5 +93,5 @@ func (s *Api) GetToken(
 	request schema.GetTokenRequestObject,
 ) (any, error) {
 	user := service.Auth(c).JWTUser()
-	return service.Auth(c).NewAuthTokens(*user, "", true)
+	return service.Auth(c).NewAuthTokens(user, "", true)
 }

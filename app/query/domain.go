@@ -4,7 +4,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/schema"
-	"github.com/joint-online-judge/go-horse/pkg/convert"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
@@ -37,22 +36,16 @@ func GetDomainId(domain string) (uuid.UUID, error) {
 }
 
 func CreateDomain(
-	domainCreate schema.DomainCreate,
-	user *schema.User,
-) (domain model.Domain, err error) {
-	owner := model.User{Id: user.Id}
-	err = convert.Update(&domain, domainCreate)
-	if err != nil {
-		return
-	}
-	domain.Owner = owner
-	err = db.Transaction(func(tx *gorm.DB) error {
-		if err := tx.Create(&domain).Error; err != nil {
+	domain *model.Domain,
+	owner model.User,
+) error {
+	err := db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Create(domain).Error; err != nil {
 			return err
 		}
 		logrus.Infof("create domain: %+v", domain)
 		domainUser := model.DomainUser{
-			Domain: domain,
+			Domain: *domain,
 			User:   owner,
 			Role:   string(schema.ROOT),
 		}
@@ -63,7 +56,7 @@ func CreateDomain(
 		// TODO: create domain roles with permissions
 		return nil
 	})
-	return domain, err
+	return err
 }
 
 func ListDomainUsers(domain *model.Domain, pagination schema.Pagination) (
@@ -80,21 +73,17 @@ func ListDomainUsers(domain *model.Domain, pagination schema.Pagination) (
 }
 
 func AddDomainUser(domainId uuid.UUID, user model.User, role string) (
-	u schema.UserWithDomainRole, err error,
+	err error,
 ) {
 	model := model.DomainUser{
 		Domain: model.Domain{Id: domainId},
 		User:   user,
 		Role:   role,
 	}
-	u, err = CreateObj[schema.UserWithDomainRole](&model)
+	err = CreateObj(&model)
 	if err != nil {
 		return
 	}
-	u.DomainRole = &model.Role
-	u.Gravatar = &user.Gravatar
-	u.Id = user.Id
-	u.Username = user.Username
 	return
 }
 

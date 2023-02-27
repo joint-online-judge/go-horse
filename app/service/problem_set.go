@@ -5,6 +5,7 @@ import (
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
 )
 
 type problemsetImpl struct {
@@ -32,13 +33,21 @@ func (s *problemsetImpl) ListProblemSets(
 
 func (s *problemsetImpl) CreateProblemSet(
 	problemSetCreate schema.ProblemSetCreate,
-) (resp model.ProblemSet, err error) {
+) (problemSet model.ProblemSet, err error) {
 	domain, err := Domain(s.c).GetCurrentDomain()
 	if err != nil {
 		return
 	}
 	user := Auth(s.c).JWTUser()
-	return query.CreateProblemSet(problemSetCreate, domain, user)
+	owner := model.User{Id: user.Id}
+	err = convert.Update(&problemSet, problemSetCreate)
+	if err != nil {
+		return
+	}
+	problemSet.Domain = *domain
+	problemSet.Owner = owner
+	err = query.SaveObj(&problemSet)
+	return
 }
 
 func (s *problemsetImpl) GetCurrentProblemSet() (*model.ProblemSet, error) {
