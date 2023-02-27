@@ -8,17 +8,17 @@ import (
 	"github.com/joint-online-judge/go-horse/pkg/convert"
 )
 
-type problemsetImpl struct {
+type problemSetImpl struct {
 	c *fiber.Ctx
 }
 
-func ProblemSet(c *fiber.Ctx) *problemsetImpl {
-	return &problemsetImpl{
+func ProblemSet(c *fiber.Ctx) *problemSetImpl {
+	return &problemSetImpl{
 		c: c,
 	}
 }
 
-func (s *problemsetImpl) ListProblemSets(
+func (s *problemSetImpl) ListProblemSets(
 	params schema.ListProblemSetsParams,
 ) (resp schema.ListResp[schema.ProblemSet], err error) {
 	domain, err := Domain(s.c).GetCurrentDomain()
@@ -31,7 +31,7 @@ func (s *problemsetImpl) ListProblemSets(
 	return schema.NewListResp(count, objs), err
 }
 
-func (s *problemsetImpl) CreateProblemSet(
+func (s *problemSetImpl) CreateProblemSet(
 	problemSetCreate schema.ProblemSetCreate,
 ) (problemSet model.ProblemSet, err error) {
 	domain, err := Domain(s.c).GetCurrentDomain()
@@ -50,7 +50,7 @@ func (s *problemsetImpl) CreateProblemSet(
 	return
 }
 
-func (s *problemsetImpl) GetCurrentProblemSet() (*model.ProblemSet, error) {
+func (s *problemSetImpl) GetCurrentProblemSet() (*model.ProblemSet, error) {
 	problemSet := s.c.Locals("problemSet")
 	if problemSet == nil {
 		return nil, schema.NewBizError(
@@ -58,4 +58,21 @@ func (s *problemsetImpl) GetCurrentProblemSet() (*model.ProblemSet, error) {
 		)
 	}
 	return problemSet.(*model.ProblemSet), nil
+}
+
+func (s *problemSetImpl) ListProblemsInProblemSet() (
+	resp schema.ListResp[schema.ProblemSet], err error,
+) {
+	problemSet, err := s.GetCurrentProblemSet()
+	if err != nil {
+		return
+	}
+	problem, err := Problem(s.c).GetCurrentProblem()
+	if err != nil {
+		return
+	}
+	objs, count, err := query.ListProblemsInProblemSet(
+		db, problemSet, problem, schema.Pagination{},
+	)
+	return schema.NewListResp(count, objs), err
 }

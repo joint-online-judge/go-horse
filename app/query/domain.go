@@ -15,7 +15,7 @@ func GetDomain(
 	} else {
 		domainModel.Id = domainId
 	}
-	err = db.Where(&domainModel).First(&domainModel).Error
+	err = db.First(&domainModel).Error
 	return
 }
 

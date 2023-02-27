@@ -10,14 +10,13 @@ import (
 func GetProblemSet(db *gorm.DB, domain *model.Domain, problemSet string) (
 	problemSetModel model.ProblemSet, err error,
 ) {
-	var query model.ProblemSet
 	if problemSetId, err := uuid.Parse(problemSet); err != nil {
-		query.Url = problemSet
+		problemSetModel.Url = problemSet
 	} else {
-		query.Id = problemSetId
+		problemSetModel.Id = problemSetId
 	}
-	query.DomainId = domain.Id
-	err = db.Where(&problemSetModel).First(&problemSetModel).Error
+	problemSetModel.DomainId = domain.Id
+	err = db.First(&problemSetModel).Error
 	return
 }
 
@@ -25,10 +24,24 @@ func ListProblemSets(
 	db *gorm.DB, domain *model.Domain, pagination schema.Pagination, includeHidden bool,
 ) ([]schema.ProblemSet, int64, error) {
 	statement := db.Model(model.ProblemSet{}).
-		Where("problem_sets.domain_id = ?", domain.Id)
+		Where("domain_id = ?", domain.Id)
 	if !includeHidden {
-		statement = statement.Not("problem_sets.hidden = ?", true)
+		statement = statement.Not("hidden = ?", true)
 	}
+	return ListObjs[schema.ProblemSet](
+		statement, pagination,
+	)
+}
+
+func ListProblemsInProblemSet(
+	db *gorm.DB, problemSet *model.ProblemSet, problem *model.Problem,
+	pagination schema.Pagination,
+) ([]schema.ProblemSet, int64, error) {
+	link := model.ProblemProblemSetLink{ProblemSetId: problemSet.Id}
+	statement := db.Model(model.Problem{}).Where(
+		"id in (?)", db.Model(&link).Select("problem_id").Where(&link),
+	)
+	// TODO: add latest record
 	return ListObjs[schema.ProblemSet](
 		statement, pagination,
 	)

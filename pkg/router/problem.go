@@ -11,7 +11,7 @@ func RegisterProblem(
 	wrapper schema.ServerInterfaceWrapper,
 ) {
 	problems := router.Group("/domains/:domain/problems", middleware.Domain)
-	problem := problems.Group("/:problem")
+	problem := problems.Group("/:problem", middleware.Problem)
 	problems.Get("", wrapper.ListProblems)
 	problems.Post("", wrapper.CreateProblem)
 	problems.Post("/clone", wrapper.CloneProblem)

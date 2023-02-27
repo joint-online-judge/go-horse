@@ -174,7 +174,7 @@ func (s *authImpl) Login(loginForm *schema.OAuth2PasswordRequestForm) (
 	authTokens schema.AuthTokens, err error,
 ) {
 	userModel := model.User{Username: *loginForm.Username}
-	err = db.Where(&userModel).First(&userModel).Error
+	err = db.First(&userModel).Error
 	if err != nil {
 		err = schema.NewBizError(schema.UserNotFoundError)
 		return

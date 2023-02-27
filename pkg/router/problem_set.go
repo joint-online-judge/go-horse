@@ -13,7 +13,7 @@ func RegisterProblemSet(
 	problem_sets := router.Group("/domains/:domain/problem_sets", middleware.Domain)
 	problem_set := problem_sets.Group("/:problemSet", middleware.ProblemSet)
 	problems := problem_set.Group("/problems")
-	problem := problems.Group("/:problem")
+	problem := problems.Group("/:problem", middleware.ProblemInProblemSet)
 	problem_sets.Get("", wrapper.ListProblemSets)
 	problem_sets.Post("", wrapper.CreateProblemSet)
 	problem_set.Delete("", wrapper.DeleteProblemSet)

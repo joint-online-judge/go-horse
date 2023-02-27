@@ -66,7 +66,7 @@ func (s *Api) ListProblemsInProblemSet(
 	c *fiber.Ctx,
 	request schema.ListProblemsInProblemSetRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	return service.ProblemSet(c).ListProblemsInProblemSet()
 }
 
 // Add Problem In Problem Set

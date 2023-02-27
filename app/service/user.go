@@ -30,7 +30,7 @@ func (s *userImpl) GetUser(user string) (userModel model.User, err error) {
 		}
 	}
 	userModel = model.User{Id: userId}
-	err = db.Where(&userModel).First(&userModel).Error
+	err = db.First(&userModel).Error
 	return
 }
 

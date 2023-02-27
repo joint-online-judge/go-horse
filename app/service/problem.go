@@ -1,0 +1,61 @@
+package service
+
+import (
+	"github.com/gofiber/fiber/v2"
+	"github.com/joint-online-judge/go-horse/app/model"
+	"github.com/joint-online-judge/go-horse/app/query"
+	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
+)
+
+type problemImpl struct {
+	c *fiber.Ctx
+}
+
+func Problem(c *fiber.Ctx) *problemImpl {
+	return &problemImpl{
+		c: c,
+	}
+}
+
+func (s *problemImpl) ListProblems(
+	params schema.ListProblemsParams,
+) (resp schema.ListResp[schema.ProblemWithLatestRecord], err error) {
+	domain, err := Domain(s.c).GetCurrentDomain()
+	if err != nil {
+		return
+	}
+	objs, count, err := query.ListProblems(
+		db, domain, params.Pagination, false,
+	)
+	return schema.NewListResp(count, objs), err
+}
+
+func (s *problemImpl) CreateProblem(
+	problemCreate schema.ProblemCreate,
+) (problem model.Problem, err error) {
+	domain, err := Domain(s.c).GetCurrentDomain()
+	if err != nil {
+		return
+	}
+	user := Auth(s.c).JWTUser()
+	owner := model.User{Id: user.Id}
+	err = convert.Update(&problem, problemCreate)
+	if err != nil {
+		return
+	}
+	problem.Domain = *domain
+	problem.Owner = owner
+	err = db.Save(&problem).Error
+	return
+}
+
+func (s *problemImpl) GetCurrentProblem() (*model.Problem, error) {
+	problem := s.c.Locals("problem")
+	if problem == nil {
+		return nil, schema.NewBizError(
+			schema.ProblemNotFoundError, "cannot find current problem",
+		)
+	}
+	return problem.(*model.Problem), nil
+}

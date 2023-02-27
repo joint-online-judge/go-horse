@@ -3,6 +3,8 @@ package v1
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/app/service"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
 )
 
 // List Problems
@@ -11,7 +13,7 @@ func (s *Api) ListProblems(
 	c *fiber.Ctx,
 	request schema.ListProblemsRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	return service.Problem(c).ListProblems(request.Params)
 }
 
 // Create Problem
@@ -20,7 +22,11 @@ func (s *Api) CreateProblem(
 	c *fiber.Ctx,
 	request schema.CreateProblemRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	problem, err := service.Problem(c).CreateProblem(*request.Body)
+	if err != nil {
+		return nil, err
+	}
+	return convert.To[schema.Problem](problem)
 }
 
 // Clone Problem
@@ -47,7 +53,11 @@ func (s *Api) GetProblem(
 	c *fiber.Ctx,
 	request schema.GetProblemRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	problem, err := service.Problem(c).GetCurrentProblem()
+	if err != nil {
+		return nil, err
+	}
+	return convert.To[schema.Problem](problem)
 }
 
 // Update Problem
