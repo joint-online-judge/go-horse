@@ -3,15 +3,14 @@ package schema
 import (
 	"time"
 
-	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
 	"github.com/google/uuid"
 )
 
 // DomainInvitation defines model for DomainInvitation.
 type DomainInvitation struct {
 	// Code invitation code
-	Code     string             `json:"code"`
-	DomainId openapi_types.UUID `json:"domainId"`
+	Code     string    `json:"code"`
+	DomainId uuid.UUID `json:"domainId"`
 
 	// ExpireAt expire time of invitation
 	ExpireAt *time.Time `json:"expireAt,omitempty"`

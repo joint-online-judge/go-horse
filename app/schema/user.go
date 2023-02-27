@@ -58,7 +58,7 @@ type UserDetail struct {
 // UserDetailWithDomainRole defines model for UserDetailWithDomainRole.
 type UserDetailWithDomainRole struct {
 	CreatedAt  *time.Time          `json:"createdAt,omitempty"`
-	DomainId   *openapi_types.UUID `json:"domainId,omitempty"`
+	DomainId   *uuid.UUID          `json:"domainId,omitempty"`
 	DomainRole *string             `json:"domainRole,omitempty"`
 	Email      openapi_types.Email `json:"email"`
 	Gravatar   *string             `json:"gravatar,omitempty"`
@@ -106,11 +106,11 @@ type UserResetPassword struct {
 
 // UserWithDomainRole defines model for UserWithDomainRole.
 type UserWithDomainRole struct {
-	DomainId   *openapi_types.UUID `json:"domainId,omitempty"`
-	DomainRole *string             `json:"domainRole,omitempty"`
-	Gravatar   *string             `json:"gravatar,omitempty"`
-	Id         uuid.UUID           `json:"id"`
-	Username   string              `json:"username"`
+	DomainId   *uuid.UUID `json:"domainId,omitempty"`
+	DomainRole *string    `json:"domainRole,omitempty"`
+	Gravatar   *string    `json:"gravatar,omitempty"`
+	Id         uuid.UUID  `json:"id"`
+	Username   string     `json:"username"`
 }
 
 // UserWithDomainRoleList defines model for UserWithDomainRoleList.

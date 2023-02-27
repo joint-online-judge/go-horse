@@ -4,22 +4,21 @@ package schema
 import (
 	"time"
 
-	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
 	"github.com/google/uuid"
 )
 
 // Record defines model for Record.
 type Record struct {
-	CreatedAt *time.Time         `json:"createdAt,omitempty"`
-	DomainId  openapi_types.UUID `json:"domainId"`
-	Id        uuid.UUID          `json:"id"`
-	JudgedAt  *time.Time         `json:"judgedAt,omitempty"`
-	Language  string             `json:"language"`
-	MemoryKb  *int               `json:"memoryKb,omitempty"`
-	Score     *int               `json:"score,omitempty"`
-	State     *RecordState       `json:"state,omitempty"`
-	TimeMs    *int               `json:"timeMs,omitempty"`
-	UpdatedAt *time.Time         `json:"updatedAt,omitempty"`
+	CreatedAt *time.Time   `json:"createdAt,omitempty"`
+	DomainId  uuid.UUID    `json:"domainId"`
+	Id        uuid.UUID    `json:"id"`
+	JudgedAt  *time.Time   `json:"judgedAt,omitempty"`
+	Language  string       `json:"language"`
+	MemoryKb  *int         `json:"memoryKb,omitempty"`
+	Score     *int         `json:"score,omitempty"`
+	State     *RecordState `json:"state,omitempty"`
+	TimeMs    *int         `json:"timeMs,omitempty"`
+	UpdatedAt *time.Time   `json:"updatedAt,omitempty"`
 }
 
 // RecordCase defines model for RecordCase.
@@ -48,44 +47,44 @@ type RecordCaseSubmit struct {
 
 // RecordDetail defines model for RecordDetail.
 type RecordDetail struct {
-	Cases           *[]RecordCase       `json:"cases,omitempty"`
-	CommitId        *string             `json:"commitId,omitempty"`
-	CommitterId     *openapi_types.UUID `json:"committerId,omitempty"`
-	CreatedAt       *time.Time          `json:"createdAt,omitempty"`
-	DomainId        openapi_types.UUID  `json:"domainId"`
-	Id              uuid.UUID           `json:"id"`
-	JudgedAt        *time.Time          `json:"judgedAt,omitempty"`
-	JudgerId        *openapi_types.UUID `json:"judgerId,omitempty"`
-	Language        string              `json:"language"`
-	MemoryKb        *int                `json:"memoryKb,omitempty"`
-	ProblemConfigId *openapi_types.UUID `json:"problemConfigId,omitempty"`
-	ProblemId       *openapi_types.UUID `json:"problemId,omitempty"`
-	ProblemSetId    *openapi_types.UUID `json:"problemSetId,omitempty"`
-	Score           *int                `json:"score,omitempty"`
-	State           *RecordState        `json:"state,omitempty"`
-	TaskId          *openapi_types.UUID `json:"taskId,omitempty"`
-	TimeMs          *int                `json:"timeMs,omitempty"`
-	UpdatedAt       *time.Time          `json:"updatedAt,omitempty"`
+	Cases           *[]RecordCase `json:"cases,omitempty"`
+	CommitId        *string       `json:"commitId,omitempty"`
+	CommitterId     *uuid.UUID    `json:"committerId,omitempty"`
+	CreatedAt       *time.Time    `json:"createdAt,omitempty"`
+	DomainId        uuid.UUID     `json:"domainId"`
+	Id              uuid.UUID     `json:"id"`
+	JudgedAt        *time.Time    `json:"judgedAt,omitempty"`
+	JudgerId        *uuid.UUID    `json:"judgerId,omitempty"`
+	Language        string        `json:"language"`
+	MemoryKb        *int          `json:"memoryKb,omitempty"`
+	ProblemConfigId *uuid.UUID    `json:"problemConfigId,omitempty"`
+	ProblemId       *uuid.UUID    `json:"problemId,omitempty"`
+	ProblemSetId    *uuid.UUID    `json:"problemSetId,omitempty"`
+	Score           *int          `json:"score,omitempty"`
+	State           *RecordState  `json:"state,omitempty"`
+	TaskId          *uuid.UUID    `json:"taskId,omitempty"`
+	TimeMs          *int          `json:"timeMs,omitempty"`
+	UpdatedAt       *time.Time    `json:"updatedAt,omitempty"`
 }
 
 // RecordListDetail defines model for RecordListDetail.
 type RecordListDetail struct {
-	CommitterId       *openapi_types.UUID `json:"committerId,omitempty"`
-	CommitterUsername *string             `json:"committerUsername,omitempty"`
-	CreatedAt         *time.Time          `json:"createdAt,omitempty"`
-	DomainId          openapi_types.UUID  `json:"domainId"`
-	Id                uuid.UUID           `json:"id"`
-	JudgedAt          *time.Time          `json:"judgedAt,omitempty"`
-	Language          string              `json:"language"`
-	MemoryKb          *int                `json:"memoryKb,omitempty"`
-	ProblemId         *openapi_types.UUID `json:"problemId,omitempty"`
-	ProblemSetId      *openapi_types.UUID `json:"problemSetId,omitempty"`
-	ProblemSetTitle   *string             `json:"problemSetTitle,omitempty"`
-	ProblemTitle      *string             `json:"problemTitle,omitempty"`
-	Score             *int                `json:"score,omitempty"`
-	State             *RecordState        `json:"state,omitempty"`
-	TimeMs            *int                `json:"timeMs,omitempty"`
-	UpdatedAt         *time.Time          `json:"updatedAt,omitempty"`
+	CommitterId       *uuid.UUID   `json:"committerId,omitempty"`
+	CommitterUsername *string      `json:"committerUsername,omitempty"`
+	CreatedAt         *time.Time   `json:"createdAt,omitempty"`
+	DomainId          uuid.UUID    `json:"domainId"`
+	Id                uuid.UUID    `json:"id"`
+	JudgedAt          *time.Time   `json:"judgedAt,omitempty"`
+	Language          string       `json:"language"`
+	MemoryKb          *int         `json:"memoryKb,omitempty"`
+	ProblemId         *uuid.UUID   `json:"problemId,omitempty"`
+	ProblemSetId      *uuid.UUID   `json:"problemSetId,omitempty"`
+	ProblemSetTitle   *string      `json:"problemSetTitle,omitempty"`
+	ProblemTitle      *string      `json:"problemTitle,omitempty"`
+	Score             *int         `json:"score,omitempty"`
+	State             *RecordState `json:"state,omitempty"`
+	TimeMs            *int         `json:"timeMs,omitempty"`
+	UpdatedAt         *time.Time   `json:"updatedAt,omitempty"`
 }
 
 // RecordListDetailList defines model for RecordListDetailList.
@@ -126,12 +125,12 @@ type RecordSubmit struct {
 // ListRecordsInDomainParams defines parameters for ListRecordsInDomain.
 type ListRecordsInDomainParams struct {
 	// ProblemSet problem set id
-	ProblemSet *openapi_types.UUID `form:"problemSet,omitempty" json:"problemSet,omitempty"`
+	ProblemSet *uuid.UUID `form:"problemSet,omitempty" json:"problemSet,omitempty"`
 
 	// Problem problem id
-	Problem *openapi_types.UUID `form:"problem,omitempty" json:"problem,omitempty"`
+	Problem *uuid.UUID `form:"problem,omitempty" json:"problem,omitempty"`
 
 	// SubmitterId submitter uid
-	SubmitterId *openapi_types.UUID `form:"submitterId,omitempty" json:"submitterId,omitempty"`
+	SubmitterId *uuid.UUID `form:"submitterId,omitempty" json:"submitterId,omitempty"`
 	Pagination
 }

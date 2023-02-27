@@ -8,8 +8,8 @@ import (
 	"net/url"
 
 	"github.com/deepmap/oapi-codegen/pkg/runtime"
-	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 )
 
 // ServerInterface represents all server handlers.
@@ -255,7 +255,7 @@ type ServerInterface interface {
 	) error
 	// Get Record
 	// (GET /domains/{domain}/records/{record})
-	GetRecord(c *fiber.Ctx, domain string, record openapi_types.UUID) error
+	GetRecord(c *fiber.Ctx, domain string, record uuid.UUID) error
 	// Submit Case By Judger
 	// (PUT /domains/{domain}/records/{record}/cases/{index}/judge)
 	SubmitCaseByJudger(
@@ -3500,7 +3500,7 @@ func (siw *ServerInterfaceWrapper) GetRecord(c *fiber.Ctx) error {
 	}
 
 	// ------------- Path parameter "record" -------------
-	var record openapi_types.UUID
+	var record uuid.UUID
 
 	err = runtime.BindStyledParameter(
 		"simple",
@@ -4554,8 +4554,8 @@ type ListRecordsInDomainRequestObject struct {
 }
 
 type GetRecordRequestObject struct {
-	Domain string             `json:"domain"`
-	Record openapi_types.UUID `json:"record"`
+	Domain string    `json:"domain"`
+	Record uuid.UUID `json:"record"`
 }
 
 type SubmitCaseByJudgerRequestObject struct {
@@ -6369,7 +6369,7 @@ func (sh *strictHandler) ListRecordsInDomain(
 func (sh *strictHandler) GetRecord(
 	ctx *fiber.Ctx,
 	domain string,
-	record openapi_types.UUID,
+	record uuid.UUID,
 ) error {
 	var request GetRecordRequestObject
 

@@ -10,15 +10,15 @@ import (
 
 // Problem defines model for Problem.
 type Problem struct {
-	DomainId openapi_types.UUID `json:"domainId"`
+	DomainId uuid.UUID `json:"domainId"`
 
 	// Hidden is the problem hidden
-	Hidden         *bool               `json:"hidden,omitempty"`
-	Id             uuid.UUID           `json:"id"`
-	NumAccept      *int                `json:"numAccept,omitempty"`
-	NumSubmit      *int                `json:"numSubmit,omitempty"`
-	OwnerId        *openapi_types.UUID `json:"ownerId,omitempty"`
-	ProblemGroupId *openapi_types.UUID `json:"problemGroupId,omitempty"`
+	Hidden         *bool      `json:"hidden,omitempty"`
+	Id             uuid.UUID  `json:"id"`
+	NumAccept      *int       `json:"numAccept,omitempty"`
+	NumSubmit      *int       `json:"numSubmit,omitempty"`
+	OwnerId        *uuid.UUID `json:"ownerId,omitempty"`
+	ProblemGroupId *uuid.UUID `json:"problemGroupId,omitempty"`
 
 	// Title title of the problem
 	Title string `json:"title"`
@@ -39,25 +39,25 @@ type ProblemClone struct {
 
 // ProblemConfigDataDetail defines model for ProblemConfigDataDetail.
 type ProblemConfigDataDetail struct {
-	CommitId      *string             `json:"commitId,omitempty"`
-	CommitMessage *string             `json:"commitMessage,omitempty"`
-	CommitterId   *openapi_types.UUID `json:"committerId,omitempty"`
-	CreatedAt     *time.Time          `json:"createdAt,omitempty"`
-	Data          ProblemConfigJson   `json:"data"`
-	DataVersion   *int                `json:"dataVersion,omitempty"`
-	Id            uuid.UUID           `json:"id"`
-	UpdatedAt     *time.Time          `json:"updatedAt,omitempty"`
+	CommitId      *string           `json:"commitId,omitempty"`
+	CommitMessage *string           `json:"commitMessage,omitempty"`
+	CommitterId   *uuid.UUID        `json:"committerId,omitempty"`
+	CreatedAt     *time.Time        `json:"createdAt,omitempty"`
+	Data          ProblemConfigJson `json:"data"`
+	DataVersion   *int              `json:"dataVersion,omitempty"`
+	Id            uuid.UUID         `json:"id"`
+	UpdatedAt     *time.Time        `json:"updatedAt,omitempty"`
 }
 
 // ProblemConfigDetail defines model for ProblemConfigDetail.
 type ProblemConfigDetail struct {
-	CommitId      *string             `json:"commitId,omitempty"`
-	CommitMessage *string             `json:"commitMessage,omitempty"`
-	CommitterId   *openapi_types.UUID `json:"committerId,omitempty"`
-	CreatedAt     *time.Time          `json:"createdAt,omitempty"`
-	DataVersion   *int                `json:"dataVersion,omitempty"`
-	Id            uuid.UUID           `json:"id"`
-	UpdatedAt     *time.Time          `json:"updatedAt,omitempty"`
+	CommitId      *string    `json:"commitId,omitempty"`
+	CommitMessage *string    `json:"commitMessage,omitempty"`
+	CommitterId   *uuid.UUID `json:"committerId,omitempty"`
+	CreatedAt     *time.Time `json:"createdAt,omitempty"`
+	DataVersion   *int       `json:"dataVersion,omitempty"`
+	Id            uuid.UUID  `json:"id"`
+	UpdatedAt     *time.Time `json:"updatedAt,omitempty"`
 }
 
 // ProblemConfigDetailList defines model for ProblemConfigDetailList.
@@ -120,18 +120,18 @@ type ProblemCreate struct {
 // ProblemDetail defines model for ProblemDetail.
 type ProblemDetail struct {
 	// Content content of the problem
-	Content   *string            `json:"content,omitempty"`
-	CreatedAt *time.Time         `json:"createdAt,omitempty"`
-	DomainId  openapi_types.UUID `json:"domainId"`
+	Content   *string    `json:"content,omitempty"`
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	DomainId  uuid.UUID  `json:"domainId"`
 
 	// Hidden is the problem hidden
-	Hidden         *bool               `json:"hidden,omitempty"`
-	Id             uuid.UUID           `json:"id"`
-	Languages      *[]string           `json:"languages,omitempty"`
-	NumAccept      *int                `json:"numAccept,omitempty"`
-	NumSubmit      *int                `json:"numSubmit,omitempty"`
-	OwnerId        *openapi_types.UUID `json:"ownerId,omitempty"`
-	ProblemGroupId *openapi_types.UUID `json:"problemGroupId,omitempty"`
+	Hidden         *bool      `json:"hidden,omitempty"`
+	Id             uuid.UUID  `json:"id"`
+	Languages      *[]string  `json:"languages,omitempty"`
+	NumAccept      *int       `json:"numAccept,omitempty"`
+	NumSubmit      *int       `json:"numSubmit,omitempty"`
+	OwnerId        *uuid.UUID `json:"ownerId,omitempty"`
+	ProblemGroupId *uuid.UUID `json:"problemGroupId,omitempty"`
 
 	// Title title of the problem
 	Title     string     `json:"title"`
@@ -144,19 +144,19 @@ type ProblemDetail struct {
 // ProblemDetailWithLatestRecord defines model for ProblemDetailWithLatestRecord.
 type ProblemDetailWithLatestRecord struct {
 	// Content content of the problem
-	Content   *string            `json:"content,omitempty"`
-	CreatedAt *time.Time         `json:"createdAt,omitempty"`
-	DomainId  openapi_types.UUID `json:"domainId"`
+	Content   *string    `json:"content,omitempty"`
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	DomainId  uuid.UUID  `json:"domainId"`
 
 	// Hidden is the problem hidden
-	Hidden         *bool               `json:"hidden,omitempty"`
-	Id             uuid.UUID           `json:"id"`
-	Languages      *[]string           `json:"languages,omitempty"`
-	LatestRecord   *RecordPreview      `json:"latestRecord,omitempty"`
-	NumAccept      *int                `json:"numAccept,omitempty"`
-	NumSubmit      *int                `json:"numSubmit,omitempty"`
-	OwnerId        *openapi_types.UUID `json:"ownerId,omitempty"`
-	ProblemGroupId *openapi_types.UUID `json:"problemGroupId,omitempty"`
+	Hidden         *bool          `json:"hidden,omitempty"`
+	Id             uuid.UUID      `json:"id"`
+	Languages      *[]string      `json:"languages,omitempty"`
+	LatestRecord   *RecordPreview `json:"latestRecord,omitempty"`
+	NumAccept      *int           `json:"numAccept,omitempty"`
+	NumSubmit      *int           `json:"numSubmit,omitempty"`
+	OwnerId        *uuid.UUID     `json:"ownerId,omitempty"`
+	ProblemGroupId *uuid.UUID     `json:"problemGroupId,omitempty"`
 
 	// Title title of the problem
 	Title     string     `json:"title"`
@@ -204,10 +204,10 @@ type ProblemPermission struct {
 // ProblemPreviewWithLatestRecord defines model for ProblemPreviewWithLatestRecord.
 type ProblemPreviewWithLatestRecord struct {
 	// Hidden is the problem hidden
-	Hidden       *bool               `json:"hidden,omitempty"`
-	Id           uuid.UUID           `json:"id"`
-	LatestRecord *RecordPreview      `json:"latestRecord,omitempty"`
-	OwnerId      *openapi_types.UUID `json:"ownerId,omitempty"`
+	Hidden       *bool          `json:"hidden,omitempty"`
+	Id           uuid.UUID      `json:"id"`
+	LatestRecord *RecordPreview `json:"latestRecord,omitempty"`
+	OwnerId      *uuid.UUID     `json:"ownerId,omitempty"`
 
 	// Title title of the problem
 	Title string `json:"title"`
@@ -219,8 +219,8 @@ type ProblemPreviewWithLatestRecord struct {
 // ProblemSet defines model for ProblemSet.
 type ProblemSet struct {
 	// Content content of the problem set
-	Content  *string            `json:"content,omitempty"`
-	DomainId openapi_types.UUID `json:"domainId"`
+	Content  *string   `json:"content,omitempty"`
+	DomainId uuid.UUID `json:"domainId"`
 
 	// DueAt the problem set is due at this date
 	DueAt *time.Time `json:"dueAt,omitempty"`
@@ -230,10 +230,10 @@ type ProblemSet struct {
 	Id     uuid.UUID `json:"id"`
 
 	// LockAt the problem set is locked after this date
-	LockAt    *time.Time          `json:"lockAt,omitempty"`
-	NumAccept *int                `json:"numAccept,omitempty"`
-	NumSubmit *int                `json:"numSubmit,omitempty"`
-	OwnerId   *openapi_types.UUID `json:"ownerId,omitempty"`
+	LockAt    *time.Time `json:"lockAt,omitempty"`
+	NumAccept *int       `json:"numAccept,omitempty"`
+	NumSubmit *int       `json:"numSubmit,omitempty"`
+	OwnerId   *uuid.UUID `json:"ownerId,omitempty"`
 
 	// ScoreboardHidden whether the scoreboard of the problem set is hidden
 	ScoreboardHidden *bool `json:"scoreboardHidden,omitempty"`
@@ -281,9 +281,9 @@ type ProblemSetCreate struct {
 // ProblemSetDetail defines model for ProblemSetDetail.
 type ProblemSetDetail struct {
 	// Content content of the problem set
-	Content   *string            `json:"content,omitempty"`
-	CreatedAt *time.Time         `json:"createdAt,omitempty"`
-	DomainId  openapi_types.UUID `json:"domainId"`
+	Content   *string    `json:"content,omitempty"`
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	DomainId  uuid.UUID  `json:"domainId"`
 
 	// DueAt the problem set is due at this date
 	DueAt *time.Time `json:"dueAt,omitempty"`
@@ -296,7 +296,7 @@ type ProblemSetDetail struct {
 	LockAt    *time.Time                        `json:"lockAt,omitempty"`
 	NumAccept *int                              `json:"numAccept,omitempty"`
 	NumSubmit *int                              `json:"numSubmit,omitempty"`
-	OwnerId   *openapi_types.UUID               `json:"ownerId,omitempty"`
+	OwnerId   *uuid.UUID                        `json:"ownerId,omitempty"`
 	Problems  *[]ProblemPreviewWithLatestRecord `json:"problems,omitempty"`
 
 	// ScoreboardHidden whether the scoreboard of the problem set is hidden
@@ -357,16 +357,16 @@ type ProblemSolutionSubmit struct {
 
 // ProblemWithLatestRecord defines model for ProblemWithLatestRecord.
 type ProblemWithLatestRecord struct {
-	DomainId openapi_types.UUID `json:"domainId"`
+	DomainId uuid.UUID `json:"domainId"`
 
 	// Hidden is the problem hidden
-	Hidden         *bool               `json:"hidden,omitempty"`
-	Id             uuid.UUID           `json:"id"`
-	LatestRecord   *RecordPreview      `json:"latestRecord,omitempty"`
-	NumAccept      *int                `json:"numAccept,omitempty"`
-	NumSubmit      *int                `json:"numSubmit,omitempty"`
-	OwnerId        *openapi_types.UUID `json:"ownerId,omitempty"`
-	ProblemGroupId *openapi_types.UUID `json:"problemGroupId,omitempty"`
+	Hidden         *bool          `json:"hidden,omitempty"`
+	Id             uuid.UUID      `json:"id"`
+	LatestRecord   *RecordPreview `json:"latestRecord,omitempty"`
+	NumAccept      *int           `json:"numAccept,omitempty"`
+	NumSubmit      *int           `json:"numSubmit,omitempty"`
+	OwnerId        *uuid.UUID     `json:"ownerId,omitempty"`
+	ProblemGroupId *uuid.UUID     `json:"problemGroupId,omitempty"`
 
 	// Title title of the problem
 	Title string `json:"title"`

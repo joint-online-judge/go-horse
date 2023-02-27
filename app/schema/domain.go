@@ -3,7 +3,6 @@ package schema
 import (
 	"time"
 
-	openapi_types "github.com/deepmap/oapi-codegen/pkg/types"
 	"github.com/google/uuid"
 )
 
@@ -35,8 +34,8 @@ type Domain struct {
 	Id     uuid.UUID `json:"id"`
 
 	// Name displayed name of the domain
-	Name    string              `json:"name"`
-	OwnerId *openapi_types.UUID `json:"ownerId,omitempty"`
+	Name    string     `json:"name"`
+	OwnerId *uuid.UUID `json:"ownerId,omitempty"`
 
 	// Url (unique) url of the domain
 	Url *string `json:"url,omitempty"`
@@ -88,10 +87,10 @@ type DomainDetail struct {
 	Id     uuid.UUID `json:"id"`
 
 	// Name displayed name of the domain
-	Name      string              `json:"name"`
-	OwnerId   *openapi_types.UUID `json:"ownerId,omitempty"`
-	Tag       *string             `json:"tag,omitempty"`
-	UpdatedAt *time.Time          `json:"updatedAt,omitempty"`
+	Name      string     `json:"name"`
+	OwnerId   *uuid.UUID `json:"ownerId,omitempty"`
+	Tag       *string    `json:"tag,omitempty"`
+	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
 
 	// Url (unique) url of the domain
 	Url *string `json:"url,omitempty"`
