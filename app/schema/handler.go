@@ -5068,7 +5068,7 @@ type StrictServerInterface interface {
 
 type StrictHandlerFunc func(ctx *fiber.Ctx, args any) (any, error)
 
-type StrictMiddlewareFunc func(f StrictHandlerFunc, operationID string) StrictHandlerFunc
+type StrictMiddlewareFunc func(f StrictHandlerFunc, operationId string) StrictHandlerFunc
 
 type StrictRespHandlerFunc func(ctx *fiber.Ctx, response any, err error) error
 

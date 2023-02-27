@@ -63,11 +63,11 @@ type conf struct {
 
 	// oauth config
 	OauthJaccount       bool   `env:"OAUTH_JACCOUNT"        envDefault:"False"`
-	OauthJaccountId     string `env:"OAUTH_JACCOUNT_ID"     envDefault:""`
+	OauthJaccountId     string `env:"OAUTH_JACCOUNT_Id"     envDefault:""`
 	OauthJaccountSecret string `env:"OAUTH_JACCOUNT_SECRET" envDefault:""`
 
 	OauthGithub       bool   `env:"OAUTH_GITHUB"        envDefault:"False"`
-	OauthGithubId     string `env:"OAUTH_GITHUB_ID"     envDefault:""`
+	OauthGithubId     string `env:"OAUTH_GITHUB_Id"     envDefault:""`
 	OauthGithubSecret string `env:"OAUTH_GITHUB_SECRET" envDefault:""`
 
 	// rollbar

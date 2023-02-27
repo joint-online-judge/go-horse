@@ -15,7 +15,7 @@ type DomainInvitation struct {
 
 	// ExpireAt expire time of invitation
 	ExpireAt *time.Time `json:"expireAt,omitempty"`
-	ID       uuid.UUID  `json:"id"`
+	Id       uuid.UUID  `json:"id"`
 
 	// Role domain role after invitation
 	Role *string `json:"role,omitempty"`

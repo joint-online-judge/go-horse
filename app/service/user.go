@@ -23,14 +23,14 @@ func User(c *fiber.Ctx) *userImpl {
 func (s *userImpl) GetUser(user string) (userModel model.User, err error) {
 	var userId uuid.UUID
 	if user == "me" {
-		userId = Auth(s.c).JWTUser().ID
+		userId = Auth(s.c).JWTUser().Id
 	} else {
 		userId, err = uuid.Parse(user)
 		if err != nil {
 			return
 		}
 	}
-	userModel = model.User{ID: userId}
+	userModel = model.User{Id: userId}
 	err = query.GetObj(&userModel)
 	return
 }

@@ -12,11 +12,11 @@ import (
 func ConnectMinio() {
 	conf := config.Conf
 	endpoint := fmt.Sprintf("%s:%d", conf.S3Host, conf.S3Port)
-	accessKeyID := conf.S3Username
+	accessKeyId := conf.S3Username
 	secretAccessKey := conf.S3Password
 	useSSL := false
 	minioClient, err := minio.New(endpoint, &minio.Options{
-		Creds:  credentials.NewStaticV4(accessKeyID, secretAccessKey, ""),
+		Creds:  credentials.NewStaticV4(accessKeyId, secretAccessKey, ""),
 		Secure: useSSL,
 	})
 	if err != nil {

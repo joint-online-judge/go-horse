@@ -12,7 +12,7 @@ import (
 type Record struct {
 	CreatedAt *time.Time         `json:"createdAt,omitempty"`
 	DomainId  openapi_types.UUID `json:"domainId"`
-	ID        uuid.UUID          `json:"id"`
+	Id        uuid.UUID          `json:"id"`
 	JudgedAt  *time.Time         `json:"judgedAt,omitempty"`
 	Language  string             `json:"language"`
 	MemoryKb  *int               `json:"memoryKb,omitempty"`
@@ -53,7 +53,7 @@ type RecordDetail struct {
 	CommitterId     *openapi_types.UUID `json:"committerId,omitempty"`
 	CreatedAt       *time.Time          `json:"createdAt,omitempty"`
 	DomainId        openapi_types.UUID  `json:"domainId"`
-	ID              uuid.UUID           `json:"id"`
+	Id              uuid.UUID           `json:"id"`
 	JudgedAt        *time.Time          `json:"judgedAt,omitempty"`
 	JudgerId        *openapi_types.UUID `json:"judgerId,omitempty"`
 	Language        string              `json:"language"`
@@ -74,7 +74,7 @@ type RecordListDetail struct {
 	CommitterUsername *string             `json:"committerUsername,omitempty"`
 	CreatedAt         *time.Time          `json:"createdAt,omitempty"`
 	DomainId          openapi_types.UUID  `json:"domainId"`
-	ID                uuid.UUID           `json:"id"`
+	Id                uuid.UUID           `json:"id"`
 	JudgedAt          *time.Time          `json:"judgedAt,omitempty"`
 	Language          string              `json:"language"`
 	MemoryKb          *int                `json:"memoryKb,omitempty"`
@@ -106,7 +106,7 @@ type RecordPermission struct {
 // RecordPreview defines model for RecordPreview.
 type RecordPreview struct {
 	CreatedAt time.Time `json:"createdAt"`
-	ID        uuid.UUID `json:"id"`
+	Id        uuid.UUID `json:"id"`
 
 	// State An enumeration.
 	State RecordState `json:"state"`

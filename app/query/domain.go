@@ -4,6 +4,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
@@ -12,10 +13,10 @@ func GetDomain(
 	domain string,
 ) (domainModel model.Domain, err error) {
 	var query model.Domain
-	if domainID, err := uuid.Parse(domain); err != nil {
-		query.URL = domain
+	if domainId, err := uuid.Parse(domain); err != nil {
+		query.Url = domain
 	} else {
-		query.ID = domainID
+		query.Id = domainId
 	}
 	domainModel, err = GetObjTo[model.Domain](&query)
 	if err != nil {
@@ -26,30 +27,26 @@ func GetDomain(
 
 func GetDomainId(domain string) (uuid.UUID, error) {
 	var query model.Domain
-	if domainID, err := uuid.Parse(domain); err != nil {
-		query.URL = domain
+	if domainId, err := uuid.Parse(domain); err != nil {
+		query.Url = domain
 	} else {
-		query.ID = domainID
+		query.Id = domainId
 	}
 	err := db.Select("id").First(&query).Error
-	return query.ID, err
+	return query.Id, err
 }
 
 func CreateDomain(
 	domainCreate schema.DomainCreate,
 	user *schema.User,
-) (model.Domain, error) {
-	owner := model.User{ID: user.ID}
-	domain := model.Domain{
-		Owner:    owner,
-		URL:      *domainCreate.Url,
-		Name:     domainCreate.Name,
-		Gravatar: *domainCreate.Gravatar,
-		Bulletin: *domainCreate.Bulletin,
-		Hidden:   *domainCreate.Hidden,
-		Group:    *domainCreate.Group,
+) (domain model.Domain, err error) {
+	owner := model.User{Id: user.Id}
+	err = convert.Update(&domain, domainCreate)
+	if err != nil {
+		return
 	}
-	err := db.Transaction(func(tx *gorm.DB) error {
+	domain.Owner = owner
+	err = db.Transaction(func(tx *gorm.DB) error {
 		if err := tx.Create(&domain).Error; err != nil {
 			return err
 		}
@@ -78,7 +75,7 @@ func ListDomainUsers(domain *model.Domain, pagination schema.Pagination) (
 			"domain_users.id, domain_users.role as domain_role, "+
 			"users.username, users.gravatar").
 		Joins("JOIN users ON domain_users.user_id = users.id").
-		Where("domain_users.domain_id = ?", domain.ID)
+		Where("domain_users.domain_id = ?", domain.Id)
 	return ListObjs[schema.UserWithDomainRole](statement, pagination)
 }
 
@@ -86,7 +83,7 @@ func AddDomainUser(domainId uuid.UUID, user model.User, role string) (
 	u schema.UserWithDomainRole, err error,
 ) {
 	model := model.DomainUser{
-		Domain: model.Domain{ID: domainId},
+		Domain: model.Domain{Id: domainId},
 		User:   user,
 		Role:   role,
 	}
@@ -96,7 +93,7 @@ func AddDomainUser(domainId uuid.UUID, user model.User, role string) (
 	}
 	u.DomainRole = &model.Role
 	u.Gravatar = &user.Gravatar
-	u.ID = user.ID
+	u.Id = user.Id
 	u.Username = user.Username
 	return
 }

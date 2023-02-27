@@ -32,7 +32,7 @@ type Domain struct {
 
 	// Hidden is the domain hidden
 	Hidden *bool     `json:"hidden,omitempty"`
-	ID     uuid.UUID `json:"id"`
+	Id     uuid.UUID `json:"id"`
 
 	// Name displayed name of the domain
 	Name    string              `json:"name"`
@@ -85,7 +85,7 @@ type DomainDetail struct {
 
 	// Hidden is the domain hidden
 	Hidden *bool     `json:"hidden,omitempty"`
-	ID     uuid.UUID `json:"id"`
+	Id     uuid.UUID `json:"id"`
 
 	// Name displayed name of the domain
 	Name      string              `json:"name"`

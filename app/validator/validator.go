@@ -40,7 +40,7 @@ func ValidateStruct(object any) (any, error) {
 
 func ValidateRequest(
 	f schema.StrictHandlerFunc,
-	operationID string,
+	operationId string,
 ) schema.StrictHandlerFunc {
 	return func(ctx *fiber.Ctx, request any) (any, error) {
 		if response, err := ValidateStruct(request); err != nil {

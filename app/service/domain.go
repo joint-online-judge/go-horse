@@ -77,7 +77,7 @@ func (s *domainImpl) SearchDomainCandidates(
 		Limit:    nil,
 	}
 	objs, count, err := query.SearchDomainCandidates(
-		domain.ID, searchQuery, pagination,
+		domain.Id, searchQuery, pagination,
 	)
 	return schema.NewListResp(count, objs), err
 }
@@ -107,5 +107,5 @@ func (s *domainImpl) AddDomainUser(
 	if role == nil {
 		role = schema.Pointer(string(schema.USER))
 	}
-	return query.AddDomainUser(domain.ID, userModel, *role)
+	return query.AddDomainUser(domain.Id, userModel, *role)
 }

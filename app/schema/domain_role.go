@@ -18,7 +18,7 @@ type DomainPermission struct {
 // DomainRole defines model for DomainRole.
 type DomainRole struct {
 	DomainId openapi_types.UUID `json:"domainId"`
-	ID       uuid.UUID          `json:"id"`
+	Id       uuid.UUID          `json:"id"`
 
 	// Permission All permissions in a domain
 	Permission DomainPermission `json:"permission"`
@@ -36,7 +36,7 @@ type DomainRoleCreate struct {
 type DomainRoleDetail struct {
 	CreatedAt *time.Time         `json:"createdAt,omitempty"`
 	DomainId  openapi_types.UUID `json:"domainId"`
-	ID        uuid.UUID          `json:"id"`
+	Id        uuid.UUID          `json:"id"`
 
 	// Permission All permissions in a domain
 	Permission DomainPermission `json:"permission"`

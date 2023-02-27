@@ -31,7 +31,7 @@ type JudgerCredentials struct {
 type JudgerDetail struct {
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	Gravatar  *string    `json:"gravatar,omitempty"`
-	ID        uuid.UUID  `json:"id"`
+	Id        uuid.UUID  `json:"id"`
 	IsActive  *bool      `json:"isActive,omitempty"`
 	IsAlive   bool       `json:"isAlive"`
 	Role      *string    `json:"role,omitempty"`

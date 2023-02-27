@@ -12,14 +12,14 @@ const TableNameUser = "users"
 
 // User mapped from table <users>
 type User struct {
-	ID             uuid.UUID `gorm:"column:id;primaryKey;type:uuid;default:uuid_generate_v4()"                         json:"id"`
+	Id             uuid.UUID `gorm:"column:id;primaryKey;type:uuid;default:uuid_generate_v4()"                         json:"id"`
 	CreatedAt      time.Time `gorm:"column:created_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"createdAt"`
 	UpdatedAt      time.Time `gorm:"column:updated_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP);index" json:"updatedAt"`
 	LoginAt        time.Time `gorm:"column:login_at;not null;default:timezone('utc'::text, CURRENT_TIMESTAMP)" json:"loginAt"`
 	Username       string    `gorm:"column:username;not null"                                                  json:"username"`
 	Email          string    `gorm:"column:email;not null"                                                     json:"email"`
 	Gravatar       string    `gorm:"column:gravatar;not null"                                                  json:"gravatar"`
-	StudentID      string    `gorm:"column:student_id;not null;index"                                          json:"studentId"`
+	StudentId      string    `gorm:"column:student_id;not null;index"                                          json:"studentId"`
 	RealName       string    `gorm:"column:real_name;not null;index"                                           json:"realName"`
 	Role           string    `gorm:"column:role;not null;index"                                                json:"role"`
 	IsActive       bool      `gorm:"column:is_active;not null"                                                 json:"isActive"`

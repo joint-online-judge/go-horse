@@ -14,10 +14,10 @@ func Domain(c *fiber.Ctx) error {
 		domain, err := query.GetDomain(domainUrl)
 		if err != nil {
 			return c.Status(fiber.StatusOK).
-				JSON(schema.NewEmptyResp(schema.DomainNotFoundError, "invalid domain ID or url"))
+				JSON(schema.NewEmptyResp(schema.DomainNotFoundError, "invalid domain Id or url"))
 		}
 		c.Locals("domain", &domain)
-		c.Locals("domainId", domain.ID.String())
+		c.Locals("domainId", domain.Id.String()) // for casbin only
 	}
 	return c.Next()
 }
