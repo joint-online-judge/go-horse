@@ -10,7 +10,7 @@ func RegisterJudge(
 	router fiber.Router,
 	wrapper schema.ServerInterfaceWrapper,
 ) {
-	record := router.Group("/domains/:domain/records/:record", middleware.Domain)
+	record := router.Group("/domains/:domain/records/:record", middleware.Domain, middleware.Record)
 	record.Put("/cases/:index/judge", wrapper.SubmitCaseByJudger)
 	record.Put("/judge", wrapper.SubmitRecordByJudger)
 	record.Post("/judge/claim", wrapper.ClaimRecordByJudger)

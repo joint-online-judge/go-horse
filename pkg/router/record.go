@@ -11,7 +11,7 @@ func RegisterRecord(
 	wrapper schema.ServerInterfaceWrapper,
 ) {
 	records := router.Group("/domains/:domain/records", middleware.Domain)
-	record := records.Group("/:record")
+	record := records.Group("/:record", middleware.Record)
 	records.Get("", wrapper.ListRecordsInDomain)
 	record.Get("", wrapper.GetRecord)
 }

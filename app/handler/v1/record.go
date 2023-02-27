@@ -3,6 +3,8 @@ package v1
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/app/service"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
 )
 
 // List Records In Domain
@@ -11,7 +13,7 @@ func (s *Api) ListRecordsInDomain(
 	c *fiber.Ctx,
 	request schema.ListRecordsInDomainRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	return service.Record(c).ListRecords(request.Params)
 }
 
 // Get Record
@@ -20,7 +22,11 @@ func (s *Api) GetRecord(
 	c *fiber.Ctx,
 	request schema.GetRecordRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	record, err := service.Record(c).GetCurrentRecord()
+	if err != nil {
+		return nil, err
+	}
+	return convert.To[schema.Record](record)
 }
 
 // Submit Case By Judger
