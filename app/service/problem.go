@@ -6,6 +6,7 @@ import (
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
 	"github.com/joint-online-judge/go-horse/pkg/convert"
+	"gorm.io/gorm"
 )
 
 type problemImpl struct {
@@ -46,7 +47,17 @@ func (s *problemImpl) CreateProblem(
 	}
 	problem.Domain = *domain
 	problem.Owner = owner
-	err = db.Save(&problem).Error
+	err = db.Transaction(func(tx *gorm.DB) error {
+		problemGroup := model.ProblemGroup{}
+		if err := tx.Create(&problemGroup).Error; err != nil {
+			return err
+		}
+		problem.ProblemGroupId = problemGroup.Id
+		if err := tx.Save(&problem).Error; err != nil {
+			return err
+		}
+		return nil
+	})
 	return
 }
 
