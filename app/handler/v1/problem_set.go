@@ -57,7 +57,11 @@ func (s *Api) UpdateProblemSet(
 	c *fiber.Ctx,
 	request schema.UpdateProblemSetRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	problemSet, err := service.ProblemSet(c).UpdateProblemSet(*request.Body)
+	if err != nil {
+		return nil, err
+	}
+	return convert.To[schema.ProblemSet](problemSet)
 }
 
 // List Problems In Problem Set

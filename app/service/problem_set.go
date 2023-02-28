@@ -88,3 +88,16 @@ func (s *problemSetImpl) ListProblemsInProblemSet() (
 	)
 	return schema.NewListResp(count, objs), err
 }
+
+func (s *problemSetImpl) UpdateProblemSet(
+	problemSetEdit schema.ProblemSetEdit,
+) (problemSet *model.ProblemSet, err error) {
+	if problemSet, err = s.GetCurrentProblemSet(); err != nil {
+		return
+	}
+	if err = convert.Update(problemSet, problemSetEdit); err != nil {
+		return
+	}
+	err = db.Save(problemSet).Error
+	return
+}
