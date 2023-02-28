@@ -95,3 +95,28 @@ func (s *problemImpl) GetCurrentProblem() (*model.Problem, error) {
 	}
 	return problem.(*model.Problem), nil
 }
+
+func (s *problemImpl) AddProblemInProblemSet(
+	problemSetAddProblem schema.ProblemSetAddProblem,
+) (problemSet *model.ProblemSet, err error) {
+	domain, err := Domain(s.c).GetCurrentDomain()
+	if err != nil {
+		return
+	}
+	problemSet, err = ProblemSet(s.c).GetCurrentProblemSet()
+	if err != nil {
+		return
+	}
+	// TODO: check hidden
+	problem, err := s.GetProblem(
+		domain, problemSet, problemSetAddProblem.Problem,
+	)
+	if err != nil {
+		return
+	}
+	err = db.Create(&model.ProblemProblemSetLink{
+		ProblemId: problem.Id, ProblemSetId: problemSet.Id,
+		Position: int32(*problemSetAddProblem.Position),
+	}).Error
+	return
+}

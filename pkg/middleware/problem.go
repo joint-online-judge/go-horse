@@ -20,6 +20,7 @@ func problemImpl(c *fiber.Ctx, checkProblemSet bool) error {
 		}
 		var problemSet *model.ProblemSet
 		if checkProblemSet {
+			// TODO: check hidden
 			problemSet, ok = c.Locals("problemSet").(*model.ProblemSet)
 			if !ok {
 				return c.Status(fiber.StatusOK).
@@ -27,6 +28,7 @@ func problemImpl(c *fiber.Ctx, checkProblemSet bool) error {
 						"invalid problemSet Id or url"))
 			}
 		}
+		// TODO: check hidden
 		problem, err := service.Problem(c).GetProblem(
 			domain, problemSet, problemUrl,
 		)

@@ -151,14 +151,14 @@ func (s *authImpl) CreateAuthTokens(
 }
 
 func (s *authImpl) RegisterNewUser(userCreate *schema.UserCreate) (
-	user schema.User, err error,
+	user model.User, err error,
 ) {
 	hashedPassword, err := schema.HashPassword(*userCreate.Password)
 	if err != nil {
 		return
 	}
 	ip := s.c.IP()
-	userModel := model.User{
+	user = model.User{
 		Username:       *userCreate.Username,
 		Email:          *userCreate.Email,
 		StudentId:      "",
@@ -168,11 +168,8 @@ func (s *authImpl) RegisterNewUser(userCreate *schema.UserCreate) (
 		RegisterIP:     ip,
 		LoginIP:        ip,
 	}
-	err = db.Create(&userModel).Error
-	if err != nil {
-		return
-	}
-	return convert.To[schema.User](userModel)
+	err = db.Create(&user).Error
+	return
 }
 
 func (s *authImpl) Login(loginForm *schema.OAuth2PasswordRequestForm) (

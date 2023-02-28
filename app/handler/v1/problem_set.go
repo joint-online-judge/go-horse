@@ -79,7 +79,11 @@ func (s *Api) AddProblemInProblemSet(
 	c *fiber.Ctx,
 	request schema.AddProblemInProblemSetRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	problemSet, err := service.Problem(c).AddProblemInProblemSet(*request.Body)
+	if err != nil {
+		return nil, err
+	}
+	return convert.To[schema.ProblemSet](problemSet)
 }
 
 // Delete Problem In Problem Set

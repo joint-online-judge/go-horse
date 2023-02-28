@@ -2,6 +2,7 @@ package v1
 
 import (
 	"github.com/joint-online-judge/go-horse/app/service"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schema"
@@ -78,7 +79,11 @@ func (s *Api) Register(
 			"email not provided",
 		)
 	}
-	user, err := service.Auth(c).RegisterNewUser(userCreate)
+	userModel, err := service.Auth(c).RegisterNewUser(userCreate)
+	if err != nil {
+		return nil, err
+	}
+	user, err := convert.To[schema.User](userModel)
 	if err != nil {
 		return nil, err
 	}
