@@ -13,6 +13,11 @@ import (
 
 var Minio *minio.Client
 
+const (
+	ProblemConfigBucketName = "joj2-problem-config"
+	SubmissionBucketName    = "joj2-submission"
+)
+
 func ConnectMinio() {
 	conf := config.Conf
 	endpoint := fmt.Sprintf("%s:%d", conf.S3Host, conf.S3Port)
@@ -26,16 +31,40 @@ func ConnectMinio() {
 		logrus.Fatal(err)
 	}
 	logrus.Debugf("minio client: %+v", Minio)
+	buckets, err := Minio.ListBuckets(context.Background())
+	if err != nil {
+		logrus.Fatal(err)
+	}
+	logrus.Debugf("minio buckets: %+v", buckets)
+	EnsureBucket(ProblemConfigBucketName)
+	EnsureBucket(SubmissionBucketName)
 }
 
-func MakeBucket(bucketName string) error {
-	return Minio.MakeBucket(
+func EnsureBucket(bucketName string) {
+	if found, err := Minio.BucketExists(
+		context.Background(), bucketName,
+	); err != nil {
+		logrus.Fatal(err)
+	} else if found {
+		return
+	}
+	if err := Minio.MakeBucket(
 		context.Background(), bucketName,
 		minio.MakeBucketOptions{Region: "us-east-1", ObjectLocking: true},
-	)
+	); err != nil {
+		logrus.Fatal(err)
+	}
 }
 
-func PutObjects(bucketName string, files []*multipart.FileHeader) error {
+func PutSubmission(prefix string, files []*multipart.FileHeader) error {
+	return putObjects(SubmissionBucketName, prefix, files)
+}
+
+func PutConfig(prefix string, files []*multipart.FileHeader) error {
+	return putObjects(ProblemConfigBucketName, prefix, files)
+}
+
+func putObjects(bucketName, prefix string, files []*multipart.FileHeader) error {
 	for _, file := range files {
 		reader, err := file.Open()
 		if err != nil {

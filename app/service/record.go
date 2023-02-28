@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"mime/multipart"
 
 	"github.com/gofiber/fiber/v2"
@@ -115,10 +114,13 @@ func (s *recordImpl) submitImpl(body *multipart.Reader, inProblemSet bool) (
 	if form, err = s.c.MultipartForm(); err != nil {
 		return
 	}
+	logrus.Debugf("form: %+v", form)
 	problemSet, problem, record, userLatestRecord, err := s.prepareSubmit(
 		body, form, inProblemSet,
 	)
-	logrus.Debugf("form: %+v", form)
+	if err != nil {
+		return
+	}
 	err = db.Transaction(func(tx *gorm.DB) error {
 		if err := db.Save(&record).Error; err != nil {
 			return err
@@ -143,15 +145,11 @@ func (s *recordImpl) submitImpl(body *multipart.Reader, inProblemSet bool) (
 				return err
 			}
 		}
-		bucketName := fmt.Sprintf("record-%s", record.Id.String())
-		if err = storage.MakeBucket(bucketName); err != nil {
-			return err
-		}
 		files, ok := form.File["files"]
 		if !ok || len(files) == 0 {
 			return fiber.ErrUnprocessableEntity
 		}
-		return storage.PutObjects(bucketName, files)
+		return storage.PutSubmission(record.Id.String(), files)
 	})
 	return
 }
