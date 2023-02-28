@@ -20,16 +20,25 @@ func Problem(c *fiber.Ctx) *problemImpl {
 	}
 }
 
-func (s *problemImpl) GetProblem(domain *model.Domain, problem string) (
-	problemModel model.Problem, err error,
-) {
+func (s *problemImpl) GetProblem(
+	domain *model.Domain, problemSet *model.ProblemSet,
+	problem string,
+) (problemModel model.Problem, err error) {
 	if problemId, err := uuid.Parse(problem); err != nil {
 		problemModel.Url = problem
 	} else {
 		problemModel.Id = problemId
 	}
 	problemModel.DomainId = domain.Id
-	err = db.First(&problemModel).Error
+	if problemSet == nil {
+		err = db.First(&problemModel).Error
+	} else {
+		err = db.First(&problemModel).
+			Joins("JOIN problem_problem_set_links AS links ON "+
+				"links.problem_id = problems.id").
+			Where("links.problem_set_id = ?", problemSet.Id).
+			Error
+	}
 	return
 }
 
@@ -42,7 +51,7 @@ func (s *problemImpl) ListProblems(
 	}
 	objs, count, err := ListObjs[schema.ProblemWithLatestRecord](
 		query.ListProblems(
-			db, domain, false,
+			db, domain, nil, false,
 		), params.Pagination,
 	)
 	return schema.NewListResp(count, objs), err

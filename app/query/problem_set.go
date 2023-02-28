@@ -15,14 +15,3 @@ func ListProblemSets(
 	}
 	return statement
 }
-
-func ListProblemsInProblemSet(
-	db *gorm.DB, problemSet *model.ProblemSet, problem *model.Problem,
-) *gorm.DB {
-	link := model.ProblemProblemSetLink{ProblemSetId: problemSet.Id}
-	statement := db.Model(model.Problem{}).Where(
-		"id in (?)", db.Model(&link).Select("problem_id").Where(&link),
-	)
-	// TODO: add latest record
-	return statement
-}

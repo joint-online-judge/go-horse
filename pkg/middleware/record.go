@@ -15,12 +15,14 @@ func Record(c *fiber.Ctx) error {
 		domain, ok := c.Locals("domain").(*model.Domain)
 		if !ok {
 			return c.Status(fiber.StatusOK).
-				JSON(schema.NewEmptyResp(schema.DomainNotFoundError, "invalid domain Id or url"))
+				JSON(schema.NewEmptyResp(schema.DomainNotFoundError,
+					"invalid domain Id or url"))
 		}
 		record, err := service.Record(c).GetRecord(domain, recordUrl)
 		if err != nil {
 			return c.Status(fiber.StatusOK).
-				JSON(schema.NewEmptyResp(schema.RecordNotFoundError, "invalid record Id or url"))
+				JSON(schema.NewEmptyResp(schema.RecordNotFoundError,
+					"invalid record Id or url"))
 		}
 		c.Locals("record", &record)
 	}

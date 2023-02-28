@@ -81,13 +81,9 @@ func (s *problemSetImpl) ListProblemsInProblemSet() (
 	if err != nil {
 		return
 	}
-	problem, err := Problem(s.c).GetCurrentProblem()
-	if err != nil {
-		return
-	}
 	objs, count, err := ListObjs[schema.ProblemSet](
-		query.ListProblemsInProblemSet(
-			db, problemSet, problem,
+		query.ListProblems(
+			db, nil, problemSet, false,
 		), schema.Pagination{},
 	)
 	return schema.NewListResp(count, objs), err
