@@ -46,13 +46,13 @@ func (s *problemImpl) CreateProblem(
 		return
 	}
 	problem.Domain = *domain
-	problem.Owner = owner
+	problem.Owner = &owner
 	err = db.Transaction(func(tx *gorm.DB) error {
 		problemGroup := model.ProblemGroup{}
 		if err := tx.Create(&problemGroup).Error; err != nil {
 			return err
 		}
-		problem.ProblemGroupId = problemGroup.Id
+		problem.ProblemGroupId = &problemGroup.Id
 		if err := tx.Save(&problem).Error; err != nil {
 			return err
 		}

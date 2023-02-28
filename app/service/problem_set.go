@@ -45,7 +45,7 @@ func (s *problemSetImpl) CreateProblemSet(
 		return
 	}
 	problemSet.Domain = *domain
-	problemSet.Owner = owner
+	problemSet.Owner = &owner
 	err = db.Save(&problemSet).Error
 	return
 }

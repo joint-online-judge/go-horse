@@ -17,8 +17,8 @@ type UserOauthAccount struct {
 	User         User      `gorm:"constraint:OnDelete:CASCADE,OnUpdate:NO ACTION"`
 	OauthName    string    `gorm:"column:oauth_name;not null"                     json:"oauthName"`
 	AccessToken  string    `gorm:"column:access_token;not null"                   json:"accessToken"`
-	RefreshToken string    `gorm:"column:refresh_token"                           json:"refreshToken"`
-	ExpiresAt    int32     `gorm:"column:expires_at"                              json:"expiresAt"`
+	RefreshToken *string   `gorm:"column:refresh_token"                           json:"refreshToken"`
+	ExpiresAt    *int32    `gorm:"column:expires_at"                              json:"expiresAt"`
 	AccountId    string    `gorm:"column:account_id;not null;index"               json:"accountId"`
 	AccountName  string    `gorm:"column:account_name;index"                      json:"accountName"`
 	AccountEmail string    `gorm:"column:account_email;not null;index"            json:"accountEmail"`

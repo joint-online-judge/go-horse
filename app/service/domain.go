@@ -52,7 +52,7 @@ func (s *domainImpl) CreateDomain(domainCreate schema.DomainCreate) (
 	if err != nil {
 		return
 	}
-	domain.Owner = owner
+	domain.Owner = &owner
 	err = db.Transaction(func(tx *gorm.DB) error {
 		if err := tx.Create(&domain).Error; err != nil {
 			return err
