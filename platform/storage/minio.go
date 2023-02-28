@@ -60,7 +60,9 @@ func PutConfig(prefix string, files []*multipart.FileHeader) error {
 	return putObjects(ProblemConfigBucketName, prefix, files)
 }
 
-func putObjects(bucketName, prefix string, files []*multipart.FileHeader) error {
+func putObjects(
+	bucketName, prefix string, files []*multipart.FileHeader,
+) error {
 	for _, file := range files {
 		reader, err := file.Open()
 		if err != nil {
