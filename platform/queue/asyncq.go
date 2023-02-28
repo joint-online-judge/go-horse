@@ -8,14 +8,20 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func ConnectAsyncq() {
+var Asynq *asynq.Client
+
+func ConnectAsynq() {
+	defer func() {
+		if err := recover(); err != nil {
+			logrus.Fatal(err)
+		}
+	}()
 	conf := config.Conf
 	config := asynq.RedisClientOpt{
 		Addr:     fmt.Sprintf("%s:%d", conf.RedisHost, conf.RedisPort),
 		Password: conf.RedisPassword,
 		DB:       conf.RedisDbIndex,
 	}
-	client := asynq.NewClient(config)
-	logrus.Debugf("asyncq client: %+v", client)
-	defer client.Close()
+	Asynq = asynq.NewClient(config)
+	logrus.Debugf("asynq client: %+v", Asynq)
 }

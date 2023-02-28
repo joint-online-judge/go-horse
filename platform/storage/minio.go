@@ -9,18 +9,19 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+var Minio *minio.Client
+
 func ConnectMinio() {
 	conf := config.Conf
 	endpoint := fmt.Sprintf("%s:%d", conf.S3Host, conf.S3Port)
 	accessKeyId := conf.S3Username
 	secretAccessKey := conf.S3Password
-	useSSL := false
-	minioClient, err := minio.New(endpoint, &minio.Options{
+	Minio, err := minio.New(endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(accessKeyId, secretAccessKey, ""),
-		Secure: useSSL,
+		Secure: false,
 	})
 	if err != nil {
 		logrus.Fatal(err)
 	}
-	logrus.Debugf("minioClient: %+v", minioClient)
+	logrus.Debugf("minio client: %+v", Minio)
 }
