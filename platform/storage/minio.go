@@ -23,32 +23,33 @@ func ConnectMinio() {
 	endpoint := fmt.Sprintf("%s:%d", conf.S3Host, conf.S3Port)
 	accessKeyId := conf.S3Username
 	secretAccessKey := conf.S3Password
-	Minio, err := minio.New(endpoint, &minio.Options{
+	minioClient, err := minio.New(endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(accessKeyId, secretAccessKey, ""),
 		Secure: false,
 	})
 	if err != nil {
 		logrus.Fatal(err)
 	}
-	logrus.Debugf("minio client: %+v", Minio)
-	buckets, err := Minio.ListBuckets(context.Background())
+	logrus.Debugf("minio client: %+v", minioClient)
+	buckets, err := minioClient.ListBuckets(context.Background())
 	if err != nil {
 		logrus.Fatal(err)
 	}
 	logrus.Debugf("minio buckets: %+v", buckets)
-	EnsureBucket(ProblemConfigBucketName)
-	EnsureBucket(SubmissionBucketName)
+	EnsureBucket(minioClient, ProblemConfigBucketName)
+	EnsureBucket(minioClient, SubmissionBucketName)
+	Minio = minioClient
 }
 
-func EnsureBucket(bucketName string) {
-	if found, err := Minio.BucketExists(
+func EnsureBucket(minioClient *minio.Client, bucketName string) {
+	if found, err := minioClient.BucketExists(
 		context.Background(), bucketName,
 	); err != nil {
 		logrus.Fatal(err)
 	} else if found {
 		return
 	}
-	if err := Minio.MakeBucket(
+	if err := minioClient.MakeBucket(
 		context.Background(), bucketName,
 		minio.MakeBucketOptions{Region: "us-east-1", ObjectLocking: true},
 	); err != nil {
