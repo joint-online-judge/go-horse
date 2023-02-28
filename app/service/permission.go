@@ -21,12 +21,19 @@ func Permission(c *fiber.Ctx) *permissionImpl {
 	}
 }
 
-func (s *permissionImpl) UpdateUserSiteRole(username string, role schema.DefaultRole) error {
+func (s *permissionImpl) UpdateUserSiteRole(
+	username string,
+	role schema.DefaultRole,
+) error {
 	//s.e.AddNamedGroupingPolicy("g2", username, role)
 	return nil
 }
 
-func (s *permissionImpl) CreateDomainRole(domain string, role string, permission schema.DomainPermission) error {
+func (s *permissionImpl) CreateDomainRole(
+	domain string,
+	role string,
+	permission schema.DomainPermission,
+) error {
 	//ok, _ := s.e.AddPoliciesEx()
 	return nil
 }

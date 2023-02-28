@@ -73,7 +73,10 @@ func (s *authImpl) NewAccessToken(
 	return token.SignedString([]byte(config.Conf.JwtSecret))
 }
 
-func (s *authImpl) NewRefreshToken(user schema.User, oauth_name string) (string, error) {
+func (s *authImpl) NewRefreshToken(
+	user schema.User,
+	oauth_name string,
+) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, schema.JWTCommon{
 		Type:      "refresh",
 		OauthName: oauth_name,
@@ -128,17 +131,19 @@ func (s *authImpl) CreateAuthTokens(
 	}
 	// Set cookie: access token
 	s.c.Cookie(&fiber.Cookie{
-		Name:     "access_token_cookie",
-		Value:    authTokens.AccessToken,
-		Expires:  time.Now().Add(time.Duration(config.Conf.JwtExpireSeconds) * time.Second),
+		Name:  "access_token_cookie",
+		Value: authTokens.AccessToken,
+		Expires: time.Now().
+			Add(time.Duration(config.Conf.JwtExpireSeconds) * time.Second),
 		HTTPOnly: true,
 		SameSite: "lax",
 	})
 	// Set cookie: refresh token
 	s.c.Cookie(&fiber.Cookie{
-		Name:     "refresh_token_cookie",
-		Value:    authTokens.RefreshToken,
-		Expires:  time.Now().Add(time.Duration(config.Conf.JwtRefreshExpireSeconds) * time.Second),
+		Name:  "refresh_token_cookie",
+		Value: authTokens.RefreshToken,
+		Expires: time.Now().
+			Add(time.Duration(config.Conf.JwtRefreshExpireSeconds) * time.Second),
 		HTTPOnly: true,
 		SameSite: "lax",
 	})

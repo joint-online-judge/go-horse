@@ -1,4 +1,4 @@
-.PHONY: all dev pre-dev clean pre-commit install-dev test build swag
+.PHONY: all dev pre-dev clean pre-commit install-dev test build swag fmt
 
 APP_NAME = go-horse
 BUILD_DIR = $(PWD)/build
@@ -51,3 +51,7 @@ build:
 
 swag:
 	swag init
+
+# run it manually as it is too time-consuming
+fmt:
+	golines -m 80 -w .

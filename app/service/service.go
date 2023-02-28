@@ -16,7 +16,10 @@ func NewDB(newDB *gorm.DB) {
 	db = newDB
 }
 
-func ListObjs[Schema any](statement *gorm.DB, pagination schema.Pagination) ([]Schema, int64, error) {
+func ListObjs[Schema any](
+	statement *gorm.DB,
+	pagination schema.Pagination,
+) ([]Schema, int64, error) {
 	var schema []Schema
 	var count int64
 	if err := statement.Count(&count).Error; err != nil {

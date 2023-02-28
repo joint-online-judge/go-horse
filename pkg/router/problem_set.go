@@ -10,7 +10,10 @@ func RegisterProblemSet(
 	router fiber.Router,
 	wrapper schema.ServerInterfaceWrapper,
 ) {
-	problem_sets := router.Group("/domains/:domain/problem_sets", middleware.Domain)
+	problem_sets := router.Group(
+		"/domains/:domain/problem_sets",
+		middleware.Domain,
+	)
 	problem_set := problem_sets.Group("/:problemSet", middleware.ProblemSet)
 	problems := problem_set.Group("/problems")
 	problem := problems.Group("/:problem", middleware.ProblemInProblemSet)

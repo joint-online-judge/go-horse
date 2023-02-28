@@ -68,7 +68,10 @@ func configDefault(config ...Config) (Config, error) {
 			cfg.PolicyAdapter = ConfigDefault.PolicyAdapter
 		}
 
-		enforcer, err := casbin.NewEnforcer(cfg.ModelFilePath, cfg.PolicyAdapter)
+		enforcer, err := casbin.NewEnforcer(
+			cfg.ModelFilePath,
+			cfg.PolicyAdapter,
+		)
 		if err != nil {
 			return cfg, err
 		}

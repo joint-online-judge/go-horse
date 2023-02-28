@@ -25,7 +25,10 @@ func New(config ...Config) *Middleware {
 
 // RequiresPermissions tries to find the current subject and determine if the
 // subject has the required permissions according to predefined Casbin policies.
-func (m *Middleware) RequiresPermissions(permissions []string, opts ...Option) fiber.Handler {
+func (m *Middleware) RequiresPermissions(
+	permissions []string,
+	opts ...Option,
+) fiber.Handler {
 	options := optionsDefault(opts...)
 
 	return func(c *fiber.Ctx) error {
@@ -40,7 +43,9 @@ func (m *Middleware) RequiresPermissions(permissions []string, opts ...Option) f
 
 		if options.ValidationRule == MatchAllRule {
 			for _, permission := range permissions {
-				vals := append([]string{sub}, options.PermissionParser(permission)...)
+				vals := append(
+					[]string{sub},
+					options.PermissionParser(permission)...)
 				if ok, err := m.config.Enforcer.Enforce(stringSliceToInterfaceSlice(vals)...); err != nil {
 					return c.SendStatus(fiber.StatusInternalServerError)
 				} else if !ok {
@@ -66,7 +71,10 @@ func (m *Middleware) RequiresPermissions(permissions []string, opts ...Option) f
 
 // RequiresDomainPermissions tries to find the current subject and domain, and determine if the
 // subject has the required permissions according to predefined Casbin policies in current domain.
-func (m *Middleware) RequiresDomainPermissions(permissions []string, opts ...Option) fiber.Handler {
+func (m *Middleware) RequiresDomainPermissions(
+	permissions []string,
+	opts ...Option,
+) fiber.Handler {
 	options := optionsDefault(opts...)
 
 	return func(c *fiber.Ctx) error {
@@ -86,7 +94,9 @@ func (m *Middleware) RequiresDomainPermissions(permissions []string, opts ...Opt
 
 		if options.ValidationRule == MatchAllRule {
 			for _, permission := range permissions {
-				vals := append([]string{sub, dom}, options.PermissionParser(permission)...)
+				vals := append(
+					[]string{sub, dom},
+					options.PermissionParser(permission)...)
 				if ok, err := m.config.Enforcer.Enforce(stringSliceToInterfaceSlice(vals)...); err != nil {
 					return c.SendStatus(fiber.StatusInternalServerError)
 				} else if !ok {
@@ -132,7 +142,10 @@ func (m *Middleware) RoutePermission() fiber.Handler {
 
 // RequiresRoles tries to find the current subject and determine if the
 // subject has the required roles according to predefined Casbin policies.
-func (m *Middleware) RequiresRoles(roles []string, opts ...Option) fiber.Handler {
+func (m *Middleware) RequiresRoles(
+	roles []string,
+	opts ...Option,
+) fiber.Handler {
 	options := optionsDefault(opts...)
 
 	return func(c *fiber.Ctx) error {
