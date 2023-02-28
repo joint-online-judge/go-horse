@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"mime/multipart"
 
 	"github.com/gofiber/fiber/v2"
@@ -8,6 +9,7 @@ import (
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/platform/storage"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
@@ -61,22 +63,18 @@ func (s *recordImpl) GetCurrentRecord() (*model.Record, error) {
 	return record.(*model.Record), nil
 }
 
-func (s *recordImpl) submitImpl(body *multipart.Reader, inProblemSet bool) (
-	record model.Record, err error,
+func (s *recordImpl) prepareSubmit(
+	body *multipart.Reader, form *multipart.Form, inProblemSet bool,
+) (
+	problemSet *model.ProblemSet, problem *model.Problem, record model.Record,
+	userLatestRecord model.UserLatestRecord, err error,
 ) {
-	var form *multipart.Form
-	if form, err = s.c.MultipartForm(); err != nil {
-		return
-	}
-	logrus.Debugf("form: %+v", form)
-	var problemSet *model.ProblemSet
-	userLatestRecord := model.UserLatestRecord{}
 	domain, err := Domain(s.c).GetCurrentDomain()
 	if err != nil {
 		return
 	}
 	record.DomainId = domain.Id
-	problem, err := Problem(s.c).GetCurrentProblem()
+	problem, err = Problem(s.c).GetCurrentProblem()
 	if err != nil {
 		return
 	}
@@ -105,13 +103,32 @@ func (s *recordImpl) submitImpl(body *multipart.Reader, inProblemSet bool) (
 		return
 	}
 	record.Language = languages[0]
-	// TODO: upload file
 	problemSet.NumSubmit += 1
+	problem.NumSubmit += 1
+	return
+}
+
+func (s *recordImpl) submitImpl(body *multipart.Reader, inProblemSet bool) (
+	record model.Record, err error,
+) {
+	var form *multipart.Form
+	if form, err = s.c.MultipartForm(); err != nil {
+		return
+	}
+	problemSet, problem, record, userLatestRecord, err := s.prepareSubmit(
+		body, form, inProblemSet,
+	)
+	logrus.Debugf("form: %+v", form)
 	err = db.Transaction(func(tx *gorm.DB) error {
 		if err := db.Save(&record).Error; err != nil {
 			return err
 		}
-		if err := db.Save(problemSet).Error; err != nil {
+		if inProblemSet {
+			if err := db.Save(problemSet).Error; err != nil {
+				return err
+			}
+		}
+		if err := db.Save(problem).Error; err != nil {
 			return err
 		}
 		// TODO: save latest record in cache
@@ -126,7 +143,15 @@ func (s *recordImpl) submitImpl(body *multipart.Reader, inProblemSet bool) (
 				return err
 			}
 		}
-		return nil
+		bucketName := fmt.Sprintf("record-%s", record.Id.String())
+		if err = storage.MakeBucket(bucketName); err != nil {
+			return err
+		}
+		files, ok := form.File["files"]
+		if !ok || len(files) == 0 {
+			return fiber.ErrUnprocessableEntity
+		}
+		return storage.PutObjects(bucketName, files)
 	})
 	return
 }

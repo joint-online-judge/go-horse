@@ -1,7 +1,9 @@
 package storage
 
 import (
+	"context"
 	"fmt"
+	"mime/multipart"
 
 	"github.com/joint-online-judge/go-horse/pkg/config"
 	"github.com/minio/minio-go/v7"
@@ -24,4 +26,33 @@ func ConnectMinio() {
 		logrus.Fatal(err)
 	}
 	logrus.Debugf("minio client: %+v", Minio)
+}
+
+func MakeBucket(bucketName string) error {
+	return Minio.MakeBucket(
+		context.Background(), bucketName,
+		minio.MakeBucketOptions{Region: "us-east-1", ObjectLocking: true},
+	)
+}
+
+func PutObjects(bucketName string, files []*multipart.FileHeader) error {
+	for _, file := range files {
+		reader, err := file.Open()
+		if err != nil {
+			return err
+		}
+		uploadInfo, err := Minio.PutObject(
+			context.Background(),
+			bucketName,
+			file.Filename,
+			reader,
+			file.Size,
+			minio.PutObjectOptions{ContentType: "application/octet-stream"},
+		)
+		if err != nil {
+			return err
+		}
+		logrus.Debugf("Successfully uploaded bytes: %+v", uploadInfo)
+	}
+	return nil
 }
