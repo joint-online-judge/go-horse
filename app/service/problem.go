@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
@@ -19,6 +20,19 @@ func Problem(c *fiber.Ctx) *problemImpl {
 	}
 }
 
+func (s *problemImpl) GetProblem(domain *model.Domain, problem string) (
+	problemModel model.Problem, err error,
+) {
+	if problemId, err := uuid.Parse(problem); err != nil {
+		problemModel.Url = problem
+	} else {
+		problemModel.Id = problemId
+	}
+	problemModel.DomainId = domain.Id
+	err = db.First(&problemModel).Error
+	return
+}
+
 func (s *problemImpl) ListProblems(
 	params schema.ListProblemsParams,
 ) (resp schema.ListResp[schema.ProblemWithLatestRecord], err error) {
@@ -26,8 +40,10 @@ func (s *problemImpl) ListProblems(
 	if err != nil {
 		return
 	}
-	objs, count, err := query.ListProblems(
-		db, domain, params.Pagination, false,
+	objs, count, err := ListObjs[schema.ProblemWithLatestRecord](
+		query.ListProblems(
+			db, domain, false,
+		), params.Pagination,
 	)
 	return schema.NewListResp(count, objs), err
 }

@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
@@ -20,6 +21,18 @@ func Domain(c *fiber.Ctx) *domainImpl {
 	}
 }
 
+func (s *domainImpl) GetDomain(domain string) (
+	domainModel model.Domain, err error,
+) {
+	if domainId, err := uuid.Parse(domain); err != nil {
+		domainModel.Url = domain
+	} else {
+		domainModel.Id = domainId
+	}
+	err = db.First(&domainModel).Error
+	return
+}
+
 // GetCurrentDomain Assume we require current domain to be non-null
 // when calling this method
 func (s *domainImpl) GetCurrentDomain() (*model.Domain, error) {
@@ -36,7 +49,7 @@ func (s *domainImpl) ListDomains(params schema.ListDomainsParams) (
 	schema.ListResp[schema.Domain], error,
 ) {
 	// TODO: filter by domain users
-	objs, count, err := query.ListObjs[schema.Domain](
+	objs, count, err := ListObjs[schema.Domain](
 		db.Model(model.Domain{}), params.Pagination,
 	)
 	return schema.NewListResp(count, objs), err
@@ -100,9 +113,10 @@ func (s *domainImpl) SearchDomainCandidates(
 		Offset:   nil,
 		Limit:    nil,
 	}
-	objs, count, err := query.SearchDomainCandidates(
-		db, domain.Id, searchQuery, pagination,
-	)
+	objs, count, err := ListObjs[schema.UserWithDomainRole](
+		query.SearchDomainCandidates(
+			db, domain.Id, searchQuery,
+		), pagination)
 	return schema.NewListResp(count, objs), err
 }
 
@@ -113,7 +127,9 @@ func (s *domainImpl) ListDomainUsers(
 	if err != nil {
 		return
 	}
-	objs, count, err := query.ListDomainUsers(db, domain, pagination)
+	objs, count, err := ListObjs[schema.UserWithDomainRole](
+		query.ListDomainUsers(db, domain), pagination,
+	)
 	return schema.NewListResp(count, objs), err
 }
 

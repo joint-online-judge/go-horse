@@ -3,9 +3,8 @@ package middleware
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/model"
-	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
-	"github.com/joint-online-judge/go-horse/platform/db"
+	"github.com/joint-online-judge/go-horse/app/service"
 	"github.com/sirupsen/logrus"
 )
 
@@ -18,7 +17,7 @@ func Record(c *fiber.Ctx) error {
 			return c.Status(fiber.StatusOK).
 				JSON(schema.NewEmptyResp(schema.DomainNotFoundError, "invalid domain Id or url"))
 		}
-		record, err := query.GetRecord(db.DB, domain, recordUrl)
+		record, err := service.Record(c).GetRecord(domain, recordUrl)
 		if err != nil {
 			return c.Status(fiber.StatusOK).
 				JSON(schema.NewEmptyResp(schema.RecordNotFoundError, "invalid record Id or url"))

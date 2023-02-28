@@ -26,6 +26,7 @@ require (
 	github.com/jinzhu/copier v0.3.5
 	github.com/matthewhartstonge/argon2 v0.3.2
 	github.com/minio/minio-go/v7 v7.0.49
+	github.com/pkg/errors v0.9.1
 	github.com/redis/go-redis/v9 v9.0.2
 	github.com/swaggo/swag v1.8.10
 )
@@ -102,7 +103,6 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.17 // indirect
 	github.com/mattn/go-runewidth v0.0.14 // indirect
-	github.com/pkg/errors v0.9.1
 	github.com/rivo/uniseg v0.4.3 // indirect
 	github.com/rollbar/rollbar-go v1.4.5
 	github.com/valyala/bytebufferpool v1.0.0 // indirect

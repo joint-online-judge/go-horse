@@ -5,6 +5,7 @@ import (
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/app/service"
 	"github.com/joint-online-judge/go-horse/platform/db"
 	"github.com/sirupsen/logrus"
 )
@@ -18,7 +19,9 @@ func ProblemSet(c *fiber.Ctx) error {
 			return c.Status(fiber.StatusOK).
 				JSON(schema.NewEmptyResp(schema.DomainNotFoundError, "invalid domain Id or url"))
 		}
-		problemSet, err := query.GetProblemSet(db.DB, domain, problemSetUrl)
+		problemSet, err := service.ProblemSet(c).GetProblemSet(
+			domain, problemSetUrl,
+		)
 		if err != nil {
 			return c.Status(fiber.StatusOK).
 				JSON(schema.NewEmptyResp(schema.ProblemSetNotFoundError, "invalid problemSet Id or url"))

@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 	"github.com/joint-online-judge/go-horse/app/model"
 	"github.com/joint-online-judge/go-horse/app/query"
 	"github.com/joint-online-judge/go-horse/app/schema"
@@ -18,6 +19,19 @@ func ProblemSet(c *fiber.Ctx) *problemSetImpl {
 	}
 }
 
+func (s *problemSetImpl) GetProblemSet(
+	domain *model.Domain, problemSet string,
+) (problemSetModel model.ProblemSet, err error) {
+	if problemSetId, err := uuid.Parse(problemSet); err != nil {
+		problemSetModel.Url = problemSet
+	} else {
+		problemSetModel.Id = problemSetId
+	}
+	problemSetModel.DomainId = domain.Id
+	err = db.First(&problemSetModel).Error
+	return
+}
+
 func (s *problemSetImpl) ListProblemSets(
 	params schema.ListProblemSetsParams,
 ) (resp schema.ListResp[schema.ProblemSet], err error) {
@@ -25,8 +39,8 @@ func (s *problemSetImpl) ListProblemSets(
 	if err != nil {
 		return
 	}
-	objs, count, err := query.ListProblemSets(
-		db, domain, params.Pagination, false,
+	objs, count, err := ListObjs[schema.ProblemSet](
+		query.ListProblemSets(db, domain, false), params.Pagination,
 	)
 	return schema.NewListResp(count, objs), err
 }
@@ -71,8 +85,10 @@ func (s *problemSetImpl) ListProblemsInProblemSet() (
 	if err != nil {
 		return
 	}
-	objs, count, err := query.ListProblemsInProblemSet(
-		db, problemSet, problem, schema.Pagination{},
+	objs, count, err := ListObjs[schema.ProblemSet](
+		query.ListProblemsInProblemSet(
+			db, problemSet, problem,
+		), schema.Pagination{},
 	)
 	return schema.NewListResp(count, objs), err
 }
