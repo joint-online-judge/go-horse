@@ -44,6 +44,7 @@ const (
 	UserNotJudgerError                 ErrorCode = "UserNotJudgerError"
 	UserRegisterError                  ErrorCode = "UserRegisterError"
 	UsernamePasswordError              ErrorCode = "UsernamePasswordError"
+	DbRecordNotFoundError              ErrorCode = "DbRecordNotFoundError"
 )
 
 type BizError struct {

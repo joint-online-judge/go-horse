@@ -75,5 +75,9 @@ func (s *Api) SubmitSolutionToProblem(
 	c *fiber.Ctx,
 	request schema.SubmitSolutionToProblemRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	record, err := service.Record(c).Submit(request.Body)
+	if err != nil {
+		return nil, err
+	}
+	return convert.To[schema.Record](record)
 }

@@ -2597,7 +2597,7 @@
         "tags": [
           "problem set"
         ],
-        "summary": "Submit Solution To Problem Set",
+        "summary": "Submit Solution To Problem In Problem Set",
         "operationId": "v1_submit_solution_to_problem_set",
         "parameters": [
           {

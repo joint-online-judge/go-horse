@@ -165,9 +165,9 @@ type ServerInterface interface {
 		problemSet string,
 		problem string,
 	) error
-	// Submit Solution To Problem Set
+	// Submit Solution To Problem In Problem Set
 	// (POST /domains/{domain}/problem_sets/{problemSet}/problems/{problem}/submit)
-	SubmitSolutionToProblemSet(
+	SubmitSolutionToProblemInProblemSet(
 		c *fiber.Ctx,
 		domain string,
 		problemSet string,
@@ -2345,8 +2345,8 @@ func (siw *ServerInterfaceWrapper) UpdateProblemInProblemSet(
 	return siw.Handler.UpdateProblemInProblemSet(c, domain, problemSet, problem)
 }
 
-// SubmitSolutionToProblemSet operation middleware
-func (siw *ServerInterfaceWrapper) SubmitSolutionToProblemSet(
+// SubmitSolutionToProblemInProblemSet operation middleware
+func (siw *ServerInterfaceWrapper) SubmitSolutionToProblemInProblemSet(
 	c *fiber.Ctx,
 ) error {
 	var err error
@@ -2403,7 +2403,7 @@ func (siw *ServerInterfaceWrapper) SubmitSolutionToProblemSet(
 		)
 	}
 
-	return siw.Handler.SubmitSolutionToProblemSet(
+	return siw.Handler.SubmitSolutionToProblemInProblemSet(
 		c,
 		domain,
 		problemSet,
@@ -4460,7 +4460,7 @@ type UpdateProblemInProblemSetRequestObject struct {
 	Body       *UpdateProblemInProblemSetJSONRequestBody
 }
 
-type SubmitSolutionToProblemSetRequestObject struct {
+type SubmitSolutionToProblemInProblemSetRequestObject struct {
 	Domain     string `json:"domain"`
 	ProblemSet string `json:"problemSet"`
 	Problem    string `json:"problem"`
@@ -4845,11 +4845,11 @@ type StrictServerInterface interface {
 		ctx *fiber.Ctx,
 		request UpdateProblemInProblemSetRequestObject,
 	) (any, error)
-	// Submit Solution To Problem Set
+	// Submit Solution To Problem In Problem Set
 	// (POST /domains/{domain}/problem_sets/{problemSet}/problems/{problem}/submit)
-	SubmitSolutionToProblemSet(
+	SubmitSolutionToProblemInProblemSet(
 		ctx *fiber.Ctx,
-		request SubmitSolutionToProblemSetRequestObject,
+		request SubmitSolutionToProblemInProblemSetRequestObject,
 	) (any, error)
 	// List Problems
 	// (GET /domains/{domain}/problems)
@@ -5935,14 +5935,14 @@ func (sh *strictHandler) UpdateProblemInProblemSet(
 	return sh.responseHandler(ctx, response, err)
 }
 
-// SubmitSolutionToProblemSet operation middleware
-func (sh *strictHandler) SubmitSolutionToProblemSet(
+// SubmitSolutionToProblemInProblemSet operation middleware
+func (sh *strictHandler) SubmitSolutionToProblemInProblemSet(
 	ctx *fiber.Ctx,
 	domain string,
 	problemSet string,
 	problem string,
 ) error {
-	var request SubmitSolutionToProblemSetRequestObject
+	var request SubmitSolutionToProblemInProblemSetRequestObject
 
 	request.Domain = domain
 	request.ProblemSet = problemSet
@@ -5954,13 +5954,13 @@ func (sh *strictHandler) SubmitSolutionToProblemSet(
 	)
 
 	handler := func(ctx *fiber.Ctx, request any) (any, error) {
-		return sh.ssi.SubmitSolutionToProblemSet(
+		return sh.ssi.SubmitSolutionToProblemInProblemSet(
 			ctx,
-			request.(SubmitSolutionToProblemSetRequestObject),
+			request.(SubmitSolutionToProblemInProblemSetRequestObject),
 		)
 	}
 	for _, middleware := range sh.middlewares {
-		handler = middleware(handler, "SubmitSolutionToProblemSet")
+		handler = middleware(handler, "SubmitSolutionToProblemInProblemSet")
 	}
 
 	response, err := handler(ctx, request)

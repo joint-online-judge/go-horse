@@ -27,5 +27,5 @@ func RegisterProblemSet(
 	problem.Get("", wrapper.GetProblemInProblemSet)
 	problem.Delete("", wrapper.DeleteProblemInProblemSet)
 	problem.Patch("", wrapper.UpdateProblemInProblemSet)
-	problem.Post("/submit", wrapper.SubmitSolutionToProblemSet)
+	problem.Post("/submit", wrapper.SubmitSolutionToProblemInProblemSet)
 }

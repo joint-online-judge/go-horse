@@ -6,6 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schema"
 	"github.com/joint-online-judge/go-horse/app/validator"
+	"gorm.io/gorm"
 )
 
 func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
@@ -46,6 +47,10 @@ func ResponseHandler(ctx *fiber.Ctx, response any, err error) error {
 		msg := response.(error).Error()
 		return ctx.Status(code).
 			JSON(schema.NewEmptyResp(schema.InternalServerError, msg))
+	} else if errors.Is(err, gorm.ErrRecordNotFound) {
+		return ctx.Status(code).JSON(schema.NewBizError(
+			schema.DbRecordNotFoundError, err.Error(),
+		))
 	}
 	return err
 }

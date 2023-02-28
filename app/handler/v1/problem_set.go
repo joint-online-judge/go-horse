@@ -117,11 +117,15 @@ func (s *Api) UpdateProblemInProblemSet(
 	return nil, schema.NewBizError(schema.APINotImplementedError)
 }
 
-// Submit Solution To Problem Set
+// Submit Solution To Problem In Problem Set
 // (POST /domains/{domain}/problem_sets/{problemSet}/problems/{problem}/submit)
-func (s *Api) SubmitSolutionToProblemSet(
+func (s *Api) SubmitSolutionToProblemInProblemSet(
 	c *fiber.Ctx,
-	request schema.SubmitSolutionToProblemSetRequestObject,
+	request schema.SubmitSolutionToProblemInProblemSetRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	record, err := service.Record(c).SubmitInProblemSet(request.Body)
+	if err != nil {
+		return nil, err
+	}
+	return convert.To[schema.Record](record)
 }

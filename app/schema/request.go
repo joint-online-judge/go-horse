@@ -34,8 +34,8 @@ type AddProblemInProblemSetJSONRequestBody = ProblemSetAddProblem
 // UpdateProblemInProblemSetJSONRequestBody defines body for UpdateProblemInProblemSet for application/json ContentType.
 type UpdateProblemInProblemSetJSONRequestBody = ProblemSetUpdateProblem
 
-// SubmitSolutionToProblemSetMultipartRequestBody defines body for SubmitSolutionToProblemSet for multipart/form-data ContentType.
-type SubmitSolutionToProblemSetMultipartRequestBody = ProblemSolutionSubmit
+// SubmitSolutionToProblemInProblemSetMultipartRequestBody defines body for SubmitSolutionToProblemInProblemSet for multipart/form-data ContentType.
+type SubmitSolutionToProblemInProblemSetMultipartRequestBody = ProblemSolutionSubmit
 
 // CreateProblemJSONRequestBody defines body for CreateProblem for application/json ContentType.
 type CreateProblemJSONRequestBody = ProblemCreate
