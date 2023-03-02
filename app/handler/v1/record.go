@@ -22,11 +22,9 @@ func (s *Api) GetRecord(
 	c *fiber.Ctx,
 	request schema.GetRecordRequestObject,
 ) (any, error) {
-	record, err := service.Record(c).GetCurrentRecord()
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.Record](record)
+	return convert.WithErr[schema.Record](
+		service.Record(c).GetCurrentRecord(),
+	)
 }
 
 // Submit Case By Judger

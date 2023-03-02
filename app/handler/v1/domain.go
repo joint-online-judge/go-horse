@@ -22,11 +22,9 @@ func (s *Api) CreateDomain(
 	c *fiber.Ctx,
 	request schema.CreateDomainRequestObject,
 ) (any, error) {
-	domain, err := service.Domain(c).CreateDomain(*request.Body)
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.Domain](domain)
+	return convert.WithErr[schema.Domain](
+		service.Domain(c).CreateDomain(*request.Body),
+	)
 }
 
 // Get Domain
@@ -35,11 +33,9 @@ func (s *Api) GetDomain(
 	c *fiber.Ctx,
 	request schema.GetDomainRequestObject,
 ) (any, error) {
-	domain, err := service.Domain(c).GetCurrentDomain()
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.Domain](domain)
+	return convert.WithErr[schema.Domain](
+		service.Domain(c).GetCurrentDomain(),
+	)
 }
 
 // Search Domain Groups
@@ -66,11 +62,9 @@ func (s *Api) UpdateDomain(
 	c *fiber.Ctx,
 	request schema.UpdateDomainRequestObject,
 ) (any, error) {
-	domain, err := service.Domain(c).UpdateDomain(*request.Body)
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.Domain](domain)
+	return convert.WithErr[schema.Domain](
+		service.Domain(c).UpdateDomain(*request.Body),
+	)
 }
 
 // Search Domain Candidates

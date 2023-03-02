@@ -8,6 +8,15 @@ func To[DstType any, SrcType any](src SrcType) (dst DstType, err error) {
 	return
 }
 
+func WithErr[DstType any, SrcType any](src SrcType, e error) (dst DstType, err error) {
+	if e != nil {
+		err = e
+	} else {
+		err = copier.Copy(&dst, &src)
+	}
+	return
+}
+
 func Update[Model any, Schema any](model *Model, schema Schema) error {
 	return copier.Copy(model, schema)
 }

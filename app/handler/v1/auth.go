@@ -79,11 +79,9 @@ func (s *Api) Register(
 			"email not provided",
 		)
 	}
-	userModel, err := service.Auth(c).RegisterNewUser(userCreate)
-	if err != nil {
-		return nil, err
-	}
-	user, err := convert.To[schema.User](userModel)
+	user, err := convert.WithErr[schema.User](
+		service.Auth(c).RegisterNewUser(userCreate),
+	)
 	if err != nil {
 		return nil, err
 	}

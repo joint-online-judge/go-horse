@@ -13,11 +13,9 @@ func (s *Api) GetCurrentUser(
 	c *fiber.Ctx,
 	request schema.GetCurrentUserRequestObject,
 ) (any, error) {
-	userModel, err := service.User(c).GetCurrentUser()
-	if err != nil {
-		return nil, schema.NewBizError(schema.UserNotFoundError)
-	}
-	return convert.To[schema.UserDetail](userModel)
+	return convert.WithErr[schema.UserDetail](
+		service.User(c).GetCurrentUser(),
+	)
 }
 
 // Update Current User
@@ -26,11 +24,9 @@ func (s *Api) UpdateCurrentUser(
 	c *fiber.Ctx,
 	request schema.UpdateCurrentUserRequestObject,
 ) (any, error) {
-	user, err := service.User(c).UpdateCurrentUser(*request.Body)
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.UserDetail](user)
+	return convert.WithErr[schema.UserDetail](
+		service.User(c).UpdateCurrentUser(*request.Body),
+	)
 }
 
 // Change Password
@@ -39,11 +35,9 @@ func (s *Api) ChangePassword(
 	c *fiber.Ctx,
 	request schema.ChangePasswordRequestObject,
 ) (any, error) {
-	user, err := service.User(c).ChangePassword(*request.Body)
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.UserDetail](user)
+	return convert.WithErr[schema.UserDetail](
+		service.User(c).ChangePassword(*request.Body),
+	)
 }
 
 // Get User
@@ -52,9 +46,7 @@ func (s *Api) GetUser(
 	c *fiber.Ctx,
 	request schema.GetUserRequestObject,
 ) (any, error) {
-	userModel, err := service.User(c).GetUser(request.Uid)
-	if err != nil {
-		return nil, schema.NewBizError(schema.UserNotFoundError)
-	}
-	return convert.To[schema.UserPreview](userModel)
+	return convert.WithErr[schema.UserPreview](
+		service.User(c).GetUser(request.Uid),
+	)
 }

@@ -22,11 +22,9 @@ func (s *Api) CreateProblemSet(
 	c *fiber.Ctx,
 	request schema.CreateProblemSetRequestObject,
 ) (any, error) {
-	problemSet, err := service.ProblemSet(c).CreateProblemSet(*request.Body)
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.ProblemSet](problemSet)
+	return convert.WithErr[schema.ProblemSet](
+		service.ProblemSet(c).CreateProblemSet(*request.Body),
+	)
 }
 
 // Delete Problem Set
@@ -44,11 +42,9 @@ func (s *Api) GetProblemSet(
 	c *fiber.Ctx,
 	request schema.GetProblemSetRequestObject,
 ) (any, error) {
-	problemSet, err := service.ProblemSet(c).GetCurrentProblemSet()
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.ProblemSet](problemSet)
+	return convert.WithErr[schema.ProblemSet](
+		service.ProblemSet(c).GetCurrentProblemSet(),
+	)
 }
 
 // Update Problem Set
@@ -57,11 +53,9 @@ func (s *Api) UpdateProblemSet(
 	c *fiber.Ctx,
 	request schema.UpdateProblemSetRequestObject,
 ) (any, error) {
-	problemSet, err := service.ProblemSet(c).UpdateProblemSet(*request.Body)
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.ProblemSet](problemSet)
+	return convert.WithErr[schema.ProblemSet](
+		service.ProblemSet(c).UpdateProblemSet(*request.Body),
+	)
 }
 
 // List Problems In Problem Set
@@ -79,11 +73,9 @@ func (s *Api) AddProblemInProblemSet(
 	c *fiber.Ctx,
 	request schema.AddProblemInProblemSetRequestObject,
 ) (any, error) {
-	problemSet, err := service.Problem(c).AddProblemInProblemSet(*request.Body)
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.ProblemSet](problemSet)
+	return convert.WithErr[schema.ProblemSet](
+		service.Problem(c).AddProblemInProblemSet(*request.Body),
+	)
 }
 
 // Delete Problem In Problem Set
@@ -101,11 +93,9 @@ func (s *Api) GetProblemInProblemSet(
 	c *fiber.Ctx,
 	request schema.GetProblemInProblemSetRequestObject,
 ) (any, error) {
-	problem, err := service.Problem(c).GetCurrentProblem()
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.Problem](problem)
+	return convert.WithErr[schema.Problem](
+		service.Problem(c).GetCurrentProblem(),
+	)
 }
 
 // Update Problem In Problem Set
@@ -123,9 +113,7 @@ func (s *Api) SubmitSolutionToProblemInProblemSet(
 	c *fiber.Ctx,
 	request schema.SubmitSolutionToProblemInProblemSetRequestObject,
 ) (any, error) {
-	record, err := service.Record(c).SubmitInProblemSet(request.Body)
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.Record](record)
+	return convert.WithErr[schema.Record](
+		service.Record(c).SubmitInProblemSet(request.Body),
+	)
 }

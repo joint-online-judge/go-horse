@@ -22,11 +22,9 @@ func (s *Api) CreateProblem(
 	c *fiber.Ctx,
 	request schema.CreateProblemRequestObject,
 ) (any, error) {
-	problem, err := service.Problem(c).CreateProblem(*request.Body)
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.Problem](problem)
+	return convert.WithErr[schema.Problem](
+		service.Problem(c).CreateProblem(*request.Body),
+	)
 }
 
 // Clone Problem
@@ -53,11 +51,9 @@ func (s *Api) GetProblem(
 	c *fiber.Ctx,
 	request schema.GetProblemRequestObject,
 ) (any, error) {
-	problem, err := service.Problem(c).GetCurrentProblem()
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.Problem](problem)
+	return convert.WithErr[schema.Problem](
+		service.Problem(c).GetCurrentProblem(),
+	)
 }
 
 // Update Problem
@@ -75,9 +71,7 @@ func (s *Api) SubmitSolutionToProblem(
 	c *fiber.Ctx,
 	request schema.SubmitSolutionToProblemRequestObject,
 ) (any, error) {
-	record, err := service.Record(c).Submit(request.Body)
-	if err != nil {
-		return nil, err
-	}
-	return convert.To[schema.Record](record)
+	return convert.WithErr[schema.Record](
+		service.Record(c).Submit(request.Body),
+	)
 }
