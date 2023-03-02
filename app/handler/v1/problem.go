@@ -72,6 +72,6 @@ func (s *Api) SubmitSolutionToProblem(
 	request schema.SubmitSolutionToProblemRequestObject,
 ) (any, error) {
 	return convert.WithErr[schema.Record](
-		service.Record(c).Submit(request.Body),
+		service.Record(c).Submit(),
 	)
 }

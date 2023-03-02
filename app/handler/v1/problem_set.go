@@ -114,6 +114,6 @@ func (s *Api) SubmitSolutionToProblemInProblemSet(
 	request schema.SubmitSolutionToProblemInProblemSetRequestObject,
 ) (any, error) {
 	return convert.WithErr[schema.Record](
-		service.Record(c).SubmitInProblemSet(request.Body),
+		service.Record(c).SubmitInProblemSet(),
 	)
 }

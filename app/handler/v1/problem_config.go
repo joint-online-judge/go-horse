@@ -3,6 +3,8 @@ package v1
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/joint-online-judge/go-horse/app/schema"
+	"github.com/joint-online-judge/go-horse/app/service"
+	"github.com/joint-online-judge/go-horse/pkg/convert"
 )
 
 // List Problem Config Commits
@@ -20,7 +22,9 @@ func (s *Api) UpdateProblemConfigByArchive(
 	c *fiber.Ctx,
 	request schema.UpdateProblemConfigByArchiveRequestObject,
 ) (any, error) {
-	return nil, schema.NewBizError(schema.APINotImplementedError)
+	return convert.WithErr[schema.ProblemConfigDetail](
+		service.ProblemConfig(c).UpdateProblemConfigByArchive(),
+	)
 }
 
 // Update Problem Config Json

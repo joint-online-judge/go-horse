@@ -62,9 +62,7 @@ func (s *recordImpl) GetCurrentRecord() (*model.Record, error) {
 	return record.(*model.Record), nil
 }
 
-func (s *recordImpl) prepareSubmit(
-	body *multipart.Reader, form *multipart.Form, inProblemSet bool,
-) (
+func (s *recordImpl) prepareSubmit(form *multipart.Form, inProblemSet bool) (
 	problemSet *model.ProblemSet, problem *model.Problem, record model.Record,
 	userLatestRecord model.UserLatestRecord, err error,
 ) {
@@ -107,7 +105,7 @@ func (s *recordImpl) prepareSubmit(
 	return
 }
 
-func (s *recordImpl) submitImpl(body *multipart.Reader, inProblemSet bool) (
+func (s *recordImpl) submitImpl(inProblemSet bool) (
 	record model.Record, err error,
 ) {
 	var form *multipart.Form
@@ -116,32 +114,32 @@ func (s *recordImpl) submitImpl(body *multipart.Reader, inProblemSet bool) (
 	}
 	logrus.Debugf("form: %+v", form)
 	problemSet, problem, record, userLatestRecord, err := s.prepareSubmit(
-		body, form, inProblemSet,
+		form, inProblemSet,
 	)
 	if err != nil {
 		return
 	}
 	err = db.Transaction(func(tx *gorm.DB) error {
-		if err := db.Save(&record).Error; err != nil {
+		if err := tx.Save(&record).Error; err != nil {
 			return err
 		}
 		if inProblemSet {
-			if err := db.Save(problemSet).Error; err != nil {
+			if err := tx.Save(problemSet).Error; err != nil {
 				return err
 			}
 		}
-		if err := db.Save(problem).Error; err != nil {
+		if err := tx.Save(problem).Error; err != nil {
 			return err
 		}
 		// TODO: save latest record in cache
-		result := db.Limit(1).Find(&userLatestRecord)
+		result := tx.Limit(1).Find(&userLatestRecord)
 		if result.RowsAffected == 1 {
 			if err := result.Update("record_id", record.Id).Error; err != nil {
 				return err
 			}
 		} else {
 			userLatestRecord.RecordId = record.Id
-			if err := db.Save(&userLatestRecord).Error; err != nil {
+			if err := tx.Save(&userLatestRecord).Error; err != nil {
 				return err
 			}
 		}
@@ -154,12 +152,10 @@ func (s *recordImpl) submitImpl(body *multipart.Reader, inProblemSet bool) (
 	return
 }
 
-func (s *recordImpl) SubmitInProblemSet(
-	body *multipart.Reader,
-) (model.Record, error) {
-	return s.submitImpl(body, true)
+func (s *recordImpl) SubmitInProblemSet() (model.Record, error) {
+	return s.submitImpl(true)
 }
 
-func (s *recordImpl) Submit(body *multipart.Reader) (model.Record, error) {
-	return s.submitImpl(body, false)
+func (s *recordImpl) Submit() (model.Record, error) {
+	return s.submitImpl(false)
 }
