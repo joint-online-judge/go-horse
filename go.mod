@@ -17,7 +17,7 @@ require (
 	github.com/bytedance/sonic v1.8.3
 	github.com/caarlos0/env/v7 v7.0.0
 	github.com/casbin/casbin/v2 v2.65.2
-	github.com/casbin/gorm-adapter/v3 v3.14.0
+	github.com/casbin/gorm-adapter/v3 v3.15.0
 	github.com/gofiber/jwt/v3 v3.3.6
 	github.com/gofiber/redirect/v2 v2.1.31
 	github.com/gofiber/swagger v0.1.9
