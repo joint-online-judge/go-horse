@@ -14,7 +14,7 @@ require (
 
 require (
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
-	github.com/bytedance/sonic v1.8.4
+	github.com/bytedance/sonic v1.8.6
 	github.com/caarlos0/env/v7 v7.1.0
 	github.com/casbin/casbin/v2 v2.65.2
 	github.com/casbin/gorm-adapter/v3 v3.15.0
