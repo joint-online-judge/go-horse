@@ -25,7 +25,7 @@ require (
 	github.com/hibiken/asynq v0.24.0
 	github.com/jinzhu/copier v0.3.5
 	github.com/matthewhartstonge/argon2 v0.3.2
-	github.com/minio/minio-go/v7 v7.0.49
+	github.com/minio/minio-go/v7 v7.0.50
 	github.com/pkg/errors v0.9.1
 	github.com/redis/go-redis/v9 v9.0.2
 	github.com/swaggo/swag v1.8.10
@@ -53,7 +53,7 @@ require (
 	github.com/golang/protobuf v1.5.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
-	github.com/klauspost/cpuid/v2 v2.2.3 // indirect
+	github.com/klauspost/cpuid/v2 v2.2.4 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/microsoft/go-mssqldb v0.17.0 // indirect
 	github.com/minio/md5-simd v1.1.2 // indirect
@@ -98,7 +98,7 @@ require (
 	github.com/jackc/pgx/v5 v5.3.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	github.com/klauspost/compress v1.15.15 // indirect
+	github.com/klauspost/compress v1.16.0 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.17 // indirect
