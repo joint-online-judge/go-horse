@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/deepmap/oapi-codegen v1.12.4
 	github.com/go-playground/validator/v10 v10.12.0
-	github.com/gofiber/fiber/v2 v2.43.0
+	github.com/gofiber/fiber/v2 v2.44.0
 	github.com/joho/godotenv v1.5.1
 	github.com/sirupsen/logrus v1.9.0
 	gorm.io/driver/postgres v1.5.0
@@ -19,7 +19,7 @@ require (
 	github.com/casbin/casbin/v2 v2.66.0
 	github.com/casbin/gorm-adapter/v3 v3.15.0
 	github.com/gofiber/jwt/v3 v3.3.6
-	github.com/gofiber/redirect/v2 v2.1.31
+	github.com/gofiber/redirect/v2 v2.1.33
 	github.com/gofiber/swagger v0.1.9
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/hibiken/asynq v0.24.0
@@ -101,7 +101,7 @@ require (
 	github.com/klauspost/compress v1.16.3 // indirect
 	github.com/leodido/go-urn v1.2.2 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.17 // indirect
+	github.com/mattn/go-isatty v0.0.18 // indirect
 	github.com/mattn/go-runewidth v0.0.14 // indirect
 	github.com/rivo/uniseg v0.4.3 // indirect
 	github.com/rollbar/rollbar-go v1.4.5
@@ -109,6 +109,6 @@ require (
 	github.com/valyala/fasthttp v1.45.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	golang.org/x/crypto v0.7.0 // indirect
-	golang.org/x/sys v0.6.0 // indirect
+	golang.org/x/sys v0.7.0 // indirect
 	golang.org/x/text v0.8.0 // indirect
 )
