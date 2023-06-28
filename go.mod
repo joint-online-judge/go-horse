@@ -22,12 +22,12 @@ require (
 	github.com/gofiber/redirect/v2 v2.1.31
 	github.com/gofiber/swagger v0.1.9
 	github.com/golang-jwt/jwt/v4 v4.5.0
-	github.com/hibiken/asynq v0.24.0
+	github.com/hibiken/asynq v0.24.1
 	github.com/jinzhu/copier v0.3.5
 	github.com/matthewhartstonge/argon2 v0.3.2
 	github.com/minio/minio-go/v7 v7.0.50
 	github.com/pkg/errors v0.9.1
-	github.com/redis/go-redis/v9 v9.0.2
+	github.com/redis/go-redis/v9 v9.0.3
 	github.com/swaggo/swag v1.8.11
 )
 
@@ -46,11 +46,10 @@ require (
 	github.com/go-openapi/jsonreference v0.19.6 // indirect
 	github.com/go-openapi/spec v0.20.4 // indirect
 	github.com/go-openapi/swag v0.21.1 // indirect
-	github.com/go-redis/redis/v8 v8.11.2 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/golang-sql/civil v0.0.0-20220223132316-b832511892a9 // indirect
 	github.com/golang-sql/sqlexp v0.1.0 // indirect
-	github.com/golang/protobuf v1.5.0 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.4 // indirect
